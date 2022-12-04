@@ -1,4 +1,5 @@
 import { Navbar,Footer,Loader,Services,Transactions,Welcome } from './components';
+import Ideas from './components/Ideas';
 const App = () =>{
 
   return (
@@ -8,6 +9,7 @@ const App = () =>{
         <Welcome/>
       </div>
       <Services/>
+      <Ideas/>
       <Transactions/>
       <Footer/>
     </div>

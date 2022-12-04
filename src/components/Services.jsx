@@ -19,7 +19,7 @@ const Services = () =>{
         <div className='flex w-full justify-center items-center gradient-bg-services'>
             <div className='flex mf:flex-row flex-col items-center justify-between md:p-20 py-12 px-4'>
                 <div className='flex-1 flex flex-col justify-start items-start'>
-                    <h1 className='text-white text-3xl sm:text-5xl text-gradient'>Campaigns that we <br/>current running.</h1>
+                    <h1 className='text-white text-3xl sm:text-5xl text-gradient'>Events that are <br/>currently running.</h1>
                 </div>
             </div>
             <div className='flex-1 flex flex-col justify-start items-center'>
@@ -37,9 +37,9 @@ const Services = () =>{
                 />
                 <ServiceCard
                 color="bg-[#f84550]"
-                title='Users campaigns'
+                title='Users fund rising'
                 icon={<RiHeart2Fill fontSize={21} className='text-white'/>}
-                subtitle='These campaigns are set by the Users. They will run in a previous set time and the fund will be sent directly to the owner(who raised fund) wallet.'
+                subtitle='These funds are rise by the Users. They will run in a previous set time and the fund will be sent directly to the owner(who raised fund) wallet.'
                 />
             </div>
         </div>
