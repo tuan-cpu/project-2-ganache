@@ -1,5 +1,6 @@
 import { Navbar,Footer,Loader,Services,Transactions,Welcome } from './components';
 import Ideas from './components/Ideas';
+import Sponsor from './components/Sponsors';
 const App = () =>{
 
   return (
@@ -11,6 +12,7 @@ const App = () =>{
       <Services/>
       <Ideas/>
       <Transactions/>
+      <Sponsor/>
       <Footer/>
     </div>
   )
