@@ -1,6 +1,7 @@
 import { Navbar,Footer,Loader,Services,Transactions,Welcome } from './components';
 import Ideas from './components/Ideas';
 import Sponsor from './components/Sponsors';
+import SubFooter from './components/SubFooter';
 const App = () =>{
 
   return (
@@ -13,6 +14,7 @@ const App = () =>{
       <Ideas/>
       <Transactions/>
       <Sponsor/>
+      <SubFooter/>
       <Footer/>
     </div>
   )
