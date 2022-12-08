@@ -10,7 +10,7 @@ const IdeaCard = ({title,subtitle,ImgLink}) =>(
             <a className="my-[10px] text-[#3f51db]">Start fundraising</a>
         </div>
         <div className="min-w-[70px] h-20">
-            <img src={ImgLink} alt/>
+            <img src={ImgLink} alt="true"/>
         </div>
     </div>
 )

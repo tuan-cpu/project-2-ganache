@@ -1,22 +1,15 @@
-import { Navbar,Footer,Loader,Services,Transactions,Welcome } from './components';
-import Ideas from './components/Ideas';
-import Sponsor from './components/Sponsors';
-import SubFooter from './components/SubFooter';
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { ErrorPage,HomePage,RegisterPage } from "./pages";
 const App = () =>{
 
   return (
-    <div className="min-h-screen">
-      <div className='gradient-bg-welcome'>
-        <Navbar/>
-        <Welcome/>
-      </div>
-      <Services/>
-      <Ideas/>
-      <Transactions/>
-      <Sponsor/>
-      <SubFooter/>
-      <Footer/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/register" element={<RegisterPage/>}/>
+        <Route path="/error" element={<ErrorPage/>}/>
+      </Routes>
+    </Router>
   )
 }
 

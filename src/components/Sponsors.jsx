@@ -7,8 +7,8 @@ const Sponsor = () =>(
                 <p className="font-light text-center text-white">Join <span className="font-normal">25,788 charities</span>, organizations and schools on TokenGiving</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 w-3/4">
-                <div className='pr-[20px] pb-[20px]'><img src={sponsor1} alt/></div>
-                <div className='pb-[20px]'><img src={sponsor2} alt/></div>
+                <div className='pr-[20px] pb-[20px]'><img src={sponsor1} alt="true"/></div>
+                <div className='pb-[20px]'><img src={sponsor2} alt="true"/></div>
             </div>
             <div className='px-[12px] pb-[20px]'>
                 <p className="text-xl md:text-3xl text-white">Do you work for a charity?</p>
