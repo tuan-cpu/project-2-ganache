@@ -27,6 +27,9 @@ module.exports = {
         "slide-in": "slide-in 0.5s ease-out",
       },
     },
+    backgroundSize:{
+      '17':'4.25rem',
+    },
   },
   variants: {
     extend: {},
