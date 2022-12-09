@@ -8,3 +8,4 @@ export { default as Ideas } from './Ideas';
 export { default as Sponsor } from './Sponsors';
 export { default as SubFooter } from './SubFooter';
 export { default as SignUp } from './SignUp';
+export { default as SignIn } from './SignIn';

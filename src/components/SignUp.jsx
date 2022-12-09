@@ -51,7 +51,7 @@ const SignUp = () => {
                 <img src="https://www.justgiving.com/sso/images/signup.svg" alt="true" className="mb-[24px]" />
                 <h1 className="mb-[12px] md:text-2xl text-4xl font-semibold text-white">Sign Up</h1>
                 <div className="p-5 sm:w-[32rem] w-full flex flex-col items-center blue-glassmorphism">
-                    <div>
+                    <div className="w-full">
                         <Input placeholder='First name' name='firstname' type='text' handleChange={handleSignUp} />
                         {!nameState.first?(
                             <div className="flex items-center gap-[10px]">
@@ -97,7 +97,7 @@ const SignUp = () => {
                         <button
                             type="button"
                             onClick={handleSubmit}
-                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px]">
+                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-700">
                             Sign Up
                         </button>
                         <p className="text-slate-400 text-xs pb-[20px]">By clicking 'Sign up', you are agreeing to our terms of service and privacy policy.</p>
