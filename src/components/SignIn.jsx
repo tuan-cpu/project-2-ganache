@@ -1,7 +1,8 @@
 import { useContext, React, useState, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -14,9 +15,22 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     />
 )
 const SignIn = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        let authToken = sessionStorage.getItem('Auth Token')
+
+        if (authToken) {
+            navigate('/home')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    }, []);
     const { signInFormData, handleSignIn } = useContext(TransactionContext);
     const [formState, setFormState] = useState({ email: true, password: true });
     const handleSubmit = (e) => {
+        const authentication = getAuth();
         const { email, password } = signInFormData;
         e.preventDefault();
         console.log(signInFormData);
@@ -24,6 +38,18 @@ const SignIn = () => {
         else setFormState((prevState) => ({ ...prevState, email: true }));
         if (!password) setFormState((prevState) => ({ ...prevState, password: false }));
         else setFormState((prevState) => ({ ...prevState, password: true }));
+        if (email && password) signInWithEmailAndPassword(authentication, email, password)
+            .then((response) => {
+                sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
+                navigate('/home');
+            }).catch((error) => {
+                if (error.code === 'auth/wrong-password') {
+                    toast.error('Please check the Password');
+                }
+                if (error.code === 'auth/user-not-found') {
+                    toast.error('Please check the Email');
+                }
+            });
     };
     useEffect(() => {
         console.log(formState)

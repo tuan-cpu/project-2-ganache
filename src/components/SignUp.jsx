@@ -2,7 +2,8 @@ import { useState, React, useContext, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineCheckCircle, AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
-import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail } from "../hooks/regex";
+import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../hooks/regex";
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -22,14 +23,15 @@ const CircleIcon = ({ currentState }) => {
 const SignUp = () => {
     const { signUpFormData, handleSignUp } = useContext(TransactionContext);
     const [passwordState, setPasswordState] = useState({ lower: 0, upper: 0, special: 0, number: 0, char: 0 });
-    const [nameState,setNameState] = useState({first:true,last:true});
-    const [emailState,setEmailState] = useState(true);
+    const [nameState, setNameState] = useState({ first: true, last: true });
+    const [emailState, setEmailState] = useState(true);
     const handleSubmit = (e) => {
         const { firstname, lastname, email, password } = signUpFormData;
+        const authentication = getAuth();
         e.preventDefault();
         console.log(signUpFormData);
-        if(!firstname) setNameState((prevState)=>({...prevState,first:false}));
-        if(!lastname) setNameState((prevState)=>({...prevState,last:false}));
+        if (!firstname) setNameState((prevState) => ({ ...prevState, first: false }));
+        if (!lastname) setNameState((prevState) => ({ ...prevState, last: false }));
         if (validNumberOfCharacter.test(password)) setPasswordState((prevState) => ({ ...prevState, char: 1 }));
         else setPasswordState((prevState) => ({ ...prevState, char: -1 }))
         if (validUpperCharacter.test(password)) setPasswordState((prevState) => ({ ...prevState, upper: 1 }));
@@ -40,7 +42,16 @@ const SignUp = () => {
         else setPasswordState((prevState) => ({ ...prevState, special: -1 }))
         if (validNumber.test(password)) setPasswordState((prevState) => ({ ...prevState, number: 1 }));
         else setPasswordState((prevState) => ({ ...prevState, number: -1 }))
-        if(!validEmail.test(email)) setEmailState(false);
+        if (!validEmail.test(email)) setEmailState(false);
+        if (validPassword.test(password) && validEmail.test(email))
+            createUserWithEmailAndPassword(authentication, email, password)
+                .then((response) => {
+                    sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+                }).catch((error) => {
+                    if (error.code === 'auth/email-already-in-use') {
+                        toast.error('Email Already in Use');
+                    }
+                })
     }
     useEffect(() => {
         console.log(passwordState)
@@ -53,26 +64,26 @@ const SignUp = () => {
                 <div className="p-5 sm:w-[32rem] w-full flex flex-col items-center blue-glassmorphism">
                     <div className="w-full">
                         <Input placeholder='First name' name='firstname' type='text' handleChange={handleSignUp} />
-                        {!nameState.first?(
+                        {!nameState.first ? (
                             <div className="flex items-center gap-[10px]">
-                                <AiOutlineExclamationCircle fontSize={17} color='#ff0000'/>
+                                <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
                                 <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
                             </div>
-                        ):""}
+                        ) : ""}
                         <Input placeholder='Last name' name='lastname' type='text' handleChange={handleSignUp} />
-                        {!nameState.last?(
+                        {!nameState.last ? (
                             <div className="flex items-center gap-[10px]">
-                                <AiOutlineExclamationCircle fontSize={17} color='#ff0000'/>
+                                <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
                                 <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
                             </div>
-                        ):""}
+                        ) : ""}
                         <Input placeholder='Email' name='email' type='text' handleChange={handleSignUp} />
-                        {!emailState?(
+                        {!emailState ? (
                             <div className="flex items-center gap-[10px]">
-                                <AiOutlineExclamationCircle fontSize={17} color='#ff0000'/>
+                                <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
                                 <p className="text-[#ff0000] text-sm">Email invalid!</p>
                             </div>
-                        ):""}
+                        ) : ""}
                         <Input placeholder='Password' name='password' type='password' handleChange={handleSignUp} />
                         <div className="flex items-center gap-[10px]">
                             <CircleIcon currentState={passwordState.char} />

@@ -14,18 +14,25 @@ const NavbarItem = ({ title, classProps }) => {
 const Navbar = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
     const navigate = useNavigate();
+    let authToken = sessionStorage.getItem('Auth Token')
     return (
         <nav className='w-full flex md:justify-center justify-between items-center p-4'>
             <div className='md:flex-[0.5] flex-initial justify-center items-center'>
-                <img src={logo} alt="logo" className="w-32 cursor-pointer" onClick={()=>{navigate('/')}}/>
+                <img src={logo} alt="logo" className="w-32 cursor-pointer" onClick={() => { navigate('/') }} />
             </div>
             <ul className='text-white md:flex hidden list-none flex-row justify-between items-center flex-initial'>
                 {['Market', 'Exchange', 'Tutorials', 'Wallets'].map((item, index) => (
                     <NavbarItem key={item + index} title={item} />
                 ))}
-                <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={()=>navigate('/login')}>
+                {!authToken ? <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => navigate('/login')}>
                     Login
-                </li>
+                </li> : <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => {
+                    sessionStorage.removeItem('Auth Token');
+                    navigate('/login');
+                }}>
+                    Logout
+                </li>}
+
             </ul>
             <div className='flex relative'>
                 {

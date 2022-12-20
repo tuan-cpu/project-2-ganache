@@ -1,7 +1,6 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import { DonatePage, ErrorPage,EventPage,HomePage,RegisterPage, ResetPasswordPage, SignInPage } from "./pages";
 const App = () =>{
-
   return (
     <Router>
       <Routes>
