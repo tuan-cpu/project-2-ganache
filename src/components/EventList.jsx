@@ -1,11 +1,12 @@
+import { NavLink } from 'react-router-dom';
 const EventCard = ({ title, event, location }) => (
-    <div class="flex justify-center">
+    <NavLink class="flex justify-center" to='/detail'>
         <div class="rounded-lg shadow-lg white-glassmorphism max-w-sm">
             <a href="#!">
                 <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
             </a>
             <div class="p-6">
-                <p className="text-left text-white font-medium text-base text-xl">
+                <p className="text-left text-white font-medium text-base text-xl overflow-hidden text-ellipsis whitespace-nowrap">
                     {title}
                 </p>
                 <div className="flex flex-col">
@@ -20,7 +21,7 @@ const EventCard = ({ title, event, location }) => (
                 </div>
             </div>
         </div>
-    </div>
+    </NavLink>
 )
 const EventList = () => {
     return (

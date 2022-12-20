@@ -1,6 +1,7 @@
 import { useContext, React, useState, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { NavLink } from 'react-router-dom';
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -33,7 +34,7 @@ const SignIn = () => {
                 <h1 className="md:text-2xl text-4xl font-semibold text-white">Log In</h1>
                 <div className="flex items-center gap-[10px] pt-[10px] pb-[20px]">
                     <p className="text-white">New to TokenGiving?</p>
-                    <a className="text-white">Sign Up</a>
+                    <NavLink className="text-blue-500" to='/register'>Sign Up</NavLink>
                 </div>
                 <div className="p-5 sm:w-[32rem] w-full flex flex-col items-center blue-glassmorphism">
                     <div className="w-full">
@@ -57,8 +58,8 @@ const SignIn = () => {
                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-700">
                             Continue
                         </button>
-                        <a className="py-[15px] text-white">Forgot your password?</a>
                     </div>
+                    <NavLink className="pb-[15px] text-blue-500" to='/reset'>Forgot your password?</NavLink>
                     <div class="inline-flex justify-center items-center w-full">
                         <hr class="mb-[20px] w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
                     </div>

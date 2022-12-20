@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
@@ -35,7 +36,7 @@ const ResetPassword = () => {
                         className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-700">
                         Reset Password
                     </button>
-                    <a className="py-[20px] text-white">Back to login</a>
+                    <NavLink className="pb-[20px] text-blue-600" to="/login">Back to login</NavLink>
                 </div>
             </div>
         </div>

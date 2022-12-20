@@ -60,6 +60,12 @@ const DonateDetail = () => {
                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-blue-400">
                             Twitter
                         </button>
+                        <button
+                            type="button"
+                            onClick={() => { }}
+                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-gray-400">
+                            Gmail
+                        </button>
                     </div>
                 </section>
             </div>
