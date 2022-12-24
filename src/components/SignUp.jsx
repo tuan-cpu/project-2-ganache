@@ -3,7 +3,10 @@ import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineCheckCircle, AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../hooks/regex";
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { NavLink } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -113,13 +116,14 @@ const SignUp = () => {
                         </button>
                         <p className="text-slate-400 text-xs pb-[20px]">By clicking 'Sign up', you are agreeing to our terms of service and privacy policy.</p>
                     </div>
-                    <div class="inline-flex justify-center items-center w-full">
-                        <hr class="mb-[20px] w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                    <div className="inline-flex justify-center items-center w-full">
+                        <hr className="mb-[20px] w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
                     </div>
                     <p className="text-white text-base">Already have an account?</p>
-                    <a className="text-white">Log In</a>
+                    <NavLink className="text-blue-500" to='/login'>Log in</NavLink>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     )
 }

@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { authentication } from "../utils/firebase.js";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -13,14 +16,24 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     />
 )
 const ResetPassword = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const handleChange = (e) => {
         setEmail(e.target.value);
     }
-    const handleSubmit = (e) =>{
+    const handleSubmit = async(e) =>{
         e.preventDefault();
         if(!email) return;
-        else console.log(email);
+        else try {
+            await sendPasswordResetEmail(authentication,email).then(()=>{
+                toast.success("Password reset link have been sent. Please check your mail box.");
+                setTimeout(()=>{
+                    navigate('/login',{replace:true});
+                },5300)
+            })
+        } catch (error) {
+            toast.error("An error occurred while sending email.")
+        }
     }
     return (
         <div className="flex justify-center items-center gradient-bg-transactions">
@@ -39,6 +52,7 @@ const ResetPassword = () => {
                     <NavLink className="pb-[20px] text-blue-600" to="/login">Back to login</NavLink>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     )
 }

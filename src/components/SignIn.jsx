@@ -2,7 +2,10 @@ import { useContext, React, useState, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { authentication, googleProvider } from "../utils/firebase.js";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -20,7 +23,7 @@ const SignIn = () => {
         let authToken = sessionStorage.getItem('Auth Token')
 
         if (authToken) {
-            navigate('/home')
+            navigate('/')
         }
 
         if (!authToken) {
@@ -30,7 +33,6 @@ const SignIn = () => {
     const { signInFormData, handleSignIn } = useContext(TransactionContext);
     const [formState, setFormState] = useState({ email: true, password: true });
     const handleSubmit = (e) => {
-        const authentication = getAuth();
         const { email, password } = signInFormData;
         e.preventDefault();
         console.log(signInFormData);
@@ -54,6 +56,13 @@ const SignIn = () => {
     useEffect(() => {
         console.log(formState)
     }, [formState]);
+    const handleGoogleSignIn = () =>{
+        signInWithPopup(authentication,googleProvider).then((result)=>{
+            console.log(result)
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
     return (
         <div className="flex justify-center items-center gradient-bg-transactions">
             <div className="grid grid-cols-1 pt-[48px] justify-items-center">
@@ -86,11 +95,12 @@ const SignIn = () => {
                         </button>
                     </div>
                     <NavLink className="pb-[15px] text-blue-500" to='/reset'>Forgot your password?</NavLink>
-                    <div class="inline-flex justify-center items-center w-full">
-                        <hr class="mb-[20px] w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                    <div className="inline-flex justify-center items-center w-full">
+                        <hr className="mb-[20px] w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
                     </div>
                     <button
                         type="button"
+                        onClick={handleGoogleSignIn}
                         className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">
                         Continue with Google
                     </button>
@@ -101,6 +111,7 @@ const SignIn = () => {
                     </button>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     )
 }
