@@ -33,8 +33,8 @@ const DonateDetail = () => {
                 </section>
             </div>
             <div className="lg:col-span-2 text-white">
-                <div class="inline-flex justify-center items-center w-full">
-                    <hr class="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                <div className="inline-flex justify-center items-center w-full">
+                    <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                 </div>
                 <section className="max-w-[1240px] mx-auto">
                     <header className="font-semibold text-4xl pb-[20px]">Story</header>
@@ -70,8 +70,8 @@ const DonateDetail = () => {
                 </section>
             </div>
             <div className="text-white">
-                <div class="inline-flex justify-center items-center w-full">
-                    <hr class="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                <div className="inline-flex justify-center items-center w-full">
+                    <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                 </div>
                 <section className="max-w-[1240px] mx-auto flex flex-col">
                     <header className="font-semibold text-4xl pb-[20px]">
@@ -89,8 +89,8 @@ const DonateDetail = () => {
                                     <span className="float-right text-slate-400">18 minutes ago</span>
                                 </h2>
                                 <p className="text-red-500  text-xl pb-[10px]">£2,00</p>
-                                <div class="inline-flex justify-center items-center w-full">
-                                    <hr class="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                                <div className="inline-flex justify-center items-center w-full">
+                                    <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                                 </div>
                             </section>
                         </li>
@@ -104,8 +104,8 @@ const DonateDetail = () => {
                                     <span className="float-right text-slate-400">18 minutes ago</span>
                                 </h2>
                                 <p className="text-red-500  text-xl pb-[10px]">£2,00</p>
-                                <div class="inline-flex justify-center items-center w-full">
-                                    <hr class="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                                <div className="inline-flex justify-center items-center w-full">
+                                    <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                                 </div>
                             </section>
                         </li>
@@ -119,8 +119,8 @@ const DonateDetail = () => {
                                     <span className="float-right text-slate-400">18 minutes ago</span>
                                 </h2>
                                 <p className="text-red-500  text-xl pb-[10px]">£2,00</p>
-                                <div class="inline-flex justify-center items-center w-full">
-                                    <hr class="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                                <div className="inline-flex justify-center items-center w-full">
+                                    <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                                 </div>
                             </section>
                         </li>
@@ -134,8 +134,8 @@ const DonateDetail = () => {
                                     <span className="float-right text-slate-400">18 minutes ago</span>
                                 </h2>
                                 <p className="text-red-500  text-xl pb-[10px]">£2,00</p>
-                                <div class="inline-flex justify-center items-center w-full">
-                                    <hr class="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                                <div className="inline-flex justify-center items-center w-full">
+                                    <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                                 </div>
                             </section>
                         </li>
