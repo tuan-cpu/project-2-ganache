@@ -5,7 +5,7 @@ import { TbDisabled2 } from "react-icons/tb";
 import { BiBookBookmark } from "react-icons/bi";
 import { FaParachuteBox } from "react-icons/fa";
 import { IoColorPaletteOutline } from "react-icons/io5";
-const Filter = ({events,setFiltered,activeButton,setActiveButton}) =>{
+const Filter = ({events,setFiltered,activeButton,setActiveButton,setInput}) =>{
     useEffect(() => {
         if(activeButton === "All") {
             setFiltered(events);
@@ -13,6 +13,7 @@ const Filter = ({events,setFiltered,activeButton,setActiveButton}) =>{
         }
         const filtered = events.filter((event)=> event.tag.includes(activeButton));
         setFiltered(filtered);
+        setInput("");
     }, [activeButton]);
     return(
         <div className="flex flex-wrap gap-[10px]">
