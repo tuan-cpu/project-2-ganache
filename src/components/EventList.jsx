@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import dummyEvents from '../utils/dummyEvents';
@@ -34,20 +34,23 @@ const EventList = () => {
     const [events,setEvents] = useState(dummyEvents);
     const [filtered,setFiltered] = useState(dummyEvents);
     const [activeButton,setActiveButton] = useState("All");
+    const [input,setInput] = useState({input:""});
+    const handleSearchInput = (e) =>{
+        setInput((prevState) => ({ ...prevState, input: e.target.value }));
+    };
+    useEffect(() => {
+        const search_filtered = events.filter((event)=> event.title.includes(input.input))
+        setFiltered(search_filtered)
+    }, [input]);
     return (
         <div className="gradient-bg-transactions grid grid-cols-1 justify-items-center items-center flex py-[20px] sm:px-[50px] lg:px-[100px] px-[20px]">
             <div className="flex w-3/4 sm:w-1/2 gap-[2px]">
-                <motion.input
+                <input
                     type="text"
                     className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Search..."
+                    onChange={(e)=>handleSearchInput(e)}
                 />
-                <motion.button 
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }} 
-                    className="px-4 text-white white-glassmorphism rounded">
-                    Search
-                </motion.button>
             </div>
             <div>
                 <Filter events={events} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton}/>
