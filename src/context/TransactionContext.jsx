@@ -18,6 +18,7 @@ export const TransactionProvider = ({ children }) => {
     const [formData, setFormData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
     const [signInFormData,setSignInFormData] = useState({ email:"", password:"" });
     const [signUpFormData,setSignUpFormData] = useState({ firstname:"", lastname:"", email:"", password:"" });
+    const [user,setUser] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [transactionCount, setTransactionCount] = useState(localStorage.getItem('transactionCount'));
     const [transactions,setTransactions] = useState([]);
@@ -116,7 +117,7 @@ export const TransactionProvider = ({ children }) => {
         checkIfTransactionsExist();
     }, []);
     return (
-        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, sendTransaction, handleChange, transactions, isLoading, signInFormData, signUpFormData, handleSignUp, handleSignIn }}>
+        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, sendTransaction, handleChange, transactions, isLoading, signInFormData, signUpFormData, handleSignUp, handleSignIn,user, setUser }}>
             {children}
         </TransactionContext.Provider>
     )

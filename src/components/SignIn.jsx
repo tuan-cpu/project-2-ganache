@@ -2,8 +2,8 @@ import { useContext, React, useState, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { authentication, googleProvider } from "../utils/firebase.js";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { authentication, facebookProvider, googleProvider } from "../utils/firebase.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Input = ({ placeholder, name, type, value, handleChange }) => (
@@ -30,7 +30,7 @@ const SignIn = () => {
             navigate('/login')
         }
     }, []);
-    const { signInFormData, handleSignIn } = useContext(TransactionContext);
+    const { signInFormData, handleSignIn, setUser } = useContext(TransactionContext);
     const [formState, setFormState] = useState({ email: true, password: true });
     const handleSubmit = (e) => {
         const { email, password } = signInFormData;
@@ -58,7 +58,19 @@ const SignIn = () => {
     }, [formState]);
     const handleGoogleSignIn = () =>{
         signInWithPopup(authentication,googleProvider).then((result)=>{
-            console.log(result)
+            setUser(result.user);
+            sessionStorage.setItem('Auth Token', result.user.accessToken);
+            navigate('/');
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+    const handleFacebookSignIn = () =>{
+        signInWithPopup(authentication,facebookProvider).then((result)=>{
+            // setUser(result.user);
+            // sessionStorage.setItem('Auth Token', result.user.accessToken);
+            // navigate('/');
+            console.log(result);
         }).catch((error)=>{
             console.log(error);
         })
@@ -106,6 +118,7 @@ const SignIn = () => {
                     </button>
                     <button
                         type="button"
+                        onClick={handleFacebookSignIn}
                         className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-800">
                         Continue with Facebook
                     </button>
