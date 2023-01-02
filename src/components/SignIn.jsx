@@ -43,7 +43,7 @@ const SignIn = () => {
         if (email && password) signInWithEmailAndPassword(authentication, email, password)
             .then((response) => {
                 sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
-                navigate('/home');
+                navigate('/');
             }).catch((error) => {
                 if (error.code === 'auth/wrong-password') {
                     toast.error('Please check the Password');
@@ -56,22 +56,22 @@ const SignIn = () => {
     useEffect(() => {
         console.log(formState)
     }, [formState]);
-    const handleGoogleSignIn = () =>{
-        signInWithPopup(authentication,googleProvider).then((result)=>{
+    const handleGoogleSignIn = () => {
+        signInWithPopup(authentication, googleProvider).then((result) => {
             setUser(result.user);
             sessionStorage.setItem('Auth Token', result.user.accessToken);
             navigate('/');
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error);
         })
     }
-    const handleFacebookSignIn = () =>{
-        signInWithPopup(authentication,facebookProvider).then((result)=>{
+    const handleFacebookSignIn = () => {
+        signInWithPopup(authentication, facebookProvider).then((result) => {
             // setUser(result.user);
             // sessionStorage.setItem('Auth Token', result.user.accessToken);
             // navigate('/');
             console.log(result);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error);
         })
     }
@@ -124,7 +124,7 @@ const SignIn = () => {
                     </button>
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }
