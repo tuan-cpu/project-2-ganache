@@ -11,7 +11,7 @@ const Filter = ({events,setFiltered,activeButton,setActiveButton,setInput}) =>{
             setFiltered(events);
             return;
         }
-        const filtered = events.filter((event)=> event.tag.includes(activeButton));
+        const filtered = events.filter((event)=> event.data.tag.includes(activeButton));
         setFiltered(filtered);
         setInput("");
     }, [activeButton]);

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "country-state-city": "^3.1.2",
     "ethers": "^5.7.2",
     "firebase": "^9.15.0",
     "framer-motion": "^8.0.2",

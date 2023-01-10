@@ -5,3 +5,4 @@ export { default as SignInPage } from './SignInPage';
 export { default as ResetPasswordPage } from './ResetPasswordPage';
 export { default as DonatePage } from './DonatePage';
 export { default as EventPage } from './EventPage';
+export { default as CreateEventPage } from './CreateEventPage';

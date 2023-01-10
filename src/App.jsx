@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import { DonatePage, ErrorPage,EventPage,HomePage,RegisterPage, ResetPasswordPage, SignInPage } from "./pages";
+import { CreateEventPage, DonatePage, ErrorPage,EventPage,HomePage,RegisterPage, ResetPasswordPage, SignInPage } from "./pages";
 const App = () =>{
   return (
     <Router>
@@ -8,9 +8,10 @@ const App = () =>{
         <Route path="/register" element={<RegisterPage/>}/>
         <Route path="/login" element={<SignInPage/>}/>
         <Route path="/reset" element={<ResetPasswordPage/>}/>
-        <Route path="/detail" element={<DonatePage/>}/>
-        <Route path="/event" element={<EventPage/>}/>
-        <Route path="/error" element={<ErrorPage/>}/>
+        <Route path="/detail/:id" element={<DonatePage/>}/>
+        <Route path="/event/:id" element={<EventPage/>}/>
+        <Route path="*" element={<ErrorPage/>}/>
+        <Route path="/create" element={<CreateEventPage/>}/>
       </Routes>
     </Router>
   )

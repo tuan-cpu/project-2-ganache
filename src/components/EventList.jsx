@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import dummyEvents from '../utils/dummyEvents';
 import Filter from './Filter';
-const EventCard = ({ title, event, location }) => (
-    <NavLink className="flex justify-center" to='/detail'>
+import { db } from "../utils/firebase.js";
+import { collection, getDocs } from 'firebase/firestore';
+import { useParams } from 'react-router-dom';
+const EventCard = ({ title, event, location, id }) => (
+    <NavLink className="flex justify-center" to={`/detail/${id}`}>
         <motion.div layout animate={{opacity:1}} initial={{opacity:0}} exit={{opacity:0}}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }} 
@@ -12,7 +14,7 @@ const EventCard = ({ title, event, location }) => (
             <a href="#!">
                 <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
             </a>
-            <div className="p-6">
+            <div className="p-4">
                 <p className="text-left text-white font-medium text-base text-xl">
                     {title}
                 </p>
@@ -31,13 +33,28 @@ const EventCard = ({ title, event, location }) => (
     </NavLink>
 )
 const EventList = () => {
-    const [events,setEvents] = useState(dummyEvents);
-    const [filtered,setFiltered] = useState(dummyEvents);
+    let { type } = useParams();
+    const [events,setEvents] = useState([]);
+    const [filtered,setFiltered] = useState([]);
     const [activeButton,setActiveButton] = useState("All");
     const [input,setInput] = useState("");
     const handleSearchInput = (e) =>{
         setInput(e.target.value);
     };
+    useEffect(() => {
+        const getData = async () =>{
+            const ref = collection(db,"events");
+            const querySnapshot = await getDocs(ref);
+            let result = [];
+            querySnapshot.forEach((doc)=>{
+                result.push({id:doc.id,data:doc.data()});
+                console.log(result);
+            });
+            setEvents(result);
+            setFiltered(result);
+        }
+        getData();
+    }, []);
     useEffect(() => {
         if(input !== ""){
             setActiveButton("All");
@@ -63,7 +80,7 @@ const EventList = () => {
             </div>
             <motion.div layout className="grid sm:grid-cols-3 grid-cols-2 p-[20px] gap-[20px]">
                 <AnimatePresence>
-                    {filtered.map((event,index)=><EventCard title={event.title} event={event.event} location={event.location} key={event.id}/>)}
+                    {filtered.map((event,index)=><EventCard id={event.id} title={event.data.title} event={event.data.event} location={event.data.location} key={event.id}/>)}
                 </AnimatePresence>
             </motion.div>
         </div>

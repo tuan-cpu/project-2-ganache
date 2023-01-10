@@ -1,13 +1,15 @@
 import avatar from '../assets/avatar.svg';
 import { db } from "../utils/firebase.js";
-import { collection, doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import Loader from './Loader';
+import { useParams } from 'react-router-dom';
 const DonateDetail = () => {
+    let { id } = useParams();
     const [detail, setDetail] = useState();
     useEffect(() => {
         const getData = async () => {
-            const docRef = doc(db, "events", "rH1omHcHEVsEIItN9sNL");
+            const docRef = doc(db, "events", id);
             try {
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {

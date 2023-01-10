@@ -13,3 +13,4 @@ export { default as ResetPassword } from './ResetPassword';
 export { default as DonateDetail } from './DonateDetail';
 export { default as EventList } from './EventList';
 export { default as Filter } from './Filter';
+export { default as CreateEvent } from './CreateEvent';
