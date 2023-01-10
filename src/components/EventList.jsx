@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Filter from './Filter';
 import { db } from "../utils/firebase.js";
 import { collection, getDocs } from 'firebase/firestore';
-import { useParams } from 'react-router-dom';
 const EventCard = ({ title, event, location, id }) => (
     <NavLink className="flex justify-center" to={`/detail/${id}`}>
         <motion.div layout animate={{opacity:1}} initial={{opacity:0}} exit={{opacity:0}}

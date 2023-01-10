@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { allStates } from "../utils/state";
+import { City }  from 'country-state-city';
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -13,6 +15,12 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 const CreateEvent = () => {
     const [userInfoShow, setUserInfoShow] = useState(true);
     const [eventInfoShow, setEventInfoShow] = useState(false);
+    const [chosenState,setChosenState] = useState();
+    const [allCities,setAllCities] = useState();
+    const [chosenCity,setChosenCity] = useState();
+    useEffect(() => {
+        setAllCities(City.getCitiesOfState("VN",chosenState));
+    }, [chosenState]);
     return (
         <div className="gradient-bg-transactions grid grid-cols-2 p-5 gap-[10px] min-h-screen">
             {userInfoShow ?
@@ -35,6 +43,21 @@ const CreateEvent = () => {
                     <Input placeholder='Title' name='title' type='text' handleChange={()=>{}} />
                     <Input placeholder='Event' name='event' type='text' handleChange={()=>{}} />
                     <textarea placeholder="Story" name="story" className="bg-transparent border-white"/>
+                    <div className="grid grid-cols-2 gap-[10px]">
+                        <select id="states"
+                        onChange={(e)=>setChosenState(e.target.value)} 
+                        className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Choose a State</option>
+                        {allStates.map((state,index)=><option key={state.isoCode} value={state.isoCode}>{state.name}</option>)}
+                        </select>
+                        {allCities && chosenState?
+                        <select id="cities"
+                        onChange={(e)=>setChosenCity(e.target.value)} 
+                        className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a City</option>
+                            {allCities.map((city,index)=><option key={city.name} value={city.name}>{city.name}</option>)}
+                        </select>:''}
+                    </div>
                     <button
                         type="button"
                         onClick={() => { }}
