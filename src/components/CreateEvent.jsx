@@ -34,7 +34,9 @@ const CreateEvent = () => {
         event: "",
         state: "",
         city: "",
-        image: ""
+        image: "",
+        amount:0,
+        supporters:[],
     });
     const [formState, setFormState] = useState({
         name: true,
