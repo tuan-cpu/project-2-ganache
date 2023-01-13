@@ -28,7 +28,7 @@ const CreateEvent = () => {
     const [formData, setFormData] = useState({
         name: "",
         wallet: "",
-        category: "",
+        tag: "",
         title: "",
         story: "",
         event: "",
@@ -124,7 +124,7 @@ const CreateEvent = () => {
                         <div className="flex flex-col">
                             <p className="text-bold text-3xl text-white">Choose a category</p>
                             <select id="category"
-                                onChange={(e) => setFormData((prevState) => ({ ...prevState, category: e.target.value }))}
+                                onChange={(e) => setFormData((prevState) => ({ ...prevState, tag: e.target.value }))}
                                 className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected>Choose a category</option>
                                 {categories.map((cat, index) => <option key={cat} value={cat}>{cat}</option>)}
