@@ -41,7 +41,7 @@ const CreateEvent = () => {
     const [formState, setFormState] = useState({
         name: true,
         wallet: true,
-        category: true,
+        tag: true,
         title: true,
         story: true,
         event: true,
@@ -126,11 +126,11 @@ const CreateEvent = () => {
                             <select id="category"
                                 onChange={(e) => setFormData((prevState) => ({ ...prevState, tag: e.target.value }))}
                                 className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Choose a category</option>
+                                <option selected disabled>Choose a category</option>
                                 {categories.map((cat, index) => <option key={cat} value={cat}>{cat}</option>)}
                             </select>
-                            {!formState.category ? (
-                                <div className="flex items-center gap-[10px]">
+                            {!formState.tag ? (
+                                <div className="flex items-center gap-[10px] pt-[10px]">
                                     <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
                                     <p className="text-[#ff0000] text-sm">Must choose a category!</p>
                                 </div>
@@ -138,10 +138,10 @@ const CreateEvent = () => {
                             <button
                                 type="button"
                                 onClick={() => {
-                                    if (!formData.category) setFormState((prevState) => ({ ...prevState, category: false }));
+                                    if (!formData.tag) setFormState((prevState) => ({ ...prevState, tag: false }));
                                     else {
                                         setEventInfoShow(true);
-                                        setFormState((prevState) => ({ ...prevState, category: true }));
+                                        setFormState((prevState) => ({ ...prevState, tag: true }));
                                     }
                                 }}
                                 className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">
@@ -162,7 +162,7 @@ const CreateEvent = () => {
                         ) : ""}
                         <Input placeholder='Event' name='event' type='text' handleChange={handleChange} />
                         {!formState.event ? (
-                            <div className="flex items-center gap-[10px]">
+                            <div className="flex items-center gap-[10px] pb-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
                                 <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
                             </div>
@@ -171,7 +171,7 @@ const CreateEvent = () => {
                             onChange={(e) => setFormData((prevState) => ({ ...prevState, story: e.target.value }))}
                         />
                         {!formState.story ? (
-                            <div className="flex items-center gap-[10px]">
+                            <div className="flex items-center gap-[10px] pt-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
                                 <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
                             </div>
@@ -184,7 +184,7 @@ const CreateEvent = () => {
                                     setFormData((prevState) => ({ ...prevState, state: e.target.value }));
                                 }}
                                 className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Choose a State</option>
+                                <option selected disabled>Choose a State</option>
                                 {allStates.map((state, index) => <option key={state.isoCode} value={state.isoCode}>{state.name}</option>)}
                             </select>
                             {chosenState ?

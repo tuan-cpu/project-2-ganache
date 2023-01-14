@@ -1,13 +1,14 @@
-import image1 from '../assets/image1.svg'
-import image2 from '../assets/image2.svg'
-import image3 from '../assets/image3.svg'
-import image4 from '../assets/image4.svg'
+import image1 from '../assets/image1.svg';
+import image2 from '../assets/image2.svg';
+import image3 from '../assets/image3.svg';
+import image4 from '../assets/image4.svg';
+import { NavLink } from "react-router-dom";
 const IdeaCard = ({title,subtitle,ImgLink}) =>(
     <div className="flex flex-row justify-start items-center white-glassmorphism p-3 m-2 hover:shadow-xl p-[24px]">
         <div className='ml-5 flex flex-col flex-1'>
             <h1 className='mt-2 text-lg text-white'>{title}</h1>
             <p className='mt-2 text-sm md:w-9/12 text-[#d7d3d3]'>{subtitle}</p>
-            <a className="my-[10px] text-[#3f51db]">Start fundraising</a>
+            <NavLink className="my-[10px] text-[#3f51db]" to='/create'>Start fundraising</NavLink>
         </div>
         <div className="min-w-[70px] h-20">
             <img src={ImgLink} alt="true"/>
