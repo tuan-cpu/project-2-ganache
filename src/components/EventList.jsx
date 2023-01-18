@@ -5,7 +5,7 @@ import Filter from './Filter';
 import { db } from "../utils/firebase.js";
 import { collection, getDocs } from 'firebase/firestore';
 const EventCard = ({ title, event, location, id }) => (
-    <NavLink className="flex justify-center" to={`/detail/${id}`}>
+    <NavLink className="flex justify-center" to={`detail/${id}`}>
         <motion.div layout animate={{opacity:1}} initial={{opacity:0}} exit={{opacity:0}}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }} 
@@ -42,7 +42,8 @@ const EventList = () => {
     };
     useEffect(() => {
         const getData = async () =>{
-            const ref = collection(db,"events");
+            const refURL = type+" events";
+            const ref = collection(db,refURL);
             const querySnapshot = await getDocs(ref);
             let result = [];
             querySnapshot.forEach((doc)=>{

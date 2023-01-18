@@ -117,7 +117,7 @@ export const TransactionProvider = ({ children }) => {
         checkIfTransactionsExist();
     }, []);
     return (
-        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, sendTransaction, handleChange, transactions, isLoading, signInFormData, signUpFormData, handleSignUp, handleSignIn,user, setUser }}>
+        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, sendTransaction, handleChange, transactions, isLoading, signInFormData, signUpFormData, handleSignUp, handleSignIn,user, setUser, setFormData }}>
             {children}
         </TransactionContext.Provider>
     )

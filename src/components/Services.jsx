@@ -31,7 +31,7 @@ const Services = () =>{
                 icon={<BsShieldFillCheck fontSize={21} className='text-white'/>}
                 subtitle='These campaigns are set by the Admin. They will run forever and the fund will be disbursed every quarter.'
                 nav={navigate}
-                type='lifetime events'
+                type='lifetime'
                 />
                 <ServiceCard
                 color="bg-[#8945f8]"
@@ -39,7 +39,7 @@ const Services = () =>{
                 icon={<BiSearchAlt fontSize={21} className='text-white'/>}
                 subtitle='These campaigns are set by the Admin. They will run for a limited time and the fund will be disbursed at the end of the campaign.'
                 nav={navigate}
-                type='limited events'
+                type='limited'
                 />
                 <ServiceCard
                 color="bg-[#f84550]"
@@ -47,7 +47,7 @@ const Services = () =>{
                 icon={<RiHeart2Fill fontSize={21} className='text-white'/>}
                 subtitle='These funds are rise by the Users. They will run in a previous set time and the fund will be sent directly to the owner(who raised fund) wallet.'
                 nav={navigate}
-                type='users events'
+                type='users'
                 />
             </div>
         </div>

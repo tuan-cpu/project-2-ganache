@@ -1,15 +1,59 @@
 import avatar from '../assets/avatar.svg';
 import { db } from "../utils/firebase.js";
-import { doc, getDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useEffect, useState, useContext } from 'react';
 import Loader from './Loader';
 import { useParams } from 'react-router-dom';
+import { AiFillPlayCircle } from 'react-icons/ai';
+import { TransactionContext } from "../context/TransactionContext";
+import { motion, AnimatePresence } from 'framer-motion';
+const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
+    <input
+        placeholder={placeholder}
+        type={type}
+        name={name}
+        step='0.0001'
+        onChange={(e) => handleChange(e, name)}
+        value={value}
+        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+        disabled={disabled}
+    />
+)
 const DonateDetail = () => {
-    let { id } = useParams();
+    let { type,id } = useParams();
     const [detail, setDetail] = useState();
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, user } = useContext(TransactionContext);
+    const [sendFormShow, setSendFormShow] = useState(false);
+    const handleSubmit = (e, formData) => {
+        e.preventDefault();
+        console.log(formData);
+        if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
+        sendTransaction().then(async ()=>{
+            const docRef = doc(db, "events", id);
+            try {
+                const docSnap = await updateDoc(docRef,{
+                    supporters: detail.supporters.push({
+                        identity: user? user.displayName : "Anonymous",
+                        amount: formData.amount + "ETH",
+                        timestamp: Date.now()
+                    }),
+                    amount: detail.amount + formData.amount
+                });
+                if (docSnap.exists()) {
+                    setDetail(docSnap.data());
+                } else {
+                    console.log("Document does not exist")
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        });
+    }
     useEffect(() => {
         const getData = async () => {
-            const docRef = doc(db, "events", id);
+            const refURL = type+" events";
+            const docRef = doc(db, refURL, id);
             try {
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
@@ -34,27 +78,20 @@ const DonateDetail = () => {
 
         let minutesDifference = Math.floor(difference / 1000 / 60);
 
-        if(daysDifference > 0){
+        if (daysDifference > 0) {
             let result = daysDifference.toString() + "days ago";
-            console.log(result);
             return result;
         };
-        if(hoursDifference > 0){
+        if (hoursDifference > 0) {
             let result = hoursDifference.toString() + "hours ago";
-            console.log(result);
             return result;
         };
-        if(minutesDifference > 0){
+        if (minutesDifference > 0) {
             let result = minutesDifference.toString() + "minutes ago";
-            console.log(result);
             return result;
         };;
         return "Recently"
     }
-    useEffect(() => {
-        if (detail !== undefined)
-            console.log(detail);
-    }, [detail]);
     return (
         <div>
             {detail === undefined ? <Loader /> :
@@ -75,12 +112,40 @@ const DonateDetail = () => {
                             </figcaption>
                         </section>
                         <section className="flex p-[18px] items-center flex-col">
-                            <button
-                                type="button"
-                                onClick={() => { }}
-                                className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
-                                Give now
-                            </button>
+                            {!currentAccount ? (
+                                <button
+                                    type="button"
+                                    onClick={connectWallet}
+                                    className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2546bd]"
+                                >
+                                    <AiFillPlayCircle size={21} color="#fff" className="float-left" />
+                                    <p className="text-white text-base font-semibold">Connect Wallet</p>
+                                </button>) : (
+                                <button
+                                    type="button"
+                                    onClick={() => setSendFormShow(true)}
+                                    className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
+                                    Give now
+                                </button>)}
+                            {sendFormShow ?
+                                <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
+                                    className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+                                    <AnimatePresence>
+                                        <Input key='1' placeholder='Address To' value={detail.wallet} name='addressTo' type='text' handleChange={handleChange} disabled="disabled" />
+                                        <Input key='2' placeholder='Amount(ETH)' name='amount' type='number' handleChange={handleChange} />
+                                        <Input key='3' placeholder='Keyword(Gif)' name='keyword' type='text' handleChange={handleChange} />
+                                        <Input key='4' placeholder='Enter Message' name='message' type='text' handleChange={handleChange} />
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                setFormData((prevState) => ({ ...prevState, addressTo: detail.wallet }));
+                                                handleSubmit(e, formData);
+                                            }}
+                                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2546bd]">
+                                            Send now
+                                        </button>
+                                    </AnimatePresence>
+                                </motion.div> : ''}
                             <button
                                 type="button"
                                 onClick={() => { }}

@@ -1,4 +1,4 @@
-import { Navbar,Footer,Loader,Services,Transactions,Welcome,Ideas,Sponsor,SubFooter } from '../components';
+import { Navbar,Footer,Services,Transactions,Welcome,Ideas,Sponsor,SubFooter } from '../components';
 const HomePage = () =>{
 
   return (
