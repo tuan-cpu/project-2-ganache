@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { TransactionContext } from "../context/TransactionContext";
 import { motion, AnimatePresence } from 'framer-motion';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     <input
         placeholder={placeholder}
@@ -20,7 +21,7 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     />
 )
 const DonateDetail = () => {
-    let { type,id } = useParams();
+    let { type, id } = useParams();
     const [detail, setDetail] = useState();
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, user } = useContext(TransactionContext);
     const [sendFormShow, setSendFormShow] = useState(false);
@@ -28,12 +29,12 @@ const DonateDetail = () => {
         e.preventDefault();
         console.log(formData);
         if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
-        sendTransaction().then(async ()=>{
+        sendTransaction().then(async () => {
             const docRef = doc(db, "events", id);
             try {
-                const docSnap = await updateDoc(docRef,{
+                const docSnap = await updateDoc(docRef, {
                     supporters: detail.supporters.push({
-                        identity: user? user.displayName : "Anonymous",
+                        identity: user ? user.displayName : "Anonymous",
                         amount: formData.amount + "ETH",
                         timestamp: Date.now()
                     }),
@@ -52,7 +53,7 @@ const DonateDetail = () => {
     }
     useEffect(() => {
         const getData = async () => {
-            const refURL = type+" events";
+            const refURL = type + " events";
             const docRef = doc(db, refURL, id);
             try {
                 const docSnap = await getDoc(docRef);
@@ -92,12 +93,13 @@ const DonateDetail = () => {
         };;
         return "Recently"
     }
+
     return (
         <div>
             {detail === undefined ? <Loader /> :
                 <div className="lg:px-[14px] xl:px-[60px] grid lg:grid-cols-3 grid-cols-1 gradient-bg-transactions gap-[10px]">
                     <div className="relative w-full lg:col-span-2">
-                        <img src="https://images.justgiving.com/image/a28fdd3f-5d8f-413c-824c-cb00f23d381a.jpg?template=PagesUIFeatureImage" alt="true"
+                        <img alt="true" src={detail.image}
                             className="w-full " />
                     </div>
                     <div className="grid grid-cols-1">
@@ -118,7 +120,7 @@ const DonateDetail = () => {
                                     onClick={connectWallet}
                                     className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2546bd]"
                                 >
-                                    <AiFillPlayCircle size={21} color="#fff" className="float-left" />
+                                    <AiFillPlayCircle size={25} color="#fff" className="float-left" />
                                     <p className="text-white text-base font-semibold">Connect Wallet</p>
                                 </button>) : (
                                 <button
@@ -133,12 +135,14 @@ const DonateDetail = () => {
                                     <AnimatePresence>
                                         <Input key='1' placeholder='Address To' value={detail.wallet} name='addressTo' type='text' handleChange={handleChange} disabled="disabled" />
                                         <Input key='2' placeholder='Amount(ETH)' name='amount' type='number' handleChange={handleChange} />
-                                        <Input key='3' placeholder='Keyword(Gif)' name='keyword' type='text' handleChange={handleChange} />
-                                        <Input key='4' placeholder='Enter Message' name='message' type='text' handleChange={handleChange} />
+                                        {/* <Input key='3' placeholder='Keyword(Gif)' name='keyword' type='text' handleChange={handleChange} />
+                                        <Input key='4' placeholder='Enter Message' name='message' type='text' handleChange={handleChange} /> */}
                                         <button
                                             type="button"
                                             onClick={(e) => {
                                                 setFormData((prevState) => ({ ...prevState, addressTo: detail.wallet }));
+                                                setFormData((prevState) => ({ ...prevState, keyword: detail.tag }));
+                                                setFormData((prevState) => ({ ...prevState, message: id }));
                                                 handleSubmit(e, formData);
                                             }}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2546bd]">

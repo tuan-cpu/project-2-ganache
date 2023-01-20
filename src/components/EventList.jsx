@@ -4,15 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Filter from './Filter';
 import { db } from "../utils/firebase.js";
 import { collection, getDocs } from 'firebase/firestore';
-const EventCard = ({ title, event, location, id }) => (
+const EventCard = ({ title, event, location, id, url }) => (
     <NavLink className="flex justify-center" to={`detail/${id}`}>
         <motion.div layout animate={{opacity:1}} initial={{opacity:0}} exit={{opacity:0}}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }} 
             className="rounded-lg shadow-lg white-glassmorphism max-w-sm">
-            <a href="#!">
-                <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
-            </a>
+            <img className="rounded-t-lg" src={url} alt="" />
             <div className="p-4">
                 <p className="text-left text-white font-medium text-base text-xl">
                     {title}
@@ -80,7 +78,7 @@ const EventList = () => {
             </div>
             <motion.div layout className="grid sm:grid-cols-3 grid-cols-2 p-[20px] gap-[20px]">
                 <AnimatePresence>
-                    {filtered.map((event,index)=><EventCard id={event.id} title={event.data.title} event={event.data.event} location={event.data.location} key={event.id}/>)}
+                    {filtered.map((event,index)=><EventCard id={event.id} title={event.data.title} event={event.data.event} location={event.data.location} key={event.id} url={event.data.image}/>)}
                 </AnimatePresence>
             </motion.div>
         </div>

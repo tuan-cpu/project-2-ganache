@@ -1,4 +1,4 @@
-import { Navbar,Footer,Services,Transactions,Welcome,Ideas,Sponsor,SubFooter } from '../components';
+import { Navbar,Footer,Services,Welcome,Ideas,Sponsor,SubFooter } from '../components';
 const HomePage = () =>{
 
   return (
@@ -9,7 +9,6 @@ const HomePage = () =>{
       </div>
       <Services/>
       <Ideas/>
-      <Transactions/>
       <Sponsor/>
       <SubFooter/>
       <Footer/>

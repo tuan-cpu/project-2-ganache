@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { allStates } from "../utils/state";
 import { City } from 'country-state-city';
 import { storage, db } from "../utils/firebase.js";
-import { ref, uploadBytesResumable } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
@@ -25,6 +25,7 @@ const CreateEvent = () => {
     const [chosenState, setChosenState] = useState();
     const [allCities, setAllCities] = useState();
     const [chosenCity, setChosenCity] = useState();
+    const [confirm,setConfirm] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         wallet: "",
@@ -57,7 +58,6 @@ const CreateEvent = () => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
     }
     const [imageShow, setImageShow] = useState(false);
-    const [submitShow,setSubmitShow] = useState(false);
     const [percent, setPercent] = useState(0);
     const [file, setFile] = useState("");
     const handleUpload = () => {
@@ -73,14 +73,26 @@ const CreateEvent = () => {
                 const percent = Math.round(
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
-
+                
                 // update progress
                 setPercent(percent);
             },
             (err) => console.log(err),
-            ()=>submit(formData)
+            ()=>{
+                getDownloadURL(storageRef)
+                .then((url)=>{
+                    console.log('File available at', url);
+                    setFormData((prevState) => ({ ...prevState, image: url }));
+                    setConfirm(true);
+                });
+            }
         );   
     }
+    useEffect(() => {
+        if(confirm){
+           submit(formData);
+        }
+    }, [confirm]);
     const submit = async (data) => {
         const ref = doc(collection(db, 'users events'));
         await setDoc(ref, data);
@@ -217,7 +229,6 @@ const CreateEvent = () => {
                         <p className="text-white text-bold text-3xl">Choose a cover image</p>
                         <Input type="file" name="image" handleChange={(e) => {
                             setFile(e.target.files[0]);
-                            setFormData((prevState) => ({ ...prevState, image: e.target.files[0].name }));
                         }} accept="" />
                         <p className="text-white">{percent} % done</p>
                         <button
