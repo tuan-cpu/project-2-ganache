@@ -2,7 +2,7 @@ import { useContext, React, useState, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { authentication, facebookProvider, googleProvider } from "../utils/firebase.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,6 +43,7 @@ const SignIn = () => {
         if (email && password) signInWithEmailAndPassword(authentication, email, password)
             .then((response) => {
                 sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
+                setUser(response.user);
                 navigate('/');
             }).catch((error) => {
                 if (error.code === 'auth/wrong-password') {

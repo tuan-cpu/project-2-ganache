@@ -6,6 +6,8 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
+import tags from "../utils/tags";
+import { useNavigate } from "react-router-dom";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -17,8 +19,14 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
         required
     />
 )
-const categories = ["Animals and pets", "Art and culture", "Education", "International aid", "Disability", "Local community", "Sports", "Health and medical"]
 const CreateEvent = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (!authToken) {
+            navigate('/login')
+        }
+    }, []);
     const [userInfoShow, setUserInfoShow] = useState(true);
     const [eventInfoShow, setEventInfoShow] = useState(false);
     const [categoryInfoShow, setCategoryInfoShow] = useState(false);
@@ -139,7 +147,7 @@ const CreateEvent = () => {
                                 onChange={(e) => setFormData((prevState) => ({ ...prevState, tag: e.target.value }))}
                                 className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>Choose a category</option>
-                                {categories.map((cat, index) => <option key={cat} value={cat}>{cat}</option>)}
+                                {tags.map((tag) => <option key={tag.id} value={tag.name}>{tag.name}</option>)}
                             </select>
                             {!formState.tag ? (
                                 <div className="flex items-center gap-[10px] pt-[10px]">

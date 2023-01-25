@@ -1,13 +1,13 @@
 import avatar from '../assets/avatar.svg';
 import { db } from "../utils/firebase.js";
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
 import { useEffect, useState, useContext } from 'react';
 import Loader from './Loader';
 import { useParams } from 'react-router-dom';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { TransactionContext } from "../context/TransactionContext";
 import { motion, AnimatePresence } from 'framer-motion';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import Transactions from './Transactions';
 const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     <input
         placeholder={placeholder}
@@ -25,32 +25,23 @@ const DonateDetail = () => {
     const [detail, setDetail] = useState();
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, user } = useContext(TransactionContext);
     const [sendFormShow, setSendFormShow] = useState(false);
-    const handleSubmit = (e, formData) => {
-        e.preventDefault();
-        console.log(formData);
-        if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
-        sendTransaction().then(async () => {
-            const docRef = doc(db, "events", id);
-            try {
-                const docSnap = await updateDoc(docRef, {
-                    supporters: detail.supporters.push({
-                        identity: user ? user.displayName : "Anonymous",
-                        amount: formData.amount + "ETH",
-                        timestamp: Date.now()
-                    }),
-                    amount: detail.amount + formData.amount
-                });
-                if (docSnap.exists()) {
-                    setDetail(docSnap.data());
-                } else {
-                    console.log("Document does not exist")
-                }
-
-            } catch (error) {
-                console.log(error)
+    useEffect(() => {
+        const submit = () => {
+            if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
+            sendTransaction();
+            const docRef = doc(db, type+" events", id);
+            const data = {
+                supporters: [...detail.supporters,{
+                    identity: user ? user.displayName : "Anonymous",
+                    amount: formData.amount,
+                    timestamp: Timestamp.now()
+                }],
+                amount: parseFloat(detail.amount)  + parseFloat(formData.amount) 
             }
-        });
-    }
+            updateDoc(docRef,data);
+        }
+        submit();
+    }, [formData]);
     useEffect(() => {
         const getData = async () => {
             const refURL = type + " events";
@@ -105,7 +96,7 @@ const DonateDetail = () => {
                     <div className="grid grid-cols-1">
                         <section className="flex justify-start lg:justify-center items-center text-left self-stretch flex-row w-full p-[18px]">
                             <figcaption>
-                                <p className="text-red-500  text-3xl">£{detail.amount}</p>
+                                <p className="text-red-500  text-3xl">{detail.amount}ETH</p>
                                 <div className="text-slate-400">
                                     <div>raised</div>
                                     by
@@ -143,7 +134,6 @@ const DonateDetail = () => {
                                                 setFormData((prevState) => ({ ...prevState, addressTo: detail.wallet }));
                                                 setFormData((prevState) => ({ ...prevState, keyword: detail.tag }));
                                                 setFormData((prevState) => ({ ...prevState, message: id }));
-                                                handleSubmit(e, formData);
                                             }}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2546bd]">
                                             Send now
@@ -189,6 +179,7 @@ const DonateDetail = () => {
                                 </button>
                             </div>
                         </section>
+                        <Transactions message={id}/>
                     </div>
                     <div className="text-white">
                         <div className="inline-flex justify-center items-center w-full">
@@ -210,7 +201,7 @@ const DonateDetail = () => {
                                                 {item.identity}
                                                 <span className="float-right text-slate-400">{CalcTimeDiff(item.timestamp)}</span>
                                             </h2>
-                                            <p className="text-red-500  text-xl pb-[10px]">£{item.amount}</p>
+                                            <p className="text-red-500  text-xl pb-[10px]">{item.amount} ETH</p>
                                             <div className="inline-flex justify-center items-center w-full">
                                                 <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                                             </div>
