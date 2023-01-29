@@ -1,6 +1,6 @@
 import avatar from '../assets/avatar.svg';
 import { db } from "../utils/firebase.js";
-import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, Timestamp, collection, query, where, getDocs } from 'firebase/firestore';
 import { useEffect, useState, useContext } from 'react';
 import Loader from './Loader';
 import { useParams } from 'react-router-dom';
@@ -23,22 +23,53 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
 const DonateDetail = () => {
     let { type, id } = useParams();
     const [detail, setDetail] = useState();
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, user } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, userDisplayName } = useContext(TransactionContext);
     const [sendFormShow, setSendFormShow] = useState(false);
+    let email = sessionStorage.getItem('Email');
+    let provider = sessionStorage.getItem('Provider');
     useEffect(() => {
         const submit = () => {
             if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
             sendTransaction();
             const docRef = doc(db, type+" events", id);
+            let array = [];
+            for(let i in detail.supporters){
+                if(detail.supporters[i].email === email && detail.supporters[i].provider === provider){
+                    detail.supporters[i].timestamp = Timestamp.now();
+                    detail.supporters[i].amount = (parseFloat(detail.supporters[i].amount) + parseFloat(formData.amount)).toString();
+                    array = detail.supporters;
+                    break;
+                }
+            }
+            if(array.toString() === [].toString()) array = [...detail.supporters,{
+                identity: userDisplayName ? userDisplayName : "Anonymous",
+                email: email? email: null,
+                provider: provider? provider:null,
+                amount: formData.amount,
+                timestamp: Timestamp.now()
+            }]
             const data = {
-                supporters: [...detail.supporters,{
-                    identity: user ? user.displayName : "Anonymous",
-                    amount: formData.amount,
-                    timestamp: Timestamp.now()
-                }],
+                supporters: array,
                 amount: parseFloat(detail.amount)  + parseFloat(formData.amount) 
             }
             updateDoc(docRef,data);
+            updateUserInfo();
+        }
+        const updateUserInfo = async()=>{
+            const q = query(collection(db, "users"), where("email", "==", email),where("provider","==",provider));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((document) => {
+                // doc.data() is never undefined for query doc snapshots
+                const docRef = doc(db,"users",document.id);
+                const data = {
+                    donation_detail:[...document.data().donation_detail,{
+                        event_id:id,
+                        amount: parseFloat(formData.amount),
+                        timestamp: Timestamp.now()
+                    }]
+                }
+                updateDoc(docRef,data);
+            });
         }
         submit();
     }, [formData]);
@@ -71,15 +102,15 @@ const DonateDetail = () => {
         let minutesDifference = Math.floor(difference / 1000 / 60);
 
         if (daysDifference > 0) {
-            let result = daysDifference.toString() + "days ago";
+            let result = daysDifference.toString() + " days ago";
             return result;
         };
         if (hoursDifference > 0) {
-            let result = hoursDifference.toString() + "hours ago";
+            let result = hoursDifference.toString() + " hours ago";
             return result;
         };
         if (minutesDifference > 0) {
-            let result = minutesDifference.toString() + "minutes ago";
+            let result = minutesDifference.toString() + " minutes ago";
             return result;
         };;
         return "Recently"
@@ -96,8 +127,8 @@ const DonateDetail = () => {
                     <div className="grid grid-cols-1">
                         <section className="flex justify-start lg:justify-center items-center text-left self-stretch flex-row w-full p-[18px]">
                             <figcaption>
-                                <p className="text-red-500  text-3xl">{detail.amount}ETH</p>
-                                <div className="text-slate-400">
+                                <p className="text-red-500  text-3xl">{detail.amount} ETH</p>
+                                <div className="text-slate-400"> 
                                     <div>raised</div>
                                     by
                                     <span className="font-bold"> {detail.supporters.length} supporters</span>
@@ -191,7 +222,7 @@ const DonateDetail = () => {
                                 <span className="float-right">{detail.supporters.length}</span>
                             </header>
                             <ul>
-                                {detail.supporters.map((item, index) => (
+                                {detail.supporters.sort(function(a,b){return parseFloat(b.amount) - parseFloat(a.amount)}).map((item, index) => (
                                     <li className="list-none flex w-full max-h-[100px]" key={index}>
                                         <div className="py-[15px] mr-[10px] basis-9">
                                             <img src={avatar} alt="true" />

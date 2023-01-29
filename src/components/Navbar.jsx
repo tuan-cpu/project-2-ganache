@@ -1,10 +1,11 @@
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import logo from '../assets/logo.png';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../utils/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { TransactionContext } from '../context/TransactionContext';
 
 const NavbarItem = ({ title, classProps }) => {
     return (
@@ -15,8 +16,8 @@ const NavbarItem = ({ title, classProps }) => {
 }
 const Navbar = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
-    const [displayName,setDisplayName] = useState();
     const navigate = useNavigate();
+    const { userDisplayName, setUserDisplayName } = useContext(TransactionContext);
     let authToken = sessionStorage.getItem('Auth Token');
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');
@@ -26,8 +27,8 @@ const Navbar = () => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                if(doc.data().provider === "Google") setDisplayName(doc.data().displayName);
-                if(doc.data().provider === "Self") setDisplayName(doc.data().last_name+" "+doc.data().first_name);
+                if(doc.data().provider === "Google") setUserDisplayName(doc.data().displayName);
+                if(doc.data().provider === "Self") setUserDisplayName(doc.data().last_name+" "+doc.data().first_name);
             });
         }
         if(email && provider){
@@ -43,7 +44,7 @@ const Navbar = () => {
                 {/* {['Home', 'Events', 'Tutorials', 'Wallets'].map((item, index) => (
                     <NavbarItem key={item + index} title={item} />
                 ))} */}
-                {displayName?<NavbarItem title={displayName}/>:''}
+                {userDisplayName?<NavbarItem title={userDisplayName}/>:''}
                 {!authToken ? 
                 <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' 
                 onClick={() => navigate('/login')}>
@@ -53,7 +54,7 @@ const Navbar = () => {
                     sessionStorage.removeItem('Auth Token');
                     sessionStorage.removeItem('Email');
                     sessionStorage.removeItem('Provider');
-                    setDisplayName(null);
+                    setUserDisplayName(null);
                     navigate('/');
                 }}>
                     Logout

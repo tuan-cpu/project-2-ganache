@@ -36,7 +36,7 @@ const Transactions = ({ message }) => {
                     </h3>
                 )}
                 <div className="flex flex-wrap justify-center items-center mt-10">
-                    {transactions.slice(0).reverse().map((transaction, index) => {
+                    {transactions.slice(-5).reverse().map((transaction, index) => {
                         if (transaction.message === message)
                             return (<TransactionCard key={index} {...transaction} />)
                     })}

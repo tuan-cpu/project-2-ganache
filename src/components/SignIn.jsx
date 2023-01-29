@@ -63,7 +63,8 @@ const SignIn = () => {
         if(snapshot.data().count === 0) await addDoc(collection(db, "users"), {
             provider: provider,
             email: email,
-            displayName:displayName
+            displayName:displayName,
+            donation_detail: []
         });
     }
     const handleGoogleSignIn = () => {

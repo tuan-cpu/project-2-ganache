@@ -62,7 +62,9 @@ const SignUp = () => {
             addDoc(collection(db,"users"),{
                 email:email,
                 first_name:firstname,
-                last_name:lastname
+                last_name:lastname,
+                provider: "Self",
+                donation_detail: []
             }).then(()=>{
                 navigate('/');
             })

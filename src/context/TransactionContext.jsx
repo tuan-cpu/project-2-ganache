@@ -21,6 +21,7 @@ export const TransactionProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [transactionCount, setTransactionCount] = useState(localStorage.getItem('transactionCount'));
     const [transactions,setTransactions] = useState([]);
+    const [userDisplayName,setUserDisplayName] = useState();
     const handleChange = (e, name) => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
     };
@@ -116,7 +117,7 @@ export const TransactionProvider = ({ children }) => {
         checkIfTransactionsExist();
     }, []);
     return (
-        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, sendTransaction, handleChange, transactions, isLoading, signInFormData, signUpFormData, handleSignUp, handleSignIn, setFormData }}>
+        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, sendTransaction, handleChange, transactions, isLoading, signInFormData, signUpFormData, handleSignUp, handleSignIn, setFormData, userDisplayName, setUserDisplayName }}>
             {children}
         </TransactionContext.Provider>
     )
