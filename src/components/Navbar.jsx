@@ -1,8 +1,10 @@
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import logo from '../assets/logo.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../utils/firebase';
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const NavbarItem = ({ title, classProps }) => {
     return (
@@ -13,8 +15,25 @@ const NavbarItem = ({ title, classProps }) => {
 }
 const Navbar = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
+    const [displayName,setDisplayName] = useState();
     const navigate = useNavigate();
-    let authToken = sessionStorage.getItem('Auth Token')
+    let authToken = sessionStorage.getItem('Auth Token');
+    let email = sessionStorage.getItem('Email');
+    let provider = sessionStorage.getItem('Provider');
+    useEffect(() => {
+        const getData = async() =>{
+            const q = query(collection(db, "users"), where("email", "==", email),where("provider","==",provider));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                if(doc.data().provider === "Google") setDisplayName(doc.data().displayName);
+                if(doc.data().provider === "Self") setDisplayName(doc.data().last_name+" "+doc.data().first_name);
+            });
+        }
+        if(email && provider){
+            getData();
+        }
+    }, [email,provider]);
     return (
         <nav className='w-full flex md:justify-center justify-between items-center p-4'>
             <div className='md:flex-[0.5] flex-initial justify-center items-center'>
@@ -24,10 +43,17 @@ const Navbar = () => {
                 {/* {['Home', 'Events', 'Tutorials', 'Wallets'].map((item, index) => (
                     <NavbarItem key={item + index} title={item} />
                 ))} */}
-                {!authToken ? <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => navigate('/login')}>
+                {displayName?<NavbarItem title={displayName}/>:''}
+                {!authToken ? 
+                <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' 
+                onClick={() => navigate('/login')}>
                     Login
-                </li> : <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => {
+                </li> : 
+                <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => {
                     sessionStorage.removeItem('Auth Token');
+                    sessionStorage.removeItem('Email');
+                    sessionStorage.removeItem('Provider');
+                    setDisplayName(null);
                     navigate('/');
                 }}>
                     Logout

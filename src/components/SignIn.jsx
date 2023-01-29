@@ -3,9 +3,10 @@ import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { authentication, facebookProvider, googleProvider } from "../utils/firebase.js";
+import { authentication, facebookProvider, googleProvider, db } from "../utils/firebase.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { collection, addDoc, getCountFromServer, query, where } from "firebase/firestore"; 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -30,7 +31,7 @@ const SignIn = () => {
             navigate('/login')
         }
     }, []);
-    const { signInFormData, handleSignIn, setUser } = useContext(TransactionContext);
+    const { signInFormData, handleSignIn } = useContext(TransactionContext);
     const [formState, setFormState] = useState({ email: true, password: true });
     const handleSubmit = (e) => {
         const { email, password } = signInFormData;
@@ -43,7 +44,8 @@ const SignIn = () => {
         if (email && password) signInWithEmailAndPassword(authentication, email, password)
             .then((response) => {
                 sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
-                setUser(response.user);
+                sessionStorage.setItem('Email', response.user.email);
+                sessionStorage.setItem('Provider', "Self");
                 navigate('/');
             }).catch((error) => {
                 if (error.code === 'auth/wrong-password') {
@@ -54,13 +56,22 @@ const SignIn = () => {
                 }
             });
     };
-    useEffect(() => {
-        console.log(formState)
-    }, [formState]);
+    const addData = async(email,provider,displayName)=>{
+        const coll = collection(db, "users");
+        const query_ = query(coll, where('email', '==', email), where('provider', '==', provider));
+        const snapshot = await getCountFromServer(query_);
+        if(snapshot.data().count === 0) await addDoc(collection(db, "users"), {
+            provider: provider,
+            email: email,
+            displayName:displayName
+        });
+    }
     const handleGoogleSignIn = () => {
         signInWithPopup(authentication, googleProvider).then((result) => {
-            setUser(result.user);
             sessionStorage.setItem('Auth Token', result.user.accessToken);
+            sessionStorage.setItem('Email', result.user.email);
+            sessionStorage.setItem('Provider', "Google");
+            addData(result.user.email,"Google",result.user.displayName);
             navigate('/');
         }).catch((error) => {
             console.log(error);
