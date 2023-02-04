@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { allStates } from "../utils/state";
 import { City } from 'country-state-city';
 import { storage, db } from "../utils/firebase.js";
@@ -8,6 +8,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import tags from "../utils/tags";
 import { useNavigate } from "react-router-dom";
+import { TransactionContext } from "../context/TransactionContext";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -27,6 +28,7 @@ const CreateEvent = () => {
             navigate('/login')
         }
     }, []);
+    const { user } = useContext(TransactionContext);
     const [userInfoShow, setUserInfoShow] = useState(true);
     const [eventInfoShow, setEventInfoShow] = useState(false);
     const [categoryInfoShow, setCategoryInfoShow] = useState(false);
@@ -46,6 +48,7 @@ const CreateEvent = () => {
         image: "",
         amount:0,
         supporters:[],
+        user_id:user.id
     });
     const [formState, setFormState] = useState({
         name: true,
