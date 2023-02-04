@@ -14,3 +14,4 @@ export { default as DonateDetail } from './DonateDetail';
 export { default as EventList } from './EventList';
 export { default as Filter } from './Filter';
 export { default as CreateEvent } from './CreateEvent';
+export { default as UserInfo } from './UserInfo';

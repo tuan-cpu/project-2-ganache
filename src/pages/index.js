@@ -6,3 +6,4 @@ export { default as ResetPasswordPage } from './ResetPasswordPage';
 export { default as DonatePage } from './DonatePage';
 export { default as EventPage } from './EventPage';
 export { default as CreateEventPage } from './CreateEventPage';
+export { default as UserInfoPage } from './UserInfoPage';

@@ -7,9 +7,9 @@ import { db } from '../utils/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { TransactionContext } from '../context/TransactionContext';
 
-const NavbarItem = ({ title, classProps }) => {
+const NavbarItem = ({ title, classProps, handleFunction }) => {
     return (
-        <li className={`mx-4 cursor-pointer ${classProps}`}>
+        <li className={`mx-4 cursor-pointer ${classProps}`} onClick={handleFunction}>
             {title}
         </li>
     )
@@ -17,48 +17,48 @@ const NavbarItem = ({ title, classProps }) => {
 const Navbar = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
     const navigate = useNavigate();
-    const { userDisplayName, setUserDisplayName } = useContext(TransactionContext);
+    const { user, setUser } = useContext(TransactionContext);
     let authToken = sessionStorage.getItem('Auth Token');
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');
     useEffect(() => {
-        const getData = async() =>{
-            const q = query(collection(db, "users"), where("email", "==", email),where("provider","==",provider));
+        const getData = async () => {
+            const q = query(collection(db, "users"), where("email", "==", email), where("provider", "==", provider));
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                if(doc.data().provider === "Google") setUserDisplayName(doc.data().displayName);
-                if(doc.data().provider === "Self") setUserDisplayName(doc.data().last_name+" "+doc.data().first_name);
+                if (doc.data().provider === "Google") {
+                    setUser({ displayName: doc.data().displayName, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider });
+                }
+                if (doc.data().provider === "Self") {
+                    setUser({ displayName: doc.data().last_name + " " + doc.data().first_name, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider });
+                }
             });
         }
-        if(email && provider){
+        if (email && provider) {
             getData();
         }
-    }, [email,provider]);
+    }, [email, provider]);
     return (
         <nav className='w-full flex md:justify-center justify-between items-center p-4'>
             <div className='md:flex-[0.5] flex-initial justify-center items-center'>
                 <img src={logo} alt="logo" className="w-32 cursor-pointer" onClick={() => { navigate('/') }} />
             </div>
             <ul className='text-white md:flex hidden list-none flex-row justify-between items-center flex-initial'>
-                {/* {['Home', 'Events', 'Tutorials', 'Wallets'].map((item, index) => (
-                    <NavbarItem key={item + index} title={item} />
-                ))} */}
-                {userDisplayName?<NavbarItem title={userDisplayName}/>:''}
-                {!authToken ? 
-                <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' 
-                onClick={() => navigate('/login')}>
-                    Login
-                </li> : 
-                <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => {
-                    sessionStorage.removeItem('Auth Token');
-                    sessionStorage.removeItem('Email');
-                    sessionStorage.removeItem('Provider');
-                    setUserDisplayName(null);
-                    navigate('/');
-                }}>
-                    Logout
-                </li>}
+                {user ? <NavbarItem title={user['displayName']} handleFunction={() => navigate(`/user/${user['id']}`)} /> : ''}
+                {!authToken ?
+                    <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]'
+                        onClick={() => navigate('/login')}>
+                        Login
+                    </li> :
+                    <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => {
+                        sessionStorage.removeItem('Auth Token');
+                        sessionStorage.removeItem('Email');
+                        sessionStorage.removeItem('Provider');
+                        setUserDisplayName(null);
+                        navigate('/');
+                    }}>
+                        Logout
+                    </li>}
 
             </ul>
             <div className='flex relative'>

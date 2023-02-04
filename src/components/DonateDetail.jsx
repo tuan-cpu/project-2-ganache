@@ -23,7 +23,7 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
 const DonateDetail = () => {
     let { type, id } = useParams();
     const [detail, setDetail] = useState();
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, userDisplayName } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, user } = useContext(TransactionContext);
     const [sendFormShow, setSendFormShow] = useState(false);
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');
@@ -42,7 +42,7 @@ const DonateDetail = () => {
                 }
             }
             if(array.toString() === [].toString()) array = [...detail.supporters,{
-                identity: userDisplayName ? userDisplayName : "Anonymous",
+                identity: user['displayName'] ? user['displayName'] : "Anonymous",
                 email: email? email: null,
                 provider: provider? provider:null,
                 amount: formData.amount,
@@ -64,6 +64,8 @@ const DonateDetail = () => {
                 const data = {
                     donation_detail:[...document.data().donation_detail,{
                         event_id:id,
+                        event_type: type,
+                        event_tag: detail.tag,
                         amount: parseFloat(formData.amount),
                         timestamp: Timestamp.now()
                     }]

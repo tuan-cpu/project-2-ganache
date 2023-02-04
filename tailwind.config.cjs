@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html",'./node_modules/tw-elements/dist/js/**/*.js'],
   mode: "jit",
   // darkMode: false, // or 'media' or 'class'
   theme: {
@@ -34,5 +34,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require('tw-elements/dist/plugin')
+  ],
 };
