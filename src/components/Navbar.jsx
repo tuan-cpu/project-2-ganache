@@ -27,10 +27,10 @@ const Navbar = () => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 if (doc.data().provider === "Google") {
-                    setUser({ displayName: doc.data().displayName, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider });
+                    setUser({ displayName: doc.data().displayName, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role });
                 }
                 if (doc.data().provider === "Self") {
-                    setUser({ displayName: doc.data().last_name + " " + doc.data().first_name, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider });
+                    setUser({ displayName: doc.data().last_name + " " + doc.data().first_name, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role });
                 }
             });
         }
@@ -48,16 +48,16 @@ const Navbar = () => {
                 {!authToken ?
                     <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]'
                         onClick={() => navigate('/login')}>
-                        Login
+                        Đăng nhập
                     </li> :
                     <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => {
                         sessionStorage.removeItem('Auth Token');
                         sessionStorage.removeItem('Email');
                         sessionStorage.removeItem('Provider');
-                        setUserDisplayName(null);
+                        setUser(null);
                         navigate('/');
                     }}>
-                        Logout
+                        Đăng xuất
                     </li>}
 
             </ul>

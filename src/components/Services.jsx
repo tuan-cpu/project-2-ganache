@@ -21,31 +21,31 @@ const Services = () =>{
         <div className='flex w-full justify-center items-center gradient-bg-services'>
             <div className='flex mf:flex-row flex-col items-center justify-between md:p-20 py-12 px-4'>
                 <div className='flex-1 flex flex-col justify-start items-start'>
-                    <h1 className='text-white text-3xl sm:text-5xl text-gradient'>Events that are <br/>currently running.</h1>
+                    <h1 className='text-white text-3xl sm:text-5xl text-gradient'>Các sự kiện đang<br/>diễn ra.</h1>
                 </div>
             </div>
             <div className='flex-1 flex flex-col justify-start items-center'>
                 <ServiceCard
                 color="bg-[#2952b3]"
-                title='Lifetime campaigns'
+                title='Sự kiện vĩnh viễn'
                 icon={<BsShieldFillCheck fontSize={21} className='text-white'/>}
-                subtitle='These campaigns are set by the Admin. They will run forever and the fund will be disbursed every quarter.'
+                subtitle='Các sự kiện này do Admin thiết lập. Chúng sẽ chạy mãi mãi và quỹ sẽ được giải ngân hàng quý.'
                 nav={navigate}
                 type='lifetime'
                 />
                 <ServiceCard
                 color="bg-[#8945f8]"
-                title='Urgent(limited time) campaigns'
+                title='Sự kiện đột xuất'
                 icon={<BiSearchAlt fontSize={21} className='text-white'/>}
-                subtitle='These campaigns are set by the Admin. They will run for a limited time and the fund will be disbursed at the end of the campaign.'
+                subtitle='Các sự kiện này do Admin thiết lập. Chúng sẽ chạy trong một thời gian giới hạn và quỹ sẽ được giải ngân khi kết thúc sự kiện.'
                 nav={navigate}
                 type='limited'
                 />
                 <ServiceCard
                 color="bg-[#f84550]"
-                title='Users fundraising'
+                title='Sự kiện gây quỹ của người dùng'
                 icon={<RiHeart2Fill fontSize={21} className='text-white'/>}
-                subtitle='These funds are rise by the Users. They will run in a previous set time and the fund will be sent directly to the owner(who raised fund) wallet.'
+                subtitle='Những khoản tiền này được tăng lên bởi người dùng. Chúng sẽ chạy trong một khoảng thời gian đã định trước đó và tiền sẽ được gửi trực tiếp đến ví của chủ sở hữu (người đã huy động vốn).'
                 nav={navigate}
                 type='users'
                 />

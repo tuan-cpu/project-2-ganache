@@ -39,17 +39,17 @@ const ResetPassword = () => {
         <div className="flex justify-center items-center gradient-bg-transactions">
             <div className="grid grid-cols-1 pt-[48px] justify-items-center w-[29rem]">
                 <img src="https://www.justgiving.com/sso/images/reset-password.svg" alt="true" className="mb-[24px]" />
-                <h1 className="mb-[12px] md:text-2xl text-4xl font-semibold text-white">Reset your password</h1>
-                <p className="text-gray-300 test-xs pb-[10px]">Enter your email address and we'll send you a link to reset your password.</p>
+                <h1 className="mb-[12px] md:text-2xl text-4xl font-semibold text-white">Thay đổi mật khẩu</h1>
+                <p className="text-gray-300 test-xs pb-[10px]">Nhập địa chỉ email của bạn và chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu của bạn.</p>
                 <div className="p-5 sm:w-[32rem] w-full flex flex-col items-center blue-glassmorphism">
                     <Input placeholder='Email' name='email' type='text' handleChange={handleChange} />
                     <button
                         type="button"
                         onClick={handleSubmit}
                         className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-700">
-                        Reset Password
+                        Cài lại mật khẩu
                     </button>
-                    <NavLink className="pb-[20px] text-blue-600" to="/login">Back to login</NavLink>
+                    <NavLink className="pb-[20px] text-blue-600" to="/login">Trở về màn hình đăng nhập</NavLink>
                 </div>
             </div>
             <ToastContainer/>

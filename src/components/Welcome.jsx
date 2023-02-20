@@ -33,10 +33,10 @@ const Welcome = () => {
             <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
                 <div className="flex flex-1 justify-start flex-col mf:mr-10">
                     <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
-                        Send Crypto <br /> to who need it
+                        Gửi Crypto <br /> tới những người cần chúng
                     </h1>
                     <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-                        Send Crypto directly to any address. Just one click and you are donating successfully.
+                    Gửi tiền điện tử trực tiếp đến bất kỳ địa chỉ nào. Chỉ cần một cú nhấp chuột và bạn đang quyên góp thành công.
                     </p>
                     {!currentAccount && (
                         <button
@@ -49,10 +49,10 @@ const Welcome = () => {
                         </button>)}
                     <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
                         <div className={`rounded-tl-2xl ${commonStyles}`}>
-                            Reliability
+                            Đáng tin cậy
                         </div>
                         <div className={commonStyles}>
-                            Security
+                            Bảo mật
                         </div>
                         <div className={`rounded-tr-2xl ${commonStyles}`}>
                             Ethereum
@@ -61,7 +61,7 @@ const Welcome = () => {
                             Web 3.0
                         </div>
                         <div className={commonStyles}>
-                            Low fees
+                            Chi phí thấp
                         </div>
                         <div className={`rounded-br-2xl ${commonStyles}`}>
                             Blockchains

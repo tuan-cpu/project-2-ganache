@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Filter from './Filter';
 import { db } from "../utils/firebase.js";
 import { collection, getDocs } from 'firebase/firestore';
 const EventCard = ({ title, event, location, id, url }) => (
     <NavLink className="flex justify-center" to={`detail/${id}`}>
-        <motion.div layout animate={{opacity:1}} initial={{opacity:0}} exit={{opacity:0}}
+        <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
             whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }} 
+            whileTap={{ scale: 0.9 }}
             className="rounded-lg shadow-lg white-glassmorphism max-w-sm">
             <img className="rounded-t-lg" src={url} alt="" />
             <div className="p-4">
@@ -31,21 +31,22 @@ const EventCard = ({ title, event, location, id, url }) => (
 )
 const EventList = () => {
     let { type } = useParams();
-    const [events,setEvents] = useState([]);
-    const [filtered,setFiltered] = useState([]);
-    const [activeButton,setActiveButton] = useState("All");
-    const [input,setInput] = useState("");
-    const handleSearchInput = (e) =>{
+    const navigate = useNavigate();
+    const [events, setEvents] = useState([]);
+    const [filtered, setFiltered] = useState([]);
+    const [activeButton, setActiveButton] = useState("All");
+    const [input, setInput] = useState("");
+    const handleSearchInput = (e) => {
         setInput(e.target.value);
     };
     useEffect(() => {
-        const getData = async () =>{
-            const refURL = type+" events";
-            const ref = collection(db,refURL);
+        const getData = async () => {
+            const refURL = type + " events";
+            const ref = collection(db, refURL);
             const querySnapshot = await getDocs(ref);
             let result = [];
-            querySnapshot.forEach((doc)=>{
-                result.push({id:doc.id,data:doc.data()});
+            querySnapshot.forEach((doc) => {
+                result.push({ id: doc.id, data: doc.data() });
                 console.log(result);
             });
             setEvents(result);
@@ -54,11 +55,11 @@ const EventList = () => {
         getData();
     }, []);
     useEffect(() => {
-        if(input !== ""){
+        if (input !== "") {
             setActiveButton("All");
-            const search_filtered = events.filter((event)=> event.title.includes(input));
+            const search_filtered = events.filter((event) => event.title.includes(input));
             setFiltered(search_filtered);
-        }else{
+        } else {
             setActiveButton("All");
         }
     }, [input]);
@@ -68,17 +69,24 @@ const EventList = () => {
                 <input
                     type="text"
                     className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    placeholder="Search..."
+                    placeholder="Tìm kiếm..."
                     value={input}
-                    onChange={(e)=>handleSearchInput(e)}
+                    onChange={(e) => handleSearchInput(e)}
                 />
+                <button
+                    type="button"
+                    className='border-[1px] p-2 border-[#3d4f7c] cursor-pointer hover:bg-[#2546bd]'
+                    onClick={()=>navigate('/create/'+type)}
+                >
+                    <p className="text-white text-base font-semibold">Tạo quỹ</p>
+                </button>
             </div>
             <div>
-                <Filter events={events} setInput={setInput} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton}/>
+                <Filter events={events} setInput={setInput} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton} />
             </div>
             <motion.div layout className="grid sm:grid-cols-3 grid-cols-2 p-[20px] gap-[20px]">
                 <AnimatePresence>
-                    {filtered.map((event,index)=><EventCard id={event.id} title={event.data.title} event={event.data.event} location={event.data.city+" "+event.data.state+" VN"} key={event.id} url={event.data.image}/>)}
+                    {filtered.map((event, index) => <EventCard id={event.id} title={event.data.title} event={event.data.event} location={event.data.city + " " + event.data.state + " VN"} key={event.id} url={event.data.image} />)}
                 </AnimatePresence>
             </motion.div>
         </div>

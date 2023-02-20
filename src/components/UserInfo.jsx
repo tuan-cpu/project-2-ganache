@@ -8,8 +8,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { NavLink } from 'react-router-dom';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-const EventCard = ({ title, event, location, id, url }) => (
-    <NavLink className="flex justify-center" to={`detail/${id}`}>
+const EventCard = ({ title, event, location, id, url, type }) => (
+    <NavLink className="flex justify-center" to={`/event/${type}/detail/${id}`}>
         <div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -76,11 +76,21 @@ const UserInfo = () => {
     };
     useEffect(() => {
         const getData = async () => {
-            const q = query(collection(db, "users events"), where("user_id", "==", user.id));
-            const querySnapshot = await getDocs(q);
             let result = [];
-            querySnapshot.forEach((doc) => {
-                result.push({ id: doc.id, data: doc.data() });
+            const q1 = query(collection(db, "lifetime events"), where("user_id", "==", user.id));
+            const q2 = query(collection(db, "limited events"), where("user_id", "==", user.id));
+            const q3 = query(collection(db, "users events"), where("user_id", "==", user.id));
+            const querySnapshot1 = await getDocs(q1);
+            querySnapshot1.forEach((doc) => {
+                result.push({ id: doc.id, data: doc.data(), type: 'lifetime' });
+            });
+            const querySnapshot2 = await getDocs(q2);
+            querySnapshot2.forEach((doc) => {
+                result.push({ id: doc.id, data: doc.data(), type: 'limited' });
+            });
+            const querySnapshot3 = await getDocs(q3);
+            querySnapshot3.forEach((doc) => {
+                result.push({ id: doc.id, data: doc.data(), type: 'users' });
             });
             setOwnEvent(result);
         }
@@ -109,8 +119,8 @@ const UserInfo = () => {
                                     </p>
                                     <div className="collapse multi-collapse pb-2.5" id={`multiCollapse${index}`}>
                                         <div className="block p-6 rounded-lg shadow-lg bg-white">
-                                            <p>Amount: {item.amount} ETH</p>
-                                            <p>Donated time: {Date(item.timestamp.toDate().getTime())}</p>
+                                            <p>Số lượng: {item.amount} ETH</p>
+                                            <p>Thời gian ủng hộ: {Date(item.timestamp.toDate().getTime())}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +137,7 @@ const UserInfo = () => {
             <div className="gradient-bg-transactions grid grid-cols-1 justify-items-center items-center flex py-[20px] sm:px-[50px] lg:px-[100px] px-[20px]">
                 <h1 className="text-xl sm:text-3xl text-white text-gradient py-1">Sự kiện của bạn:</h1>
                 <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-[20px] gap-[20px]">
-                    {ownEvent.map((event, index) => <EventCard id={event.id} title={event.data.title} event={event.data.event} location={event.data.city + " " + event.data.state + " VN"} key={event.id} url={event.data.image} />)}
+                    {ownEvent.map((event, index) => <EventCard id={event.id} type={event.type} title={event.data.title} event={event.data.event} location={event.data.city + " " + event.data.state + " VN"} key={event.id} url={event.data.image} />)}
                 </div>
             </div>
         </div>

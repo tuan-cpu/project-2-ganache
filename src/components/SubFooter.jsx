@@ -3,37 +3,37 @@ const SubFooter = () =>(
     <div className="flex justify-center items-center gradient-bg-transactions">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="grid grid-cols-1 p-[20px]">
-                <p className="text-lg leading-6 text-white">For Fundraisers & Donors</p>
+                <p className="text-lg leading-6 text-white">Dành cho người gây quỹ & nhà tài trợ</p>
                 <ul className="grid grid-cols-1 text-[#737373]">
-                    <li>Raise money for a charity</li>
-                    <li>Start crowdfunding</li>
-                    <li>Your fundraising</li>
-                    <li>Help and support</li>
+                    <li>Quyên góp tiền cho một tổ chức từ thiện</li>
+                    <li>Bắt đầu gọi vốn cộng đồng</li>
+                    <li>Gây quỹ của bạn</li>
+                    <li>Giúp đỡ và hỗ trợ</li>
                 </ul>
             </div>
             <div className="grid grid-cols-1 p-[20px]">
-                <p className="text-lg leading-6 text-white">For Charities</p>
+                <p className="text-lg leading-6 text-white">Cho các tổ chức từ thiện</p>
                 <ul className="grid grid-cols-1 text-[#737373]">
-                    <li>Join TokenGiving</li>
-                    <li>Log in to your charity account</li>
-                    <li>Help & support for charities</li>
-                    <li>Read our charity blog</li>
+                    <li>Tham gia TokenGiving</li>
+                    <li>Đăng nhập bằng tài khoản của tổ chức</li>
+                    <li>Hỗ trợ và giúp đỡ cho các quỹ từ thiện</li>
+                    <li>Đọc blog của chúng tôi</li>
                 </ul>
             </div>
             <div className="grid grid-cols-1 p-[20px]">
-                <p className="text-lg leading-6 text-white">For companies & partners</p>
+                <p className="text-lg leading-6 text-white">Cho các công ti và đối tác</p>
                 <ul className="grid grid-cols-1 text-[#737373]">
-                    <li>Corporate fundraising</li>
-                    <li>Event partners</li>
-                    <li>Developer tool</li>
+                    <li>Hợp tác gây quỹ</li>
+                    <li>Sự kiện đối tác</li>
+                    <li>Công cục nhà phát triển</li>
                 </ul>
             </div>
             <div className="grid grid-cols-1 p-[20px]">
-                <p className="text-lg leading-6 text-white">About TokenGiving</p>
+                <p className="text-lg leading-6 text-white">Về TokenGiving</p>
                 <ul className="grid grid-cols-1 text-[#737373]">
-                    <li>Who we are</li>
-                    <li>Careers at TokenGiving</li>
-                    <li>Media centre</li>
+                    <li>Chúng tôi là ai</li>
+                    <li>Công việc tại TokenGiving</li>
+                    <li>Trung tâm kĩ thuật số</li>
                 </ul>
             </div>
         </div>

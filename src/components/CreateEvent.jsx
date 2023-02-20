@@ -7,7 +7,7 @@ import { doc, collection, setDoc } from "firebase/firestore";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import tags from "../utils/tags";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { TransactionContext } from "../context/TransactionContext";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
@@ -21,14 +21,18 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     />
 )
 const CreateEvent = () => {
+    const { user } = useContext(TransactionContext);
     const navigate = useNavigate();
+    let { type } = useParams();
     useEffect(() => {
         let authToken = sessionStorage.getItem('Auth Token')
         if (!authToken) {
             navigate('/login')
         }
+        if(type !== 'users' && user.role !== 'admin'){
+            navigate('/');
+        }
     }, []);
-    const { user } = useContext(TransactionContext);
     const [userInfoShow, setUserInfoShow] = useState(true);
     const [eventInfoShow, setEventInfoShow] = useState(false);
     const [categoryInfoShow, setCategoryInfoShow] = useState(false);
@@ -105,7 +109,7 @@ const CreateEvent = () => {
         }
     }, [confirm]);
     const submit = async (data) => {
-        const ref = doc(collection(db, 'users events'));
+        const ref = doc(collection(db, type+' events'));
         await setDoc(ref, data);
         toast.success("Submission complete!");
     }
@@ -114,19 +118,19 @@ const CreateEvent = () => {
             {userInfoShow ?
                 <div className="flex flex-col">
                     <div className="flex flex-col">
-                        <p className="text-bold text-3xl text-white">User Info</p>
-                        <Input placeholder='Name' name='name' type='text' handleChange={handleChange} />
+                        <p className="text-bold text-3xl text-white">Thông tin người tạo sự kiện</p>
+                        <Input placeholder='Tên' name='name' type='text' handleChange={handleChange} />
                         {!formState.name ? (
                             <div className="flex items-center gap-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được trống!</p>
                             </div>
                         ) : ""}
-                        <Input placeholder='Wallet Address' name='wallet' type='text' handleChange={handleChange} />
+                        <Input placeholder='Địa chỉ ví' name='wallet' type='text' handleChange={handleChange} />
                         {!formState.wallet ? (
                             <div className="flex items-center gap-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được trống!</p>
                             </div>
                         ) : ""}
                         <button
@@ -141,21 +145,21 @@ const CreateEvent = () => {
                                 };
                             }}
                             className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">
-                            Next</button>
+                            Tiếp theo</button>
                     </div>
                     {categoryInfoShow ?
                         <div className="flex flex-col">
-                            <p className="text-bold text-3xl text-white">Choose a category</p>
+                            <p className="text-bold text-3xl text-white">Chọn 1 nhãn phân loại</p>
                             <select id="category"
                                 onChange={(e) => setFormData((prevState) => ({ ...prevState, tag: e.target.value }))}
                                 className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected disabled>Choose a category</option>
+                                <option selected disabled>Chọn 1 nhãn</option>
                                 {tags.map((tag) => <option key={tag.id} value={tag.name}>{tag.name}</option>)}
                             </select>
                             {!formState.tag ? (
                                 <div className="flex items-center gap-[10px] pt-[10px]">
                                     <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                    <p className="text-[#ff0000] text-sm">Must choose a category!</p>
+                                    <p className="text-[#ff0000] text-sm">Phải chọn 1 nhãn!</p>
                                 </div>
                             ) : ""}
                             <button
@@ -168,38 +172,38 @@ const CreateEvent = () => {
                                     }
                                 }}
                                 className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">
-                                Next
+                                Tiếp theo
                             </button>
                         </div> : ''}
                 </div> : ''}
             {eventInfoShow ?
                 <div className="flex flex-col">
                     <div className="flex flex-col">
-                        <p className="text-white text-bold text-3xl">Event Info</p>
-                        <Input placeholder='Title' name='title' type='text' handleChange={handleChange} />
+                        <p className="text-white text-bold text-3xl">Thông tin sự kiện</p>
+                        <Input placeholder='Tiêu đề' name='title' type='text' handleChange={handleChange} />
                         {!formState.title ? (
                             <div className="flex items-center gap-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được trống!</p>
                             </div>
                         ) : ""}
-                        <Input placeholder='Event' name='event' type='text' handleChange={handleChange} />
+                        <Input placeholder='Sự kiện' name='event' type='text' handleChange={handleChange} />
                         {!formState.event ? (
                             <div className="flex items-center gap-[10px] pb-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được trống!</p>
                             </div>
                         ) : ""}
-                        <textarea placeholder="Story" name="story" className="text-white bg-transparent border-white"
+                        <textarea placeholder="Bối cảnh" name="story" className="text-white bg-transparent border-white"
                             onChange={(e) => setFormData((prevState) => ({ ...prevState, story: e.target.value }))}
                         />
                         {!formState.story ? (
                             <div className="flex items-center gap-[10px] pt-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được trống!</p>
                             </div>
                         ) : ""}
-                        <p className="text-white pt-[10px]">Choose event location(not mandatory)</p>
+                        <p className="text-white pt-[10px]">Chọn địa điểm tổ chức(không bắt buộc)</p>
                         <div className="grid grid-cols-2 gap-[10px]">
                             <select id="states"
                                 onChange={(e) => {
@@ -207,7 +211,7 @@ const CreateEvent = () => {
                                     setFormData((prevState) => ({ ...prevState, state: e.target.value }));
                                 }}
                                 className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected disabled>Choose a State</option>
+                                <option selected disabled>Chọn tỉnh</option>
                                 {allStates.map((state, index) => <option key={state.isoCode} value={state.isoCode}>{state.name}</option>)}
                             </select>
                             {chosenState ?
@@ -217,7 +221,7 @@ const CreateEvent = () => {
                                         setFormData((prevState) => ({ ...prevState, city: e.target.value }))
                                     }}
                                     className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected>Choose a City</option>
+                                    <option selected>Chọn thành phố</option>
                                     {allCities.map((city, index) => <option key={city.name} value={city.name}>{city.name}</option>)}
                                 </select> : ''}
                         </div>
@@ -234,18 +238,18 @@ const CreateEvent = () => {
                                     setFormState((prevState) => ({ ...prevState, event: true }));
                                 }
                             }}
-                            className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">Next</button>
+                            className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">Tiếp theo</button>
                     </div>
                     {imageShow ? <div className="flex flex-col">
-                        <p className="text-white text-bold text-3xl">Choose a cover image</p>
+                        <p className="text-white text-bold text-3xl">Chọn ảnh bìa sự kiện</p>
                         <Input type="file" name="image" handleChange={(e) => {
                             setFile(e.target.files[0]);
                         }} accept="" />
-                        <p className="text-white">{percent} % done</p>
+                        <p className="text-white">{percent} % hoàn thành</p>
                         <button
                             type="button"
                             onClick={handleUpload}
-                            className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">Next</button>
+                            className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">Tiếp theo</button>
                     </div> : ''}
                 </div> : ''}
                 <ToastContainer/>

@@ -42,6 +42,6 @@ export default [
     {
         id:9,
         name: "Thể thao",
-        color: "bg-sky-800"
+        color: "bg-green-800"
     },
 ]

@@ -64,7 +64,8 @@ const SignIn = () => {
             provider: provider,
             email: email,
             displayName:displayName,
-            donation_detail: []
+            donation_detail: [],
+            role: 'user'
         });
     }
     const handleGoogleSignIn = () => {
@@ -91,10 +92,10 @@ const SignIn = () => {
     return (
         <div className="flex justify-center items-center gradient-bg-transactions">
             <div className="grid grid-cols-1 pt-[48px] justify-items-center">
-                <h1 className="md:text-2xl text-4xl font-semibold text-white">Log In</h1>
+                <h1 className="md:text-2xl text-4xl font-semibold text-white">Đăng nhập</h1>
                 <div className="flex items-center gap-[10px] pt-[10px] pb-[20px]">
-                    <p className="text-white">New to TokenGiving?</p>
-                    <NavLink className="text-blue-500" to='/register'>Sign Up</NavLink>
+                    <p className="text-white">Mới biết đến TokenGiving?</p>
+                    <NavLink className="text-blue-500" to='/register'>Đăng kí</NavLink>
                 </div>
                 <div className="p-5 sm:w-[32rem] w-full flex flex-col items-center blue-glassmorphism">
                     <div className="w-full">
@@ -102,24 +103,24 @@ const SignIn = () => {
                         {!formState.email ? (
                             <div className="flex items-center gap-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được bỏ trống!</p>
                             </div>
                         ) : ""}
-                        <Input placeholder='Password' name='password' type='password' handleChange={handleSignIn} />
+                        <Input placeholder='Mật khẩu' name='password' type='password' handleChange={handleSignIn} />
                         {!formState.password ? (
                             <div className="flex items-center gap-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được bỏ trống!</p>
                             </div>
                         ) : ""}
                         <button
                             type="button"
                             onClick={handleSubmit}
                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-700">
-                            Continue
+                            Đăng nhập
                         </button>
                     </div>
-                    <NavLink className="pb-[15px] text-blue-500" to='/reset'>Forgot your password?</NavLink>
+                    <NavLink className="pb-[15px] text-blue-500" to='/reset'>Quên mật khẩu?</NavLink>
                     <div className="inline-flex justify-center items-center w-full">
                         <hr className="mb-[20px] w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
                     </div>
@@ -127,13 +128,13 @@ const SignIn = () => {
                         type="button"
                         onClick={handleGoogleSignIn}
                         className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">
-                        Continue with Google
+                        Đăng nhập bằng Google
                     </button>
                     <button
                         type="button"
                         onClick={handleFacebookSignIn}
                         className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-800">
-                        Continue with Facebook
+                        Đăng nhập bằng Facebook
                     </button>
                 </div>
             </div>

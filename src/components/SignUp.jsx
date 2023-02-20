@@ -64,7 +64,8 @@ const SignUp = () => {
                 first_name:firstname,
                 last_name:lastname,
                 provider: "Self",
-                donation_detail: []
+                donation_detail: [],
+                role: 'user'
             }).then(()=>{
                 navigate('/');
             })
@@ -77,21 +78,21 @@ const SignUp = () => {
         <div className="flex justify-center items-center gradient-bg-transactions">
             <div className="grid grid-cols-1 pt-[48px] justify-items-center">
                 <img src="https://www.justgiving.com/sso/images/signup.svg" alt="true" className="mb-[24px]" />
-                <h1 className="mb-[12px] md:text-2xl text-4xl font-semibold text-white">Sign Up</h1>
+                <h1 className="mb-[12px] md:text-2xl text-4xl font-semibold text-white">Đăng kí</h1>
                 <div className="p-5 sm:w-[32rem] w-full flex flex-col items-center blue-glassmorphism">
                     <div className="w-full">
-                        <Input placeholder='First name' name='firstname' type='text' handleChange={handleSignUp} />
+                        <Input placeholder='Họ' name='firstname' type='text' handleChange={handleSignUp} />
                         {!nameState.first ? (
                             <div className="flex items-center gap-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được bỏ trống!</p>
                             </div>
                         ) : ""}
-                        <Input placeholder='Last name' name='lastname' type='text' handleChange={handleSignUp} />
+                        <Input placeholder='Tên' name='lastname' type='text' handleChange={handleSignUp} />
                         {!nameState.last ? (
                             <div className="flex items-center gap-[10px]">
                                 <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
-                                <p className="text-[#ff0000] text-sm">This field must not be blank!</p>
+                                <p className="text-[#ff0000] text-sm">Dòng này không được bỏ trống!</p>
                             </div>
                         ) : ""}
                         <Input placeholder='Email' name='email' type='text' handleChange={handleSignUp} />
@@ -101,40 +102,40 @@ const SignUp = () => {
                                 <p className="text-[#ff0000] text-sm">Email invalid!</p>
                             </div>
                         ) : ""}
-                        <Input placeholder='Password' name='password' type='password' handleChange={handleSignUp} />
+                        <Input placeholder='Mật khẩu' name='password' type='password' handleChange={handleSignUp} />
                         <div className="flex items-center gap-[10px]">
                             <CircleIcon currentState={passwordState.char} />
-                            <p className="text-[#737373]">Must be at least 12 characters</p>
+                            <p className="text-[#737373]">Tối thiểu 12 kí tự</p>
                         </div>
                         <div className="flex items-center gap-[10px]">
                             <CircleIcon currentState={passwordState.number} />
-                            <p className="text-[#737373]">Must include at least one number</p>
+                            <p className="text-[#737373]">Tối thiểu 1 chữ số</p>
                         </div>
                         <div className="flex items-center gap-[10px]">
                             <CircleIcon currentState={passwordState.lower} />
-                            <p className="text-[#737373]">Must include at least one lower case letter</p>
+                            <p className="text-[#737373]">Tối thiểu 1 chữ cái thường</p>
                         </div>
                         <div className="flex items-center gap-[10px]">
                             <CircleIcon currentState={passwordState.upper} />
-                            <p className="text-[#737373]">Must include at least one upper case letter</p>
+                            <p className="text-[#737373]">Tối thiểu 1 chữ cái in hoa</p>
                         </div>
                         <div className="flex items-center gap-[10px]">
                             <CircleIcon currentState={passwordState.special} />
-                            <p className="text-[#737373]">Must include at least special character (#,$,%,&,@ etc.)</p>
+                            <p className="text-[#737373]">Tối thiểu 1 kí tự đặc biệt (#,$,%,&,@ etc.)</p>
                         </div>
                         <button
                             type="button"
                             onClick={handleSubmit}
                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-700">
-                            Sign Up
+                            Đăng kí
                         </button>
-                        <p className="text-slate-400 text-xs pb-[20px]">By clicking 'Sign up', you are agreeing to our terms of service and privacy policy.</p>
+                        <p className="text-slate-400 text-xs pb-[20px]">Bằng cách nhấp vào 'Đăng ký', bạn đồng ý với các điều khoản dịch vụ và chính sách bảo mật của chúng tôi.</p>
                     </div>
                     <div className="inline-flex justify-center items-center w-full">
                         <hr className="mb-[20px] w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
                     </div>
-                    <p className="text-white text-base">Already have an account?</p>
-                    <NavLink className="text-blue-500" to='/login'>Log in</NavLink>
+                    <p className="text-white text-base">Đã có tài khoản?</p>
+                    <NavLink className="text-blue-500" to='/login'>Đăng nhập</NavLink>
                 </div>
             </div>
             <ToastContainer/>

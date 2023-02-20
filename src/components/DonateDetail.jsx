@@ -104,18 +104,18 @@ const DonateDetail = () => {
         let minutesDifference = Math.floor(difference / 1000 / 60);
 
         if (daysDifference > 0) {
-            let result = daysDifference.toString() + " days ago";
+            let result = daysDifference.toString() + " ngày trước";
             return result;
         };
         if (hoursDifference > 0) {
-            let result = hoursDifference.toString() + " hours ago";
+            let result = hoursDifference.toString() + " giờ trước";
             return result;
         };
         if (minutesDifference > 0) {
-            let result = minutesDifference.toString() + " minutes ago";
+            let result = minutesDifference.toString() + " phút trước";
             return result;
         };;
-        return "Recently"
+        return "Vừa xong"
     }
 
     return (
@@ -131,9 +131,9 @@ const DonateDetail = () => {
                             <figcaption>
                                 <p className="text-red-500  text-3xl">{detail.amount} ETH</p>
                                 <div className="text-slate-400"> 
-                                    <div>raised</div>
-                                    by
-                                    <span className="font-bold"> {detail.supporters.length} supporters</span>
+                                    <div>gây</div>
+                                    bởi
+                                    <span className="font-bold"> {detail.supporters.length} người ủng hộ</span>
                                 </div>
                             </figcaption>
                         </section>
@@ -145,22 +145,20 @@ const DonateDetail = () => {
                                     className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2546bd]"
                                 >
                                     <AiFillPlayCircle size={25} color="#fff" className="float-left" />
-                                    <p className="text-white text-base font-semibold">Connect Wallet</p>
+                                    <p className="text-white text-base font-semibold">Kết nối ví</p>
                                 </button>) : (
                                 <button
                                     type="button"
                                     onClick={() => setSendFormShow(true)}
                                     className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
-                                    Give now
+                                    Quyên góp
                                 </button>)}
                             {sendFormShow ?
                                 <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
                                     className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
                                     <AnimatePresence>
                                         <Input key='1' placeholder='Address To' value={detail.wallet} name='addressTo' type='text' handleChange={handleChange} disabled="disabled" />
-                                        <Input key='2' placeholder='Amount(ETH)' name='amount' type='number' handleChange={handleChange} />
-                                        {/* <Input key='3' placeholder='Keyword(Gif)' name='keyword' type='text' handleChange={handleChange} />
-                                        <Input key='4' placeholder='Enter Message' name='message' type='text' handleChange={handleChange} /> */}
+                                        <Input key='2' placeholder='Số lượng(ETH)' name='amount' type='number' handleChange={handleChange} />
                                         <button
                                             type="button"
                                             onClick={(e) => {
@@ -169,7 +167,7 @@ const DonateDetail = () => {
                                                 setFormData((prevState) => ({ ...prevState, message: id }));
                                             }}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-[#2546bd]">
-                                            Send now
+                                            Gửi
                                         </button>
                                     </AnimatePresence>
                                 </motion.div> : ''}
@@ -177,7 +175,7 @@ const DonateDetail = () => {
                                 type="button"
                                 onClick={() => { }}
                                 className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-slate-400">
-                                Share
+                                Chia sẻ
                             </button>
                         </section>
                     </div>
@@ -186,11 +184,11 @@ const DonateDetail = () => {
                             <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
                         </div>
                         <section className="max-w-[1240px] mx-auto">
-                            <header className="font-semibold text-4xl pb-[20px]">Story</header>
+                            <header className="font-semibold text-4xl pb-[20px]">Bối cảnh</header>
                             <p>
                                 <span className="text-slate-400">{detail.story}</span>
                             </p>
-                            <h2 className="p-[20px] text-white font-medium text-center text-3xl">Share this story</h2>
+                            <h2 className="p-[20px] text-white font-medium text-center text-3xl">Chia sẻ</h2>
                             <div className="flex items-center">
                                 <button
                                     type="button"
@@ -220,7 +218,7 @@ const DonateDetail = () => {
                         </div>
                         <section className="max-w-[1240px] mx-auto flex flex-col">
                             <header className="font-semibold text-4xl pb-[20px]">
-                                Supporters
+                                Người ủng hộ
                                 <span className="float-right">{detail.supporters.length}</span>
                             </header>
                             <ul>

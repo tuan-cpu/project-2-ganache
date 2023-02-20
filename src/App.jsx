@@ -11,7 +11,7 @@ const App = () =>{
         <Route path="event/:type/detail/:id" element={<DonatePage/>}/>
         <Route path="/event/:type" element={<EventPage/>}/>
         <Route path="*" element={<ErrorPage/>}/>
-        <Route path="/create" element={<CreateEventPage/>}/>
+        <Route path="/create/:type" element={<CreateEventPage/>}/>
         <Route path="/user/:id" element={<UserInfoPage/>}/>
       </Routes>
     </Router>
