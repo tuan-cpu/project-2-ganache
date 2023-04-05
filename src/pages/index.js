@@ -7,3 +7,5 @@ export { default as DonatePage } from './DonatePage';
 export { default as EventPage } from './EventPage';
 export { default as CreateEventPage } from './CreateEventPage';
 export { default as UserInfoPage } from './UserInfoPage';
+export { default as AdminPage } from './AdminPage';
+export { default as VerifyUserPage } from './VerifyUserPage';

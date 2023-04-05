@@ -4,12 +4,11 @@ import { AiOutlineCheckCircle, AiOutlineExclamationCircle } from "react-icons/ai
 import { BsCircle } from "react-icons/bs";
 import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../hooks/regex";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection } from "firebase/firestore"; 
 import { db } from "../utils/firebase.js";
-import { useNavigate } from "react-router-dom";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}

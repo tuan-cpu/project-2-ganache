@@ -15,3 +15,5 @@ export { default as EventList } from './EventList';
 export { default as Filter } from './Filter';
 export { default as CreateEvent } from './CreateEvent';
 export { default as UserInfo } from './UserInfo';
+export { default as Admin } from './Admin';
+export { default as VerifyUser } from './VerifyUser';

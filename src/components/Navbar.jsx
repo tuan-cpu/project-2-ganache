@@ -27,10 +27,10 @@ const Navbar = () => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 if (doc.data().provider === "Google") {
-                    setUser({ displayName: doc.data().displayName, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role });
+                    setUser({ displayName: doc.data().displayName, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role, verified: doc.data().verified });
                 }
                 if (doc.data().provider === "Self") {
-                    setUser({ displayName: doc.data().last_name + " " + doc.data().first_name, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role });
+                    setUser({ displayName: doc.data().last_name + " " + doc.data().first_name, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role, verified: doc.data().verified });
                 }
             });
         }
