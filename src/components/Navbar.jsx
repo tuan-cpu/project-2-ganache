@@ -1,21 +1,31 @@
-import { HiMenuAlt4 } from 'react-icons/hi';
-import { AiOutlineClose } from 'react-icons/ai';
-import logo from '../assets/logo.png';
-import { useState, useEffect, useContext } from 'react';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import { AiOutlineMenu, AiOutlineLogin } from 'react-icons/ai';
+import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../utils/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { TransactionContext } from '../context/TransactionContext';
+import { useStateContext } from '../context/ContextProvider';
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import avatar from '../assets/avatar.svg'
 
-const NavbarItem = ({ title, classProps, handleFunction }) => {
-    return (
-        <li className={`mx-4 cursor-pointer ${classProps}`} onClick={handleFunction}>
-            {title}
-        </li>
-    )
-}
+const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
+    <TooltipComponent content={title} position="BottomCenter">
+        <button
+            type="button"
+            onClick={() => customFunc()}
+            style={{ color }}
+            className="relative text-xl rounded-full p-3 hover:bg-light-gray"
+        >
+            <span
+                style={{ background: dotColor }}
+                className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2"
+            />
+            {icon}
+        </button>
+    </TooltipComponent>
+);
 const Navbar = () => {
-    const [toggleMenu, setToggleMenu] = useState(false);
     const navigate = useNavigate();
     const { user, setUser } = useContext(TransactionContext);
     let authToken = sessionStorage.getItem('Auth Token');
@@ -38,49 +48,48 @@ const Navbar = () => {
             getData();
         }
     }, [email, provider]);
+    const handleActiveMenu = () => setActiveMenu(!activeMenu);
+    const { currentColor, activeMenu, setActiveMenu, screenSize, setScreenSize } = useStateContext();
+    useEffect(() => {
+        const handleResize = () => setScreenSize(window.innerWidth);
+    
+        window.addEventListener('resize', handleResize);
+    
+        handleResize();
+    
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
+    
+      useEffect(() => {
+        if (screenSize <= 900) {
+          setActiveMenu(false);
+        } else {
+          setActiveMenu(true);
+        }
+      }, [screenSize]);
     return (
-        <nav className='w-full flex md:justify-center justify-between items-center p-4'>
-            <div className='md:flex-[0.5] flex-initial justify-center items-center'>
-                <img src={logo} alt="logo" className="w-32 cursor-pointer" onClick={() => { navigate('/') }} />
-            </div>
-            <ul className='text-white md:flex hidden list-none flex-row justify-between items-center flex-initial'>
-                {user ? <NavbarItem title={user['displayName']} handleFunction={() => navigate(`/user/${user['id']}`)} /> : ''}
-                {!authToken ?
-                    <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]'
-                        onClick={() => navigate('/login')}>
-                        Đăng nhập
-                    </li> :
-                    <li className='bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]' onClick={() => {
-                        sessionStorage.removeItem('Auth Token');
-                        sessionStorage.removeItem('Email');
-                        sessionStorage.removeItem('Provider');
-                        setUser(null);
-                        navigate('/');
-                    }}>
-                        Đăng xuất
-                    </li>}
-
-            </ul>
-            <div className='flex relative'>
-                {
-                    toggleMenu ?
-                        <AiOutlineClose fontSize={28} className="text-white md:hidden cursor-pointer" onClick={() => setToggleMenu(false)} />
-                        : <HiMenuAlt4 fontSize={28} className="text-white md:hidden cursor-pointer" onClick={() => setToggleMenu(true)} />
-                }
-                {
-                    toggleMenu && (
-                        <ul className='z-10 fixed top-0 -right-2 p-3 w-[70vw] h-screen shadow-2xl md:hidden list-none 
-                        flex flex-col justify-start items-end rounded-md blue-glassmorphism text-white animate-slide-in'>
-                            <li className='text-xl w-full my-2'>
-                                <AiOutlineClose onClick={() => setToggleMenu(false)} />
-                            </li>
-                            {['Market', 'Exchange', 'Tutorials', 'Wallets'].map((item, index) => (
-                                <NavbarItem key={item + index} title={item} classProps="my-2 text-lg" />
-                            ))}
-                        </ul>
-                    )
-                }
-            </div>
+        <nav className='flex justify-between p-2 md:ml-6 md:mr-6 relative'>
+            <NavButton title="Menu" customFunc={handleActiveMenu} color={currentColor} icon={<AiOutlineMenu />} />
+            {!authToken?<NavButton title="Log in" customFunc={()=> navigate('/login')} color={currentColor} icon={"Log in"}/>:
+            <TooltipComponent content="Profile" position="BottomCenter">
+                <div
+                    className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
+                    onClick={() => { }}
+                >
+                    <img
+                        className="rounded-full w-8 h-8"
+                        src={avatar}
+                        alt="user-profile"
+                    />
+                    <p>
+                        <span className="text-gray-400 text-14">Hi,</span>{' '}
+                        <span className="text-gray-400 font-bold ml-1 text-14">
+                            {user['displayName']}
+                        </span>
+                    </p>
+                    <MdKeyboardArrowDown className="text-gray-400 text-14" />
+                </div>
+            </TooltipComponent>}
         </nav>
     )
 }

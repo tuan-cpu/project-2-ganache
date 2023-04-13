@@ -23,7 +23,8 @@
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.5",
     "react-toastify": "^9.1.1",
-    "tw-elements": "^1.0.0-alpha13"
+    "tw-elements": "^1.0.0-alpha13",
+    "@syncfusion/ej2-react-popups": "^19.4.52"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
