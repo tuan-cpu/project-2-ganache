@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const ContextProvider = ({ children }) => {
-  const [activeMenu, setActiveMenu] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(true);
   const [activeCart, setActiveCart] = useState(true);
   const [activeChat, setActiveChat] = useState(false);
   const [activeNotification, setActiveNotification] = useState(false);
