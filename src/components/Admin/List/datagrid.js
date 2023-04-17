@@ -44,6 +44,12 @@ export const usersGrid = [
 
 export const eventsGrid = [
   {
+    field: 'id',
+    headerText: 'ID',
+    width: '120',
+    textAlign: 'Center'
+  },
+  {
     field: 'title',
     headerText: 'Title',
     width: '120',
@@ -58,7 +64,7 @@ export const eventsGrid = [
   {
     field: 'amount',
     headerText: 'Donated Amount',
-    width: '50',
+    width: '120',
     textAlign: 'Center'
   },
   {
@@ -71,6 +77,12 @@ export const eventsGrid = [
     field: 'wallet',
     headerText: 'Wallet Address',
     width: '200',
+    textAlign: 'Center'
+  },
+  {
+    field: 'type',
+    headerText: 'Event type',
+    width: '100',
     textAlign: 'Center'
   }
 ]

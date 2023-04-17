@@ -16,6 +16,7 @@ export const ContextProvider = ({ children }) => {
   const [currentColor, setCurrentColor] = useState("#03C9D7");
   const [currentMode, setCurrentMode] = useState("Light");
   const [themeSettings, setThemeSettings] = useState(false);
+  const [chosenLink, setChosenLink] = useState([]);
   const setMode = (e) => {
     setCurrentMode(e.target.value);
     localStorage.setItem("themeMode", e.target.value);
@@ -41,7 +42,9 @@ export const ContextProvider = ({ children }) => {
         setMode,
         setColor,
         themeSettings, 
-        setThemeSettings
+        setThemeSettings,
+        chosenLink,
+        setChosenLink
       }}
     >
       {children}

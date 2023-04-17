@@ -8,9 +8,8 @@ import { useStateContext } from '../context/ContextProvider';
 import { TransactionContext } from '../context/TransactionContext';
 
 const Sidebar = () => {
-    const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
+    const { activeMenu, setActiveMenu, screenSize, currentColor, chosenLink, setChosenLink } = useStateContext();
     const { user } = useContext(TransactionContext);
-    const [chosenLink,setChosenLink] = useState([]);
     useEffect(() => {
         if(user && user['role'] === 'admin') setChosenLink(links_admin);
         else setChosenLink(links);

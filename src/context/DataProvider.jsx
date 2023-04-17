@@ -15,8 +15,8 @@ export const DataProvider = ({ children }) => {
         let Users = [];
         let Admins = [];
         querySnapshot.forEach((doc) => {
-            if (doc.data().role === 'admin') Admins.push({ id: doc.id, data: doc.data() });
-            else Users.push({ id: doc.id, data: doc.data() });
+            if (doc.data().role === 'admin') Admins.push({ email: doc.data().email, first_name: doc.data().first_name, last_name: doc.data().last_name, provider: doc.data().provider });
+            else Users.push({ displayName: doc.data().displayName, email: doc.data().email, provider: doc.data().provider, verified: doc.data().verified });
         });
         setUsers(Users);
         setAdmins(Admins);
@@ -28,15 +28,15 @@ export const DataProvider = ({ children }) => {
         const ref_3 = collection(db, "users events");
         const querySnapshot1 = await getDocs(ref_1);
         querySnapshot1.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'lifetime' });
+            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet ,type: 'lifetime' });
         });
         const querySnapshot2 = await getDocs(ref_2);
         querySnapshot2.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'limited' });
+            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet ,type: 'limited' });
         });
         const querySnapshot3 = await getDocs(ref_3);
         querySnapshot3.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'users' });
+            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet ,type: 'users' });
         });
         setEvents(result);
     }

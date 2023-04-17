@@ -10,9 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <TransactionProvider>
     <ContextProvider>
       <DataProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <App />
       </DataProvider>
     </ContextProvider>
   </TransactionProvider>
