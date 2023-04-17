@@ -1,10 +1,12 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { AdminPage, CreateEventPage, DonatePage, ErrorPage, EventPage, HomePage, RegisterPage, ResetPasswordPage, SignInPage, UserInfoPage, VerifyUserPage } from "./pages";
+import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage, ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, VerifyUserPage, VoteManagementPage, VoteUserPage } from "./pages";
 import { useStateContext } from "./context/ContextProvider";
 import { Sidebar, ThemeSettings } from "./components";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { FiSettings } from "react-icons/fi";
 import './App.css';
+import ListPage from "./pages/Admin/ListPage";
+import WithdrawalApprovePage from "./pages/Admin/Inquiry/WithdrawalApprovePage";
 const App = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useStateContext();
   return (
@@ -39,17 +41,28 @@ const App = () => {
             <div>
               {themeSettings && <ThemeSettings />}
               <Routes>
+                {/* user route */}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<SignInPage />} />
                 <Route path="/reset" element={<ResetPasswordPage />} />
-                <Route path="event/:type/detail/:id" element={<DonatePage />} />
+                <Route path="/event/:type/detail/:id" element={<DonatePage />} />
                 <Route path="/event/:type" element={<EventPage />} />
                 <Route path="*" element={<ErrorPage />} />
                 <Route path="/create/:type" element={<CreateEventPage />} />
                 <Route path="/user/:id" element={<UserInfoPage />} />
                 <Route path="/verifyUser" element={<VerifyUserPage />} />
+                <Route path="/vote_user" element={<VoteUserPage />} />
+
+                {/* admin route */}
                 <Route path="/admin" element={<AdminPage />} />
+                <Route path="/admin/list/:type" element={<ListPage/>}/>
+                <Route path="/admin/create_event" element={<AdminCreateEventPage/>}/>
+                <Route path="/admin/inquiry/verify_user_check" element={<VerifyUserApprove/>}/>
+                <Route path="/admin/inquiry/user_event_register" element={<UserEventApprove/>}/>
+                <Route path="/admin/inquiry/withdrawal_request" element={<WithdrawalApprovePage/>}/>
+                <Route path="/admin/inquiry/other_request" element={<OtherPage/>}/>
+                <Route path="/admin/vote_management" element={<VoteManagementPage/>}/>
               </Routes>
             </div>
           </div>

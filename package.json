@@ -24,7 +24,16 @@
     "react-router-dom": "^6.4.5",
     "react-toastify": "^9.1.1",
     "tw-elements": "^1.0.0-alpha13",
-    "@syncfusion/ej2-react-popups": "^19.4.52"
+    "@syncfusion/ej2": "^19.4.48",
+    "@syncfusion/ej2-react-calendars": "^19.4.48",
+    "@syncfusion/ej2-react-charts": "^19.4.50",
+    "@syncfusion/ej2-react-dropdowns": "^19.4.52",
+    "@syncfusion/ej2-react-grids": "^19.4.50",
+    "@syncfusion/ej2-react-inputs": "^19.4.52",
+    "@syncfusion/ej2-react-kanban": "^19.4.48",
+    "@syncfusion/ej2-react-popups": "^19.4.52",
+    "@syncfusion/ej2-react-richtexteditor": "^19.4.50",
+    "@syncfusion/ej2-react-schedule": "^19.4.50"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

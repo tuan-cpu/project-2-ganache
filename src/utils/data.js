@@ -26,11 +26,11 @@ export const links = [
       },
       {
         name: "Quỹ của người dùng",
-        link: "event/user"
+        link: "event/users"
       },
       {
         name: "Yêu cầu gây quỹ",
-        link: "create/user"
+        link: "create/users"
       }
     ],
   },
@@ -39,7 +39,7 @@ export const links = [
     links: [
       {
         name: "Đại sứ từ thiện",
-        link: "vote"
+        link: "vote_user"
       },
     ],
   },
@@ -51,11 +51,11 @@ export const links_admin = [
     links: [
       {
         name: "Danh sách sự kiện",
-        link: "event_list"
+        link: "admin/list/event"
       },
       {
         name: "Tạo sự kiện",
-        link: "create_event"
+        link: "admin/create_event"
       }
     ]
   },
@@ -64,11 +64,11 @@ export const links_admin = [
     links: [
       {
         name: "Người dùng",
-        link: "user_list"
+        link: "admin/list/user"
       },
       {
         name: "Admin",
-        link: "admin_list"
+        link: "admin/list/admin"
       }
     ]
   },
@@ -77,19 +77,19 @@ export const links_admin = [
     links: [
       {
         name: "Xác thực thông tin",
-        link: "verify_user_check"
+        link: "admin/inquiry/verify_user_check"
       },
       {
         name: "Đăng kí gây quỹ",
-        link: "user_event_register"
+        link: "admin/inquiry/user_event_register"
       },
       {
         name: "Rút tiền",
-        link: "withdrawal_request"
+        link: "admin/inquiry/withdrawal_request"
       },
       {
         name: "Yêu cầu khác",
-        link: "other_request"
+        link: "admin/inquiry/other_request"
       }
     ]
   },
@@ -98,7 +98,7 @@ export const links_admin = [
     links: [
       {
         name: "Bầu chọn người dùng",
-        link: "vote_management"
+        link: "admin/vote_management"
       }
     ]
   }

@@ -11,14 +11,7 @@ const initialState = {
 
 export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
-  const [activeCart, setActiveCart] = useState(true);
-  const [activeChat, setActiveChat] = useState(false);
-  const [activeNotification, setActiveNotification] = useState(false);
-  const [activeUserProfile, setActiveUserProfile] = useState(false);
   const [isClicked, setIsClicked] = useState(initialState);
-  const handleClick = (clicked) => {
-    setIsClicked({ ...initialState, [clicked]: true });
-  };
   const [screenSize, setScreenSize] = useState(undefined);
   const [currentColor, setCurrentColor] = useState("#03C9D7");
   const [currentMode, setCurrentMode] = useState("Light");
@@ -40,18 +33,15 @@ export const ContextProvider = ({ children }) => {
         setActiveMenu,
         isClicked,
         setIsClicked,
-        handleClick,
         screenSize,
         setScreenSize,
         setCurrentColor,
         currentMode,
         currentColor,
         setMode,
-        setColor,themeSettings, 
-        setThemeSettings,
-        activeCart,
-        setActiveCart,
-        activeChat, activeNotification,setActiveChat,setActiveNotification,activeUserProfile, setActiveUserProfile
+        setColor,
+        themeSettings, 
+        setThemeSettings
       }}
     >
       {children}
