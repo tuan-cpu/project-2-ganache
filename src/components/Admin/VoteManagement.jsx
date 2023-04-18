@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Header } from '../../components';
 
 const VoteManagement = () => {
   return (
-    <div>VoteManagement</div>
+    <div>
+      <Header category="Vote" title='Vote management' />
+    </div>
   )
 }
 

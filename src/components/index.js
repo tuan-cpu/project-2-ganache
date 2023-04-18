@@ -27,3 +27,5 @@ export { default as VerifyUserCheck } from './Admin/Inquiry/VerifyUserCheck';
 export { default as UserEventCheck } from './Admin/Inquiry/UserEventCheck';
 export { default as Withdrawal } from './Admin/Inquiry/Withdrawal';
 export { default as Header } from './Header';
+export { default as Button } from './Button';
+export { default as VoteManagement } from './Admin/VoteManagement';

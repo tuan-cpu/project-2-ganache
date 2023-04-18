@@ -1,8 +1,11 @@
 import React from 'react'
+import { Header } from '../../../components';
 
 const Withdrawal = () => {
   return (
-    <div>Withdrawal</div>
+    <div>
+      <Header category="Inquiry" title='Kiểm tra yêu cầu rút tiền' />
+    </div>
   )
 }
 
