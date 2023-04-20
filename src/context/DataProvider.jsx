@@ -40,8 +40,33 @@ export const DataProvider = ({ children }) => {
         });
         setEvents(result);
     }
+    const [userVerifyRequest,setUserVerifyRequest] = useState([]);
+    const getAllUserVerifyRequest = async() =>{
+        const refURL = 'inquiry/user_inquiry/user_verify_inquiry';
+        const ref = collection(db,refURL);
+        const querySnapshot = await getDocs(ref);
+        let result = [];
+        querySnapshot.forEach((doc)=>{
+            result.push({id: doc.id, data: doc.data()});
+        });
+        setUserVerifyRequest(result);
+    }
+    const [createEventRequest,setCreateEventRequest] = useState([]);
+    const getAllCreateEventRequest = async() =>{
+        const refURL = 'inquiry/user_inquiry/create_event_inquiry';
+        const ref = collection(db,refURL);
+        const querySnapshot = await getDocs(ref);
+        let result = [];
+        querySnapshot.forEach((doc)=>{
+            result.push({id: doc.id, data: doc.data()});
+        });
+        setCreateEventRequest(result);
+    }
     return (
-        <DataContext.Provider value={{ events, users, admins, getAllEvents, getAllUsers }}>
+        <DataContext.Provider value={{ 
+            events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
+            createEventRequest, getAllCreateEventRequest 
+            }}>
             {children}
         </DataContext.Provider>
     )

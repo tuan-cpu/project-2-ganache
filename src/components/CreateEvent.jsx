@@ -52,7 +52,8 @@ const CreateEvent = () => {
         image: "",
         amount:0,
         supporters:[],
-        user_id:user.id
+        user_id:user.id,
+        status: false
     });
     const [formState, setFormState] = useState({
         name: true,
@@ -109,7 +110,7 @@ const CreateEvent = () => {
         }
     }, [confirm]);
     const submit = async (data) => {
-        const ref = doc(collection(db, type+' events'));
+        const ref = doc(collection(db, 'inquiry/user_inquiry/create_event_inquiry'));
         await setDoc(ref, data);
         toast.success("Submission complete!");
     }
