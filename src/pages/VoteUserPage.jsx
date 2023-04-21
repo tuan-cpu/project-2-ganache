@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Navbar, VoteUser } from '../components';
 
 const VoteUserPage = () => {
   return (
-    <div>VoteUserPage</div>
+    <div>
+      <div className='gradient-bg-welcome'><Navbar/></div>
+      <VoteUser/>
+    </div>
   )
 }
 

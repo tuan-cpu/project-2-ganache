@@ -105,10 +105,10 @@ const UserInfo = () => {
                     <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Tên người dùng: {user.displayName}</p>
                     <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Email: {user.email}</p>
                     <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Loại tài khoản: {user.provider}</p>
-                    <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Xác thực người dùng:
-                    {user.verified?<MdOutlineVerifiedUser fontSize={17} color="#13de3c"/>:
+                    <div className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base flex items-center">Xác thực người dùng:
+                    {user.verified?<MdOutlineVerifiedUser fontSize={21} color="#13de3c"/>:
                     <NavLink to={'/verifyUser'}>Ấn vào đây để xác thực người dùng</NavLink>}
-                    </p>
+                    </div>
                     <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Lịch sử quyên góp:</p>
                     <ul>
                         {user.donation_detail.map((item, index) => {

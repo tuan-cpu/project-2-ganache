@@ -50,7 +50,7 @@ const App = () => {
                 <Route path="/event/:type" element={<EventPage />} />
                 <Route path="*" element={<ErrorPage />} />
                 <Route path="/create/:type" element={<CreateEventPage />} />
-                <Route path="/user/:id" element={<UserInfoPage />} />
+                <Route path="/user_profile" element={<UserInfoPage />} />
                 <Route path="/verifyUser" element={<VerifyUserPage />} />
                 <Route path="/vote_user" element={<VoteUserPage />} />
 
