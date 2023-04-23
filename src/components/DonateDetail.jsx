@@ -6,8 +6,10 @@ import Loader from './Loader';
 import { useParams } from 'react-router-dom';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { TransactionContext } from "../context/TransactionContext";
+import { useDataContext } from '../context/DataProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 import Transactions from './Transactions';
+import { middle_man } from '../utils/constants';
 const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     <input
         placeholder={placeholder}
@@ -22,6 +24,7 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
 )
 const DonateDetail = () => {
     let { type, id } = useParams();
+    const { createWithdrawalRequest } = useDataContext();
     const [detail, setDetail] = useState();
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, user } = useContext(TransactionContext);
     const [sendFormShow, setSendFormShow] = useState(false);
@@ -31,46 +34,46 @@ const DonateDetail = () => {
         const submit = () => {
             if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
             sendTransaction();
-            const docRef = doc(db, type+" events", id);
+            const docRef = doc(db, type + " events", id);
             let array = [];
-            for(let i in detail.supporters){
-                if(detail.supporters[i].email === email && detail.supporters[i].provider === provider){
+            for (let i in detail.supporters) {
+                if (detail.supporters[i].email === email && detail.supporters[i].provider === provider) {
                     detail.supporters[i].timestamp = Timestamp.now();
                     detail.supporters[i].amount = (parseFloat(detail.supporters[i].amount) + parseFloat(formData.amount)).toString();
                     array = detail.supporters;
                     break;
                 }
             }
-            if(array.toString() === [].toString()) array = [...detail.supporters,{
+            if (array.toString() === [].toString()) array = [...detail.supporters, {
                 identity: user['displayName'] ? user['displayName'] : "Anonymous",
-                email: email? email: null,
-                provider: provider? provider:null,
+                email: email ? email : null,
+                provider: provider ? provider : null,
                 amount: formData.amount,
                 timestamp: Timestamp.now()
             }]
             const data = {
                 supporters: array,
-                amount: parseFloat(detail.amount)  + parseFloat(formData.amount) 
+                amount: parseFloat(detail.amount) + parseFloat(formData.amount)
             }
-            updateDoc(docRef,data);
+            updateDoc(docRef, data);
             updateUserInfo();
         }
-        const updateUserInfo = async()=>{
-            const q = query(collection(db, "users"), where("email", "==", email),where("provider","==",provider));
+        const updateUserInfo = async () => {
+            const q = query(collection(db, "users"), where("email", "==", email), where("provider", "==", provider));
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((document) => {
                 // doc.data() is never undefined for query doc snapshots
-                const docRef = doc(db,"users",document.id);
+                const docRef = doc(db, "users", document.id);
                 const data = {
-                    donation_detail:[...document.data().donation_detail,{
-                        event_id:id,
+                    donation_detail: [...document.data().donation_detail, {
+                        event_id: id,
                         event_type: type,
                         event_tag: detail.tag,
                         amount: parseFloat(formData.amount),
                         timestamp: Timestamp.now()
                     }]
                 }
-                updateDoc(docRef,data);
+                updateDoc(docRef, data);
             });
         }
         submit();
@@ -93,6 +96,42 @@ const DonateDetail = () => {
         }
         getData();
     }, []);
+    const [timeLeft, setTimeLeft] = useState({});
+    useEffect(() => {
+        const calculateTimeLeft = (timestamp) => {
+            const date = timestamp.toDate();
+            let difference = date.getTime() - Date.now();
+
+            let timeLeft = {};
+
+            if (difference > 0) {
+                timeLeft = {
+                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                    minutes: Math.floor((difference / 1000 / 60) % 60),
+                    seconds: Math.floor((difference / 1000) % 60)
+                };
+            }
+            return timeLeft;
+        }
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft(detail.end_time));
+        }, 1000);
+        return () => clearTimeout(timer);
+    });
+    const timerComponents = [];
+
+    Object.keys(timeLeft).forEach((interval) => {
+        if (!timeLeft[interval]) {
+            return;
+        }
+
+        timerComponents.push(
+            <span>
+                {timeLeft[interval]} {interval}{" "}
+            </span>
+        );
+    });
     const CalcTimeDiff = (timestamp) => {
         const date = timestamp.toDate();
         let difference = Date.now() - date.getTime();
@@ -130,7 +169,7 @@ const DonateDetail = () => {
                         <section className="flex justify-start lg:justify-center items-center text-left self-stretch flex-row w-full p-[18px]">
                             <figcaption>
                                 <p className="text-red-500  text-3xl">{detail.amount} ETH</p>
-                                <div className="text-slate-400"> 
+                                <div className="text-slate-400">
                                     <div>gây</div>
                                     bởi
                                     <span className="font-bold"> {detail.supporters.length} người ủng hộ</span>
@@ -147,22 +186,37 @@ const DonateDetail = () => {
                                     <AiFillPlayCircle size={25} color="#fff" className="float-left" />
                                     <p className="text-white text-base font-semibold">Kết nối ví</p>
                                 </button>) : (
-                                <button
-                                    type="button"
-                                    onClick={() => setSendFormShow(true)}
-                                    className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
-                                    Quyên góp
-                                </button>)}
+                                <>
+                                    {user.id !== detail.user_id ? (
+                                        <button
+                                            type="button"
+                                            onClick={() => setSendFormShow(true)}
+                                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
+                                            Quyên góp
+                                        </button>
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            disabled={timerComponents.length? true: false}
+                                            onClick={() => createWithdrawalRequest({
+                                                event_id: id,
+                                                user_id: user.id,
+                                                wallet: detail.wallet
+                                            })}
+                                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
+                                            Rút tiền
+                                        </button>
+                                    )}
+                                </>)}
                             {sendFormShow ?
                                 <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
-                                    className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+                                    className="p-5 sm:w-96 w-full flex flex-col justify-start items-center">
                                     <AnimatePresence>
-                                        <Input key='1' placeholder='Address To' value={detail.wallet} name='addressTo' type='text' handleChange={handleChange} disabled="disabled" />
-                                        <Input key='2' placeholder='Số lượng(ETH)' name='amount' type='number' handleChange={handleChange} />
+                                        <Input key='2' placeholder='Số lượng(ETH)' name='amount' type='number' handleChange={handleChange} className='border-white' />
                                         <button
                                             type="button"
                                             onClick={(e) => {
-                                                setFormData((prevState) => ({ ...prevState, addressTo: detail.wallet }));
+                                                setFormData((prevState) => ({ ...prevState, addressTo: middle_man }));
                                                 setFormData((prevState) => ({ ...prevState, keyword: detail.tag }));
                                                 setFormData((prevState) => ({ ...prevState, message: id }));
                                             }}
@@ -177,6 +231,15 @@ const DonateDetail = () => {
                                 className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-slate-400">
                                 Chia sẻ
                             </button>
+                        </section>
+                        <section>
+                            <figcaption>
+                                <p className="text-white  text-3xl">Thời gian gây quỹ</p>
+                                <div className="text-slate-400">
+                                    <div>còn</div>
+                                    <span className="font-bold">{timerComponents.length ? timerComponents : <span>Time's up!</span>}</span>
+                                </div>
+                            </figcaption>
                         </section>
                     </div>
                     <div className="lg:col-span-2 text-white">
@@ -210,7 +273,7 @@ const DonateDetail = () => {
                                 </button>
                             </div>
                         </section>
-                        <Transactions message={id}/>
+                        <Transactions message={id} />
                     </div>
                     <div className="text-white">
                         <div className="inline-flex justify-center items-center w-full">
@@ -222,7 +285,7 @@ const DonateDetail = () => {
                                 <span className="float-right">{detail.supporters.length}</span>
                             </header>
                             <ul>
-                                {detail.supporters.sort(function(a,b){return parseFloat(b.amount) - parseFloat(a.amount)}).map((item, index) => (
+                                {detail.supporters.sort(function (a, b) { return parseFloat(b.amount) - parseFloat(a.amount) }).map((item, index) => (
                                     <li className="list-none flex w-full max-h-[100px]" key={index}>
                                         <div className="py-[15px] mr-[10px] basis-9">
                                             <img src={avatar} alt="true" />

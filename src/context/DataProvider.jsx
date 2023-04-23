@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
 import { db } from "../utils/firebase.js";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, setDoc, doc } from 'firebase/firestore';
 
 const DataContext = createContext();
 
@@ -62,10 +62,15 @@ export const DataProvider = ({ children }) => {
         });
         setCreateEventRequest(result);
     }
+    const createWithdrawalRequest = async(data) =>{
+        const refURL = 'inquiry/fund_inquiry/withdrawal_request';
+        const ref = doc(collection(db,refURL));
+        await setDoc(ref,data);
+    }
     return (
         <DataContext.Provider value={{ 
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
-            createEventRequest, getAllCreateEventRequest 
+            createEventRequest, getAllCreateEventRequest , createWithdrawalRequest
             }}>
             {children}
         </DataContext.Provider>
