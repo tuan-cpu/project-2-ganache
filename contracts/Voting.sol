@@ -92,7 +92,11 @@ contract Voting {
         return false;
     }
 
-    function getAllVotesOfCandiatesOfEvent(
+    function getAllEvents () public view returns (VotingEvent[] memory){
+        return votingEvents;
+    }
+
+    function getAllCandiatesOfEvent(
         uint256 _eventIndex
     ) public view returns (Candidate[] memory) {
         return eventAndCandidate[_eventIndex].candidates;
