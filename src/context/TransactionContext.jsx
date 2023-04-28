@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from 'ethers';
-import { contractABI, contractAddress, votingABI, votingAddress } from '../utils/constants';
+import { contractABI, contractAddress } from '../utils/constants';
 
 export const TransactionContext = React.createContext();
 
@@ -10,10 +10,8 @@ const getEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const transactionContract = new ethers.Contract(contractAddress, contractABI, signer);
-    const votingContract = new ethers.Contract(votingAddress, votingABI, signer);
-    return { transactionContract, votingContract };
+    return transactionContract;
 }
-
 export const TransactionProvider = ({ children }) => {
     const [currentAccount, setCurrentAccount] = useState('');
     const [formData, setFormData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
@@ -33,8 +31,8 @@ export const TransactionProvider = ({ children }) => {
     const handleSignUp = (e, name) => {
         setSignUpFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
     };
-    const { transactionContract, votingContract } = getEthereumContract();
     const getAllTransactions = async () => {
+        const transactionContract = getEthereumContract();
         try {
             if (!ethereum) return alert("Please install Metamask!");
             const availableTransactions = await transactionContract.getAllTransactions();
@@ -53,43 +51,34 @@ export const TransactionProvider = ({ children }) => {
             console.log(error);
         }
     }
-    const getAllCandidatesOfEvent = async (id) => {
-        return await votingContract.getAllCandidatesOfEvent(id);
-    }
-    const getRemainingTimeOfEvent = async (id) => {
-        return await votingContract.getRemainingTimeOfEvent(id);
-    }
-    const getVotingStatusOfEvent = async (id) => {
-        return await votingContract.getVotingStatusOfEvent(id);
-    }
-    const getAllVotingEvents = async () => {
+    const sendTransaction = async () => {
         try {
-            const availableVotingEvents = await votingContract.getAllEvents();
-            const structuredEvents = availableVotingEvents.map((event, index) => {
-                const candidates = getAllCandidatesOfEvent(event.id);
-                return (
-                    {
-                        name: event.name,
-                        votingStart: event.votingStart,
-                        votingEnd: event.votingEnd,
-                        id: event.id,
-                        candidates: candidates
-                    }
-                )
-            })
-            setVotingEvents(structuredEvents);
+            if (!ethereum) return alert("Please install Metamask!");
+            const { addressTo, amount, keyword, message } = formData;
+            const transactionContract = getEthereumContract();
+            const parsedAmount = ethers.utils.parseEther(amount);
+            await ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: currentAccount,
+                    to: addressTo,
+                    gas: "0x5208",
+                    value: parsedAmount._hex,
+                }]
+            });
+            const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
+            setIsLoading(true);
+            console.log(`Loading - ${transactionHash.hash}`);
+            await transactionHash.wait();
+            setIsLoading(false);
+            console.log(`Success - ${transactionHash.hash}`);
+            const transactionCount = await transactionContract.getTransactionCount();
+            setTransactionCount(transactionCount.toNumber());
+            window.reload();
         } catch (error) {
             console.log(error);
+            throw new Error("No ethereum object.")
         }
-    }
-    const addEvent = async (_name, votingStart, votingEnd) => {
-        return await votingContract.addEvent(_name, votingStart, votingEnd);
-    }
-    const addCandidateToEvent = async (_name, _eventIndex) => {
-        return await votingContract.addCandidateToEvent(_name, _eventIndex);
-    }
-    const vote = async (_candidateIndex, _eventIndex) => {
-        return await votingContract.vote(_candidateIndex, _eventIndex);
     }
     const checkIfWalletIsConnected = async () => {
         if (!ethereum) return alert("Please install Metamask!");
@@ -122,32 +111,84 @@ export const TransactionProvider = ({ children }) => {
             throw new Error("No ethereum object.")
         }
     }
-
-    const sendTransaction = async () => {
+    const getAllCandidatesOfEvent = async (id) => {
+        const transactionContract = getEthereumContract();
+        return await transactionContract.getAllCandidatesOfEvent(id);
+    }
+    const getRemainingTimeOfEvent = async (id) => {
+        const transactionContract = getEthereumContract();
+        return await transactionContract.getRemainingTimeOfEvent(id);
+    }
+    const getVotingStatusOfEvent = async (id) => {
+        const transactionContract = getEthereumContract();
+        return await transactionContract.getVotingStatusOfEvent(id);
+    }
+    const getAllVotingEvents = async () => {
+        const transactionContract = getEthereumContract();
         try {
-            if (!ethereum) return alert("Please install Metamask!");
-            const { addressTo, amount, keyword, message } = formData;
-            const transactionContract = getEthereumContract();
-            const parsedAmount = ethers.utils.parseEther(amount);
-            await ethereum.request({
-                method: 'eth_sendTransaction',
-                params: [{
-                    from: currentAccount,
-                    to: addressTo,
-                    gas: "0x5208",
-                    value: parsedAmount._hex,
-                }]
-            });
-            const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
-            setIsLoading(true);
-            console.log(`Loading - ${transactionHash.hash}`);
-            await transactionHash.wait();
-            setIsLoading(false);
-            console.log(`Success - ${transactionHash.hash}`);
-            const transactionCount = await transactionContract.getTransactionCount();
-            setTransactionCount(transactionCount.toNumber());
-            window.reload();
+            const availableVotingEvents = await transactionContract.getAllEvents();
+            const structuredEvents = availableVotingEvents.map((event, index) => {
+                const candidates = getAllCandidatesOfEvent(event.id);
+                return (
+                    {
+                        name: event.name,
+                        votingStart: event.votingStart,
+                        votingEnd: event.votingEnd,
+                        id: event.id,
+                        candidates: candidates
+                    }
+                )
+            })
+            setVotingEvents(structuredEvents);
         } catch (error) {
+            console.log(error);
+        }
+    }
+    const vote = async (_candidateIndex, _eventIndex) => {
+        try{
+            if (!ethereum) return alert("Please install Metamask!");
+            const transactionContract = getEthereumContract();
+            const txHash = await transactionContract.vote(_candidateIndex, _eventIndex);
+            setIsLoading(true);
+            console.log(`Loading - ${txHash.hash}`);
+            await txHash.wait();
+            setIsLoading(false);
+            console.log(`Success - ${txHash.hash}`);
+            window.location.reload();
+        }catch (error) {
+            console.log(error);
+            throw new Error("No ethereum object.")
+        }
+    }
+
+    const addVotingEvent = async (_name, duration) => {
+        try{
+            if (!ethereum) return alert("Please install Metamask!");
+            const transactionContract = getEthereumContract();
+            const txHash = await transactionContract.addEvent(_name, duration);
+            setIsLoading(true);
+            console.log(`Loading - ${txHash.hash}`);
+            await txHash.wait();
+            setIsLoading(false);
+            console.log(`Success - ${txHash.hash}`);
+            window.location.reload();
+        }catch (error) {
+            console.log(error);
+            throw new Error("No ethereum object.")
+        }
+    }
+    const addCandidate = async (_name, _eventIndex) => {
+        try{
+            if (!ethereum) return alert("Please install Metamask!");
+            const transactionContract = getEthereumContract();
+            const txHash = await transactionContract.addCandidate(_name, _eventIndex);
+            setIsLoading(true);
+            console.log(`Loading - ${txHash.hash}`);
+            await txHash.wait();
+            setIsLoading(false);
+            console.log(`Success - ${txHash.hash}`);
+            window.location.reload();
+        }catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
         }
@@ -163,7 +204,7 @@ export const TransactionProvider = ({ children }) => {
             isLoading, signInFormData, signUpFormData,
             handleSignUp, handleSignIn, setFormData, user, setUser,
             getAllVotingEvents, votingEvents, getRemainingTimeOfEvent, getVotingStatusOfEvent,
-            addEvent, addCandidateToEvent, vote
+            addVotingEvent, addCandidate, vote
         }}>
             {children}
         </TransactionContext.Provider>
