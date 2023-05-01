@@ -39,6 +39,7 @@ contract Transactions {
     //Voting
     struct Candidate {
         string name;
+        uint _userIndex;
         uint256 voteCount;
         uint _eventIndex;
     }
@@ -77,9 +78,10 @@ contract Transactions {
 
     function addCandidate(
         string memory _candidateName,
+        uint _userIndex,
         uint _eventIndex
     ) public {
-        candidates.push(Candidate(_candidateName,0,_eventIndex));
+        candidates.push(Candidate(_candidateName,_userIndex,0,_eventIndex));
     }
 
     function vote(uint256 _candidateIndex, uint _eventIndex) public {

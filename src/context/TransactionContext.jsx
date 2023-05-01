@@ -74,7 +74,7 @@ export const TransactionProvider = ({ children }) => {
             console.log(`Success - ${transactionHash.hash}`);
             const transactionCount = await transactionContract.getTransactionCount();
             setTransactionCount(transactionCount.toNumber());
-            window.reload();
+            window.location.reload();
         } catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
@@ -113,7 +113,24 @@ export const TransactionProvider = ({ children }) => {
     }
     const getAllCandidatesOfEvent = async (id) => {
         const transactionContract = getEthereumContract();
-        return await transactionContract.getAllCandidatesOfEvent(id);
+        try{
+            const availableCandidates = await transactionContract.getAllCandidates();
+            let results = [];
+            const structuredCandidates = availableCandidates.map((candidate, index)=>(
+                {
+                    name: candidate.name,
+                    _userIndex: candidate._userIndex,
+                    _eventIndex: candidate._eventIndex,
+                    voteCount: candidate.voteCount
+                }
+            ))
+            for(const element of structuredCandidates){
+                if(element._eventIndex === id) results.push(element);
+            }
+            return results;
+        }catch(error){
+            console.log(error);
+        }
     }
     const getRemainingTimeOfEvent = async (id) => {
         const transactionContract = getEthereumContract();
@@ -154,7 +171,6 @@ export const TransactionProvider = ({ children }) => {
             await txHash.wait();
             setIsLoading(false);
             console.log(`Success - ${txHash.hash}`);
-            window.location.reload();
         }catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
@@ -171,23 +187,21 @@ export const TransactionProvider = ({ children }) => {
             await txHash.wait();
             setIsLoading(false);
             console.log(`Success - ${txHash.hash}`);
-            window.location.reload();
         }catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
         }
     }
-    const addCandidate = async (_name, _eventIndex) => {
+    const addCandidate = async (_name,_iuserIndex, _eventIndex) => {
         try{
             if (!ethereum) return alert("Please install Metamask!");
             const transactionContract = getEthereumContract();
-            const txHash = await transactionContract.addCandidate(_name, _eventIndex);
+            const txHash = await transactionContract.addCandidate(_name,_userIndex, _eventIndex);
             setIsLoading(true);
             console.log(`Loading - ${txHash.hash}`);
             await txHash.wait();
             setIsLoading(false);
             console.log(`Success - ${txHash.hash}`);
-            window.location.reload();
         }catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
