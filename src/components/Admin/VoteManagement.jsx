@@ -14,6 +14,11 @@ const VoteManagement = () => {
   const [addNewCandidate, setAddNewCandidate] = useState(false);
   const [newCandidateName, setNewCandidateName] = useState('');
   const [newCandidateID, setNewCandidateID] = useState('');
+  const getDate = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    const dateString = date.toLocaleString();
+    return dateString;
+  }
   return (
     <div className=' flex flex-col'>
       <Header category="Vote" title='Vote management' />
@@ -70,7 +75,7 @@ const VoteManagement = () => {
             }}
           >
             <option selected disabled>Chọn 1 sự kiện</option>
-            {votingEvents.map((item) => <option key={item.id} value={item.name}>{item.name}</option>)}
+            {votingEvents.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
           </select>
         ) : ''}
       </div>
@@ -86,14 +91,17 @@ const VoteManagement = () => {
             </div>
             <div className='flex-col border-t-1 border-color p-4 ml-4'>
               <p className='font-semibold text-lg'>Thông tin cơ bản</p>
-              <p>Tên sự kiện: {selectedEvent.name}</p>
-              <p>ID: {selectedEvent.id}</p>
-              {/* <p>Thời gian bắt đầu: {selectedEvent.votingStart.toDate()}</p> */}
-              {/* <p>Thời gian kết thúc: {selectedEvent.votingEnd.toDate()}</p> */}
+              <p>Tên sự kiện: {votingEvents[selectedEvent - 1].name}</p>
+              <p>ID: {parseInt(votingEvents[selectedEvent - 1].id, 16)}</p>
+              <p>Thời gian bắt đầu: {getDate(BigInt(votingEvents[selectedEvent - 1].votingStart).toString())}</p>
+              <p>Thời gian kết thúc: {getDate(BigInt(votingEvents[selectedEvent - 1].votingEnd).toString())}</p>
             </div>
             <div className='flex-col border-t-1 border-color p-4 ml-4'>
               <p className='font-semibold text-lg'>Ứng viên</p>
-              {/* {selectedEvent.candidates.map((item,index)=><p>{item._userIndex}</p>)} */}
+              {votingEvents[selectedEvent - 1].candidates.map((item, index) => <p key={index}>{item._userIndex}</p>)}
+
+            </div>
+            <div className='flex-col border-t-1 border-color p-4 ml-4'>
               <Button color='white' bgColor={currentColor} text='Tạo ứng viên' borderRadius='10px' size='md' customFunction={() =>
                 setAddNewCandidate(true)} />
               {addNewCandidate ? (
@@ -116,16 +124,13 @@ const VoteManagement = () => {
                     />
                   </div>
                   <Button color='white' bgColor={currentColor} text='Thêm ứng viên' borderRadius='10px' size='md' customFunction={() =>
-                    addCandidate(newCandidateName,newCandidateID,selectedEvent.id)} />
+                    addCandidate(newCandidateName, newCandidateID, selectedEvent.id)} />
                 </div>
               ) : ''}
             </div>
           </div>
         </div>
       ) : ''}
-
-      {/* <Button color='white' bgColor={currentColor} text='Vote' borderRadius='10px' size='md' customFunction={() =>
-        vote(0, 0)} /> */}
     </div>
   )
 }

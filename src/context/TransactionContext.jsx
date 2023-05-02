@@ -111,26 +111,20 @@ export const TransactionProvider = ({ children }) => {
             throw new Error("No ethereum object.")
         }
     }
-    const getAllCandidatesOfEvent = async (id) => {
-        const transactionContract = getEthereumContract();
-        try{
-            const availableCandidates = await transactionContract.getAllCandidates();
-            let results = [];
-            const structuredCandidates = availableCandidates.map((candidate, index)=>(
-                {
-                    name: candidate.name,
-                    _userIndex: candidate._userIndex,
-                    _eventIndex: candidate._eventIndex,
-                    voteCount: candidate.voteCount
-                }
-            ))
-            for(const element of structuredCandidates){
-                if(element._eventIndex === id) results.push(element);
+    const getAllCandidatesOfEvent = (_eventIndex, _availableCandidates) => {
+        let results = [];
+        const structuredCandidates = _availableCandidates.map((candidate, index) => (
+            {
+                name: candidate.name,
+                _userIndex: candidate._userIndex,
+                _eventIndex: candidate._eventIndex,
+                voteCount: candidate.voteCount
             }
-            return results;
-        }catch(error){
-            console.log(error);
+        ))
+        for (const element of structuredCandidates) {
+            if (parseInt(element._eventIndex,16) === parseInt(_eventIndex,16)) results.push(element);
         }
+        return results;
     }
     const getRemainingTimeOfEvent = async (id) => {
         const transactionContract = getEthereumContract();
@@ -144,8 +138,9 @@ export const TransactionProvider = ({ children }) => {
         const transactionContract = getEthereumContract();
         try {
             const availableVotingEvents = await transactionContract.getAllEvents();
+            const availableCandidates = await transactionContract.getAllCandidates();
             const structuredEvents = availableVotingEvents.map((event, index) => {
-                const candidates = getAllCandidatesOfEvent(event.id);
+                const candidates = getAllCandidatesOfEvent(event.id, availableCandidates);
                 return (
                     {
                         name: event.name,
@@ -162,7 +157,7 @@ export const TransactionProvider = ({ children }) => {
         }
     }
     const vote = async (_candidateIndex, _eventIndex) => {
-        try{
+        try {
             if (!ethereum) return alert("Please install Metamask!");
             const transactionContract = getEthereumContract();
             const txHash = await transactionContract.vote(_candidateIndex, _eventIndex);
@@ -171,14 +166,14 @@ export const TransactionProvider = ({ children }) => {
             await txHash.wait();
             setIsLoading(false);
             console.log(`Success - ${txHash.hash}`);
-        }catch (error) {
+        } catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
         }
     }
 
     const addVotingEvent = async (_name, duration) => {
-        try{
+        try {
             if (!ethereum) return alert("Please install Metamask!");
             const transactionContract = getEthereumContract();
             const txHash = await transactionContract.addEvent(_name, duration);
@@ -187,22 +182,22 @@ export const TransactionProvider = ({ children }) => {
             await txHash.wait();
             setIsLoading(false);
             console.log(`Success - ${txHash.hash}`);
-        }catch (error) {
+        } catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
         }
     }
-    const addCandidate = async (_name,_iuserIndex, _eventIndex) => {
-        try{
+    const addCandidate = async (_name, _userIndex, _eventIndex) => {
+        try {
             if (!ethereum) return alert("Please install Metamask!");
             const transactionContract = getEthereumContract();
-            const txHash = await transactionContract.addCandidate(_name,_userIndex, _eventIndex);
+            const txHash = await transactionContract.addCandidate(_name, _userIndex, _eventIndex);
             setIsLoading(true);
             console.log(`Loading - ${txHash.hash}`);
             await txHash.wait();
             setIsLoading(false);
             console.log(`Success - ${txHash.hash}`);
-        }catch (error) {
+        } catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
         }
