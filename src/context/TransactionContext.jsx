@@ -118,7 +118,8 @@ export const TransactionProvider = ({ children }) => {
                 name: candidate.name,
                 _userIndex: candidate._userIndex,
                 _eventIndex: candidate._eventIndex,
-                voteCount: candidate.voteCount
+                voteCount: candidate.voteCount,
+                _candidateIndex: index
             }
         ))
         for (const element of structuredCandidates) {
@@ -146,7 +147,7 @@ export const TransactionProvider = ({ children }) => {
                         name: event.name,
                         votingStart: event.votingStart,
                         votingEnd: event.votingEnd,
-                        id: event.id,
+                        id: index,
                         candidates: candidates
                     }
                 )
@@ -168,7 +169,6 @@ export const TransactionProvider = ({ children }) => {
             console.log(`Success - ${txHash.hash}`);
         } catch (error) {
             console.log(error);
-            throw new Error("No ethereum object.")
         }
     }
 

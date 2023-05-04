@@ -7,11 +7,12 @@ import { db } from '../utils/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { NavLink } from 'react-router-dom';
 import { MdOutlineVerifiedUser } from 'react-icons/md';
+import { motion } from "framer-motion";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const EventCard = ({ title, event, location, id, url, type }) => (
     <NavLink className="flex justify-center" to={`/event/${type}/detail/${id}`}>
-        <div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
+        <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="rounded-lg shadow-lg white-glassmorphism max-w-sm">
@@ -31,7 +32,7 @@ const EventCard = ({ title, event, location, id, url, type }) => (
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     </NavLink>
 )
 

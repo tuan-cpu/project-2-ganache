@@ -4,7 +4,7 @@ import { TransactionContext } from '../../context/TransactionContext';
 import { useStateContext } from '../../context/ContextProvider';
 import { MdOutlineCancel } from 'react-icons/md';
 const VoteManagement = () => {
-  const { addVotingEvent, addCandidate, vote, votingEvents, getAllVotingEvents } = useContext(TransactionContext);
+  const { addVotingEvent, addCandidate, votingEvents, getAllVotingEvents } = useContext(TransactionContext);
   const { currentColor } = useStateContext();
   const [addEventCard, setAddEventCard] = useState(false);
   const [eventName, setEventName] = useState('');
