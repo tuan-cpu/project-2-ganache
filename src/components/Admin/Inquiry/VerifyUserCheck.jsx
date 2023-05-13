@@ -7,10 +7,11 @@ import { FcCancel } from 'react-icons/fc';
 import { db } from '../../../utils/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 
-const RequestCard = ({title}) =>(
-  <div className="flex flex-row justify-start items-center white-glassmorphism border-black dark:border-white p-3 m-2 hover:shadow-xl cursor-pointer">
-      <div className='ml-5 flex flex-col flex-1'>
+const RequestCard = ({title, status}) =>(
+  <div className="white-glassmorphism border-black dark:border-white p-3 m-2 hover:shadow-xl cursor-pointer">
+      <div className='ml-5 flex justify-between items-center'>
           <h1 className='mt-2 text-lg dark:text-white'>{title}</h1>
+          {status? <AiOutlineCheck size={21} color='green'/>:<FcCancel size={21} color='red'/>}
       </div>
   </div>
 )
@@ -69,7 +70,7 @@ const VerifyUserCheck = () => {
                 }else setInfo({...item});
               }
             }}>
-              <RequestCard title={item.id}/>
+              <RequestCard title={item.id} status={item.data.status}/>
             </div>
           ))}
         </div>

@@ -89,10 +89,21 @@ export const DataProvider = ({ children }) => {
         const ref = doc(collection(db,refURL));
         await setDoc(ref,data);
     }
+    const [withdrawalRequests, setWithdrawalRequests] = useState([])
+    const getAllWithdrawalRequest = async() =>{
+        const refURL = 'inquiry/fund_inquiry/withdrawal_request';
+        const ref = collection(db,refURL);
+        const querySnapshot = await getDocs(ref);
+        let result = [];
+        querySnapshot.forEach((doc)=>{
+            result.push({id: doc.id, data: doc.data()});
+        });
+        setWithdrawalRequests(result);
+    }
     return (
         <DataContext.Provider value={{ 
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
-            createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo
+            createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo, getAllWithdrawalRequest, withdrawalRequests
             }}>
             {children}
         </DataContext.Provider>

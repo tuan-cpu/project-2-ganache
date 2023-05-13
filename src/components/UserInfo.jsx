@@ -5,9 +5,14 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { db } from '../utils/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { MdOutlineVerifiedUser } from 'react-icons/md';
 import { motion } from "framer-motion";
+import avatar from '../assets/avatar.svg';
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { useStateContext } from "../context/ContextProvider";
+import { DataGrid } from '../components';
+import { donation_record_grid } from "../utils/data";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const EventCard = ({ title, event, location, id, url, type }) => (
@@ -37,8 +42,17 @@ const EventCard = ({ title, event, location, id, url, type }) => (
 )
 
 const UserInfo = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (!authToken) {
+            navigate('/login')
+        }
+    }, []);
     const { user } = useContext(TransactionContext);
+    const { currentColor } = useStateContext();
     const [ownEvent, setOwnEvent] = useState([]);
+    const [recordData,setRecordData] = useState([]);
     const getValue = (tag) => {
         let value = 0;
         for (let i in user.donation_detail) {
@@ -76,6 +90,7 @@ const UserInfo = () => {
             },
         ],
     };
+
     useEffect(() => {
         const getData = async () => {
             let result = [];
@@ -97,42 +112,53 @@ const UserInfo = () => {
             setOwnEvent(result);
         }
         getData();
+        let data = []
+        for(let i = 0; i< user.donation_detail.length; i++){
+            data.push({event_id: user.donation_detail[i].event_id, amount: user.donation_detail[i].amount, timestamp: user.donation_detail[i].timestamp.toDate().toLocaleString()})
+        }
+        console.log(data);
+        setRecordData(data);
     }, [user]);
+
     return (
         <div className="flex flex-col">
             <div className="grid lg:grid-cols-2 grid-cols-1">
                 <div className="gradient-bg-transactions md:p-20 py-12 px-4">
                     <h1 className="text-xl sm:text-3xl text-white text-gradient py-1">Thông tin người dùng</h1>
-                    <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Tên người dùng: {user.displayName}</p>
-                    <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Email: {user.email}</p>
-                    <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Loại tài khoản: {user.provider}</p>
-                    <div className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base flex items-center">Xác thực người dùng:
-                    {user.verified?<MdOutlineVerifiedUser fontSize={21} color="#13de3c"/>:
-                    <NavLink to={'/verifyUser'}>Ấn vào đây để xác thực người dùng</NavLink>}
+                    <div className="border-1 p-2 m-2 white-glassmorphism">
+                        <div className="flex items-center gap-[10px]">
+                            <div>
+                                <img src={user.avatar ? user.avatar : avatar} alt="user_avatar" className="rounded-full m-3" />
+                            </div>
+                            <div>
+                                <p className="text-white text-3xl">{user.displayName}</p>
+                                <p className="text-gray-500">{user.email}</p>
+                            </div>
+                        </div>
+                        <div className="border-t-1 flex flex-wrap m-3 p-3 mb-0 pb-0 justify-between items-center">
+                            <div>
+                                <p className="text-xl text-white">Cấp độ: 1</p>
+                                <p className="text-xl text-white">Danh hiệu: <span className="text-amber-300"> Tân binh gây quỹ</span></p>
+                            </div>
+                            <div>
+                                <TooltipComponent content="Xác thực thông tin" position="Top">
+                                    {user.verified? <MdOutlineVerifiedUser fontSize={30} color="#13de3c" /> :
+                                    <button
+                                        type="button"
+                                        className="text-xl hover:drop-shadow-xl p-3 hover:bg-light-gray text-white"
+                                        style={{ background: currentColor, borderRadius: "10%"}}
+                                        onClick={()=>navigate('/verifyUser')}
+                                    >
+                                        Xác thực
+                                    </button>}
+                                </TooltipComponent>
+                            </div>
+                        </div>
                     </div>
-                    <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">Lịch sử quyên góp:</p>
-                    <ul>
-                        {user.donation_detail.map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <p className="md:space-x-1 space-y-1 md:space-y-0 mb-4">
-                                        <button className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target={`#multiCollapse${index}`}
-                                            aria-expanded="false"
-                                            aria-controls={`multiCollapse${index}`}>{item.event_id}</button>
-                                    </p>
-                                    <div className="collapse multi-collapse pb-2.5" id={`multiCollapse${index}`}>
-                                        <div className="block p-6 rounded-lg shadow-lg bg-white">
-                                            <p>Số lượng: {item.amount} ETH</p>
-                                            <p>Thời gian ủng hộ: {Date(item.timestamp.toDate().getTime())}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </ul>
+                    <div className="border-1 p-2 m-2 white-glassmorphism">
+                        <p className="text-white text-gradient p-3 m-3 text-3xl">Lịch sử quyên góp</p>
+                        <DataGrid data={recordData} grid={donation_record_grid} editing={false} deleting={false}/>
+                    </div>
                 </div>
                 <div className="text-white gradient-bg-transactions md:p-20 py-12 px-4 flex flex-col justify-center items-center">
                     <h1 className="text-xl sm:text-3xl text-white text-gradient py-1">Tổng quyên góp:</h1>

@@ -37,10 +37,10 @@ const Navbar = () => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 if (doc.data().provider === "Google") {
-                    setUser({ displayName: doc.data().displayName, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role, verified: doc.data().verified });
+                    setUser({ displayName: doc.data().displayName, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role, verified: doc.data().verified, avatar: doc.data().avatar || '' });
                 }
                 if (doc.data().provider === "Self") {
-                    setUser({ displayName: doc.data().last_name + " " + doc.data().first_name, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role, verified: doc.data().verified });
+                    setUser({ displayName: doc.data().last_name + " " + doc.data().first_name, id: doc.id, donation_detail: doc.data().donation_detail, email: email, provider: provider, role: doc.data().role, verified: doc.data().verified, avatar: doc.data().avatar || '' });
                 }
             });
         }
@@ -78,7 +78,7 @@ const Navbar = () => {
                 >
                     <img
                         className="rounded-full w-8 h-8"
-                        src={avatar}
+                        src={user.avatar? user.avatar: avatar}
                         alt="user-profile"
                     />
                     <p>

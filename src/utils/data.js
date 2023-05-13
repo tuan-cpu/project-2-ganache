@@ -130,3 +130,8 @@ export const themeColors = [
     name: "orange-theme",
   },
 ];
+ export const donation_record_grid = [
+  { field: "event_id", headerText: "Event ID", width: "120", textAlign: "Center" },
+  { field: "amount", headerText: "Số lượng", width: "120", textAlign: "Center" },
+  { field: "timestamp", headerText: "Thời điểm", width: "120", textAlign: "Center" },
+]

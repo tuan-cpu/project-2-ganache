@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { Header } from '../../../components';
-import DataGrid from './DataGrid.jsx';
+import { Header, DataGrid } from '../../../components';
 import { useDataContext } from '../../../context/DataProvider';
 import { adminsGrid, usersGrid, eventsGrid } from './datagrid.js';
 
@@ -17,10 +16,11 @@ const List = () => {
         <div>
             <Header category="List" title={type} />
             {type === 'event' ? (
-                <DataGrid data={events} grid={eventsGrid} />
+                <DataGrid data={events} grid={eventsGrid} editing={true} deleting={true} />
             ) : (
                 <>
-                    {type === 'user' ? <DataGrid data={users} grid={usersGrid}/> : <DataGrid data={admins} grid={adminsGrid}/>}
+                    {type === 'user' ? <DataGrid data={users} grid={usersGrid} editing={true} deleting={true}/> : 
+                    <DataGrid data={admins} grid={adminsGrid} editing={true} deleting={true}/>}
                 </>
             )}
         </div>

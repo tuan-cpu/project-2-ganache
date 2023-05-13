@@ -29,3 +29,4 @@ export { default as Withdrawal } from './Admin/Inquiry/Withdrawal';
 export { default as Header } from './Header';
 export { default as Button } from './Button';
 export { default as VoteManagement } from './Admin/VoteManagement';
+export { default as DataGrid} from './DataGrid';

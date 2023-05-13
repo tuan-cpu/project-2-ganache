@@ -56,7 +56,7 @@ const SignIn = () => {
                 }
             });
     };
-    const addData = async(email,provider,displayName)=>{
+    const addData = async(email,provider,displayName,photoURL)=>{
         const coll = collection(db, "users");
         const query_ = query(coll, where('email', '==', email), where('provider', '==', provider));
         const snapshot = await getCountFromServer(query_);
@@ -65,7 +65,8 @@ const SignIn = () => {
             email: email,
             displayName:displayName,
             donation_detail: [],
-            role: 'user'
+            role: 'user',
+            avatar: photoURL
         });
     }
     const handleGoogleSignIn = () => {
@@ -73,7 +74,7 @@ const SignIn = () => {
             sessionStorage.setItem('Auth Token', result.user.accessToken);
             sessionStorage.setItem('Email', result.user.email);
             sessionStorage.setItem('Provider', "Google");
-            addData(result.user.email,"Google",result.user.displayName);
+            addData(result.user.email,"Google",result.user.displayName, result.user.photoURL);
             navigate('/');
         }).catch((error) => {
             console.log(error);
