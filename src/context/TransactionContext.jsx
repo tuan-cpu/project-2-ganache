@@ -21,7 +21,7 @@ export const TransactionProvider = ({ children }) => {
     const [transactionCount, setTransactionCount] = useState(localStorage.getItem('transactionCount'));
     const [transactions, setTransactions] = useState([]);
     const [votingEvents, setVotingEvents] = useState([]);
-    const [user, setUser] = useState({ displayName: '', id: '', donation_detail: [], email: '', provider: '', role: '', verified: false });
+    const [user, setUser] = useState({ displayName: '', id: '', donation_detail: [], email: '', provider: '', role: '', verified: false, avatar: '', displayTitle: 0 });
     const handleChange = (e, name) => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
     };
