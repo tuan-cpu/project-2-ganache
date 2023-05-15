@@ -82,7 +82,7 @@ const EventList = () => {
             </div>
             <motion.div layout className="grid sm:grid-cols-3 grid-cols-2 p-[20px] gap-[20px]">
                 <AnimatePresence>
-                    {filtered.map((event, index) => <EventCard id={event.id} title={event.title} event={event.event} location={event.city + " " + event.state + " VN"} key={event.id} url={event.image} />)}
+                    {filtered.map((event, index) => <EventCard id={event.id} title={event.title} event={event.event} location={(event.city || '') + " " + (event.state || '') + " VN"} key={event.id} url={event.image} />)}
                 </AnimatePresence>
             </motion.div>
         </div>

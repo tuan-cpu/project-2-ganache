@@ -11,13 +11,7 @@ export const adminsGrid = [
     headerText: "Last Name",
     width: "120",
     textAlign: "Center",
-  },
-  {
-    field: "provider",
-    headerText: "Provider",
-    width: "120",
-    textAlign: "Center",
-  },
+  }
 ];
 
 export const usersGrid = [

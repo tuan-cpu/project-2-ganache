@@ -15,14 +15,9 @@ const List = () => {
     return (
         <div>
             <Header category="List" title={type} />
-            {type === 'event' ? (
-                <DataGrid data={events} grid={eventsGrid} editing={true} deleting={true} />
-            ) : (
-                <>
-                    {type === 'user' ? <DataGrid data={users} grid={usersGrid} editing={true} deleting={true}/> : 
-                    <DataGrid data={admins} grid={adminsGrid} editing={true} deleting={true}/>}
-                </>
-            )}
+            {type === 'event' && <DataGrid data={events} grid={eventsGrid} editing={true} deleting={true} />}
+            {type === 'user' && <DataGrid data={users} grid={usersGrid} editing={true} deleting={true}/>}
+            {type === 'admin' && <DataGrid data={admins} grid={adminsGrid} editing={true} deleting={true}/>}
         </div>
     )
 }
