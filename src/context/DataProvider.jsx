@@ -50,15 +50,15 @@ export const DataProvider = ({ children }) => {
         const ref_3 = collection(db, "users events");
         const querySnapshot1 = await getDocs(ref_1);
         querySnapshot1.forEach((doc) => {
-            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image: doc.data().image, type: 'lifetime' });
+            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event,tag: doc.data().tag, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image: doc.data().image, type: 'lifetime' });
         });
         const querySnapshot2 = await getDocs(ref_2);
         querySnapshot2.forEach((doc) => {
-            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image: doc.data().image, type: 'limited' });
+            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event,tag: doc.data().tag, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image: doc.data().image, type: 'limited' });
         });
         const querySnapshot3 = await getDocs(ref_3);
         querySnapshot3.forEach((doc) => {
-            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image:doc.data().image, type: 'users' });
+            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event,tag: doc.data().tag, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image:doc.data().image, type: 'users' });
         });
         setEvents(result);
     }

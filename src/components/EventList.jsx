@@ -28,9 +28,7 @@ const EventCard = ({ title, event, location, id, url }) => (
         </motion.div>
     </NavLink>
 )
-const EventList = () => {
-    let { type } = useParams();
-    const { events, getAllEvents } = useDataContext();
+const EventList = ({type, events}) => {
     const navigate = useNavigate();
     const [correspondEvents, setCorrespondEvents] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -40,7 +38,6 @@ const EventList = () => {
         setInput(e.target.value);
     };
     useEffect(() => {
-        getAllEvents();
         let result = [];
         for(let i in events){
             if(events[i].type === type){
@@ -78,7 +75,8 @@ const EventList = () => {
                 </button>
             </div>
             <div>
-                <Filter events={events} setInput={setInput} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton} />
+                {console.log(correspondEvents)}
+                <Filter events={correspondEvents} setInput={setInput} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton} />
             </div>
             <motion.div layout className="grid sm:grid-cols-3 grid-cols-2 p-[20px] gap-[20px]">
                 <AnimatePresence>
