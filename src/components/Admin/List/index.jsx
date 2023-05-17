@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Header, DataGrid } from '../../../components';
 import { useDataContext } from '../../../context/DataProvider';
 import { adminsGrid, usersGrid, eventsGrid } from './datagrid.js';
+import EventList from './EventList';
 
 
 const List = () => {
@@ -15,7 +16,7 @@ const List = () => {
     return (
         <div>
             <Header category="List" title={type} />
-            {type === 'event' && <DataGrid data={events} grid={eventsGrid} editing={true} deleting={true} />}
+            {type === 'event' && <EventList data={events} grid={eventsGrid}/>}
             {type === 'user' && <DataGrid data={users} grid={usersGrid} editing={true} deleting={true}/>}
             {type === 'admin' && <DataGrid data={admins} grid={adminsGrid} editing={true} deleting={true}/>}
         </div>

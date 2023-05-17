@@ -46,7 +46,7 @@ const DonateDetail = () => {
             }
             if (array.toString() === [].toString()) array = [...detail.supporters, {
                 identity: user['displayName'] ? user['displayName'] : "Anonymous",
-                email: email ? email : null,
+                user_id: user.id ? user.id : null,
                 provider: provider ? provider : null,
                 amount: formData.amount,
                 timestamp: Timestamp.now()
@@ -285,23 +285,26 @@ const DonateDetail = () => {
                                 <span className="float-right">{detail.supporters.length}</span>
                             </header>
                             <ul>
-                                {detail.supporters.sort(function (a, b) { return parseFloat(b.amount) - parseFloat(a.amount) }).map((item, index) => (
-                                    <li className="list-none flex w-full max-h-[100px]" key={index}>
-                                        <div className="py-[15px] mr-[10px] basis-9">
-                                            <img src={avatar} alt="true" />
-                                        </div>
-                                        <section className="py-[15px] w-full flex flex-col">
-                                            <h2 className="font-normal text-white">
-                                                {item.identity}
-                                                <span className="float-right text-slate-400">{CalcTimeDiff(item.timestamp)}</span>
-                                            </h2>
-                                            <p className="text-red-500  text-xl pb-[10px]">{item.amount} ETH</p>
-                                            <div className="inline-flex justify-center items-center w-full">
-                                                <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                                {detail.supporters.sort(function (a, b) { return parseFloat(b.amount) - parseFloat(a.amount) }).map((item, index) => {
+                                    console.log(item);
+                                    return (
+                                        <li className="list-none flex w-full max-h-[100px]" key={index}>
+                                            <div className="py-[15px] mr-[10px] basis-9">
+                                                <img src={avatar} alt="true" />
                                             </div>
-                                        </section>
-                                    </li>
-                                ))}
+                                            <section className="py-[15px] w-full flex flex-col">
+                                                <h2 className="font-normal text-white">
+                                                    {item.identity}
+                                                    <span className="float-right text-slate-400">{CalcTimeDiff(item.timestamp)}</span>
+                                                </h2>
+                                                <p className="text-red-500  text-xl pb-[10px]">{item.amount} ETH</p>
+                                                <div className="inline-flex justify-center items-center w-full">
+                                                    <hr className="mb-[20px] w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                                                </div>
+                                            </section>
+                                        </li>
+                                    )
+                                })}
                             </ul>
                         </section>
                     </div>

@@ -1,8 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import 'tw-elements';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 import { db } from '../utils/firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -16,8 +14,8 @@ import { donation_record_grid } from "../utils/data";
 import { calculateUserLevel } from '../utils/level';
 import { getPossibleTitle, userTitle } from '../utils/title';
 import { FiSettings } from 'react-icons/fi';
+import PieChart from "./charts/Pie";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
 const EventCard = ({ title, event, location, id, url, type }) => (
     <NavLink className="flex justify-center" to={`/event/${type}/detail/${id}`}>
         <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
@@ -70,29 +68,16 @@ const UserInfo = () => {
         }
         return value;
     }
-    const dataDoughnut = {
-        labels: ["Giáo dục", "Y tế", "Cộng đồng", "Môi trường", "Tài chính", "Nhân đạo", "Cuộc sống", "Thể thao"],
-        datasets: [
-            {
-                label: "Tổng tiền quyên góp(ETH)",
-                data: [getValue("Giáo dục"), getValue("Y tế"),
-                getValue("Cộng đồng"), getValue("Môi trường"),
-                getValue("Tài chính"), getValue("Nhân đạo"),
-                getValue("Cuộc sống"), getValue("Thể thao")],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 206, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(153, 102, 255)',
-                    'rgb(255, 159, 64)',
-                    'rgb(148, 163, 184)',
-                    'rgb(163, 230, 53)'
-                ],
-                hoverOffset: 4,
-            },
-        ],
-    };
+    const pieChartData = [
+        { x: 'Giáo dục', y: getValue("Giáo dục"), text: getValue("Giáo dục")},
+        { x: "Y tế", y: getValue("Y tế"), text: getValue("Y tế")},
+        { x: "Cộng đồng", y: getValue("Cộng đồng"), text: getValue("Cộng đồng") },
+        { x: "Môi trường", y: getValue("Môi trường"), text: getValue("Môi trường") },
+        { x: "Tài chính", y: getValue("Tài chính"), text: getValue("Tài chính") },
+        { x: "Nhân đạo", y: getValue("Nhân đạo"), text: getValue("Nhân đạo")},
+        { x: "Cuộc sống", y: getValue("Cuộc sống"), text: getValue("Cuộc sống")},
+        { x: "Thể thao", y: getValue("Thể thao"), text: getValue("Thể thao")}
+    ];
 
     useEffect(() => {
         const getData = async () => {
@@ -196,7 +181,7 @@ const UserInfo = () => {
                 <div className="text-white gradient-bg-transactions md:p-20 py-12 px-4 flex flex-col justify-center items-center">
                     <h1 className="text-xl sm:text-3xl text-white text-gradient py-1">Tổng quyên góp:</h1>
                     <p className="text-xl">{totalDonation} ETH</p>
-                    <Doughnut data={dataDoughnut} redraw={true} />
+                    <PieChart id="chart-pie" data={pieChartData} legendVisibility height="full" />
                 </div>
             </div>
             <div className="gradient-bg-transactions grid grid-cols-1 justify-items-center items-center flex py-[20px] sm:px-[50px] lg:px-[100px] px-[20px]">
