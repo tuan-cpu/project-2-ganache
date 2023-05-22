@@ -115,7 +115,7 @@ const DonateDetail = () => {
             return timeLeft;
         }
         const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft(detail.end_time));
+            setTimeLeft(calculateTimeLeft(detail.end));
         }, 1000);
         return () => clearTimeout(timer);
     });
@@ -237,7 +237,9 @@ const DonateDetail = () => {
                                 <p className="text-white  text-3xl">Thời gian gây quỹ</p>
                                 <div className="text-slate-400">
                                     <div>còn</div>
-                                    <span className="font-bold">{timerComponents.length ? timerComponents : <span>Time's up!</span>}</span>
+                                    <span className="font-bold">
+                                        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+                                    </span>
                                 </div>
                             </figcaption>
                         </section>

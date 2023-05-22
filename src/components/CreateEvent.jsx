@@ -9,6 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import tags from "../utils/tags";
 import { useNavigate, useParams } from "react-router-dom";
 import { TransactionContext } from "../context/TransactionContext";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -29,7 +31,7 @@ const CreateEvent = () => {
         if (!authToken) {
             navigate('/login')
         }
-        if(type !== 'users' && user.role !== 'admin'){
+        if (type !== 'users' && user.role !== 'admin') {
             navigate('/');
         }
     }, []);
@@ -39,7 +41,7 @@ const CreateEvent = () => {
     const [chosenState, setChosenState] = useState();
     const [allCities, setAllCities] = useState();
     const [chosenCity, setChosenCity] = useState();
-    const [confirm,setConfirm] = useState(false);
+    const [confirm, setConfirm] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         wallet: "",
@@ -50,9 +52,11 @@ const CreateEvent = () => {
         state: "",
         city: "",
         image: "",
-        amount:0,
-        supporters:[],
-        user_id:user.id,
+        amount: 0,
+        supporters: [],
+        start: "",
+        end: "",
+        user_id: user.id,
         status: false
     });
     const [formState, setFormState] = useState({
@@ -66,6 +70,8 @@ const CreateEvent = () => {
         city: true,
         image: true
     });
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
     useEffect(() => {
         setAllCities(City.getCitiesOfState("VN", chosenState));
     }, [chosenState]);
@@ -77,6 +83,7 @@ const CreateEvent = () => {
     const [percent, setPercent] = useState(0);
     const [file, setFile] = useState("");
     const handleUpload = () => {
+        setFormData((prevState) => ({ ...prevState, start: startDate, end: endDate }));
         if (!file) {
             toast.error("Please choose an image first!");
             return;
@@ -89,24 +96,24 @@ const CreateEvent = () => {
                 const percent = Math.round(
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
-                
+
                 // update progress
                 setPercent(percent);
             },
             (err) => console.log(err),
-            ()=>{
+            () => {
                 getDownloadURL(storageRef)
-                .then((url)=>{
-                    console.log('File available at', url);
-                    setFormData((prevState) => ({ ...prevState, image: url }));
-                    setConfirm(true);
-                });
+                    .then((url) => {
+                        console.log('File available at', url);
+                        setFormData((prevState) => ({ ...prevState, image: url }));
+                        setConfirm(true);
+                    });
             }
-        );   
+        );
     }
     useEffect(() => {
-        if(confirm){
-           submit(formData);
+        if (confirm) {
+            submit(formData);
         }
     }, [confirm]);
     const submit = async (data) => {
@@ -155,7 +162,7 @@ const CreateEvent = () => {
                                 onChange={(e) => setFormData((prevState) => ({ ...prevState, tag: e.target.value }))}
                                 className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>Chọn 1 nhãn</option>
-                                {tags.map((tag) => <option key={tag.id} value={tag.name}>{tag.name}</option>)}
+                                {tags.map((tag) => tag.id !== 1 && <option key={tag.id} value={tag.name}>{tag.name}</option>)}
                             </select>
                             {!formState.tag ? (
                                 <div className="flex items-center gap-[10px] pt-[10px]">
@@ -195,6 +202,16 @@ const CreateEvent = () => {
                                 <p className="text-[#ff0000] text-sm">Dòng này không được trống!</p>
                             </div>
                         ) : ""}
+                        <div className='my-1'>
+                            <p className="text-bold text-xl text-white">Thời điểm bắt đầu</p>
+                            <div>
+                                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                            </div>
+                            <p className="text-bold text-xl text-white my-1">Thời điểm kết thúc</p>
+                            <div>
+                                <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+                            </div>
+                        </div>
                         <textarea placeholder="Bối cảnh" name="story" className="text-white bg-transparent border-white"
                             onChange={(e) => setFormData((prevState) => ({ ...prevState, story: e.target.value }))}
                         />
@@ -232,7 +249,7 @@ const CreateEvent = () => {
                                 if (!formData.title) setFormState((prevState) => ({ ...prevState, title: false }));
                                 if (!formData.story) setFormState((prevState) => ({ ...prevState, story: false }));
                                 if (!formData.event) setFormState((prevState) => ({ ...prevState, event: false }));
-                                if(formData.title && formData.story && formData.event){
+                                if (formData.title && formData.story && formData.event) {
                                     setImageShow(true);
                                     setFormState((prevState) => ({ ...prevState, title: true }));
                                     setFormState((prevState) => ({ ...prevState, story: true }));
@@ -253,7 +270,7 @@ const CreateEvent = () => {
                             className="text-white mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">Tiếp theo</button>
                     </div> : ''}
                 </div> : ''}
-                <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }

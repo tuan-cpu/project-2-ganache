@@ -7,9 +7,6 @@ import { useStateContext } from '../../context/ContextProvider';
 import { storage, db } from '../../utils/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, collection, setDoc } from "firebase/firestore";
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/TimePicker.css';
-import 'react-clock/dist/Clock.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -51,18 +48,15 @@ const AdminCreateEventForm = () => {
     image: "",
     amount: 0,
     supporters: [],
-    start_time: "",
-    end_time: "",
     start_date: "",
     end_date: ""
-    // user_id: user.id
   });
   const handleChange = (e, name) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   }
   const handleUpload = () => {
     if (eventType === 'limited') {
-      setFormData((prevState) => ({ ...prevState, start_time: start_time, end_time: end_time, start_date: startDate, end_date: endDate }));
+      setFormData((prevState) => ({ ...prevState, start_date: startDate, end_date: endDate }));
     }
     if (!file) {
       toast.error("Please choose an image first!");
@@ -119,12 +113,10 @@ const AdminCreateEventForm = () => {
           <div className='my-1'>
             <p className="text-bold text-xl dark:text-white">Thời điểm bắt đầu</p>
             <div className='grid grid-cols-2 my-1'>
-              <TimePicker onChange={setStart} value={start_time} className="m-0 p-0" />
               <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
             </div>
             <p className="text-bold text-xl dark:text-white my-1">Thời điểm kết thúc</p>
             <div className='grid grid-cols-2'>
-              <TimePicker onChange={setEnd} value={end_time} />
               <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
             </div>
           </div>

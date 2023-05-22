@@ -80,16 +80,6 @@ const SignIn = () => {
             console.log(error);
         })
     }
-    const handleFacebookSignIn = () => {
-        signInWithPopup(authentication, facebookProvider).then((result) => {
-            // setUser(result.user);
-            // sessionStorage.setItem('Auth Token', result.user.accessToken);
-            // navigate('/');
-            console.log(result);
-        }).catch((error) => {
-            console.log(error);
-        })
-    }
     return (
         <div className="flex justify-center items-center gradient-bg-transactions">
             <div className="grid grid-cols-1 pt-[48px] justify-items-center">
@@ -130,12 +120,6 @@ const SignIn = () => {
                         onClick={handleGoogleSignIn}
                         className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-red-600">
                         Đăng nhập bằng Google
-                    </button>
-                    <button
-                        type="button"
-                        onClick={handleFacebookSignIn}
-                        className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer mb-[20px] hover:bg-sky-800">
-                        Đăng nhập bằng Facebook
                     </button>
                 </div>
             </div>
