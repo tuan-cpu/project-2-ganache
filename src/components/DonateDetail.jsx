@@ -115,7 +115,7 @@ const DonateDetail = () => {
             return timeLeft;
         }
         const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft(detail.end));
+            setTimeLeft(calculateTimeLeft(detail?.end));
         }, 1000);
         return () => clearTimeout(timer);
     });
@@ -197,7 +197,7 @@ const DonateDetail = () => {
                                     ) : (
                                         <button
                                             type="button"
-                                            disabled={timerComponents.length? true: false}
+                                            disabled={timerComponents.length ? true : false}
                                             onClick={() => createWithdrawalRequest({
                                                 event_id: id,
                                                 user_id: user.id,
@@ -234,13 +234,21 @@ const DonateDetail = () => {
                         </section>
                         <section>
                             <figcaption>
-                                <p className="text-white  text-3xl">Thời gian gây quỹ</p>
-                                <div className="text-slate-400">
-                                    <div>còn</div>
-                                    <span className="font-bold">
-                                        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-                                    </span>
-                                </div>
+                                {Date.now() < detail.start.seconds*1000 ? (
+                                    <div>
+                                        <p className="text-red-500 text-3xl">Sự kiện chưa bắt đầu</p>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <p className="text-white  text-3xl">Thời gian gây quỹ</p>
+                                        <div className="text-slate-400">
+                                            <div>còn</div>
+                                            <span className="font-bold">
+                                                {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
                             </figcaption>
                         </section>
                     </div>

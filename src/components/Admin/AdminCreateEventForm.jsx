@@ -17,7 +17,7 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     name={name}
     onChange={(e) => handleChange(e, name)}
     value={value}
-    className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white dark:border-white text-sm white-glassmorphism"
+    className="my-2 w-full rounded-sm p-2 outline-none bg-transparent dark:text-white dark:border-white text-sm white-glassmorphism"
     required
   />
 )
@@ -31,9 +31,7 @@ const AdminCreateEventForm = () => {
   const [percent, setPercent] = useState(0);
   const [confirm, setConfirm] = useState(false);
   const [eventType, setEventType] = useState();
-  const [start_time, setStart] = useState("10:00");
   const [startDate, setStartDate] = useState(new Date());
-  const [end_time, setEnd] = useState("10:00");
   const [endDate, setEndDate] = useState(new Date());
 
   const [formData, setFormData] = useState({
@@ -48,15 +46,15 @@ const AdminCreateEventForm = () => {
     image: "",
     amount: 0,
     supporters: [],
-    start_date: "",
-    end_date: ""
+    start: "",
+    end: ""
   });
   const handleChange = (e, name) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   }
   const handleUpload = () => {
     if (eventType === 'limited') {
-      setFormData((prevState) => ({ ...prevState, start_date: startDate, end_date: endDate }));
+      setFormData((prevState) => ({ ...prevState, start: startDate, end: endDate }));
     }
     if (!file) {
       toast.error("Please choose an image first!");
@@ -113,17 +111,17 @@ const AdminCreateEventForm = () => {
           <div className='my-1'>
             <p className="text-bold text-xl dark:text-white">Thời điểm bắt đầu</p>
             <div className='grid grid-cols-2 my-1'>
-              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect />
             </div>
             <p className="text-bold text-xl dark:text-white my-1">Thời điểm kết thúc</p>
             <div className='grid grid-cols-2'>
-              <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+              <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} showTimeSelect />
             </div>
           </div>
         ) : ''}
         <Input placeholder='Sự kiện chính' name='event' type='text' handleChange={handleChange} />
         <textarea placeholder="Bối cảnh" name="story" className="dark:text-white bg-transparent dark:border-white"
-          onChange={handleChange}
+          onChange={(e) => setFormData((prevState) => ({ ...prevState, story: e.target.value }))}
         />
         <Input placeholder='Địa chỉ ví' name='wallet' type='text' handleChange={handleChange} />
         <p className="text-bold text-xl dark:text-white">Chọn 1 nhãn phân loại</p>
@@ -131,7 +129,7 @@ const AdminCreateEventForm = () => {
           onChange={(e) => setFormData((prevState) => ({ ...prevState, tag: e.target.value }))}
           className="mt-[10px] bg-gray-50 border dark:border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option selected disabled>Chọn 1 nhãn</option>
-          {tags.map((tag) => <option key={tag.id} value={tag.name}>{tag.name}</option>)}
+          {tags.map((tag) => tag.id !== 1 && <option key={tag.id} value={tag.name}>{tag.name}</option>)}
         </select>
         <p className="dark:text-white text-xl pt-[10px]">Chọn địa điểm tổ chức(không bắt buộc)</p>
         <div className="grid grid-cols-2 gap-[10px]">

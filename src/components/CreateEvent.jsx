@@ -205,11 +205,11 @@ const CreateEvent = () => {
                         <div className='my-1'>
                             <p className="text-bold text-xl text-white">Thời điểm bắt đầu</p>
                             <div>
-                                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect />
                             </div>
                             <p className="text-bold text-xl text-white my-1">Thời điểm kết thúc</p>
                             <div>
-                                <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+                                <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} showTimeSelect />
                             </div>
                         </div>
                         <textarea placeholder="Bối cảnh" name="story" className="text-white bg-transparent border-white"
