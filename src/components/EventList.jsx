@@ -3,7 +3,7 @@ import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Filter from './Filter';
 import { useDataContext } from '../context/DataProvider';
-const EventCard = ({ title, event, location, id, url }) => (
+const EventCard = ({ title, event, location, id, url, start, end, type }) => (
     <NavLink className="flex justify-center" to={`detail/${id}`}>
         <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
             whileHover={{ scale: 1.1 }}
@@ -24,11 +24,18 @@ const EventCard = ({ title, event, location, id, url }) => (
                         <p className="text-gray-300 text-base pl-[10px]">{location}</p>
                     </div>
                 </div>
+                {type !== 'lifetime' ? (
+                    <div>
+                        {Date.now() < start?.seconds * 1000 && <div className='text-xl text-orange-500'>Sự kiện chưa bắt đầu!</div>}
+                        {Date.now() > start?.seconds * 1000 && Date.now() < end?.seconds * 1000 && <div className='text-xl text-red-500'>Sự kiện đang diễn ra!</div>}
+                        {Date.now() > end?.seconds * 1000 && <div className='text-xl text-red-500'>Sự kiện đã kết thúc!</div>}
+                    </div>
+                ) : <div className='text-xl text-red-500'>Sự kiện đang diễn ra!</div>}
             </div>
         </motion.div>
     </NavLink>
 )
-const EventList = ({type, events}) => {
+const EventList = ({ type, events }) => {
     const navigate = useNavigate();
     const [correspondEvents, setCorrespondEvents] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -39,8 +46,8 @@ const EventList = ({type, events}) => {
     };
     useEffect(() => {
         let result = [];
-        for(let i in events){
-            if(events[i].type === type){
+        for (let i in events) {
+            if (events[i].type === type) {
                 result.push(events[i]);
             }
         }
@@ -69,18 +76,17 @@ const EventList = ({type, events}) => {
                 <button
                     type="button"
                     className='border-[1px] p-2 border-[#3d4f7c] cursor-pointer hover:bg-[#2546bd]'
-                    onClick={()=>navigate('/create/'+type)}
+                    onClick={() => navigate('/create/' + type)}
                 >
                     <p className="text-white text-base font-semibold">Tạo quỹ</p>
                 </button>
             </div>
             <div>
-                {console.log(correspondEvents)}
                 <Filter events={correspondEvents} setInput={setInput} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton} />
             </div>
             <motion.div layout className="grid sm:grid-cols-3 grid-cols-2 p-[20px] gap-[20px]">
                 <AnimatePresence>
-                    {filtered.map((event, index) => <EventCard id={event.id} title={event.title} event={event.event} location={(event.city || '') + " " + (event.state || '') + " VN"} key={event.id} url={event.image} />)}
+                    {filtered.map((event, index) => <EventCard type={type} id={event.id} title={event.title} event={event.event} location={(event.city || '') + " " + (event.state || '') + " VN"} key={event.id} url={event.image} start={event.start} end={event.end} />)}
                 </AnimatePresence>
             </motion.div>
         </div>
