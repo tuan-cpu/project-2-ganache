@@ -202,6 +202,11 @@ export const TransactionProvider = ({ children }) => {
             throw new Error("No ethereum object.")
         }
     }
+
+    const createCoupon = async() =>{
+        const transactionContract = getEthereumContract();
+        return await transactionContract.createCoupon();
+    }
     useEffect(() => {
         checkIfWalletIsConnected();
         checkIfTransactionsExist();
@@ -213,7 +218,7 @@ export const TransactionProvider = ({ children }) => {
             isLoading, signInFormData, signUpFormData,
             handleSignUp, handleSignIn, setFormData, user, setUser,
             getAllVotingEvents, votingEvents, getRemainingTimeOfEvent, getVotingStatusOfEvent,
-            addVotingEvent, addCandidate, vote
+            addVotingEvent, addCandidate, vote, createCoupon
         }}>
             {children}
         </TransactionContext.Provider>

@@ -136,11 +136,13 @@ const AdminCreateEventForm = () => {
           <select id="states"
             onChange={(e) => {
               setChosenState(e.target.value);
-              setFormData((prevState) => ({ ...prevState, state: e.target.value }));
+              let state = allStates.find(item => item.isoCode === e.target.value);
+              console.log(state.name);
+              setFormData((prevState) => ({ ...prevState, state: state.name }));
             }}
             className="mt-[10px] bg-gray-50 border dark:border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected disabled>Chọn tỉnh</option>
-            {allStates.map((state, index) => <option key={state.isoCode} value={state.isoCode}>{state.name}</option>)}
+            {allStates.map((state, index) => <option key={index} value={state.isoCode}>{state.name}</option>)}
           </select>
           {chosenState ?
             <select id="cities"
@@ -150,7 +152,7 @@ const AdminCreateEventForm = () => {
               }}
               className="mt-[10px] bg-gray-50 border dark:border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <option selected>Chọn thành phố</option>
-              {allCities && allCities.map((city, index) => <option key={city.name} value={city.name}>{city.name}</option>)}
+              {allCities && allCities.map((city, index) => <option key={index} value={city.name}>{city.name}</option>)}
             </select> : ''}
         </div>
         <div className="flex flex-col">

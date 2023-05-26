@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage, ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, VerifyUserPage, VoteManagementPage, VoteUserPage } from "./pages";
+import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage, ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage } from "./pages";
 import { useStateContext } from "./context/ContextProvider";
 import { Sidebar, ThemeSettings } from "./components";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -64,6 +64,7 @@ const App = () => {
                 <Route path="/admin/inquiry/withdrawal_request" element={<WithdrawalApprovePage/>}/>
                 <Route path="/admin/inquiry/other_request" element={<OtherPage/>}/>
                 <Route path="/admin/vote_management" element={<VoteManagementPage/>}/>
+                <Route path="/admin/lottery_management" element={<PrizeManagementPage/>}/>
               </Routes>
             </div>
           </div>

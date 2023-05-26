@@ -94,12 +94,16 @@ export const links_admin = [
     ]
   },
   {
-    title: "Sự kiện đặc biệt",
+    title: "Các tính năng khác",
     links: [
       {
         name: "Bầu chọn người dùng",
         link: "admin/vote_management"
-      }
+      },
+      {
+        name: "Quản lí quà tặng",
+        link: "admin/lottery_management"
+      },
     ]
   }
 ]

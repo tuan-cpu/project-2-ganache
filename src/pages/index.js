@@ -17,3 +17,4 @@ export { default as UserEventApprove } from './Admin/Inquiry/UserEventApprove';
 export { default as VerifyUserApprove } from './Admin/Inquiry/VerifyUserApprove';
 export { default as WithdrawalApprove } from './Admin/Inquiry/WithdrawalApprovePage';
 export { default as VoteManagementPage } from './Admin/VoteManagementPage';
+export { default as PrizeManagementPage } from './Admin/PrizeManagementPage';
