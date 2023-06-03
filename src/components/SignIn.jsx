@@ -1,12 +1,10 @@
-import { useContext, React, useState, useEffect } from "react";
-import { TransactionContext } from "../context/TransactionContext";
+import { useState, useEffect } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { authentication, facebookProvider, googleProvider, db } from "../utils/firebase.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { collection, addDoc, getCountFromServer, query, where } from "firebase/firestore"; 
+import { useAuthContext } from "../context/AuthProvider";
+import { useDataContext } from "../context/DataProvider.jsx";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -20,6 +18,8 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 )
 const SignIn = () => {
     const navigate = useNavigate();
+    const { signIn, googleSignIn } = useAuthContext();
+    const { addDataGoogleSignIn, addDataSignUp } = useDataContext();
     useEffect(() => {
         let authToken = sessionStorage.getItem('Auth Token')
 
@@ -31,54 +31,38 @@ const SignIn = () => {
             navigate('/login')
         }
     }, []);
-    const { signInFormData, handleSignIn } = useContext(TransactionContext);
+    const { signInFormData, handleSignIn } = useAuthContext();
     const [formState, setFormState] = useState({ email: true, password: true });
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         const { email, password } = signInFormData;
         e.preventDefault();
-        console.log(signInFormData);
         if (!email) setFormState((prevState) => ({ ...prevState, email: false }));
         else setFormState((prevState) => ({ ...prevState, email: true }));
         if (!password) setFormState((prevState) => ({ ...prevState, password: false }));
         else setFormState((prevState) => ({ ...prevState, password: true }));
-        if (email && password) signInWithEmailAndPassword(authentication, email, password)
-            .then((response) => {
-                sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
-                sessionStorage.setItem('Email', response.user.email);
-                sessionStorage.setItem('Provider', "Self");
+        if (email && password){
+            try {
+                await signIn({email,password});
                 navigate('/');
-            }).catch((error) => {
+            }catch(error){
                 if (error.code === 'auth/wrong-password') {
                     toast.error('Please check the Password');
                 }
                 if (error.code === 'auth/user-not-found') {
                     toast.error('Please check the Email');
                 }
-            });
+            };
+        }
+
     };
-    const addData = async(email,provider,displayName,photoURL)=>{
-        const coll = collection(db, "users");
-        const query_ = query(coll, where('email', '==', email), where('provider', '==', provider));
-        const snapshot = await getCountFromServer(query_);
-        if(snapshot.data().count === 0) await addDoc(collection(db, "users"), {
-            provider: provider,
-            email: email,
-            displayName:displayName,
-            donation_detail: [],
-            role: 'user',
-            avatar: photoURL
-        });
-    }
-    const handleGoogleSignIn = () => {
-        signInWithPopup(authentication, googleProvider).then((result) => {
-            sessionStorage.setItem('Auth Token', result.user.accessToken);
-            sessionStorage.setItem('Email', result.user.email);
-            sessionStorage.setItem('Provider', "Google");
-            addData(result.user.email,"Google",result.user.displayName, result.user.photoURL);
+    const handleGoogleSignIn = async () => {
+        try {
+            let response = await googleSignIn();
+            await addDataGoogleSignIn({email:response.user.email,provider:"Google",displayName:response.user.displayName, photoURL:response.user.photoURL})
             navigate('/');
-        }).catch((error) => {
+        } catch (error) {
             console.log(error);
-        })
+        }
     }
     return (
         <div className="flex justify-center items-center gradient-bg-transactions">

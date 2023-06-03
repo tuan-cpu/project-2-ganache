@@ -1,8 +1,10 @@
 import React, { useState, useContext, createContext } from "react";
 import { db } from "../utils/firebase.js";
 import { collection, getDocs, setDoc, doc, getDoc, query, where } from 'firebase/firestore';
+import DataModel from "../model/DataModel.jsx";
 
 const DataContext = createContext();
+const dataInstance = new DataModel();
 
 export const DataProvider = ({ children }) => {
     const [events, setEvents] = useState([]);
@@ -10,37 +12,12 @@ export const DataProvider = ({ children }) => {
     const [admins, setAdmins] = useState([]);
     const [candidate, setCandidate] = useState();
     const getAllUsers = async () => {
-        const refURL = "users";
-        const ref = collection(db, refURL);
-        const querySnapshot = await getDocs(ref);
-        let Users = [];
-        let Admins = [];
-        querySnapshot.forEach((doc) => {
-            if (doc.data().role === 'admin') Admins.push({ email: doc.data().email, first_name: doc.data().first_name, last_name: doc.data().last_name });
-            else Users.push({ displayName: doc.data().displayName || doc.data().first_name + ' ' + doc.data().last_name, email: doc.data().email, provider: doc.data().provider, verified: doc.data().verified });
-        });
+        const { Users, Admins } = await dataInstance.getAllUser();
         setUsers(Users);
         setAdmins(Admins);
     }
     const getCandidateInfo = async(id) =>{
-        const ref = doc(db, "users", id);
-        const docSnap = await getDoc(ref);
-        let result = [];
-        const q1 = query(collection(db, "lifetime events"), where("user_id", "==", id));
-        const q2 = query(collection(db, "limited events"), where("user_id", "==", id));
-        const q3 = query(collection(db, "users events"), where("user_id", "==", id));
-        const querySnapshot1 = await getDocs(q1);
-        querySnapshot1.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'lifetime' });
-        });
-        const querySnapshot2 = await getDocs(q2);
-        querySnapshot2.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'limited' });
-        });
-        const querySnapshot3 = await getDocs(q3);
-        querySnapshot3.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'users' });
-        });
+        const { result, docSnap } = await dataInstance.getCandidateInfo(id);
         setCandidate({info:docSnap.data(), ownEvent: result})
     }
     const getAllEvents = async () => {
@@ -64,46 +41,51 @@ export const DataProvider = ({ children }) => {
     }
     const [userVerifyRequest,setUserVerifyRequest] = useState([]);
     const getAllUserVerifyRequest = async() =>{
-        const refURL = 'inquiry/user_inquiry/user_verify_inquiry';
-        const ref = collection(db,refURL);
-        const querySnapshot = await getDocs(ref);
-        let result = [];
-        querySnapshot.forEach((doc)=>{
-            result.push({id: doc.id, data: doc.data()});
-        });
+        const result = await dataInstance.getAllUserVerifyRequest();
         setUserVerifyRequest(result);
     }
     const [createEventRequest,setCreateEventRequest] = useState([]);
     const getAllCreateEventRequest = async() =>{
-        const refURL = 'inquiry/user_inquiry/create_event_inquiry';
-        const ref = collection(db,refURL);
-        const querySnapshot = await getDocs(ref);
-        let result = [];
-        querySnapshot.forEach((doc)=>{
-            result.push({id: doc.id, data: doc.data()});
-        });
+        const result = await dataInstance.getAllCreateEventRequest();
         setCreateEventRequest(result);
     }
     const createWithdrawalRequest = async(data) =>{
-        const refURL = 'inquiry/fund_inquiry/withdrawal_request';
-        const ref = doc(collection(db,refURL));
-        await setDoc(ref,data);
+        await dataInstance.createWithdrawalRequest(data);
     }
     const [withdrawalRequests, setWithdrawalRequests] = useState([])
     const getAllWithdrawalRequest = async() =>{
-        const refURL = 'inquiry/fund_inquiry/withdrawal_request';
-        const ref = collection(db,refURL);
-        const querySnapshot = await getDocs(ref);
-        let result = [];
-        querySnapshot.forEach((doc)=>{
-            result.push({id: doc.id, data: doc.data()});
-        });
+        const result = await dataInstance.getAllWithdrawalRequest();
         setWithdrawalRequests(result);
+    }
+    const addDataGoogleSignIn = async ({email,provider,displayName,photoURL})=>{
+        await dataInstance.addDataGoogleSignIn({email,provider,displayName,photoURL})
+    };
+    const addDataSignUp = async ({ firstname, lastname, email }) =>{
+        await dataInstance.addDataSignUp({ firstname, lastname, email });
+    }
+    const createEvent = async(data) =>{
+        await dataInstance.createEventRequest(data);
+    }
+    const createVerifyInquiry = async(data)=>{
+        await dataInstance.createUserInquiry(data);
+    }
+    const updateDisplayTitle = async(doc_id, displayTitle)=>{
+        await dataInstance.updateDisplayTitle(doc_id, displayTitle);
+        window.location.reload();
+    }
+    const updateAvatar = async(doc_id, avatar)=>{
+        await dataInstance.updateAvatar(doc_id, avatar);
+        window.location.reload();
+    }
+    const getAllEventsOfAnUser = async(id) =>{
+        return await dataInstance.getAllEventsOfAnUser(id);
     }
     return (
         <DataContext.Provider value={{ 
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
-            createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo, getAllWithdrawalRequest, withdrawalRequests
+            createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo, 
+            getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
+            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, updateAvatar
             }}>
             {children}
         </DataContext.Provider>

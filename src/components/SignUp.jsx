@@ -3,12 +3,12 @@ import { TransactionContext } from "../context/TransactionContext";
 import { AiOutlineCheckCircle, AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../hooks/regex";
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection } from "firebase/firestore"; 
-import { db } from "../utils/firebase.js";
+import { db, authentication } from "../utils/firebase.js";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -33,9 +33,7 @@ const SignUp = () => {
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         const { firstname, lastname, email, password } = signUpFormData;
-        const authentication = getAuth();
         e.preventDefault();
-        console.log(signUpFormData);
         if (!firstname) setNameState((prevState) => ({ ...prevState, first: false }));
         if (!lastname) setNameState((prevState) => ({ ...prevState, last: false }));
         if (validNumberOfCharacter.test(password)) setPasswordState((prevState) => ({ ...prevState, char: 1 }));
@@ -70,9 +68,6 @@ const SignUp = () => {
             })
         }
     }
-    useEffect(() => {
-        console.log(passwordState)
-    }, [passwordState]);
     return (
         <div className="flex justify-center items-center gradient-bg-transactions">
             <div className="grid grid-cols-1 pt-[48px] justify-items-center">

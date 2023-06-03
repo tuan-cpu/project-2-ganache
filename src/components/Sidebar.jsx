@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { SiEthereum } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { links, links_admin } from '../utils/data';
 import { useStateContext } from '../context/ContextProvider';
-import { TransactionContext } from '../context/TransactionContext';
+import { useAuthContext } from '../context/AuthProvider';
 
 const Sidebar = () => {
     const { activeMenu, setActiveMenu, screenSize, currentColor, chosenLink, setChosenLink } = useStateContext();
-    const { user } = useContext(TransactionContext);
+    const { user } = useAuthContext();
     useEffect(() => {
         if(user && user['role'] === 'admin') setChosenLink(links_admin);
         else setChosenLink(links);

@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from "react";
-import { TransactionContext } from "../context/TransactionContext";
+import { useState, useEffect } from "react";
 import cccd from '../assets/cccd.jpg';
 import cccd2 from '../assets/cccd2.jpg';
 import { NavLink } from "react-router-dom";
 import QrScanner from "qr-scanner";
 import { ToastContainer, toast } from 'react-toastify';
-import { storage, db } from "../utils/firebase.js";
+import { storage } from "../utils/firebase.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, collection, setDoc } from "firebase/firestore";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { useAuthContext } from "../context/AuthProvider";
+import { useDataContext } from "../context/DataProvider";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -21,7 +21,8 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     />
 )
 const VerifyUser = () => {
-    const { user } = useContext(TransactionContext);
+    const { user } = useAuthContext();
+    const { createVerifyInquiry } = useDataContext();
     useEffect(() => {
         let authToken = sessionStorage.getItem('Auth Token')
         if (!authToken) {
@@ -81,8 +82,7 @@ const VerifyUser = () => {
         }
     }, [confirm]);
     const submit = async (data) => {
-        const ref = doc(collection(db, 'inquiry/user_inquiry/user_verify_inquiry'));
-        await setDoc(ref, data);
+        await createVerifyInquiry(data);
         toast.success("Submission complete!");
     }
     return (

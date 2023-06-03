@@ -1,13 +1,13 @@
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { AiOutlineMenu, AiOutlineLogin } from 'react-icons/ai';
-import { useEffect, useContext } from 'react';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../utils/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { TransactionContext } from '../context/TransactionContext';
 import { useStateContext } from '../context/ContextProvider';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import avatar from '../assets/avatar.svg'
+import avatar from '../assets/avatar.svg';
+import { useAuthContext } from '../context/AuthProvider';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
     <TooltipComponent content={title} position="BottomCenter">
@@ -27,7 +27,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 );
 const Navbar = () => {
     const navigate = useNavigate();
-    const { user, setUser } = useContext(TransactionContext);
+    const { user, setUser } = useAuthContext();
     let authToken = sessionStorage.getItem('Auth Token');
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');

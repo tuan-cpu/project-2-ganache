@@ -5,8 +5,10 @@ import './index.css'
 import { TransactionProvider } from './context/TransactionContext';
 import { ContextProvider } from './context/ContextProvider';
 import { DataProvider } from './context/DataProvider';
+import { AuthProvider } from './context/AuthProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <AuthProvider>
   <TransactionProvider>
     <ContextProvider>
       <DataProvider>
@@ -14,4 +16,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </DataProvider>
     </ContextProvider>
   </TransactionProvider>
+  </AuthProvider>
 )

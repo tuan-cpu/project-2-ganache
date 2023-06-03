@@ -1,16 +1,16 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { allStates } from "../utils/state";
 import { City } from 'country-state-city';
-import { storage, db } from "../utils/firebase.js";
+import { storage } from "../utils/firebase.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, collection, setDoc } from "firebase/firestore";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import tags from "../utils/tags";
 import { useNavigate, useParams } from "react-router-dom";
-import { TransactionContext } from "../context/TransactionContext";
+import { useAuthContext } from "../context/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDataContext } from "../context/DataProvider";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -23,7 +23,8 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     />
 )
 const CreateEvent = () => {
-    const { user } = useContext(TransactionContext);
+    const { user } = useAuthContext();
+    const { createEvent } = useDataContext();
     const navigate = useNavigate();
     let { type } = useParams();
     useEffect(() => {
@@ -117,8 +118,7 @@ const CreateEvent = () => {
         }
     }, [confirm]);
     const submit = async (data) => {
-        const ref = doc(collection(db, 'inquiry/user_inquiry/create_event_inquiry'));
-        await setDoc(ref, data);
+        await createEvent(data);
         toast.success("Submission complete!");
     }
     return (

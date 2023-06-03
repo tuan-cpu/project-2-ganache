@@ -1,12 +1,9 @@
-import { useContext, useState, useEffect } from "react";
-import { TransactionContext } from "../context/TransactionContext";
+import { useState, useEffect } from "react";
 import 'tw-elements';
-import { db } from '../utils/firebase';
-import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
+import { AiOutlineCamera } from 'react-icons/ai';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { MdOutlineVerifiedUser } from 'react-icons/md';
 import { motion } from "framer-motion";
-import avatar from '../assets/avatar.svg';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useStateContext } from "../context/ContextProvider";
 import { DataGrid } from '../components';
@@ -15,6 +12,9 @@ import { calculateUserLevel } from '../utils/level';
 import { getPossibleTitle, userTitle } from '../utils/title';
 import { FiSettings } from 'react-icons/fi';
 import PieChart from "./charts/Pie";
+import { useAuthContext } from "../context/AuthProvider";
+import { useDataContext } from "../context/DataProvider";
+
 
 const EventCard = ({ title, event, location, id, url, type }) => (
     <NavLink className="flex justify-center" to={`/event/${type}/detail/${id}`}>
@@ -50,7 +50,8 @@ const UserInfo = () => {
             navigate('/login')
         }
     }, []);
-    const { user } = useContext(TransactionContext);
+    const { user } = useAuthContext();
+    const { updateDisplayTitle, getAllEventsOfAnUser, updateAvatar } = useDataContext();
     const { currentColor } = useStateContext();
     const [ownEvent, setOwnEvent] = useState([]);
     const [recordData, setRecordData] = useState([]);
@@ -69,34 +70,19 @@ const UserInfo = () => {
         return value;
     }
     const pieChartData = [
-        { x: 'Giáo dục', y: getValue("Giáo dục"), text: getValue("Giáo dục")},
-        { x: "Y tế", y: getValue("Y tế"), text: getValue("Y tế")},
+        { x: 'Giáo dục', y: getValue("Giáo dục"), text: getValue("Giáo dục") },
+        { x: "Y tế", y: getValue("Y tế"), text: getValue("Y tế") },
         { x: "Cộng đồng", y: getValue("Cộng đồng"), text: getValue("Cộng đồng") },
         { x: "Môi trường", y: getValue("Môi trường"), text: getValue("Môi trường") },
         { x: "Tài chính", y: getValue("Tài chính"), text: getValue("Tài chính") },
-        { x: "Nhân đạo", y: getValue("Nhân đạo"), text: getValue("Nhân đạo")},
-        { x: "Cuộc sống", y: getValue("Cuộc sống"), text: getValue("Cuộc sống")},
-        { x: "Thể thao", y: getValue("Thể thao"), text: getValue("Thể thao")}
+        { x: "Nhân đạo", y: getValue("Nhân đạo"), text: getValue("Nhân đạo") },
+        { x: "Cuộc sống", y: getValue("Cuộc sống"), text: getValue("Cuộc sống") },
+        { x: "Thể thao", y: getValue("Thể thao"), text: getValue("Thể thao") }
     ];
 
     useEffect(() => {
         const getData = async () => {
-            let result = [];
-            const q1 = query(collection(db, "lifetime events"), where("user_id", "==", user.id));
-            const q2 = query(collection(db, "limited events"), where("user_id", "==", user.id));
-            const q3 = query(collection(db, "users events"), where("user_id", "==", user.id));
-            const querySnapshot1 = await getDocs(q1);
-            querySnapshot1.forEach((doc) => {
-                result.push({ id: doc.id, data: doc.data(), type: 'lifetime' });
-            });
-            const querySnapshot2 = await getDocs(q2);
-            querySnapshot2.forEach((doc) => {
-                result.push({ id: doc.id, data: doc.data(), type: 'limited' });
-            });
-            const querySnapshot3 = await getDocs(q3);
-            querySnapshot3.forEach((doc) => {
-                result.push({ id: doc.id, data: doc.data(), type: 'users' });
-            });
+            const result = await getAllEventsOfAnUser(user.id);
             setOwnEvent(result);
         }
         getData();
@@ -104,23 +90,17 @@ const UserInfo = () => {
         for (let i = 0; i < user.donation_detail.length; i++) {
             data.push({ event_id: user.donation_detail[i].event_id, amount: user.donation_detail[i].amount, timestamp: user.donation_detail[i].timestamp.toDate().toLocaleString() })
         }
-        console.log(data);
         setRecordData(data);
     }, [user]);
     const totalDonation = getTotal();
     const { level, next_exp, current_exp } = calculateUserLevel(totalDonation);
     const titleInfo = {
         numberOfDonationTime: user.donation_detail.length,
-        donationAmount: totalDonation,
-        level: level
+        donationAmount: totalDonation || 0,
+        level: level || 0
     }
     const [selectTitle, setSelectTitle] = useState(false);
-    const updateDisplayTitle = async(doc_id, displayTitle) =>{
-        const docRef = doc(db, 'users', doc_id);
-        await updateDoc(docRef,{
-          displayTitle: displayTitle
-        })
-    }
+    const [file, setFile] = useState("");
 
     return (
         <div className="flex flex-col">
@@ -130,7 +110,14 @@ const UserInfo = () => {
                     <div className="border-1 p-2 m-2 white-glassmorphism">
                         <div className="flex items-center gap-[10px]">
                             <div>
-                                <img src={user.avatar ? user.avatar : avatar} alt="user_avatar" className="rounded-full m-3" />
+                                {user.avatar !== '' ?
+                                    <img src={user.avatar} alt="user_avatar" className="rounded-full m-3" />
+                                    :
+                                    (
+                                        <div onClick={() => { }} className="m-3 cursor-pointer border-1 p-3 rounded-full hover:bg-slate-400">
+                                            <AiOutlineCamera color="#fff" size={30} />
+                                        </div>
+                                    )}
                             </div>
                             <div>
                                 <p className="text-white text-3xl">{user.displayName}</p>
@@ -139,38 +126,41 @@ const UserInfo = () => {
                         </div>
                         <div className="border-t-1 flex flex-wrap m-3 p-3 mb-0 pb-0 justify-between items-center">
                             <div>
-                                <p className="text-xl text-white">Cấp độ: {level}
-                                    <span>/Exp: {Math.floor(current_exp)}/{Math.floor(next_exp)}</span></p>
-                                <p className="text-xl text-white">Danh hiệu:
-                                    <span style={{color: userTitle[user.displayTitle].color}}> {userTitle[user.displayTitle].title}</span>
+                                <p className="text-xl text-white">Cấp độ: {level || 0}
+                                    <span> / Exp: {Math.floor(current_exp)}/{Math.floor(next_exp)}</span>
                                 </p>
-                                <div className="cursor-pointer flex items-center gap-[10px]">
-                                <FiSettings size={21} color="#fff" onClick={()=>setSelectTitle((prev)=>!prev)}/>
-                                {selectTitle?(
-                                    <select id="title"
-                                    onChange={(e) => {
-                                        updateDisplayTitle(user.id, parseInt(e.target.value,10));
-                                    }}
-                                    className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected disabled>Đổi danh hiệu hiển thị</option>
-                                    {getPossibleTitle(titleInfo).map((title) => <option key={title.id} value={title.id}>{title.title}</option>)}
-                                </select>
-                                ):''}
-                                </div>
+                                {user.role !== 'admin' && <>
+                                    <p className="text-xl text-white">Danh hiệu:
+                                        <span style={{ color: userTitle[user.displayTitle].color }}> {userTitle[user.displayTitle].title}</span>
+                                    </p>
+                                    <div className="cursor-pointer flex items-center gap-[10px]">
+                                        <FiSettings size={21} color="#fff" onClick={() => setSelectTitle((prev) => !prev)} />
+                                        {selectTitle ? (
+                                            <select id="title"
+                                                onChange={(e) => {
+                                                    updateDisplayTitle(user.id, parseInt(e.target.value, 10));
+                                                }}
+                                                className="mt-[10px] bg-gray-50 border border-white text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option selected disabled>Đổi danh hiệu hiển thị</option>
+                                                {getPossibleTitle(titleInfo).map((title) => <option key={title.id} value={title.id}>{title.title}</option>)}
+                                            </select>
+                                        ) : ''}
+                                    </div></>}
                             </div>
-                            <div>
-                                <TooltipComponent content="Xác thực thông tin" position="Top">
-                                    {user.verified ? <MdOutlineVerifiedUser fontSize={30} color="#13de3c" /> :
-                                        <button
-                                            type="button"
-                                            className="text-xl hover:drop-shadow-xl p-3 hover:bg-light-gray text-white"
-                                            style={{ background: currentColor, borderRadius: "10%" }}
-                                            onClick={() => navigate('/verifyUser')}
-                                        >
-                                            Xác thực
-                                        </button>}
-                                </TooltipComponent>
-                            </div>
+                            {user.role !== 'admin' &&
+                                <div>
+                                    <TooltipComponent content="Xác thực thông tin" position="Top">
+                                        {user.verified ? <MdOutlineVerifiedUser fontSize={30} color="#13de3c" /> :
+                                            <button
+                                                type="button"
+                                                className="text-xl hover:drop-shadow-xl p-3 hover:bg-light-gray text-white"
+                                                style={{ background: currentColor, borderRadius: "10%" }}
+                                                onClick={() => navigate('/verifyUser')}
+                                            >
+                                                Xác thực
+                                            </button>}
+                                    </TooltipComponent>
+                                </div>}
                         </div>
                     </div>
                     <div className="border-1 p-2 m-2 white-glassmorphism">

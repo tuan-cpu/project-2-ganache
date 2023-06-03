@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { TransactionContext } from "../context/TransactionContext";
 import { useDataContext } from '../context/DataProvider';
+import { useAuthContext } from '../context/AuthProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 import Transactions from './Transactions';
 import { middle_man } from '../utils/constants';
@@ -25,8 +26,9 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
 const DonateDetail = () => {
     let { type, id } = useParams();
     const { createWithdrawalRequest } = useDataContext();
+    const { user } = useAuthContext();
     const [detail, setDetail] = useState();
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, user } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData } = useContext(TransactionContext);
     const [sendFormShow, setSendFormShow] = useState(false);
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');

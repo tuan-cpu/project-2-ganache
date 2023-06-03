@@ -15,21 +15,12 @@ const getEthereumContract = () => {
 export const TransactionProvider = ({ children }) => {
     const [currentAccount, setCurrentAccount] = useState('');
     const [formData, setFormData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
-    const [signInFormData, setSignInFormData] = useState({ email: "", password: "" });
-    const [signUpFormData, setSignUpFormData] = useState({ firstname: "", lastname: "", email: "", password: "" });
     const [isLoading, setIsLoading] = useState(false);
     const [transactionCount, setTransactionCount] = useState(localStorage.getItem('transactionCount'));
     const [transactions, setTransactions] = useState([]);
     const [votingEvents, setVotingEvents] = useState([]);
-    const [user, setUser] = useState({ displayName: '', id: '', donation_detail: [], email: '', provider: '', role: '', verified: false, avatar: '', displayTitle: 0 });
     const handleChange = (e, name) => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
-    };
-    const handleSignIn = (e, name) => {
-        setSignInFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
-    };
-    const handleSignUp = (e, name) => {
-        setSignUpFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
     };
     const getAllTransactions = async () => {
         const transactionContract = getEthereumContract();
@@ -215,8 +206,7 @@ export const TransactionProvider = ({ children }) => {
         <TransactionContext.Provider value={{
             connectWallet, currentAccount, formData,
             sendTransaction, handleChange, transactions,
-            isLoading, signInFormData, signUpFormData,
-            handleSignUp, handleSignIn, setFormData, user, setUser,
+            isLoading, setFormData,
             getAllVotingEvents, votingEvents, getRemainingTimeOfEvent, getVotingStatusOfEvent,
             addVotingEvent, addCandidate, vote, createCoupon
         }}>
