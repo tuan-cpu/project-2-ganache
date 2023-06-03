@@ -80,12 +80,17 @@ export const DataProvider = ({ children }) => {
     const getAllEventsOfAnUser = async(id) =>{
         return await dataInstance.getAllEventsOfAnUser(id);
     }
+    const uploadAvatar = async (id,file) =>{
+        await dataInstance.deleteOldAvatar(id);
+        const url = await dataInstance.uploadAvatar(id,file);
+        await updateAvatar(id, url);
+    }
     return (
         <DataContext.Provider value={{ 
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
             createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo, 
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
-            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, updateAvatar
+            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar
             }}>
             {children}
         </DataContext.Provider>

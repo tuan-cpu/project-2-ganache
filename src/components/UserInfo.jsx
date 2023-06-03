@@ -51,7 +51,7 @@ const UserInfo = () => {
         }
     }, []);
     const { user } = useAuthContext();
-    const { updateDisplayTitle, getAllEventsOfAnUser, updateAvatar } = useDataContext();
+    const { updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar } = useDataContext();
     const { currentColor } = useStateContext();
     const [ownEvent, setOwnEvent] = useState([]);
     const [recordData, setRecordData] = useState([]);
@@ -101,6 +101,9 @@ const UserInfo = () => {
     }
     const [selectTitle, setSelectTitle] = useState(false);
     const [file, setFile] = useState("");
+    useEffect(() => {
+        if (file) uploadAvatar(user.id, file);
+    }, [file])
 
     return (
         <div className="flex flex-col">
@@ -110,14 +113,15 @@ const UserInfo = () => {
                     <div className="border-1 p-2 m-2 white-glassmorphism">
                         <div className="flex items-center gap-[10px]">
                             <div>
-                                {user.avatar !== '' ?
-                                    <img src={user.avatar} alt="user_avatar" className="rounded-full m-3" />
-                                    :
-                                    (
-                                        <div onClick={() => { }} className="m-3 cursor-pointer border-1 p-3 rounded-full hover:bg-slate-400">
+                                <label htmlFor="image" className="cursor-pointer">
+                                    {user.avatar !== '' ?
+                                        <img src={user.avatar} alt="user_avatar" className="rounded-full m-3 w-[48px] h-[48px]" />
+                                        :
+                                        <div className="m-3 border-1 p-3 rounded-full hover:bg-slate-400">
                                             <AiOutlineCamera color="#fff" size={30} />
-                                        </div>
-                                    )}
+                                        </div>}
+                                </label>
+                                <input type="file" name="image" id="image" onChange={(e) => setFile(e.target.files[0])} hidden accept="" />
                             </div>
                             <div>
                                 <p className="text-white text-3xl">{user.displayName}</p>

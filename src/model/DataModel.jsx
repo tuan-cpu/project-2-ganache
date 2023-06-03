@@ -1,5 +1,6 @@
 import { collection, addDoc, getCountFromServer, query, where, getDoc, getDocs, setDoc, doc, updateDoc } from "firebase/firestore";
-import { db } from "../utils/firebase";
+import { db, storage } from "../utils/firebase";
+import { deleteObject, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 class DataModel {
     async addDataGoogleSignIn({ email, provider, displayName, photoURL }) {
@@ -120,6 +121,19 @@ class DataModel {
         await updateDoc(docRef, {
             avatar: avatar
         })
+    }
+    async deleteOldAvatar(doc_id) {
+        const storageRef = ref(storage, `avatarImages/${doc_id}`);
+        try {
+            await deleteObject(storageRef);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async uploadAvatar(doc_id,file){
+        const storageRef = ref(storage, `avatarImages/${doc_id}`);
+        await uploadBytesResumable(storageRef, file);
+        return await getDownloadURL(storageRef);
     }
     async getAllEventsOfAnUser(id) {
         let result = [];
