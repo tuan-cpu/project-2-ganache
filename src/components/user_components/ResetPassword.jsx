@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { authentication } from "../../utils/firebase.js";
+import { authentication } from "../../common/utils/firebase.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Input = ({ placeholder, name, type, value, handleChange }) => (

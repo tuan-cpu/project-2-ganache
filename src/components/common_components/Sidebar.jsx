@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { SiEthereum } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import { links, links_admin } from '../../utils/data';
+import { links, links_admin } from '../../common/utils/data';
 import { useStateContext } from '../../controller/ContextProvider';
 import { useAuthContext } from '../../controller/AuthProvider';
 

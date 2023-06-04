@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Header, Button } from '../../../components';
 import { useStateContext } from '../../../controller/ContextProvider';
 import { useDataContext } from '../../../controller/DataProvider';
-import { db } from '../../../utils/firebase';
+import { db } from '../../../common/utils/firebase';
 import { collection, addDoc, doc, updateDoc } from 'firebase/firestore';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { FcCancel } from 'react-icons/fc';

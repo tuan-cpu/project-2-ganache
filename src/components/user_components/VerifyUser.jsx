@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import cccd from '../assets/cccd.jpg';
-import cccd2 from '../assets/cccd2.jpg';
+import cccd from '../../common/assets/cccd.jpg';
+import cccd2 from '../../common/assets/cccd2.jpg';
 import { NavLink } from "react-router-dom";
 import QrScanner from "qr-scanner";
 import { ToastContainer, toast } from 'react-toastify';
-import { storage } from "../../utils/firebase.js";
+import { storage } from "../../common/utils/firebase.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { useAuthContext } from "../../controller/AuthProvider";

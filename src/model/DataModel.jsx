@@ -1,5 +1,5 @@
 import { collection, addDoc, getCountFromServer, query, where, getDoc, getDocs, setDoc, doc, updateDoc } from "firebase/firestore";
-import { db, storage } from "../utils/firebase";
+import { db, storage } from "../common/utils/firebase";
 import { deleteObject, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 class DataModel {

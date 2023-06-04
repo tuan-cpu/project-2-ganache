@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import 'tw-elements';
-import { db } from '../../utils/firebase';
+import { db } from '../../common/utils/firebase';
 import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
 import { NavLink } from 'react-router-dom';
 import { motion } from "framer-motion";
-import avatar from '../assets/avatar.svg';
+import avatar from '../../common/assets/avatar.svg';
 import { DataGrid } from '..';
-import { donation_record_grid } from "../../utils/data";
-import { calculateUserLevel } from '../../utils/level';
-import { userTitle } from '../../utils/title';
+import { donation_record_grid } from "../../common/utils/data";
+import { calculateUserLevel } from '../../common/utils/level';
+import { userTitle } from '../../common/utils/title';
 
 const EventCard = ({ title, event, location, id, url, type }) => (
     <NavLink className="flex justify-center" to={`/event/${type}/detail/${id}`}>

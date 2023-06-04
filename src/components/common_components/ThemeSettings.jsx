@@ -2,7 +2,7 @@ import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsCheck } from 'react-icons/bs';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import { themeColors } from '../../utils/data';
+import { themeColors } from '../../common/utils/data';
 import { useStateContext } from '../../controller/ContextProvider';
 
 const ThemeSettings = () => {

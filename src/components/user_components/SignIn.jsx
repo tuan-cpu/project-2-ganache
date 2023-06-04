@@ -19,14 +19,12 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 const SignIn = () => {
     const navigate = useNavigate();
     const { signIn, googleSignIn } = useAuthContext();
-    const { addDataGoogleSignIn, addDataSignUp } = useDataContext();
+    const { addDataGoogleSignIn } = useDataContext();
     useEffect(() => {
         let authToken = sessionStorage.getItem('Auth Token')
-
         if (authToken) {
             navigate('/')
         }
-
         if (!authToken) {
             navigate('/login')
         }
@@ -65,7 +63,7 @@ const SignIn = () => {
         }
     }
     return (
-        <div className="flex justify-center items-center gradient-bg-transactions">
+        <div className="flex justify-center items-center gradient-bg-transactions min-h-screen">
             <div className="grid grid-cols-1 pt-[48px] justify-items-center">
                 <h1 className="md:text-2xl text-4xl font-semibold text-white">Đăng nhập</h1>
                 <div className="flex items-center gap-[10px] pt-[10px] pb-[20px]">

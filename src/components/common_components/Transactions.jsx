@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TransactionContext } from '../../controller/TransactionContext';
-import { shortenAddress } from "../../utils/shortenAddress";
+import { shortenAddress } from "../../common/utils/shortenAddress";
 
 const TransactionCard = ({ addressFrom, timestamp, amount }) => {
     return (

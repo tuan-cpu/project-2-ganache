@@ -1,12 +1,13 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage, ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage } from "./view";
+import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage, 
+  ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, 
+  SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, 
+  VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage, ListPage, WithdrawalApprovePage } from "./view";
 import { useStateContext } from "./controller/ContextProvider";
 import { Sidebar, ThemeSettings } from "./components";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { FiSettings } from "react-icons/fi";
 import './App.css';
-import ListPage from "./pages/Admin/ListPage";
-import WithdrawalApprovePage from "./pages/Admin/Inquiry/WithdrawalApprovePage";
 const App = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useStateContext();
   return (

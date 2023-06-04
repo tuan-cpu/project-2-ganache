@@ -1,5 +1,5 @@
-import avatar from '../assets/avatar.svg';
-import { db } from "../../utils/firebase.js";
+import avatar from '../../common/assets/avatar.svg';
+import { db } from "../../common/utils/firebase.js";
 import { doc, getDoc, updateDoc, Timestamp, collection, query, where, getDocs } from 'firebase/firestore';
 import { useEffect, useState, useContext } from 'react';
 import Loader from '../common_components/Loader';
@@ -10,7 +10,7 @@ import { useDataContext } from '../../controller/DataProvider';
 import { useAuthContext } from '../../controller/AuthProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 import Transactions from '../common_components/Transactions';
-import { middle_man } from '../../utils/constants';
+import { middle_man } from '../../common/utils/constants';
 const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     <input
         placeholder={placeholder}
@@ -298,7 +298,6 @@ const DonateDetail = () => {
                             </header>
                             <ul>
                                 {detail.supporters.sort(function (a, b) { return parseFloat(b.amount) - parseFloat(a.amount) }).map((item, index) => {
-                                    console.log(item);
                                     return (
                                         <li className="list-none flex w-full max-h-[100px]" key={index}>
                                             <div className="py-[15px] mr-[10px] basis-9">

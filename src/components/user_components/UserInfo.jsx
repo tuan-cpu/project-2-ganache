@@ -7,11 +7,11 @@ import { motion } from "framer-motion";
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useStateContext } from "../../controller/ContextProvider";
 import { DataGrid } from '..';
-import { donation_record_grid } from "../../utils/data";
-import { calculateUserLevel } from '../../utils/level';
-import { getPossibleTitle, userTitle } from '../../utils/title';
+import { donation_record_grid } from "../../common/utils/data";
+import { calculateUserLevel } from '../../common/utils/level';
+import { getPossibleTitle, userTitle } from '../../common/utils/title';
 import { FiSettings } from 'react-icons/fi';
-import PieChart from "./charts/Pie";
+import PieChart from "../common_components/charts/Pie";
 import { useAuthContext } from "../../controller/AuthProvider";
 import { useDataContext } from "../../controller/DataProvider";
 

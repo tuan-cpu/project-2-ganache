@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useParams, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Filter from '../common_components/Filter';
-import { useDataContext } from '../../controller/DataProvider';
+import { Filter } from '../../components';
 const EventCard = ({ title, event, location, id, url, start, end, type }) => (
     <NavLink className="flex justify-center" to={`detail/${id}`}>
         <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}

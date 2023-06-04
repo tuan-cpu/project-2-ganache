@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Button } from '..';
-import tags from '../../utils/tags';
-import { allStates } from '../../utils/state';
+import tags from '../../common/utils/tags';
+import { allStates } from '../../common/utils/state';
 import { City } from 'country-state-city';
 import { useStateContext } from '../../controller/ContextProvider';
-import { storage, db } from '../../utils/firebase';
+import { storage, db } from '../../common/utils/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, collection, setDoc } from "firebase/firestore";
 import DatePicker from "react-datepicker";

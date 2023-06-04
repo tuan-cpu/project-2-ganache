@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from 'ethers';
-import { contractABI, contractAddress } from '../utils/constants';
+import { contractABI, contractAddress } from '../common/utils/constants';
 
 export const TransactionContext = React.createContext();
 

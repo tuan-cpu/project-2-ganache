@@ -2,11 +2,11 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../../utils/firebase';
+import { db } from '../../common/utils/firebase';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useStateContext } from '../../controller/ContextProvider';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import avatar from '../assets/avatar.svg';
+import avatar from '../../common/assets/avatar.svg';
 import { useAuthContext } from '../../controller/AuthProvider';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (

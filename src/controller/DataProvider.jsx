@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from "react";
-import { db } from "../utils/firebase.js";
+import { db } from "../common/utils/firebase.js";
 import { collection, getDocs, setDoc, doc, getDoc, query, where } from 'firebase/firestore';
 import DataModel from "../model/DataModel.jsx";
 

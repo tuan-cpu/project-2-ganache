@@ -1,6 +1,5 @@
 import React from 'react';
-import DataGrid from '../../common_components/DataGrid';
-import PieChart from '../../charts/Pie';
+import { PieChart, DataGrid } from '../../../components';
 const EventList = ({ data, grid }) => {
     const getValue = (tag) => {
         let value = 0;

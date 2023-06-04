@@ -1,7 +1,8 @@
 import React from 'react';
-import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, AccumulationLegend, PieSeries, AccumulationDataLabel, Inject, AccumulationTooltip } from '@syncfusion/ej2-react-charts';
-
-import { useStateContext } from '../../controller/ContextProvider';
+import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, 
+  AccumulationSeriesDirective, AccumulationLegend, PieSeries, AccumulationDataLabel, 
+  Inject, AccumulationTooltip } from '@syncfusion/ej2-react-charts';
+import { useStateContext } from '../../../controller/ContextProvider';
 
 const PieChart = ({ id, data, legendVisibility, height }) => {
   const { currentMode } = useStateContext();

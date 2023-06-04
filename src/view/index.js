@@ -15,6 +15,6 @@ export { default as AdminCreateEventPage } from './admin_view/AdminCreateEventPa
 export { default as OtherPage } from './admin_view/Inquiry/OtherPage';
 export { default as UserEventApprove } from './admin_view/Inquiry/UserEventApprove';
 export { default as VerifyUserApprove } from './admin_view/Inquiry/VerifyUserApprove';
-export { default as WithdrawalApprove } from './admin_view/Inquiry/WithdrawalApprovePage';
+export { default as WithdrawalApprovePage } from './admin_view/Inquiry/WithdrawalApprovePage';
 export { default as VoteManagementPage } from './admin_view/VoteManagementPage';
 export { default as PrizeManagementPage } from './admin_view/PrizeManagementPage';

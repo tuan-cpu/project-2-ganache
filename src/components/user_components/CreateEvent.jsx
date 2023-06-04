@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { allStates } from "../../utils/state";
+import { allStates } from "../../common/utils/state";
 import { City } from 'country-state-city';
-import { storage } from "../../utils/firebase.js";
+import { storage } from "../../common/utils/firebase.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
-import tags from "../../utils/tags";
+import tags from "../../common/utils/tags";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../controller/AuthProvider";
 import DatePicker from "react-datepicker";

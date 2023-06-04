@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
-import { authentication, googleProvider, db } from "../utils/firebase.js";
+import { authentication, googleProvider, db } from "../common/utils/firebase.js";
 
 class AuthModel {
     async signIn({ email, password }){

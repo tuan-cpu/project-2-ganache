@@ -4,7 +4,7 @@ import { useStateContext } from '../../../controller/ContextProvider';
 import { useDataContext } from '../../../controller/DataProvider';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { FcCancel } from 'react-icons/fc';
-import { db } from '../../../utils/firebase';
+import { db } from '../../../common/utils/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 
 const RequestCard = ({title, status}) =>(

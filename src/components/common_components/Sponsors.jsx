@@ -1,5 +1,5 @@
-import sponsor1 from '../assets/sponsor1.svg';
-import sponsor2 from '../assets/sponsor2.svg';
+import sponsor1 from '../../common/assets/sponsor1.svg';
+import sponsor2 from '../../common/assets/sponsor2.svg';
 const Sponsor = () =>(
     <div className="px-[12px] py-[30px] gradient-bg-transactions">
         <div className="grid grid-cols-1 mx-[20px] sm:mx-[28px] lg:mx-[36px] flex justify-center items-center justify-items-center">

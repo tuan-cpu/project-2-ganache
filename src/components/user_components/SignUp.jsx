@@ -2,13 +2,13 @@ import { useState, React, useContext } from "react";
 import { TransactionContext } from "../../controller/TransactionContext";
 import { AiOutlineCheckCircle, AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
-import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../../utils/regex";
+import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../../common/utils/regex";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection } from "firebase/firestore"; 
-import { db, authentication } from "../../utils/firebase.js";
+import { db, authentication } from "../../common/utils/firebase.js";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
