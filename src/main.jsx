@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
-import { TransactionProvider } from './context/TransactionContext';
-import { ContextProvider } from './context/ContextProvider';
-import { DataProvider } from './context/DataProvider';
-import { AuthProvider } from './context/AuthProvider';
+import { TransactionProvider } from './controller/TransactionContext';
+import { ContextProvider } from './controller/ContextProvider';
+import { DataProvider } from './controller/DataProvider';
+import { AuthProvider } from './controller/AuthProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
