@@ -32,3 +32,8 @@ export { default as Button } from './common_components/Button';
 export { default as VoteManagement } from './admin_components/VoteManagement';
 export { default as DataGrid } from './common_components/DataGrid';
 export { default as PieChart } from './common_components/charts/Pie';
+export { default as Market } from './user_components/Market';
+export { default as Auction } from './user_components/Auction';
+export { default as Cart } from './user_components/Cart';
+export { default as MarketManagement } from './admin_components/MarketManagement';
+export { default as AuctionManagement } from './admin_components/AuctionManagement';

@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage, 
   ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, 
   SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, 
-  VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage, ListPage, WithdrawalApprovePage } from "./view";
+  VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage, ListPage, WithdrawalApprovePage, MarketPage, AuctionPage, MarketManagementPage, AuctionManagementPage, CartPage } from "./view";
 import { useStateContext } from "./controller/ContextProvider";
 import { Sidebar, ThemeSettings } from "./components";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -55,6 +55,9 @@ const App = () => {
                 <Route path="/user_profile/:id" element={<UserInfoPage />} />
                 <Route path="/verifyUser" element={<VerifyUserPage />} />
                 <Route path="/vote_user" element={<VoteUserPage />} />
+                <Route path="/market" element={<MarketPage/>} />
+                <Route path="/auction" element={<AuctionPage/>} />
+                <Route path='/cart' element={<CartPage/>} />
 
                 {/* admin route */}
                 <Route path="/admin" element={<AdminPage />} />
@@ -66,6 +69,8 @@ const App = () => {
                 <Route path="/admin/inquiry/other_request" element={<OtherPage/>}/>
                 <Route path="/admin/vote_management" element={<VoteManagementPage/>}/>
                 <Route path="/admin/lottery_management" element={<PrizeManagementPage/>}/>
+                <Route path="/admin/market_management" element={<MarketManagementPage/>} />
+                <Route path="/admin/auction_management" element={<AuctionManagementPage/>} />
               </Routes>
             </div>
           </div>

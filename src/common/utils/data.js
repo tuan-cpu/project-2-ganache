@@ -43,6 +43,23 @@ export const links = [
       },
     ],
   },
+  {
+    title: "Khu giao dịch",
+    links: [
+      {
+        name: "Chợ",
+        link: "market"
+      },
+      {
+        name: "Phòng đấu giá",
+        link: "auction"
+      },
+      {
+        name: "Giỏ hàng",
+        link: "cart"
+      }
+    ],
+  },
 ];
 
 export const links_admin = [
@@ -104,6 +121,14 @@ export const links_admin = [
         name: "Quản lí quà tặng",
         link: "admin/lottery_management"
       },
+      {
+        name: "Quản lí chợ",
+        link: "admin/market_management"
+      },
+      {
+        name: "Quản lí phòng đấu giá",
+        link: "admin/auction_management"
+      }
     ]
   }
 ]

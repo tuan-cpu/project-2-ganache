@@ -18,3 +18,8 @@ export { default as VerifyUserApprove } from './admin_view/Inquiry/VerifyUserApp
 export { default as WithdrawalApprovePage } from './admin_view/Inquiry/WithdrawalApprovePage';
 export { default as VoteManagementPage } from './admin_view/VoteManagementPage';
 export { default as PrizeManagementPage } from './admin_view/PrizeManagementPage';
+export { default as MarketPage } from './user_view/MarketPage';
+export { default as AuctionPage } from './user_view/AuctionPage';
+export { default as CartPage } from './user_view/CartPage';
+export { default as MarketManagementPage } from './admin_view/MarketManagementPage';
+export { default as AuctionManagementPage } from './admin_view/AuctionManagementPage';
