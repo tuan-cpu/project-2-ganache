@@ -185,3 +185,60 @@ export const auction_items = [
     lowestStep: 0.002
   },
 ]
+
+export const fully_donated_items = [
+  {
+    name: "Tăm tre nhân đạo",
+    image: "https://tranhgaoviet.vn/uploaded/files/tranh-gao/bai-viet/1487301712012_6233710.jpg",
+    price: 0.001,
+    items_per_pack: 5
+  },
+  {
+    name: "Tranh sơn dầu",
+    image: "https://nguoikhuyettathcm.org/wp-content/uploads/2020/05/tranh-4.jpg",
+    price: 0.01,
+    items_per_pack: 1
+  },
+  {
+    name: "Tranh hoa đất sét",
+    image: "https://nguoikhuyettathcm.org/wp-content/uploads/2020/05/TranhHoa-1.jpg",
+    price: 0.01,
+    items_per_pack: 1
+  },
+  {
+    name: "Vòng đeo tay",
+    image: "https://nguoikhuyettathcm.org/wp-content/uploads/2020/05/Kimhoan-2.jpg",
+    price: 0.001,
+    items_per_pack: 1
+  },
+  {
+    name: "Móc chìa khóa nghệ thuật bằng gỗ",
+    image: "https://nguoikhuyettathcm.org/wp-content/uploads/2013/11/Mynghe-1.jpg",
+    price: 0.001,
+    items_per_pack: 2
+  }
+]
+
+export const partially_donated_items = [
+  {
+    name: "iPhone 14 Pro Max 256GB",
+    image: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/t/_/t_m_20.png",
+    price: 0.67,
+    items_per_pack: 1,
+    donated_percentage: 0.01
+  },
+  {
+    name: "1 đôi dép",
+    image: "https://th.bing.com/th/id/OIP.VnxYa641pWohwBnkc9KWHQHaHa?pid=ImgDet&rs=1",
+    price: 0.002,
+    items_per_pack: 1,
+    donated_percentage: 0.05
+  },
+  {
+    name: "Đồng hồ thông minh Amazfit GTS 4 Mini",
+    image: "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/2/_/2_208_1.png",
+    price: 0.056,
+    items_per_pack: 1,
+    donated_percentage: 0.01
+  }
+]

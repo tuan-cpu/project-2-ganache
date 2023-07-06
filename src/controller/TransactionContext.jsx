@@ -20,6 +20,7 @@ export const TransactionProvider = ({ children }) => {
     const [transactionCount, setTransactionCount] = useState(localStorage.getItem('transactionCount'));
     const [transactions, setTransactions] = useState([]);
     const [votingEvents, setVotingEvents] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
     const handleChange = (e, name) => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
     };
@@ -209,7 +210,7 @@ export const TransactionProvider = ({ children }) => {
             sendTransaction, handleChange, transactions,
             isLoading, setFormData,
             getAllVotingEvents, votingEvents, getRemainingTimeOfEvent, getVotingStatusOfEvent,
-            addVotingEvent, addCandidate, vote, createCoupon
+            addVotingEvent, addCandidate, vote, createCoupon, cartItems, setCartItems
         }}>
             {children}
         </TransactionContext.Provider>

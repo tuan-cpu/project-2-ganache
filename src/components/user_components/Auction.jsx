@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAuctionContext } from '../../controller/AuctionProvider';
-import { AuctionItem } from '..';
+import { AuctionItem, Header } from '..';
 
 const Auction = () => {
   const { allItems, getAllItems } = useAuctionContext();
@@ -13,6 +13,7 @@ const Auction = () => {
   },[]);
   return (
     <div className='m-4 md:m-10 mt-24 p-10 gap-[10px]'>
+        <Header category="Chợ" title='Đấu giá từ thiện' />
         <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Live auction</p>
         <div className='flex flex-wrap'>
           {allItems.map((item, index) => {
