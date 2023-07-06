@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from 'ethers';
-import { contractABI, contractAddress } from '../common/utils/constants';
+import { transactionContractABI, transactionContractAddress } from '../common/utils/constants';
+import { useContext } from "react";
 
 export const TransactionContext = React.createContext();
 
@@ -9,7 +10,7 @@ const { ethereum } = window;
 const getEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
-    const transactionContract = new ethers.Contract(contractAddress, contractABI, signer);
+    const transactionContract = new ethers.Contract(transactionContractAddress, transactionContractABI, signer);
     return transactionContract;
 }
 export const TransactionProvider = ({ children }) => {
@@ -214,3 +215,5 @@ export const TransactionProvider = ({ children }) => {
         </TransactionContext.Provider>
     )
 }
+
+export const useTransactionContext = () => useContext(TransactionContext);

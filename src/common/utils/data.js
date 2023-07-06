@@ -159,8 +159,29 @@ export const themeColors = [
     name: "orange-theme",
   },
 ];
- export const donation_record_grid = [
+export const donation_record_grid = [
   { field: "event_id", headerText: "Event ID", width: "120", textAlign: "Center" },
   { field: "amount", headerText: "Số lượng", width: "120", textAlign: "Center" },
   { field: "timestamp", headerText: "Thời điểm", width: "120", textAlign: "Center" },
+]
+
+export const auction_items = [
+  {
+    name: "First item",
+    image: "https://th.bing.com/th/id/OIP.HTmQ9WaJ-BMCAt5oZPnXrgHaFj?pid=ImgDet&rs=1",
+    lowestPrice: 0.01,
+    lowestStep: 0.001
+  },
+  {
+    name: "Second item",
+    image: "https://th.bing.com/th/id/OIP.HTmQ9WaJ-BMCAt5oZPnXrgHaFj?pid=ImgDet&rs=1",
+    lowestPrice: 0.015,
+    lowestStep: 0.001
+  },
+  {
+    name: "Third item",
+    image: "https://th.bing.com/th/id/OIP.HTmQ9WaJ-BMCAt5oZPnXrgHaFj?pid=ImgDet&rs=1",
+    lowestPrice: 0.02,
+    lowestStep: 0.002
+  },
 ]

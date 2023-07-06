@@ -34,8 +34,6 @@ contract Transactions {
     function getTransactionCount() public view returns (uint256) {
         return transactionCount;
     }
-
-
     //Voting
     struct Candidate {
         string name;

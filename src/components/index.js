@@ -37,3 +37,4 @@ export { default as Auction } from './user_components/Auction';
 export { default as Cart } from './user_components/Cart';
 export { default as MarketManagement } from './admin_components/MarketManagement';
 export { default as AuctionManagement } from './admin_components/AuctionManagement';
+export { default as AuctionItem } from './common_components/AuctionItem';

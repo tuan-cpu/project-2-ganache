@@ -1,11 +1,16 @@
 import React from 'react';
 import { Auction, Navbar } from '../../components';
+import { AuctionProvider } from '../../controller/AuctionProvider';
 
 const AuctionPage = () => {
   return (
     <div>
-      <div className='gradient-bg-welcome'><Navbar/></div>
-      <Auction/>
+      <div><Navbar /></div>
+      <div>
+        <AuctionProvider>
+          <Auction />
+        </AuctionProvider>
+      </div>
     </div>
   )
 }
