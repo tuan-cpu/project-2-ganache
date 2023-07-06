@@ -5,7 +5,7 @@ const MarketManagementPage = () => {
   return (
     <div>
       <Navbar/>
-      <MaketManagement/>
+      <MarketManagement/>
     </div>
   )
 }
