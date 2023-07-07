@@ -11,6 +11,7 @@ import { useAuthContext } from '../../controller/AuthProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 import Transactions from '../common_components/Transactions';
 import { middle_man } from '../../common/utils/constants';
+import { Slideshow } from '..';
 const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     <input
         placeholder={placeholder}
@@ -25,17 +26,24 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
 )
 const DonateDetail = () => {
     let { type, id } = useParams();
-    const { createWithdrawalRequest } = useDataContext();
+    const { createWithdrawalRequest, uploadEventImages } = useDataContext();
     const { user } = useAuthContext();
     const [detail, setDetail] = useState();
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData } = useContext(TransactionContext);
     const [sendFormShow, setSendFormShow] = useState(false);
+    const [file, setFile] = useState("");
+    const [confirm, setConfirm] = useState(false);
+    useEffect(() => {
+        if (file && confirm) {
+            uploadEventImages(id, file, type + " events");
+        };
+    }, [file, confirm])
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');
     useEffect(() => {
         const submit = () => {
             if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
-            sendTransaction();
+            sendTransaction(formData);
             const docRef = doc(db, type + " events", id);
             let array = [];
             for (let i in detail.supporters) {
@@ -99,9 +107,20 @@ const DonateDetail = () => {
         getData();
     }, []);
     const [timeLeft, setTimeLeft] = useState({});
+    const [images, setImages] = useState([]);
+    useEffect(() => {
+        let result = [];
+        if (detail) {
+            result.push(detail.image);
+            for (let i in detail.images_ref) {
+                result.push(detail.images_ref[i]);
+            }
+            setImages(result);
+        }
+    }, [detail])
     useEffect(() => {
         const calculateTimeLeft = (timestamp) => {
-            const date = timestamp.toDate();
+            const date = timestamp?.toDate();
             let difference = date.getTime() - Date.now();
 
             let timeLeft = {};
@@ -164,8 +183,7 @@ const DonateDetail = () => {
             {detail === undefined ? <Loader /> :
                 <div className="lg:px-[14px] xl:px-[60px] grid lg:grid-cols-3 grid-cols-1 gradient-bg-transactions gap-[10px]">
                     <div className="relative w-full lg:col-span-2">
-                        <img alt="true" src={detail.image}
-                            className="w-full " />
+                        <Slideshow images={images} interval={3000} />
                     </div>
                     <div className="grid grid-cols-1">
                         <section className="flex justify-start lg:justify-center items-center text-left self-stretch flex-row w-full p-[18px]">
@@ -236,7 +254,7 @@ const DonateDetail = () => {
                         </section>
                         <section>
                             <figcaption>
-                                {Date.now() < detail.start.seconds*1000 ? (
+                                {Date.now() < detail.start.seconds * 1000 ? (
                                     <div>
                                         <p className="text-red-500 text-3xl">Sự kiện chưa bắt đầu</p>
                                     </div>
@@ -246,7 +264,17 @@ const DonateDetail = () => {
                                         <div className="text-slate-400">
                                             <div>còn</div>
                                             <span className="font-bold">
-                                                {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+                                                {timerComponents.length ? timerComponents :
+                                                    <div className='flex flex-col'>
+                                                        <p>Hết giờ!</p>
+                                                        <div className='flex flex-row'>
+                                                            <label htmlFor='image' className='cursor-pointer text-sky-500'>Tải minh chứng</label>
+                                                            <input type="file" name="image" id="image" onChange={(e) => {
+                                                                setFile(e.target.files[0]);
+                                                                setConfirm(true);
+                                                            }} hidden accept="" />
+                                                        </div>
+                                                    </div>}
                                             </span>
                                         </div>
                                     </div>

@@ -5,7 +5,9 @@ const MarketManagementPage = () => {
   return (
     <div>
       <Navbar/>
-      <MarketManagement/>
+      <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+        <MarketManagement />
+      </div>
     </div>
   )
 }

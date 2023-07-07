@@ -1,4 +1,4 @@
-import { collection, addDoc, getCountFromServer, query, where, getDoc, getDocs, setDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, getCountFromServer, query, where, getDoc, getDocs, setDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db, storage } from "../common/utils/firebase";
 import { deleteObject, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -135,6 +135,17 @@ class DataModel {
         await uploadBytesResumable(storageRef, file);
         return await getDownloadURL(storageRef);
     }
+    async uploadEventImages(doc_id,file){
+        const storageRef = ref(storage,`eventImages/${doc_id}/${file.name}`);
+        await uploadBytesResumable(storageRef,file);
+        return await getDownloadURL(storageRef);
+    }
+    async updateEventImageRef(doc_id, url, type){
+        const docRef = doc(db, type, doc_id);
+        await updateDoc(docRef,{
+            images_ref: arrayUnion(url)
+        })
+    }
     async getAllEventsOfAnUser(id) {
         let result = [];
         const q1 = query(collection(db, "lifetime events"), where("user_id", "==", id));
@@ -151,6 +162,20 @@ class DataModel {
         const querySnapshot3 = await getDocs(q3);
         querySnapshot3.forEach((doc) => {
             result.push({ id: doc.id, data: doc.data(), type: 'users' });
+        });
+        return result;
+    }
+    async createOrder(data) {
+        const ref = doc(collection(db, 'order'));
+        await setDoc(ref, data);
+    }
+    async getAllOrder(){
+        const refURL = 'order';
+        const ref = collection(db, refURL);
+        const querySnapshot = await getDocs(ref);
+        let result = [];
+        querySnapshot.forEach((doc) => {
+            result.push({ id: doc.id, data: doc.data() });
         });
         return result;
     }

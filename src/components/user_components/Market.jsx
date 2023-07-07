@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { fully_donated_items, partially_donated_items } from '../../common/utils/data';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStateContext } from '../../controller/ContextProvider';
-import { useTransactionContext } from '../../controller/TransactionContext';
 
 const ItemCard = ({ item, color, handleFunc }) => (
   <motion.div
@@ -41,9 +40,13 @@ const ItemCard = ({ item, color, handleFunc }) => (
 )
 
 const Market = () => {
-  const { cartItems, setCartItems } = useTransactionContext();
+  const [cartItems, setCartItems] = useState([]);
   useEffect(()=>{
-    if(JSON.stringify(cartItems) !== JSON.stringify([]))localStorage.setItem('myCart', JSON.stringify(cartItems));
+    let result = [];
+    for (let i in cartItems) {
+      result.push({ item: cartItems[i], quantity: 0 })
+    }
+    if(JSON.stringify(cartItems) !== JSON.stringify([]))localStorage.setItem('myCart', JSON.stringify(result));
   },[cartItems])
   const [input, setInput] = useState('');
   const [fullyDonatedItems, setFullyDonatedItems] = useState(fully_donated_items);

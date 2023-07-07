@@ -25,7 +25,7 @@ const Welcome = () => {
         const { addressTo, amount, keyword, message } = formData;
         e.preventDefault();
         if (!addressTo || !amount || !keyword || !message) return;
-        sendTransaction();
+        sendTransaction(formData);
     }
     return (
         <div className="flex w-full justify-center items-center">

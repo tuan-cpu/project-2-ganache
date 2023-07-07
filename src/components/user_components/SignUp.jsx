@@ -1,5 +1,5 @@
 import { useState, React, useContext } from "react";
-import { TransactionContext } from "../../controller/TransactionContext";
+import { useAuthContext } from "../../controller/AuthProvider";
 import { AiOutlineCheckCircle, AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../../common/utils/regex";
@@ -26,7 +26,7 @@ const CircleIcon = ({ currentState }) => {
     if (currentState === -1) return <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
 }
 const SignUp = () => {
-    const { signUpFormData, handleSignUp } = useContext(TransactionContext);
+    const { signUpFormData, handleSignUp } = useAuthContext();
     const [passwordState, setPasswordState] = useState({ lower: 0, upper: 0, special: 0, number: 0, char: 0 });
     const [nameState, setNameState] = useState({ first: true, last: true });
     const [emailState, setEmailState] = useState(true);

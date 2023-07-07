@@ -17,10 +17,8 @@ export const TransactionProvider = ({ children }) => {
     const [currentAccount, setCurrentAccount] = useState('');
     const [formData, setFormData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
     const [isLoading, setIsLoading] = useState(false);
-    const [transactionCount, setTransactionCount] = useState(localStorage.getItem('transactionCount'));
     const [transactions, setTransactions] = useState([]);
     const [votingEvents, setVotingEvents] = useState([]);
-    const [cartItems, setCartItems] = useState([]);
     const handleChange = (e, name) => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
     };
@@ -44,33 +42,51 @@ export const TransactionProvider = ({ children }) => {
             console.log(error);
         }
     }
-    const sendTransaction = async () => {
+    const sendTransaction = async (data, callback) => {
         try {
             if (!ethereum) return alert("Please install Metamask!");
-            const { addressTo, amount, keyword, message } = formData;
+            const { addressTo, amount, keyword, message } = data;
             const transactionContract = getEthereumContract();
             const parsedAmount = ethers.utils.parseEther(amount);
             await ethereum.request({
-                method: 'eth_sendTransaction',
+                method: 'eth_estimateGas',
                 params: [{
                     from: currentAccount,
                     to: addressTo,
-                    gas: "0x5208",
                     value: parsedAmount._hex,
+                    data: transactionContract.address
                 }]
-            });
+            })
+                .then((gasLimit) => {
+                    // Set the gas limit to a higher value
+                    const higherGasLimit = gasLimit * 2; // You can adjust the multiplier as needed
+                    const gas = `0x${higherGasLimit.toString(16)}`;
+
+                    // Send the transaction with the updated gas limit
+                    ethereum.request({
+                        method: 'eth_sendTransaction',
+                        params: [{
+                            from: currentAccount,
+                            to: addressTo,
+                            gas,
+                            value: parsedAmount._hex,
+                            data: transactionContract.address
+                        }]
+                    });
+                })
+                .catch((error) => {
+                    // Handle the error
+                    console.error('Error estimating gas limit:', error);
+                });
             const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
             setIsLoading(true);
             console.log(`Loading - ${transactionHash.hash}`);
             await transactionHash.wait();
             setIsLoading(false);
             console.log(`Success - ${transactionHash.hash}`);
-            const transactionCount = await transactionContract.getTransactionCount();
-            setTransactionCount(transactionCount.toNumber());
-            window.location.reload();
+            callback();
         } catch (error) {
             console.log(error);
-            throw new Error("No ethereum object.")
         }
     }
     const checkIfWalletIsConnected = async () => {
@@ -116,7 +132,7 @@ export const TransactionProvider = ({ children }) => {
             }
         ))
         for (const element of structuredCandidates) {
-            if (parseInt(element._eventIndex,16) === parseInt(_eventIndex,16)) results.push(element);
+            if (parseInt(element._eventIndex, 16) === parseInt(_eventIndex, 16)) results.push(element);
         }
         return results;
     }
@@ -196,7 +212,7 @@ export const TransactionProvider = ({ children }) => {
         }
     }
 
-    const createCoupon = async() =>{
+    const createCoupon = async () => {
         const transactionContract = getEthereumContract();
         return await transactionContract.createCoupon();
     }
@@ -210,7 +226,7 @@ export const TransactionProvider = ({ children }) => {
             sendTransaction, handleChange, transactions,
             isLoading, setFormData,
             getAllVotingEvents, votingEvents, getRemainingTimeOfEvent, getVotingStatusOfEvent,
-            addVotingEvent, addCandidate, vote, createCoupon, cartItems, setCartItems
+            addVotingEvent, addCandidate, vote, createCoupon
         }}>
             {children}
         </TransactionContext.Provider>

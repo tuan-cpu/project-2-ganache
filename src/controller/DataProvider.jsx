@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
 import { db } from "../common/utils/firebase.js";
-import { collection, getDocs, setDoc, doc, getDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import DataModel from "../model/DataModel.jsx";
 
 const DataContext = createContext();
@@ -11,6 +11,7 @@ export const DataProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
     const [admins, setAdmins] = useState([]);
     const [candidate, setCandidate] = useState();
+    const [orders, setOrders] = useState([]);
     const getAllUsers = async () => {
         const { Users, Admins } = await dataInstance.getAllUser();
         setUsers(Users);
@@ -85,12 +86,26 @@ export const DataProvider = ({ children }) => {
         const url = await dataInstance.uploadAvatar(id,file);
         await updateAvatar(id, url);
     }
+    const updateEventImageRef = async(doc_id,url,type) =>{
+        await dataInstance.updateEventImageRef(doc_id,url,type);
+    }
+    const uploadEventImages = async(id,file,type) =>{
+        const url = await dataInstance.uploadEventImages(id,file);
+        await updateEventImageRef(id,url,type);
+    }
+    const createOrder = async(data) =>{
+        await dataInstance.createOrder(data);
+    }
+    const getAllOrder = async() =>{
+        const result = await dataInstance.getAllOrder();
+        setOrders(result);
+    }
     return (
         <DataContext.Provider value={{ 
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
             createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo, 
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
-            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar
+            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, uploadEventImages
             }}>
             {children}
         </DataContext.Provider>
