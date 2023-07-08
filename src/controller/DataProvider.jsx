@@ -12,6 +12,8 @@ export const DataProvider = ({ children }) => {
     const [admins, setAdmins] = useState([]);
     const [candidate, setCandidate] = useState();
     const [orders, setOrders] = useState([]);
+    const [savedAuctionItems, setSavedAuctionItems] = useState([]);
+    const [savedMarketItems, setSavedMarketItems] = useState([]);
     const getAllUsers = async () => {
         const { Users, Admins } = await dataInstance.getAllUser();
         setUsers(Users);
@@ -100,12 +102,32 @@ export const DataProvider = ({ children }) => {
         const result = await dataInstance.getAllOrder();
         setOrders(result);
     }
+    const uploadMarketImages = async(id,file,type) =>{
+        const result = await dataInstance.uploadMarketImages(id,file,type);
+        return result;
+    }
+    const createNewMarketItem = async(data,type) => {
+        return await dataInstance.createNewMarketItem(data,type);
+    }
+    const completeNewMarketItem = async(url,doc_id,type) =>{
+        await dataInstance.completeNewMarketItem(url, doc_id, type);
+    }
+    const getAllMarketItems = async(type) => {
+        let result = await dataInstance.getAllMarketItems(type);
+        if(type === "auction") setSavedAuctionItems(result);
+        else setSavedMarketItems(result);
+    }
+    const updateAuctionItem = async(id) =>{
+        await dataInstance.updateAuctionItem(id);
+    }
     return (
         <DataContext.Provider value={{ 
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
             createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo, 
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
-            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, uploadEventImages
+            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, 
+            uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
+            savedAuctionItems, savedMarketItems, updateAuctionItem
             }}>
             {children}
         </DataContext.Provider>

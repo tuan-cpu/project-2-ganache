@@ -135,6 +135,44 @@ class DataModel {
         await uploadBytesResumable(storageRef, file);
         return await getDownloadURL(storageRef);
     }
+    async uploadMarketImages(id,file,type){
+        const storageRef = ref(storage,`marketImages/${type}/${id}/${file.name}`);
+        await uploadBytesResumable(storageRef,file);
+        return await getDownloadURL(storageRef);
+    }
+    async createNewMarketItem(data, type){
+        const counterRef = doc(db,'items', type);
+        const counterSnapshot = await getDoc(counterRef);
+        const counter = counterSnapshot.data().counter;
+        await updateDoc(counterRef,{
+            counter: counter+1
+        })
+        const ref = collection(db,`items/${type}/database`);
+        const docRef = doc(ref, counter.toString());
+        await setDoc(docRef, data)
+        return counter;
+    }
+    async completeNewMarketItem(url, doc_id, type){
+        const docRef = doc(db, `items/${type}/database`, doc_id);
+        await updateDoc(docRef, {
+            image: url
+        })
+    }
+    async getAllMarketItems(type){
+        const ref = collection(db, `items/${type}/database`);
+        const querySnapshot = await getDocs(ref);
+        let result = [];
+        querySnapshot.forEach((doc) => {
+            result.push({ id: doc.id, data: doc.data() });
+        });
+        return result;
+    }
+    async updateAuctionItem(doc_id){
+        const docRef = doc(db,'items/auction/database', doc_id);
+        await updateDoc(docRef, {
+            available: false
+        })
+    }
     async uploadEventImages(doc_id,file){
         const storageRef = ref(storage,`eventImages/${doc_id}/${file.name}`);
         await uploadBytesResumable(storageRef,file);
