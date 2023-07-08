@@ -31,7 +31,7 @@ const Cart = () => {
     const getTotal = () => {
       let sum = 0;
       for (let i in cartItems) {
-        sum += cartItems[i].quantity * cartItems[i].item.price
+        sum += cartItems[i].quantity * cartItems[i].item.data.price
       }
       return sum;
     }
@@ -65,16 +65,16 @@ const Cart = () => {
         <div className='flex flex-wrap'>
           {cartItems.map((item, index) => (
             <div className="rounded-lg shadow-lg white-glassmorphism max-w-sm flex flex-row p-4" key={index}>
-              <img className="rounded-t-lg" src={item.item.image} alt="" width={100} height={100} />
+              <img className="rounded-t-lg" src={item.item.data.image} alt="" width={100} height={100} />
               <div className='p-4 flex flex-col'>
                 <div className="w-100 flex-wrap flex items-center justify-between dark:text-white">
                   <div>
                     <h6 className='text-xs'>Tên sản phẩm</h6>
-                    <p className='text-sm'>{item.item.name}</p>
+                    <p className='text-sm'>{item.item.data.name}</p>
                   </div>
                   <div>
                     <h6 className='text-xs'>Giá hiện tại</h6>
-                    <p className='text-sm'>{item.item.price} ETH/{item.item.items_per_pack} sản phẩm</p>
+                    <p className='text-sm'>{item.item.data.price} ETH/{item.item.data.items_per_pack} sản phẩm</p>
                   </div>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
