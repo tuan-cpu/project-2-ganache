@@ -1,6 +1,6 @@
 import avatar from '../../common/assets/avatar.svg';
 import { db } from "../../common/utils/firebase.js";
-import { doc, getDoc, updateDoc, Timestamp, collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, updateDoc, Timestamp, collection, query, where, getDocs } from 'firebase/firestore';
 import { useEffect, useState, useContext } from 'react';
 import Loader from '../common_components/Loader';
 import { useParams } from 'react-router-dom';
@@ -26,7 +26,7 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
 )
 const DonateDetail = () => {
     let { type, id } = useParams();
-    const { createWithdrawalRequest, uploadEventImages } = useDataContext();
+    const { createWithdrawalRequest, uploadEventImages, getEvent } = useDataContext();
     const { user } = useAuthContext();
     const [detail, setDetail] = useState();
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData } = useContext(TransactionContext);
@@ -41,15 +41,13 @@ const DonateDetail = () => {
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');
     useEffect(() => {
-        const submit = () => {
-            if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
-            sendTransaction(formData);
+        const uploadData = async (data) => {
             const docRef = doc(db, type + " events", id);
             let array = [];
             for (let i in detail.supporters) {
                 if (detail.supporters[i].email === email && detail.supporters[i].provider === provider) {
                     detail.supporters[i].timestamp = Timestamp.now();
-                    detail.supporters[i].amount = (parseFloat(detail.supporters[i].amount) + parseFloat(formData.amount)).toString();
+                    detail.supporters[i].amount = (parseFloat(detail.supporters[i].amount) + parseFloat(data.amount)).toString();
                     array = detail.supporters;
                     break;
                 }
@@ -58,15 +56,19 @@ const DonateDetail = () => {
                 identity: user['displayName'] ? user['displayName'] : "Anonymous",
                 user_id: user.id ? user.id : null,
                 provider: provider ? provider : null,
-                amount: formData.amount,
+                amount: data.amount,
                 timestamp: Timestamp.now()
             }]
-            const data = {
+            const uploadedData = {
                 supporters: array,
-                amount: parseFloat(detail.amount) + parseFloat(formData.amount)
+                amount: parseFloat(detail.amount) + parseFloat(data.amount)
             }
-            updateDoc(docRef, data);
-            updateUserInfo();
+            await updateDoc(docRef, uploadedData);
+            await updateUserInfo();
+        }
+        const submit = () => {
+            if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
+            sendTransaction(formData, uploadData);
         }
         const updateUserInfo = async () => {
             const q = query(collection(db, "users"), where("email", "==", email), where("provider", "==", provider));
@@ -90,19 +92,8 @@ const DonateDetail = () => {
     }, [formData]);
     useEffect(() => {
         const getData = async () => {
-            const refURL = type + " events";
-            const docRef = doc(db, refURL, id);
-            try {
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    setDetail(docSnap.data());
-                } else {
-                    console.log("Document does not exist")
-                }
-
-            } catch (error) {
-                console.log(error)
-            }
+            let result = await getEvent(id, type);
+            if (result) setDetail(result);
         }
         getData();
     }, []);
@@ -121,7 +112,7 @@ const DonateDetail = () => {
     useEffect(() => {
         const calculateTimeLeft = (timestamp) => {
             const date = timestamp?.toDate();
-            let difference = date.getTime() - Date.now();
+            let difference = date?.getTime() - Date.now();
 
             let timeLeft = {};
 
@@ -136,7 +127,7 @@ const DonateDetail = () => {
             return timeLeft;
         }
         const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft(detail?.end));
+            setTimeLeft(calculateTimeLeft(detail?.end) || 0);
         }, 1000);
         return () => clearTimeout(timer);
     });
@@ -210,7 +201,10 @@ const DonateDetail = () => {
                                     {user.id !== detail.user_id ? (
                                         <button
                                             type="button"
-                                            onClick={() => setSendFormShow(true)}
+                                            onClick={() => {
+                                                if (!timerComponents.length && type != 'lifetime') alert("Sự kiện đã kết thúc!");
+                                                else setSendFormShow(true)
+                                            }}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
                                             Quyên góp
                                         </button>
@@ -245,42 +239,44 @@ const DonateDetail = () => {
                                         </button>
                                     </AnimatePresence>
                                 </motion.div> : ''}
-                            <button
-                                type="button"
-                                onClick={() => { }}
-                                className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-slate-400">
-                                Chia sẻ
-                            </button>
+                            {((type == 'lifetime' || type === 'limited') && user?.role == 'admin') || (user.id === detail.user_id) ? (
+                                <div className='w-full'>
+                                    <button
+                                        type="button"
+                                        htmlFor='image'
+                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-slate-400">
+                                        Tải minh chứng
+                                    </button>
+                                    <input type="file" name="image" id="image" onChange={(e) => {
+                                        setFile(e.target.files[0]);
+                                        setConfirm(true);
+                                    }} hidden accept="" />
+                                </div>
+                            ) : <></>}
                         </section>
-                        <section>
-                            <figcaption>
-                                {Date.now() < detail.start.seconds * 1000 ? (
-                                    <div>
-                                        <p className="text-red-500 text-3xl">Sự kiện chưa bắt đầu</p>
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <p className="text-white  text-3xl">Thời gian gây quỹ</p>
-                                        <div className="text-slate-400">
-                                            <div>còn</div>
-                                            <span className="font-bold">
-                                                {timerComponents.length ? timerComponents :
-                                                    <div className='flex flex-col'>
-                                                        <p>Hết giờ!</p>
-                                                        <div className='flex flex-row'>
-                                                            <label htmlFor='image' className='cursor-pointer text-sky-500'>Tải minh chứng</label>
-                                                            <input type="file" name="image" id="image" onChange={(e) => {
-                                                                setFile(e.target.files[0]);
-                                                                setConfirm(true);
-                                                            }} hidden accept="" />
-                                                        </div>
-                                                    </div>}
-                                            </span>
+                        {type != 'lifetime' ?
+                            <section>
+                                <figcaption>
+                                    {Date.now() < detail.start.seconds * 1000 ? (
+                                        <div>
+                                            <p className="text-red-500 text-3xl">Sự kiện chưa bắt đầu</p>
                                         </div>
-                                    </div>
-                                )}
-                            </figcaption>
-                        </section>
+                                    ) : (
+                                        <div className='ml-4 p-4'>
+                                            <p className="text-white  text-3xl">Thời gian gây quỹ</p>
+                                            <div className="text-slate-400">
+                                                <div>còn</div>
+                                                <span className="font-bold">
+                                                    {timerComponents.length ? timerComponents :
+                                                        <div className='flex flex-col'>
+                                                            <p>Hết giờ!</p>
+                                                        </div>}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    )}
+                                </figcaption>
+                            </section> :<></>}
                     </div>
                     <div className="lg:col-span-2 text-white">
                         <div className="inline-flex justify-center items-center w-full">

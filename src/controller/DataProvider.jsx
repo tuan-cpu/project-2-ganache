@@ -117,8 +117,11 @@ export const DataProvider = ({ children }) => {
         if(type === "auction") setSavedAuctionItems(result);
         else setSavedMarketItems(result);
     }
-    const updateAuctionItem = async(id) =>{
+    const updateAuctionItem = async(id) => {
         await dataInstance.updateAuctionItem(id);
+    }
+    const getEvent = async(id,type) => { 
+        return await dataInstance.getEvent(id,type);
     }
     return (
         <DataContext.Provider value={{ 
@@ -127,7 +130,7 @@ export const DataProvider = ({ children }) => {
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
             createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, 
             uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
-            savedAuctionItems, savedMarketItems, updateAuctionItem
+            savedAuctionItems, savedMarketItems, updateAuctionItem, getEvent
             }}>
             {children}
         </DataContext.Provider>

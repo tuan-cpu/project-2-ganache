@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { TransactionContext } from '../../controller/TransactionContext';
+import { useVotingContext } from '../../controller/VotingProvider';
 import { MdOutlineCancel } from 'react-icons/md';
 import { useDataContext } from '../../controller/DataProvider';
 import { useStateContext } from '../../controller/ContextProvider';
@@ -15,7 +15,7 @@ const EventCard = ({ name }) => (
 
 const VoteUser = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const { votingEvents, getAllVotingEvents, vote } = useContext(TransactionContext);
+  const { votingEvents, getAllVotingEvents, vote } = useVotingContext();
   const { candidate, getCandidateInfo } = useDataContext();
   const { currentColor } = useStateContext()
   const [chosenEvent, setChosenEvent] = useState();
@@ -103,7 +103,7 @@ const VoteUser = () => {
               <p>Tên ứng viên: {candidate.info.displayName}</p>
               <p>Email: {candidate.info.email}</p>
             </div>
-            <div className='flex-col border-t-1 border-color p-4 bg-white dark:bg-[#484b52]'>
+            <div className='flex-col border-t-1 border-color p-4 bg-white dark:bg-[#484b52] ml-4'>
               <p className='font-semibold text-lg'>Các sự kiện của ứng viên</p>
               {candidate.ownEvent.map((event, index) => (
                 <NavLink key={index} 

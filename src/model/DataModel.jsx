@@ -217,6 +217,21 @@ class DataModel {
         });
         return result;
     }
+    async getEvent(id, type){
+        const refURL = type + " events";
+        const docRef = doc(db, refURL, id);
+        try {
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                return docSnap.data();
+            } else {
+                console.log("Document does not exist")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 export default DataModel;

@@ -170,7 +170,7 @@ const AuctionManagement = () => {
             return (
               <div key={index}>
                 {
-                  parseFloat(item.highestBid, 16) ?
+                  parseFloat(item.highestBid, 16) && getDate(BigInt(item.auctionEndTime).toString()) < Date.now() ?
                     <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
                       highestBid={parseFloat(item.highestBid, 16)}
                       endTime={item.auctionEndTime} disabled={true} /> : ''
@@ -188,7 +188,7 @@ const AuctionManagement = () => {
             return (
               <div key={index}>
                 {
-                  !parseFloat(item.highestBid, 16) ?
+                  !parseFloat(item.highestBid, 16) && getDate(BigInt(item.auctionEndTime).toString()) < Date.now() ?
                     <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
                       highestBid={0}
                       endTime={item.auctionEndTime} disabled={true} /> : ''

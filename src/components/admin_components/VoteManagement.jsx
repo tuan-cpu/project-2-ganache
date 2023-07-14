@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Header } from '..';
-import { TransactionContext } from '../../controller/TransactionContext';
+import { useVotingContext } from '../../controller/VotingProvider';
 import { useStateContext } from '../../controller/ContextProvider';
 import { MdOutlineCancel } from 'react-icons/md';
 const VoteManagement = () => {
-  const { addVotingEvent, addCandidate, votingEvents, getAllVotingEvents } = useContext(TransactionContext);
+  const { addVotingEvent, addCandidate, votingEvents, getAllVotingEvents } = useVotingContext();
   const { currentColor } = useStateContext();
   const [addEventCard, setAddEventCard] = useState(false);
   const [eventName, setEventName] = useState('');
@@ -19,6 +19,9 @@ const VoteManagement = () => {
     const dateString = date.toLocaleString();
     return dateString;
   }
+  useEffect(()=>{
+    if(selectedEvent)console.log(votingEvents[selectedEvent]);
+  },[selectedEvent])
   return (
     <div className=' flex flex-col'>
       <Header category="Vote" title='Vote management' />
@@ -57,7 +60,8 @@ const VoteManagement = () => {
               </div>
               <div className='flex-col border-t-1 border-color p-4 ml-4'>
                 <Button color='white' bgColor={currentColor} text='Tạo sự kiện' borderRadius='10px' size='md' customFunction={() => {
-                  addVotingEvent(eventName, eventDuration)
+                  addVotingEvent(eventName, eventDuration);
+                  setAddEventCard(false);
                 }} />
               </div>
             </div>
@@ -91,21 +95,21 @@ const VoteManagement = () => {
             </div>
             <div className='flex-col border-t-1 border-color p-4 ml-4'>
               <p className='font-semibold text-lg'>Thông tin cơ bản</p>
-              <p>Tên sự kiện: {votingEvents[selectedEvent - 1].name}</p>
-              <p>ID: {parseInt(votingEvents[selectedEvent - 1].id, 16)}</p>
-              <p>Thời gian bắt đầu: {getDate(BigInt(votingEvents[selectedEvent - 1].votingStart).toString())}</p>
-              <p>Thời gian kết thúc: {getDate(BigInt(votingEvents[selectedEvent - 1].votingEnd).toString())}</p>
+              <p>Tên sự kiện: {votingEvents[selectedEvent].name}</p>
+              <p>ID: {parseInt(votingEvents[selectedEvent].id, 16)}</p>
+              <p>Thời gian bắt đầu: {getDate(BigInt(votingEvents[selectedEvent].votingStart).toString())}</p>
+              <p>Thời gian kết thúc: {getDate(BigInt(votingEvents[selectedEvent].votingEnd).toString())}</p>
             </div>
             <div className='flex-col border-t-1 border-color p-4 ml-4'>
               <p className='font-semibold text-lg'>Ứng viên</p>
-              {votingEvents[selectedEvent - 1].candidates.map((item, index) => <p key={index}>{item._userIndex}</p>)}
+              {votingEvents[selectedEvent].candidates.map((item, index) => <p key={index}>{item._userIndex}</p>)}
 
             </div>
             <div className='flex-col border-t-1 border-color p-4 ml-4'>
               <Button color='white' bgColor={currentColor} text='Tạo ứng viên' borderRadius='10px' size='md' customFunction={() =>
                 setAddNewCandidate(true)} />
               {addNewCandidate ? (
-                <div className='flex-col border-t-1 border-color'>
+                <div className='flex-col'>
                   <p className='font-semibold text-lg'>Thông tin ứng viên</p>
                   <div className="mt-4">
                     <input
@@ -124,7 +128,7 @@ const VoteManagement = () => {
                     />
                   </div>
                   <Button color='white' bgColor={currentColor} text='Thêm ứng viên' borderRadius='10px' size='md' customFunction={() =>
-                    addCandidate(newCandidateName, newCandidateID, selectedEvent.id)} />
+                    addCandidate(newCandidateName, newCandidateID, selectedEvent)} />
                 </div>
               ) : ''}
             </div>

@@ -2,8 +2,10 @@ import React from 'react';
 import { ethers } from 'ethers';
 import { auctionContractABI, auctionContractAddress } from '../common/utils/constants';
 import { useState } from 'react';
+import AuctionModel from '../model/AuctionModel';
 
 export const AuctionContext = React.createContext();
+const dataInstance = new AuctionModel();
 
 const { ethereum } = window;
 
@@ -16,30 +18,12 @@ const getEthereumContract = () => {
 
 export const AuctionProvider = ({children}) =>{
     const [allItems, setAllItems] = useState([]);
+    const auctionContract = getEthereumContract();
     const addItem = async(_itemID, auctionEndTime) =>{
-        try{
-            if (!ethereum) return alert("Please install Metamask!");
-            const auctionContract = getEthereumContract();
-            const txHash = await auctionContract.addItem(_itemID, auctionEndTime);
-            console.log(`Loading - ${txHash.hash}`);
-            await txHash.wait();
-            console.log(`Success - ${txHash.hash}`);
-        }catch (error) {
-            console.log(error);
-        }
+        await dataInstance.addItem(_itemID,auctionEndTime, auctionContract);
     }
     const bid = async(_id, amount) =>{
-        try {
-            if (!ethereum) return alert("Please install Metamask!");
-            const auctionContract = getEthereumContract();
-            const parsedAmount = ethers.utils.parseEther(amount);
-            const txHash = await auctionContract.bid(_id, {value: parsedAmount});
-            console.log(`Loading - ${txHash.hash}`);
-            await txHash.wait();
-            console.log(`Success - ${txHash.hash}`);
-        } catch (error) {
-            console.log(error)
-        }
+        await dataInstance.bid(_id,amount, auctionContract);
     }
     const getAllItems = async() =>{
         const auctionContract = getEthereumContract();
