@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from 'react';
 import Loader from '../common_components/Loader';
 import { useParams } from 'react-router-dom';
 import { AiFillPlayCircle } from 'react-icons/ai';
-import { TransactionContext } from "../../controller/TransactionContext";
+import { useTransactionContext } from '../../controller/TransactionContext';
 import { useDataContext } from '../../controller/DataProvider';
 import { useAuthContext } from '../../controller/AuthProvider';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -29,7 +29,7 @@ const DonateDetail = () => {
     const { createWithdrawalRequest, uploadEventImages, getEvent } = useDataContext();
     const { user } = useAuthContext();
     const [detail, setDetail] = useState();
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData } = useTransactionContext();
     const [sendFormShow, setSendFormShow] = useState(false);
     const [file, setFile] = useState("");
     const [confirm, setConfirm] = useState(false);
@@ -42,7 +42,7 @@ const DonateDetail = () => {
     let provider = sessionStorage.getItem('Provider');
     useEffect(() => {
         const uploadData = async (data) => {
-            const docRef = doc(db, type + " events", id);
+            const docRef = doc(db, `events/${type}/database`, id);
             let array = [];
             for (let i in detail.supporters) {
                 if (detail.supporters[i].email === email && detail.supporters[i].provider === provider) {
@@ -258,7 +258,7 @@ const DonateDetail = () => {
                             <section>
                                 <figcaption>
                                     {Date.now() < detail.start.seconds * 1000 ? (
-                                        <div>
+                                        <div className='ml-4 p-4'>
                                             <p className="text-red-500 text-3xl">Sự kiện chưa bắt đầu</p>
                                         </div>
                                     ) : (

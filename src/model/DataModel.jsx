@@ -218,8 +218,7 @@ class DataModel {
         return result;
     }
     async getEvent(id, type){
-        const refURL = type + " events";
-        const docRef = doc(db, refURL, id);
+        const docRef = doc(db, `events/${type}/database`, id);
         try {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {

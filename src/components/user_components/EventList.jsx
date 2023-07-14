@@ -50,6 +50,7 @@ const EventList = ({ type, events }) => {
                 result.push(events[i]);
             }
         }
+        console.log(result);
         setCorrespondEvents(result);
         setFiltered(result);
     }, [type]);

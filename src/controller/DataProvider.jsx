@@ -25,21 +25,25 @@ export const DataProvider = ({ children }) => {
     }
     const getAllEvents = async () => {
         let result = [];
-        const ref_1 = collection(db, "lifetime events");
-        const ref_2 = collection(db, "limited events");
-        const ref_3 = collection(db, "users events");
-        const querySnapshot1 = await getDocs(ref_1);
-        querySnapshot1.forEach((doc) => {
-            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event,tag: doc.data().tag, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image: doc.data().image, type: 'lifetime'});
-        });
-        const querySnapshot2 = await getDocs(ref_2);
-        querySnapshot2.forEach((doc) => {
-            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event,tag: doc.data().tag, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image: doc.data().image, type: 'limited', start: doc.data().start, end: doc.data().end });
-        });
-        const querySnapshot3 = await getDocs(ref_3);
-        querySnapshot3.forEach((doc) => {
-            result.push({ id:doc.id, title: doc.data().title, event: doc.data().event,tag: doc.data().tag, amount: doc.data().amount, user_id: doc.data().user_id, wallet: doc.data().wallet, image:doc.data().image, type: 'users', start: doc.data().start, end: doc.data().end });
-        });
+        let types = ['lifetime','limited','users']
+        for(let i in types){
+            let ref = collection(db,`events/${types[i]}/database`);
+            let querySnapshot = await getDocs(ref);
+                querySnapshot.forEach((doc) => {
+                result.push({ 
+                    id:doc.id, 
+                    title: doc.data().title, 
+                    event: doc.data().event,
+                    tag: doc.data().tag, 
+                    amount: doc.data().amount, 
+                    user_id: doc.data().user_id, 
+                    wallet: doc.data().wallet, 
+                    image: doc.data().image,
+                    start: doc.data()?.start,
+                    end: doc.data()?.end, 
+                    type: types[i]});
+            });
+        }
         setEvents(result);
     }
     const [userVerifyRequest,setUserVerifyRequest] = useState([]);

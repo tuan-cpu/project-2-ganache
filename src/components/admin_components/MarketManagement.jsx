@@ -20,6 +20,9 @@ const MarketManagement = () => {
   useEffect(()=>{
     getAllOrder();
   },[]);
+  useEffect(()=>{
+    console.log(orders);
+  },[orders])
   const getTotalValue = (array) =>{
     let sum = 0;
     for(let i in array){
@@ -32,7 +35,7 @@ const MarketManagement = () => {
     for(let i in array){
       let newArray = array[i].data.item;
       for(let j in newArray){
-        sum += newArray[j].item.price * parseInt(newArray[j].quantity) * (newArray[j].item.donated_percentage || 1 )
+        sum += newArray[j].item.data.price * parseInt(newArray[j].quantity) * (newArray[j].item.data.donated_percentage || 1 )
       }
     }
     return sum;

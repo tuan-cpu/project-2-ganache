@@ -48,7 +48,7 @@ const UserEventCheck = () => {
     getAllCreateEventRequest();
   }, [])
   const acceptRequest = async (data) => {
-    await addDoc(collection(db, "users events"), data);
+    await addDoc(collection(db, 'events/users/database'), data);
   }
   const updateRequest = async (doc_id) => {
     const docRef = doc(db, 'inquiry/user_inquiry/create_event_inquiry', doc_id);

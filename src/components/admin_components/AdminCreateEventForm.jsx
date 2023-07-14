@@ -56,10 +56,6 @@ const AdminCreateEventForm = () => {
     if (eventType === 'limited') {
       setFormData((prevState) => ({ ...prevState, start: startDate, end: endDate }));
     }
-    if (!file) {
-      toast.error("Please choose an image first!");
-      return;
-    }
     const storageRef = ref(storage, `eventImages/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on(
@@ -92,7 +88,7 @@ const AdminCreateEventForm = () => {
     }
   }, [confirm]);
   const submit = async (data) => {
-    const ref = doc(collection(db, eventType + ' events'));
+    const ref = doc(collection(db, `events/${eventType}/database`));
     await setDoc(ref, data);
   }
   return (
