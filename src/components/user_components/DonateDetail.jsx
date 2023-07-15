@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Loader from '../common_components/Loader';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AiFillPlayCircle, AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
-import { useTransactionContext } from '../../controller/TransactionContext';
+import { useTransactionContext } from '../../controller/TransactionProvider.jsx';
 import { useDataContext } from '../../controller/DataProvider';
 import { useAuthContext } from '../../controller/AuthProvider';
 import { motion, AnimatePresence } from 'framer-motion';

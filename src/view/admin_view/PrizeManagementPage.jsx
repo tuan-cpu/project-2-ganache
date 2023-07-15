@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Navbar } from '../../components';
-import { TransactionContext } from '../../controller/TransactionContext';
+import { useTransactionContext } from '../../controller/TransactionProvider';
 import { useStateContext } from '../../controller/ContextProvider';
 
 const PrizeManagementPage = () => {
-    const { createCoupon } = useContext(TransactionContext);
+    const { createCoupon } = useTransactionContext();
     const { currentColor } = useStateContext();
     return (
         <div>

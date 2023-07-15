@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useStateContext } from '../../controller/ContextProvider';
 import { useAuctionContext } from '../../controller/AuctionProvider';
-import { useTransactionContext } from '../../controller/TransactionContext';
+import { useTransactionContext } from '../../controller/TransactionProvider';
 import { useDataContext } from '../../controller/DataProvider';
 import { useState, useEffect } from 'react';
 import { Loader } from '..';

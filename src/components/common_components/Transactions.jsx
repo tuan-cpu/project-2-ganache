@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { TransactionContext } from '../../controller/TransactionContext';
+import React from "react";
+import { useTransactionContext } from "../../controller/TransactionProvider";
 import { shortenAddress } from "../../common/utils/shortenAddress";
 
 const TransactionCard = ({ addressFrom, timestamp, amount }) => {
@@ -22,7 +22,7 @@ const TransactionCard = ({ addressFrom, timestamp, amount }) => {
 }
 
 const Transactions = ({ message, from }) => {
-    const { currentAccount, transactions } = useContext(TransactionContext);
+    const { currentAccount, transactions } = useTransactionContext();
     return (
         <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
             <div className="flex flex-col md:p-12 py-12 px-4">
