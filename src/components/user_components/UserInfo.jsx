@@ -16,8 +16,8 @@ import { useAuthContext } from "../../controller/AuthProvider";
 import { useDataContext } from "../../controller/DataProvider";
 
 
-const EventCard = ({ title, event, location, id, url, type }) => (
-    <NavLink className="flex justify-center" to={`/event/${type}/detail/${id}`}>
+const EventCard = ({ title, event, location, id, url, start, end }) => (
+    <NavLink className="flex justify-center" to={`/event/users/detail/${id}`}>
         <motion.div layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -37,6 +37,11 @@ const EventCard = ({ title, event, location, id, url, type }) => (
                         <p className="text-gray-300 text-base pl-[10px]">{location}</p>
                     </div>
                 </div>
+                <div>
+                    {Date.now() < start?.seconds * 1000 && <div className='text-xl text-orange-500'>Sự kiện chưa bắt đầu!</div>}
+                    {Date.now() > start?.seconds * 1000 && Date.now() < end?.seconds * 1000 && <div className='text-xl text-red-500'>Sự kiện đang diễn ra!</div>}
+                    {Date.now() > end?.seconds * 1000 && <div className='text-xl text-red-500'>Sự kiện đã kết thúc!</div>}
+                </div>
             </div>
         </motion.div>
     </NavLink>
@@ -51,7 +56,7 @@ const UserInfo = () => {
         }
     }, []);
     const { user } = useAuthContext();
-    const { updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar } = useDataContext();
+    const { updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, getEventTitle } = useDataContext();
     const { currentColor } = useStateContext();
     const [ownEvent, setOwnEvent] = useState([]);
     const [recordData, setRecordData] = useState([]);
@@ -86,11 +91,15 @@ const UserInfo = () => {
             setOwnEvent(result);
         }
         getData();
-        let data = []
-        for (let i = 0; i < user.donation_detail.length; i++) {
-            data.push({ event_id: user.donation_detail[i].event_id, amount: user.donation_detail[i].amount, timestamp: user.donation_detail[i].timestamp.toDate().toLocaleString() })
+        const getRecordData = async () =>{
+            let data = []
+            for (let i = 0; i < user.donation_detail.length; i++) {
+                let title = await getEventTitle(user.donation_detail[i].event_id);
+                data.push({ event_title: title, amount: user.donation_detail[i].amount, timestamp: user.donation_detail[i].timestamp.toDate().toLocaleString() })
+            }
+            setRecordData(data);
         }
-        setRecordData(data);
+        getRecordData();
     }, [user]);
     const totalDonation = getTotal();
     const { level, next_exp, current_exp } = calculateUserLevel(totalDonation);
@@ -154,7 +163,8 @@ const UserInfo = () => {
                             {user.role !== 'admin' &&
                                 <div>
                                     <TooltipComponent content="Xác thực thông tin" position="Top">
-                                        {user.verified ? <MdOutlineVerifiedUser fontSize={30} color="#13de3c" /> :
+                                        {user.verified ? 
+                                            <MdOutlineVerifiedUser fontSize={30} color="#13de3c" /> :
                                             <button
                                                 type="button"
                                                 className="text-xl hover:drop-shadow-xl p-3 hover:bg-light-gray text-white"
@@ -181,7 +191,16 @@ const UserInfo = () => {
             <div className="gradient-bg-transactions grid grid-cols-1 justify-items-center items-center flex py-[20px] sm:px-[50px] lg:px-[100px] px-[20px]">
                 <h1 className="text-xl sm:text-3xl text-white text-gradient py-1">Sự kiện của bạn:</h1>
                 <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-[20px] gap-[20px]">
-                    {ownEvent.map((event, index) => <EventCard id={event.id} type={event.type} title={event.data.title} event={event.data.event} location={event.data.city + " " + event.data.state + " VN"} key={event.id} url={event.data.image} />)}
+                    {ownEvent.map((event, index) =>
+                        <EventCard id={event.id}
+                            title={event.data.title}
+                            event={event.data.event}
+                            location={(event.city || '') + " " + (event.state || '') + " VN"}
+                            key={event.id}
+                            url={event.data.image}
+                            start={event.data.start}
+                            end={event.data.end} />)
+                    }
                 </div>
             </div>
         </div>

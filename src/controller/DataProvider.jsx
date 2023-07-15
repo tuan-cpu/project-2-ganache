@@ -87,6 +87,9 @@ export const DataProvider = ({ children }) => {
     const getAllEventsOfAnUser = async(id) =>{
         return await dataInstance.getAllEventsOfAnUser(id);
     }
+    const getEventTitle = async(id) =>{
+        return await dataInstance.getEventTitle(id);
+    }
     const uploadAvatar = async (id,file) =>{
         await dataInstance.deleteOldAvatar(id);
         const url = await dataInstance.uploadAvatar(id,file);
@@ -127,6 +130,15 @@ export const DataProvider = ({ children }) => {
     const getEvent = async(id,type) => { 
         return await dataInstance.getEvent(id,type);
     }
+    const getUserAvatar = async(id) =>{
+        return await dataInstance.getUserAvatar(id);
+    }
+    const likeEvent = async(event_id,type,user_id) => {
+        await dataInstance.likeEvent(event_id,type,user_id);
+    }
+    const dislikeEvent = async(event_id,type,user_id) => {
+        await dataInstance.dislikeEvent(event_id,type,user_id);
+    }
     return (
         <DataContext.Provider value={{ 
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
@@ -134,7 +146,7 @@ export const DataProvider = ({ children }) => {
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
             createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, 
             uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
-            savedAuctionItems, savedMarketItems, updateAuctionItem, getEvent
+            savedAuctionItems, savedMarketItems, updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent
             }}>
             {children}
         </DataContext.Provider>

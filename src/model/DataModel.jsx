@@ -1,4 +1,4 @@
-import { collection, addDoc, getCountFromServer, query, where, getDoc, getDocs, setDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { collection, addDoc, getCountFromServer, query, where, getDoc, getDocs, setDoc, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db, storage } from "../common/utils/firebase";
 import { deleteObject, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -179,29 +179,34 @@ class DataModel {
         return await getDownloadURL(storageRef);
     }
     async updateEventImageRef(doc_id, url, type){
-        const docRef = doc(db, type, doc_id);
+        const docRef = doc(db, `events/${type}/database`, doc_id);
         await updateDoc(docRef,{
             images_ref: arrayUnion(url)
         })
     }
     async getAllEventsOfAnUser(id) {
         let result = [];
-        const q1 = query(collection(db, "lifetime events"), where("user_id", "==", id));
-        const q2 = query(collection(db, "limited events"), where("user_id", "==", id));
-        const q3 = query(collection(db, "users events"), where("user_id", "==", id));
-        const querySnapshot1 = await getDocs(q1);
-        querySnapshot1.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'lifetime' });
-        });
-        const querySnapshot2 = await getDocs(q2);
-        querySnapshot2.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'limited' });
-        });
-        const querySnapshot3 = await getDocs(q3);
-        querySnapshot3.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'users' });
+        const q = query(collection(db, 'events/users/database'), where("user_id", "==", id));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            result.push({ id: doc.id, data: doc.data() });
         });
         return result;
+    }
+    async getEventTitle(id) {
+        let types = ['lifetime','limited','users'];
+        for(let i in types){
+            let docRef = doc(db, `events/${types[i]}/database`, id);
+            let docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                return docSnap.data().title;
+            }
+        }
+    }
+    async getUserAvatar(id){
+        const docRef = doc(db,'users',id);
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()) return docSnap.data().avatar;
     }
     async createOrder(data) {
         const ref = doc(collection(db, 'order'));
@@ -230,6 +235,18 @@ class DataModel {
         } catch (error) {
             console.log(error)
         }
+    }
+    async likeEvent(event_id,type,user_id){
+        const docRef = doc(db,`events/${type}/database`,event_id);
+        await updateDoc(docRef,{
+            liked_user_id: arrayUnion(user_id)
+        })
+    }
+    async dislikeEvent(event_id,type,user_id){
+        const docRef = doc(db,`events/${type}/database`,event_id);
+        await updateDoc(docRef,{
+            liked_user_id: arrayRemove(user_id)
+        })
     }
 }
 

@@ -1,10 +1,9 @@
-import avatar from '../../common/assets/avatar.svg';
 import { db } from "../../common/utils/firebase.js";
 import { doc, updateDoc, Timestamp, collection, query, where, getDocs } from 'firebase/firestore';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import Loader from '../common_components/Loader';
-import { useParams } from 'react-router-dom';
-import { AiFillPlayCircle } from 'react-icons/ai';
+import { useParams, useNavigate } from 'react-router-dom';
+import { AiFillPlayCircle, AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { useTransactionContext } from '../../controller/TransactionContext';
 import { useDataContext } from '../../controller/DataProvider';
 import { useAuthContext } from '../../controller/AuthProvider';
@@ -26,13 +25,17 @@ const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
 )
 const DonateDetail = () => {
     let { type, id } = useParams();
-    const { createWithdrawalRequest, uploadEventImages, getEvent } = useDataContext();
+    const navigate = useNavigate();
+    const { createWithdrawalRequest, uploadEventImages, getEvent, getUserAvatar, likeEvent, dislikeEvent } = useDataContext();
     const { user } = useAuthContext();
     const [detail, setDetail] = useState();
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData } = useTransactionContext();
     const [sendFormShow, setSendFormShow] = useState(false);
     const [file, setFile] = useState("");
     const [confirm, setConfirm] = useState(false);
+    const [supporters, setSupporters] = useState([]);
+    const [likeStatus, setLikeStatus] = useState(false);
+    const [likeCount, setLikeCount] = useState(0);
     useEffect(() => {
         if (file && confirm) {
             uploadEventImages(id, file, type + " events");
@@ -45,7 +48,7 @@ const DonateDetail = () => {
             const docRef = doc(db, `events/${type}/database`, id);
             let array = [];
             for (let i in detail.supporters) {
-                if (detail.supporters[i].email === email && detail.supporters[i].provider === provider) {
+                if (detail.supporters[i].user_id == user.id) {
                     detail.supporters[i].timestamp = Timestamp.now();
                     detail.supporters[i].amount = (parseFloat(detail.supporters[i].amount) + parseFloat(data.amount)).toString();
                     array = detail.supporters;
@@ -53,7 +56,7 @@ const DonateDetail = () => {
                 }
             }
             if (array.toString() === [].toString()) array = [...detail.supporters, {
-                identity: user['displayName'] ? user['displayName'] : "Anonymous",
+                identity: user.displayName ? user.displayName : "Anonymous",
                 user_id: user.id ? user.id : null,
                 provider: provider ? provider : null,
                 amount: data.amount,
@@ -100,14 +103,37 @@ const DonateDetail = () => {
     const [timeLeft, setTimeLeft] = useState({});
     const [images, setImages] = useState([]);
     useEffect(() => {
-        let result = [];
-        if (detail) {
-            result.push(detail.image);
-            for (let i in detail.images_ref) {
-                result.push(detail.images_ref[i]);
+        const imagesRef = () => {
+            let result = [];
+            if (detail) {
+                result.push(detail.image);
+                for (let i in detail.images_ref) {
+                    result.push(detail.images_ref[i]);
+                }
+                setImages(result);
             }
-            setImages(result);
         }
+        imagesRef();
+        const supportersRef = async () => {
+            let result = [];
+            if (detail) {
+                for (let i in detail.supporters) {
+                    let avatar = await getUserAvatar(detail.supporters[i].user_id);
+                    result.push({
+                        amount: detail.supporters[i].amount,
+                        identity: detail.supporters[i].identity,
+                        provider: detail.supporters[i].provider,
+                        timestamp: detail.supporters[i].timestamp,
+                        user_id: detail.supporters[i].user_id,
+                        avatar: avatar
+                    })
+                }
+            }
+            setSupporters(result);
+        }
+        supportersRef();
+        if (detail?.liked_user_id.includes(user.id)) setLikeStatus(true);
+        if (detail?.liked_user_id) setLikeCount(detail.liked_user_id.length);
     }, [detail])
     useEffect(() => {
         const calculateTimeLeft = (timestamp) => {
@@ -187,7 +213,39 @@ const DonateDetail = () => {
                                 </div>
                             </figcaption>
                         </section>
-                        <section className="flex p-[18px] items-center flex-col">
+                        <div className='p-[18px] pb-0 flex flex-row'>
+                            {user.id ? (
+                                <>
+                                    {likeStatus ?
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                dislikeEvent(id, type, user.id);
+                                                setLikeStatus(false);
+                                                setLikeCount(likeCount - 1);
+                                            }}
+                                            className="text-white w-full border-[1px] border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500 flex justify-center items-center">
+                                            <AiOutlineDislike size={25} />
+                                            Dislike
+                                        </button> :
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                likeEvent(id, type, user.id);
+                                                setLikeStatus(true);
+                                                setLikeCount(likeCount + 1);
+                                            }}
+                                            className="text-white w-full border-[1px] border-[#3d4f7c] rounded-full cursor-pointer hover:bg-sky-500 flex justify-center items-center">
+                                            <AiOutlineLike size={25} />
+                                            Like
+                                        </button>}
+                                </>
+                            ) : ''}
+                            <div className="text-white w-full border-[1px] border-[#3d4f7c] rounded-full flex justify-center items-center">
+                                Số lượt thích: {likeCount}
+                            </div>
+                        </div>
+                        <section className="flex p-[18px] pt-0 items-center flex-col">
                             {!currentAccount ? (
                                 <button
                                     type="button"
@@ -276,7 +334,7 @@ const DonateDetail = () => {
                                         </div>
                                     )}
                                 </figcaption>
-                            </section> :<></>}
+                            </section> : <></>}
                     </div>
                     <div className="lg:col-span-2 text-white">
                         <div className="inline-flex justify-center items-center w-full">
@@ -321,14 +379,14 @@ const DonateDetail = () => {
                                 <span className="float-right">{detail.supporters.length}</span>
                             </header>
                             <ul>
-                                {detail.supporters.sort(function (a, b) { return parseFloat(b.amount) - parseFloat(a.amount) }).map((item, index) => {
+                                {supporters.sort(function (a, b) { return parseFloat(b.amount) - parseFloat(a.amount) }).map((item, index) => {
                                     return (
                                         <li className="list-none flex w-full max-h-[100px]" key={index}>
                                             <div className="py-[15px] mr-[10px] basis-9">
-                                                <img src={avatar} alt="true" />
+                                                <img src={item.avatar} alt="true" className='rounded-full w-8 h-8' />
                                             </div>
                                             <section className="py-[15px] w-full flex flex-col">
-                                                <h2 className="font-normal text-white">
+                                                <h2 className="font-normal text-white hover:text-sky-500 cursor-pointer" onClick={() => navigate(`/user_profile/${item.user_id}`)}>
                                                     {item.identity}
                                                     <span className="float-right text-slate-400">{CalcTimeDiff(item.timestamp)}</span>
                                                 </h2>
