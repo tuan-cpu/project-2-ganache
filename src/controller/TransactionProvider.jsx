@@ -117,10 +117,6 @@ export const TransactionProvider = ({ children }) => {
         }
     }
 
-    const createCoupon = async () => {
-        const transactionContract = getEthereumContract();
-        return await transactionContract.createCoupon();
-    }
     useEffect(() => {
         checkIfWalletIsConnected();
         checkIfTransactionsExist();
@@ -129,7 +125,7 @@ export const TransactionProvider = ({ children }) => {
         <TransactionContext.Provider value={{
             connectWallet, currentAccount, formData,
             sendTransaction, handleChange, transactions,
-            isLoading, setFormData, createCoupon
+            isLoading, setFormData
         }}>
             {children}
         </TransactionContext.Provider>

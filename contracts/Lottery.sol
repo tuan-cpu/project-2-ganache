@@ -5,12 +5,12 @@ pragma solidity ^0.8.9;
 contract Lottery{
     struct Coupon {
         uint8 group;
-        // Add more properties as needed
+        string uid;
     }
 
     Coupon[] public couponList;
 
-    function createCoupon() public {
+    function createCoupon(string memory uid) public {
         uint256[] memory rates = new uint256[](7);
         rates[0] = 53;
         rates[1] = 20;
@@ -21,7 +21,7 @@ contract Lottery{
         rates[6] = 1;
 
         uint8 group = selectGroup(rates);
-        couponList.push(Coupon(group));
+        couponList.push(Coupon(group,uid));
     }
 
     function selectGroup(uint256[] memory rates) private view returns (uint8) {
