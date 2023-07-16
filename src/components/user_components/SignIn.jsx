@@ -56,7 +56,7 @@ const SignIn = () => {
     const handleGoogleSignIn = async () => {
         try {
             let response = await googleSignIn();
-            await addDataGoogleSignIn({email:response.user.email,provider:"Google",displayName:response.user.displayName, photoURL:response.user.photoURL})
+            await addDataGoogleSignIn({email:response.user.email,provider:"Google",displayName:response.user.displayName, photoURL:response.user.photoURL, uid: response.user.uid})
             navigate('/');
         } catch (error) {
             console.log(error);

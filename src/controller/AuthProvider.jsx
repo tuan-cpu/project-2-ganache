@@ -18,14 +18,10 @@ export const AuthProvider = ({children}) =>{
         await authInstance.signIn({ email, password });
     }
     const signUp = async ({ email, password }) =>{
-        await authInstance.signUp({ email, password });
+        return await authInstance.signUp({ email, password });
     }
     const googleSignIn = async () =>{
-        let response = await authInstance.googleSignIn();
-        sessionStorage.setItem('Auth Token', response.user.accessToken);
-        sessionStorage.setItem('Email', response.user.email);
-        sessionStorage.setItem('Provider', "Google");
-        return response;
+        return await authInstance.googleSignIn();
     }
     return (
         <AuthContext.Provider value={{signIn, signUp, googleSignIn, handleSignIn, handleSignUp, signInFormData, signUpFormData, user, setUser}}>

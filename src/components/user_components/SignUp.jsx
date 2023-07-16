@@ -1,14 +1,10 @@
-import { useState, React, useContext } from "react";
+import { useState, React } from "react";
 import { useAuthContext } from "../../controller/AuthProvider";
 import { AiOutlineCheckCircle, AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 import { validNumberOfCharacter, validLowerCharacter, validUpperCharacter, validNumber, validSpecialCharacter, validEmail, validPassword } from "../../common/utils/regex";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { NavLink, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { addDoc, collection } from "firebase/firestore"; 
-import { db, authentication } from "../../common/utils/firebase.js";
+import { useDataContext } from "../../controller/DataProvider";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
         placeholder={placeholder}
@@ -26,12 +22,13 @@ const CircleIcon = ({ currentState }) => {
     if (currentState === -1) return <AiOutlineExclamationCircle fontSize={17} color='#ff0000' />
 }
 const SignUp = () => {
-    const { signUpFormData, handleSignUp } = useAuthContext();
+    const { signUpFormData, handleSignUp, signUp } = useAuthContext();
+    const { addDataSignUp } = useDataContext();
     const [passwordState, setPasswordState] = useState({ lower: 0, upper: 0, special: 0, number: 0, char: 0 });
     const [nameState, setNameState] = useState({ first: true, last: true });
     const [emailState, setEmailState] = useState(true);
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         const { firstname, lastname, email, password } = signUpFormData;
         e.preventDefault();
         if (!firstname) setNameState((prevState) => ({ ...prevState, first: false }));
@@ -48,24 +45,9 @@ const SignUp = () => {
         else setPasswordState((prevState) => ({ ...prevState, number: -1 }))
         if (!validEmail.test(email)) setEmailState(false);
         if (validPassword.test(password) && validEmail.test(email)){
-            createUserWithEmailAndPassword(authentication, email, password)
-                .then((response) => {
-                    sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
-                }).catch((error) => {
-                    if (error.code === 'auth/email-already-in-use') {
-                        toast.error('Email Already in Use');
-                    }
-                });
-            addDoc(collection(db,"users"),{
-                email:email,
-                first_name:firstname,
-                last_name:lastname,
-                provider: "Self",
-                donation_detail: [],
-                role: 'user'
-            }).then(()=>{
-                navigate('/');
-            })
+            let uid = await signUp({email, password});
+            addDataSignUp({ firstname, lastname, email, uid })
+            .then(()=>navigate('/'))
         }
     }
     return (
@@ -132,7 +114,6 @@ const SignUp = () => {
                     <NavLink className="text-blue-500" to='/login'>Đăng nhập</NavLink>
                 </div>
             </div>
-            <ToastContainer/>
         </div>
     )
 }

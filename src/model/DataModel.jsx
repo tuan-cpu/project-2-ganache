@@ -3,24 +3,26 @@ import { db, storage } from "../common/utils/firebase";
 import { deleteObject, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 class DataModel {
-    async addDataGoogleSignIn({ email, provider, displayName, photoURL }) {
-        const coll = collection(db, "users");
-        const query_ = query(coll, where('email', '==', email), where('provider', '==', provider));
-        const snapshot = await getCountFromServer(query_);
-        if (snapshot.data().count === 0) await addDoc(collection(db, "users"), {
-            provider: provider,
-            email: email,
-            displayName: displayName,
-            donation_detail: [],
-            role: 'user',
-            avatar: photoURL,
-            verified: false,
-            displayTitle: 1
-        });
+    async addDataGoogleSignIn({ email, provider, displayName, photoURL, uid }) {
+        const docRef = doc(collection(db,'users'), uid);
+        const docSnap = await getDoc(docRef);
+        if(!docSnap.exists()){
+            await setDoc(docRef,{
+                provider: provider,
+                email: email,
+                displayName: displayName,
+                donation_detail: [],
+                role: 'user',
+                avatar: photoURL,
+                verified: false,
+                displayTitle: 1
+            })
+        }
     }
 
-    async addDataSignUp({ firstname, lastname, email }) {
-        await addDoc(collection(db, "users"), {
+    async addDataSignUp({ firstname, lastname, email, uid }) {
+        const docRef = doc(collection(db,"users"),uid);
+        await setDoc(docRef, {
             email: email,
             first_name: firstname,
             last_name: lastname,
@@ -30,7 +32,6 @@ class DataModel {
             verified: false,
             avatar: '',
             displayTitle: 1
-
         })
     }
 

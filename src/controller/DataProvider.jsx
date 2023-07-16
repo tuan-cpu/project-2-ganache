@@ -64,11 +64,11 @@ export const DataProvider = ({ children }) => {
         const result = await dataInstance.getAllWithdrawalRequest();
         setWithdrawalRequests(result);
     }
-    const addDataGoogleSignIn = async ({email,provider,displayName,photoURL})=>{
-        await dataInstance.addDataGoogleSignIn({email,provider,displayName,photoURL})
+    const addDataGoogleSignIn = async ({email,provider,displayName,photoURL,uid})=>{
+        await dataInstance.addDataGoogleSignIn({email,provider,displayName,photoURL,uid})
     };
-    const addDataSignUp = async ({ firstname, lastname, email }) =>{
-        await dataInstance.addDataSignUp({ firstname, lastname, email });
+    const addDataSignUp = async ({ firstname, lastname, email, uid }) =>{
+        await dataInstance.addDataSignUp({ firstname, lastname, email, uid });
     }
     const createEvent = async(data) =>{
         await dataInstance.createEventRequest(data);
