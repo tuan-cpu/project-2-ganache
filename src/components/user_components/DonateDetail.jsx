@@ -261,6 +261,7 @@ const DonateDetail = () => {
                                             type="button"
                                             onClick={() => {
                                                 if (!timerComponents.length && type != 'lifetime') alert("Sự kiện đã kết thúc!");
+                                                else if(Date.now() < detail.start.seconds * 1000) alert("Sự kiện chưa bắt đầu!");
                                                 else setSendFormShow(true)
                                             }}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
@@ -317,7 +318,7 @@ const DonateDetail = () => {
                                 <figcaption>
                                     {Date.now() < detail.start.seconds * 1000 ? (
                                         <div className='ml-4 p-4'>
-                                            <p className="text-red-500 text-3xl">Sự kiện chưa bắt đầu</p>
+                                            <p className="text-orange-500 text-3xl">Sự kiện chưa bắt đầu</p>
                                         </div>
                                     ) : (
                                         <div className='ml-4 p-4'>
