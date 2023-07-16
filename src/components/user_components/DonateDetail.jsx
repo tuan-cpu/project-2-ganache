@@ -132,7 +132,7 @@ const DonateDetail = () => {
             setSupporters(result);
         }
         supportersRef();
-        if (detail?.liked_user_id.includes(user.id)) setLikeStatus(true);
+        if (detail?.liked_user_id?.includes(user.id)) setLikeStatus(true);
         if (detail?.liked_user_id) setLikeCount(detail.liked_user_id.length);
     }, [detail])
     useEffect(() => {
@@ -224,7 +224,7 @@ const DonateDetail = () => {
                                                 setLikeStatus(false);
                                                 setLikeCount(likeCount - 1);
                                             }}
-                                            className="text-white w-full border-[1px] border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500 flex justify-center items-center">
+                                            className="text-white w-full border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500 flex justify-center items-center">
                                             <AiOutlineDislike size={25} />
                                             Dislike
                                         </button> :
@@ -235,7 +235,7 @@ const DonateDetail = () => {
                                                 setLikeStatus(true);
                                                 setLikeCount(likeCount + 1);
                                             }}
-                                            className="text-white w-full border-[1px] border-[#3d4f7c] rounded-full cursor-pointer hover:bg-sky-500 flex justify-center items-center">
+                                            className="text-white w-full border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-sky-500 flex justify-center items-center">
                                             <AiOutlineLike size={25} />
                                             Like
                                         </button>}
