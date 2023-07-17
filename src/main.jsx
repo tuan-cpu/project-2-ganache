@@ -9,12 +9,12 @@ import { AuthProvider } from './controller/AuthProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
-  <TransactionProvider>
-    <ContextProvider>
-      <DataProvider>
-        <App />
-      </DataProvider>
-    </ContextProvider>
-  </TransactionProvider>
+    <TransactionProvider>
+      <ContextProvider>
+        <DataProvider>
+          <App />
+        </DataProvider>
+      </ContextProvider>
+    </TransactionProvider>
   </AuthProvider>
 )
