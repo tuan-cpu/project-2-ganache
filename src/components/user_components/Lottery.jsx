@@ -9,10 +9,8 @@ const button = document.getElementById('lotteryButton');
 
 button?.addEventListener('click', () => {
   button.disabled = true; // Disable the button
-  button.classList.add('bg-slate-400')
   setTimeout(() => {
     button.disabled = false; // Enable the button after 5 minutes
-    button.classList.remove('bg-slate-400')
   }, 5 * 60 * 1000); // 5 minutes in milliseconds
 });
 
@@ -89,7 +87,7 @@ const Lottery = () => {
                     <div className='py-4'>
                         <button type='button' id='lotteryButton'
                             style={{ backgroundColor: currentColor, color: 'white', borderRadius: '10px' }}
-                            className={'text-md p-3 hover:drop-shadow-xl'} onClick={() => {
+                            className={'text-md p-3 hover:drop-shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed'} onClick={() => {
                                 createCoupon(user.id, selectedPoolID, selectedPool.entry_value);
                                 alert('Làm lạnh 5 phút')
                             }} >
