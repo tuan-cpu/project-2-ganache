@@ -20,9 +20,6 @@ const MarketManagement = () => {
   useEffect(()=>{
     getAllOrder();
   },[]);
-  useEffect(()=>{
-    console.log(orders);
-  },[orders])
   const getTotalValue = (array) =>{
     let sum = 0;
     for(let i in array){

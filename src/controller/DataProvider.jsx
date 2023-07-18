@@ -14,6 +14,7 @@ export const DataProvider = ({ children }) => {
     const [orders, setOrders] = useState([]);
     const [savedAuctionItems, setSavedAuctionItems] = useState([]);
     const [savedMarketItems, setSavedMarketItems] = useState([]);
+    const [savedLotteryItems, setSavedLotteryItems] = useState([]);
     const getAllUsers = async () => {
         const { Users, Admins } = await dataInstance.getAllUser();
         setUsers(Users);
@@ -122,7 +123,8 @@ export const DataProvider = ({ children }) => {
     const getAllMarketItems = async(type) => {
         let result = await dataInstance.getAllMarketItems(type);
         if(type === "auction") setSavedAuctionItems(result);
-        else setSavedMarketItems(result);
+        if(type === "market") setSavedMarketItems(result);
+        if(type === "lottery") setSavedLotteryItems(result);
     }
     const updateAuctionItem = async(id) => {
         await dataInstance.updateAuctionItem(id);
@@ -146,7 +148,8 @@ export const DataProvider = ({ children }) => {
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
             createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, 
             uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
-            savedAuctionItems, savedMarketItems, updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent
+            savedAuctionItems, savedMarketItems, savedLotteryItems,
+             updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent
             }}>
             {children}
         </DataContext.Provider>

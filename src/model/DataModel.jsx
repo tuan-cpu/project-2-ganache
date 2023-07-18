@@ -164,7 +164,7 @@ class DataModel {
         const querySnapshot = await getDocs(ref);
         let result = [];
         querySnapshot.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data() });
+            result.push({ id: parseInt(doc.id), data: doc.data() });
         });
         return result;
     }
