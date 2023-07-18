@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import { lotteryContractAbi, lotteryContractAddress } from '../common/utils/constants';
 import LotteryModel from '../model/LotteryModel';
@@ -17,20 +17,22 @@ const getEthereumContract = () => {
 
 export const LotteryProvider = ({children}) =>{
     const lotteryContract = getEthereumContract();
-    const createCoupon = async(uid) =>{
-        return await dataInstance.createCoupon(lotteryContract, uid);
+    const [pools, setPools] = useState([]);
+    const createCoupon = async(uid, pool_id, amount) =>{
+        return await dataInstance.createCoupon(lotteryContract, uid, pool_id, amount);
     }
     const addPrize = async(input_proportions,input_items,entry_value) =>{
         await dataInstance.addPrize(lotteryContract,input_proportions,input_items,entry_value);
     }
     const getPools = async() =>{
-        return await dataInstance.getPools(lotteryContract);
+        const result = await dataInstance.getPools(lotteryContract);
+        setPools(result);
     }
     const getCouponList = async() => {
         return await dataInstance.getCouponList(lotteryContract);
     }
     return(
-        <LotteryContext.Provider value={{ createCoupon, addPrize, getCouponList, getPools }}>
+        <LotteryContext.Provider value={{ createCoupon, addPrize, getCouponList, getPools, pools }}>
             {children}
         </LotteryContext.Provider>
     )

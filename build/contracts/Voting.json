@@ -263,7 +263,7 @@
                 }
               ]
             },
-            "name": "array_length_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr",
+            "name": "array_length_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -349,7 +349,7 @@
                 }
               ]
             },
-            "name": "array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack",
+            "name": "array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -432,7 +432,7 @@
                 }
               ]
             },
-            "name": "array_dataslot_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr",
+            "name": "array_dataslot_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -1778,7 +1778,7 @@
                 }
               ]
             },
-            "name": "abi_encode_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr",
+            "name": "abi_encode_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -1826,7 +1826,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "abi_encode_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr",
+                      "name": "abi_encode_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr",
                       "nodeType": "YulIdentifier",
                       "src": "3026:85:4"
                     },
@@ -1843,7 +1843,7 @@
                 }
               ]
             },
-            "name": "abi_encodeUpdatedPos_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr",
+            "name": "abi_encodeUpdatedPos_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -1910,7 +1910,7 @@
                 }
               ]
             },
-            "name": "array_nextElement_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr",
+            "name": "array_nextElement_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -1947,7 +1947,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "array_length_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr",
+                      "name": "array_length_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr",
                       "nodeType": "YulIdentifier",
                       "src": "3543:73:4"
                     },
@@ -1980,7 +1980,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack",
+                      "name": "array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack",
                       "nodeType": "YulIdentifier",
                       "src": "3639:99:4"
                     },
@@ -2075,7 +2075,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "array_dataslot_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr",
+                      "name": "array_dataslot_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr",
                       "nodeType": "YulIdentifier",
                       "src": "3852:75:4"
                     },
@@ -2199,7 +2199,7 @@
                             }
                           ],
                           "functionName": {
-                            "name": "abi_encodeUpdatedPos_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr",
+                            "name": "abi_encodeUpdatedPos_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr",
                             "nodeType": "YulIdentifier",
                             "src": "4148:95:4"
                           },
@@ -2226,7 +2226,7 @@
                             }
                           ],
                           "functionName": {
-                            "name": "array_nextElement_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr",
+                            "name": "array_nextElement_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr",
                             "nodeType": "YulIdentifier",
                             "src": "4287:78:4"
                           },
@@ -2400,7 +2400,7 @@
                 }
               ]
             },
-            "name": "abi_encode_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack",
+            "name": "abi_encode_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -2541,7 +2541,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "abi_encode_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack",
+                      "name": "abi_encode_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack",
                       "nodeType": "YulIdentifier",
                       "src": "4778:145:4"
                     },
@@ -2558,7 +2558,7 @@
                 }
               ]
             },
-            "name": "abi_encode_tuple_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr__fromStack_reversed",
+            "name": "abi_encode_tuple_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr__fromStack_reversed",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -5879,7 +5879,7 @@
                 }
               ]
             },
-            "name": "array_length_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr",
+            "name": "array_length_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -5965,7 +5965,7 @@
                 }
               ]
             },
-            "name": "array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack",
+            "name": "array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -6048,7 +6048,7 @@
                 }
               ]
             },
-            "name": "array_dataslot_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr",
+            "name": "array_dataslot_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -6710,7 +6710,7 @@
                 }
               ]
             },
-            "name": "abi_encode_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr",
+            "name": "abi_encode_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -6758,7 +6758,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "abi_encode_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr",
+                      "name": "abi_encode_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr",
                       "nodeType": "YulIdentifier",
                       "src": "13482:89:4"
                     },
@@ -6775,7 +6775,7 @@
                 }
               ]
             },
-            "name": "abi_encodeUpdatedPos_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr",
+            "name": "abi_encodeUpdatedPos_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -6842,7 +6842,7 @@
                 }
               ]
             },
-            "name": "array_nextElement_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr",
+            "name": "array_nextElement_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -6879,7 +6879,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "array_length_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr",
+                      "name": "array_length_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr",
                       "nodeType": "YulIdentifier",
                       "src": "14013:75:4"
                     },
@@ -6912,7 +6912,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack",
+                      "name": "array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack",
                       "nodeType": "YulIdentifier",
                       "src": "14111:101:4"
                     },
@@ -7007,7 +7007,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "array_dataslot_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr",
+                      "name": "array_dataslot_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr",
                       "nodeType": "YulIdentifier",
                       "src": "14326:77:4"
                     },
@@ -7131,7 +7131,7 @@
                             }
                           ],
                           "functionName": {
-                            "name": "abi_encodeUpdatedPos_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr",
+                            "name": "abi_encodeUpdatedPos_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr",
                             "nodeType": "YulIdentifier",
                             "src": "14624:99:4"
                           },
@@ -7158,7 +7158,7 @@
                             }
                           ],
                           "functionName": {
-                            "name": "array_nextElement_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr",
+                            "name": "array_nextElement_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr",
                             "nodeType": "YulIdentifier",
                             "src": "14767:80:4"
                           },
@@ -7332,7 +7332,7 @@
                 }
               ]
             },
-            "name": "abi_encode_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack",
+            "name": "abi_encode_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -7473,7 +7473,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "abi_encode_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack",
+                      "name": "abi_encode_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack",
                       "nodeType": "YulIdentifier",
                       "src": "15264:149:4"
                     },
@@ -7490,7 +7490,7 @@
                 }
               ]
             },
-            "name": "abi_encode_tuple_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr__fromStack_reversed",
+            "name": "abi_encode_tuple_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr__fromStack_reversed",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -10317,7 +10317,7 @@
           }
         ]
       },
-      "contents": "{\n\n    function array_length_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_dataslot_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr(ptr) -> data {\n        data := ptr\n\n        data := add(ptr, 0x20)\n\n    }\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function copy_memory_to_memory(src, dst, length) {\n        let i := 0\n        for { } lt(i, length) { i := add(i, 32) }\n        {\n            mstore(add(dst, i), mload(add(src, i)))\n        }\n        if gt(i, length)\n        {\n            // clear end\n            mstore(add(dst, length), 0)\n        }\n    }\n\n    function round_up_to_mul_of_32(value) -> result {\n        result := and(add(value, 31), not(31))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function abi_encode_t_uint256_to_t_uint256(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    // struct Voting.Candidate -> struct Voting.Candidate\n    function abi_encode_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr(value, pos)  -> end  {\n        let tail := add(pos, 0x80)\n\n        {\n            // name\n\n            let memberValue0 := mload(add(value, 0x00))\n\n            mstore(add(pos, 0x00), sub(tail, pos))\n            tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(memberValue0, tail)\n\n        }\n\n        {\n            // _userIndex\n\n            let memberValue0 := mload(add(value, 0x20))\n\n            mstore(add(pos, 0x20), sub(tail, pos))\n            tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(memberValue0, tail)\n\n        }\n\n        {\n            // voteCount\n\n            let memberValue0 := mload(add(value, 0x40))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x40))\n        }\n\n        {\n            // _eventIndex\n\n            let memberValue0 := mload(add(value, 0x60))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x60))\n        }\n\n        end := tail\n    }\n\n    function abi_encodeUpdatedPos_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr(value0, pos) -> updatedPos {\n        updatedPos := abi_encode_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr(value0, pos)\n    }\n\n    function array_nextElement_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr(ptr) -> next {\n        next := add(ptr, 0x20)\n    }\n\n    // struct Voting.Candidate[] -> struct Voting.Candidate[]\n    function abi_encode_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack(value, pos)  -> end  {\n        let length := array_length_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack(pos, length)\n        let headStart := pos\n        let tail := add(pos, mul(length, 0x20))\n        let baseRef := array_dataslot_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr(value)\n        let srcPtr := baseRef\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n            mstore(pos, sub(tail, headStart))\n            let elementValue0 := mload(srcPtr)\n            tail := abi_encodeUpdatedPos_t_struct$_Candidate_$473_memory_ptr_to_t_struct$_Candidate_$473_memory_ptr(elementValue0, tail)\n            srcPtr := array_nextElement_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr(srcPtr)\n            pos := add(pos, 0x20)\n        }\n        pos := tail\n        end := pos\n    }\n\n    function abi_encode_tuple_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() {\n        revert(0, 0)\n    }\n\n    function revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() {\n        revert(0, 0)\n    }\n\n    function panic_error_0x41() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x41)\n        revert(0, 0x24)\n    }\n\n    function finalize_allocation(memPtr, size) {\n        let newFreePtr := add(memPtr, round_up_to_mul_of_32(size))\n        // protect against overflow\n        if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }\n        mstore(64, newFreePtr)\n    }\n\n    function allocate_memory(size) -> memPtr {\n        memPtr := allocate_unbounded()\n        finalize_allocation(memPtr, size)\n    }\n\n    function array_allocation_size_t_string_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := round_up_to_mul_of_32(length)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function copy_calldata_to_memory(src, dst, length) {\n        calldatacopy(dst, src, length)\n        // clear end\n        mstore(add(dst, length), 0)\n    }\n\n    function abi_decode_available_length_t_string_memory_ptr(src, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_string_memory_ptr(length))\n        mstore(array, length)\n        let dst := add(array, 0x20)\n        if gt(add(src, length), end) { revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() }\n        copy_calldata_to_memory(src, dst, length)\n    }\n\n    // string\n    function abi_decode_t_string_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_string_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_string_memory_ptrt_string_memory_ptrt_uint256(headStart, dataEnd) -> value0, value1, value2 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0 := abi_decode_t_string_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_string_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_decode_tuple_t_uint256t_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function abi_encode_t_address_to_t_address_fromStack(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    function abi_encode_tuple_t_string_memory_ptr_t_uint256_t_uint256_t_address_t_uint256__to_t_string_memory_ptr_t_uint256_t_uint256_t_address_t_uint256__fromStack_reversed(headStart , value4, value3, value2, value1, value0) -> tail {\n        tail := add(headStart, 160)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value0,  tail)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value1,  add(headStart, 32))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value2,  add(headStart, 64))\n\n        abi_encode_t_address_to_t_address_fromStack(value3,  add(headStart, 96))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value4,  add(headStart, 128))\n\n    }\n\n    function array_length_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_dataslot_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr(ptr) -> data {\n        data := ptr\n\n        data := add(ptr, 0x20)\n\n    }\n\n    function abi_encode_t_address_to_t_address(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    // struct Voting.VotingEvent -> struct Voting.VotingEvent\n    function abi_encode_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr(value, pos)  -> end  {\n        let tail := add(pos, 0xa0)\n\n        {\n            // name\n\n            let memberValue0 := mload(add(value, 0x00))\n\n            mstore(add(pos, 0x00), sub(tail, pos))\n            tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(memberValue0, tail)\n\n        }\n\n        {\n            // votingStart\n\n            let memberValue0 := mload(add(value, 0x20))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x20))\n        }\n\n        {\n            // votingEnd\n\n            let memberValue0 := mload(add(value, 0x40))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x40))\n        }\n\n        {\n            // owner\n\n            let memberValue0 := mload(add(value, 0x60))\n            abi_encode_t_address_to_t_address(memberValue0, add(pos, 0x60))\n        }\n\n        {\n            // id\n\n            let memberValue0 := mload(add(value, 0x80))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x80))\n        }\n\n        end := tail\n    }\n\n    function abi_encodeUpdatedPos_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr(value0, pos) -> updatedPos {\n        updatedPos := abi_encode_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr(value0, pos)\n    }\n\n    function array_nextElement_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr(ptr) -> next {\n        next := add(ptr, 0x20)\n    }\n\n    // struct Voting.VotingEvent[] -> struct Voting.VotingEvent[]\n    function abi_encode_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack(value, pos)  -> end  {\n        let length := array_length_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack(pos, length)\n        let headStart := pos\n        let tail := add(pos, mul(length, 0x20))\n        let baseRef := array_dataslot_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr(value)\n        let srcPtr := baseRef\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n            mstore(pos, sub(tail, headStart))\n            let elementValue0 := mload(srcPtr)\n            tail := abi_encodeUpdatedPos_t_struct$_VotingEvent_$484_memory_ptr_to_t_struct$_VotingEvent_$484_memory_ptr(elementValue0, tail)\n            srcPtr := array_nextElement_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr(srcPtr)\n            pos := add(pos, 0x20)\n        }\n        pos := tail\n        end := pos\n    }\n\n    function abi_encode_tuple_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function cleanup_t_bool(value) -> cleaned {\n        cleaned := iszero(iszero(value))\n    }\n\n    function abi_encode_t_bool_to_t_bool_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bool(value))\n    }\n\n    function abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bool_to_t_bool_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_decode_tuple_t_string_memory_ptrt_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0 := abi_decode_t_string_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function panic_error_0x32() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x32)\n        revert(0, 0x24)\n    }\n\n    function store_literal_in_memory_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143(memPtr) {\n\n        mstore(add(memPtr, 0), \"Voting has not started yet.\")\n\n    }\n\n    function abi_encode_t_stringliteral_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 27)\n        store_literal_in_memory_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_tuple_t_stringliteral_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function checked_sub_t_uint256(x, y) -> diff {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        if lt(x, y) { panic_error_0x11() }\n\n        diff := sub(x, y)\n    }\n\n    function store_literal_in_memory_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4(memPtr) {\n\n        mstore(add(memPtr, 0), \"Invalid event index\")\n\n    }\n\n    function abi_encode_t_stringliteral_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 19)\n        store_literal_in_memory_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_tuple_t_stringliteral_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function store_literal_in_memory_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086(memPtr) {\n\n        mstore(add(memPtr, 0), \"Voter has already voted in this \")\n\n        mstore(add(memPtr, 32), \"event\")\n\n    }\n\n    function abi_encode_t_stringliteral_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 37)\n        store_literal_in_memory_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_tuple_t_stringliteral_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function increment_t_uint256(value) -> ret {\n        value := cleanup_t_uint256(value)\n        if eq(value, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff) { panic_error_0x11() }\n        ret := add(value, 1)\n    }\n\n    function checked_mul_t_uint256(x, y) -> product {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x != 0 and y > (maxValue / x)\n        if and(iszero(iszero(x)), gt(y, div(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, x))) { panic_error_0x11() }\n\n        product := mul(x, y)\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x > (maxValue - y)\n        if gt(x, sub(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, y)) { panic_error_0x11() }\n\n        sum := add(x, y)\n    }\n\n}\n",
+      "contents": "{\n\n    function array_length_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_dataslot_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr(ptr) -> data {\n        data := ptr\n\n        data := add(ptr, 0x20)\n\n    }\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function copy_memory_to_memory(src, dst, length) {\n        let i := 0\n        for { } lt(i, length) { i := add(i, 32) }\n        {\n            mstore(add(dst, i), mload(add(src, i)))\n        }\n        if gt(i, length)\n        {\n            // clear end\n            mstore(add(dst, length), 0)\n        }\n    }\n\n    function round_up_to_mul_of_32(value) -> result {\n        result := and(add(value, 31), not(31))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function abi_encode_t_uint256_to_t_uint256(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    // struct Voting.Candidate -> struct Voting.Candidate\n    function abi_encode_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr(value, pos)  -> end  {\n        let tail := add(pos, 0x80)\n\n        {\n            // name\n\n            let memberValue0 := mload(add(value, 0x00))\n\n            mstore(add(pos, 0x00), sub(tail, pos))\n            tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(memberValue0, tail)\n\n        }\n\n        {\n            // _userIndex\n\n            let memberValue0 := mload(add(value, 0x20))\n\n            mstore(add(pos, 0x20), sub(tail, pos))\n            tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(memberValue0, tail)\n\n        }\n\n        {\n            // voteCount\n\n            let memberValue0 := mload(add(value, 0x40))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x40))\n        }\n\n        {\n            // _eventIndex\n\n            let memberValue0 := mload(add(value, 0x60))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x60))\n        }\n\n        end := tail\n    }\n\n    function abi_encodeUpdatedPos_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr(value0, pos) -> updatedPos {\n        updatedPos := abi_encode_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr(value0, pos)\n    }\n\n    function array_nextElement_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr(ptr) -> next {\n        next := add(ptr, 0x20)\n    }\n\n    // struct Voting.Candidate[] -> struct Voting.Candidate[]\n    function abi_encode_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack(value, pos)  -> end  {\n        let length := array_length_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack(pos, length)\n        let headStart := pos\n        let tail := add(pos, mul(length, 0x20))\n        let baseRef := array_dataslot_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr(value)\n        let srcPtr := baseRef\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n            mstore(pos, sub(tail, headStart))\n            let elementValue0 := mload(srcPtr)\n            tail := abi_encodeUpdatedPos_t_struct$_Candidate_$569_memory_ptr_to_t_struct$_Candidate_$569_memory_ptr(elementValue0, tail)\n            srcPtr := array_nextElement_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr(srcPtr)\n            pos := add(pos, 0x20)\n        }\n        pos := tail\n        end := pos\n    }\n\n    function abi_encode_tuple_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() {\n        revert(0, 0)\n    }\n\n    function revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() {\n        revert(0, 0)\n    }\n\n    function panic_error_0x41() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x41)\n        revert(0, 0x24)\n    }\n\n    function finalize_allocation(memPtr, size) {\n        let newFreePtr := add(memPtr, round_up_to_mul_of_32(size))\n        // protect against overflow\n        if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }\n        mstore(64, newFreePtr)\n    }\n\n    function allocate_memory(size) -> memPtr {\n        memPtr := allocate_unbounded()\n        finalize_allocation(memPtr, size)\n    }\n\n    function array_allocation_size_t_string_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := round_up_to_mul_of_32(length)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function copy_calldata_to_memory(src, dst, length) {\n        calldatacopy(dst, src, length)\n        // clear end\n        mstore(add(dst, length), 0)\n    }\n\n    function abi_decode_available_length_t_string_memory_ptr(src, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_string_memory_ptr(length))\n        mstore(array, length)\n        let dst := add(array, 0x20)\n        if gt(add(src, length), end) { revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() }\n        copy_calldata_to_memory(src, dst, length)\n    }\n\n    // string\n    function abi_decode_t_string_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_string_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_string_memory_ptrt_string_memory_ptrt_uint256(headStart, dataEnd) -> value0, value1, value2 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0 := abi_decode_t_string_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_string_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_decode_tuple_t_uint256t_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function abi_encode_t_address_to_t_address_fromStack(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    function abi_encode_tuple_t_string_memory_ptr_t_uint256_t_uint256_t_address_t_uint256__to_t_string_memory_ptr_t_uint256_t_uint256_t_address_t_uint256__fromStack_reversed(headStart , value4, value3, value2, value1, value0) -> tail {\n        tail := add(headStart, 160)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value0,  tail)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value1,  add(headStart, 32))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value2,  add(headStart, 64))\n\n        abi_encode_t_address_to_t_address_fromStack(value3,  add(headStart, 96))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value4,  add(headStart, 128))\n\n    }\n\n    function array_length_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_dataslot_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr(ptr) -> data {\n        data := ptr\n\n        data := add(ptr, 0x20)\n\n    }\n\n    function abi_encode_t_address_to_t_address(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    // struct Voting.VotingEvent -> struct Voting.VotingEvent\n    function abi_encode_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr(value, pos)  -> end  {\n        let tail := add(pos, 0xa0)\n\n        {\n            // name\n\n            let memberValue0 := mload(add(value, 0x00))\n\n            mstore(add(pos, 0x00), sub(tail, pos))\n            tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr(memberValue0, tail)\n\n        }\n\n        {\n            // votingStart\n\n            let memberValue0 := mload(add(value, 0x20))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x20))\n        }\n\n        {\n            // votingEnd\n\n            let memberValue0 := mload(add(value, 0x40))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x40))\n        }\n\n        {\n            // owner\n\n            let memberValue0 := mload(add(value, 0x60))\n            abi_encode_t_address_to_t_address(memberValue0, add(pos, 0x60))\n        }\n\n        {\n            // id\n\n            let memberValue0 := mload(add(value, 0x80))\n            abi_encode_t_uint256_to_t_uint256(memberValue0, add(pos, 0x80))\n        }\n\n        end := tail\n    }\n\n    function abi_encodeUpdatedPos_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr(value0, pos) -> updatedPos {\n        updatedPos := abi_encode_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr(value0, pos)\n    }\n\n    function array_nextElement_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr(ptr) -> next {\n        next := add(ptr, 0x20)\n    }\n\n    // struct Voting.VotingEvent[] -> struct Voting.VotingEvent[]\n    function abi_encode_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack(value, pos)  -> end  {\n        let length := array_length_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack(pos, length)\n        let headStart := pos\n        let tail := add(pos, mul(length, 0x20))\n        let baseRef := array_dataslot_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr(value)\n        let srcPtr := baseRef\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n            mstore(pos, sub(tail, headStart))\n            let elementValue0 := mload(srcPtr)\n            tail := abi_encodeUpdatedPos_t_struct$_VotingEvent_$580_memory_ptr_to_t_struct$_VotingEvent_$580_memory_ptr(elementValue0, tail)\n            srcPtr := array_nextElement_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr(srcPtr)\n            pos := add(pos, 0x20)\n        }\n        pos := tail\n        end := pos\n    }\n\n    function abi_encode_tuple_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr__to_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_to_t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function cleanup_t_bool(value) -> cleaned {\n        cleaned := iszero(iszero(value))\n    }\n\n    function abi_encode_t_bool_to_t_bool_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bool(value))\n    }\n\n    function abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bool_to_t_bool_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_decode_tuple_t_string_memory_ptrt_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0 := abi_decode_t_string_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function panic_error_0x32() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x32)\n        revert(0, 0x24)\n    }\n\n    function store_literal_in_memory_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143(memPtr) {\n\n        mstore(add(memPtr, 0), \"Voting has not started yet.\")\n\n    }\n\n    function abi_encode_t_stringliteral_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 27)\n        store_literal_in_memory_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_tuple_t_stringliteral_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_f3daac49d07fe16300fc24fa34a8b5e7c98844b199f978023fbd5c6eb41c3143_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function checked_sub_t_uint256(x, y) -> diff {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        if lt(x, y) { panic_error_0x11() }\n\n        diff := sub(x, y)\n    }\n\n    function store_literal_in_memory_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4(memPtr) {\n\n        mstore(add(memPtr, 0), \"Invalid event index\")\n\n    }\n\n    function abi_encode_t_stringliteral_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 19)\n        store_literal_in_memory_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_tuple_t_stringliteral_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_88fd305ab816357a3f8ea604066d6249c5e9fd09ae5f17d76d07e573468e3fe4_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function store_literal_in_memory_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086(memPtr) {\n\n        mstore(add(memPtr, 0), \"Voter has already voted in this \")\n\n        mstore(add(memPtr, 32), \"event\")\n\n    }\n\n    function abi_encode_t_stringliteral_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 37)\n        store_literal_in_memory_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_tuple_t_stringliteral_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_85da681b6d7dd8c17c1052ceed112a0a329deeae9daad61340ad673f7bbd3086_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function increment_t_uint256(value) -> ret {\n        value := cleanup_t_uint256(value)\n        if eq(value, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff) { panic_error_0x11() }\n        ret := add(value, 1)\n    }\n\n    function checked_mul_t_uint256(x, y) -> product {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x != 0 and y > (maxValue / x)\n        if and(iszero(iszero(x)), gt(y, div(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, x))) { panic_error_0x11() }\n\n        product := mul(x, y)\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x > (maxValue - y)\n        if gt(x, sub(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, y)) { panic_error_0x11() }\n\n        sum := add(x, y)\n    }\n\n}\n",
       "id": 4,
       "language": "Yul",
       "name": "#utility.yul"
@@ -10331,15 +10331,15 @@
     "absolutePath": "project:/contracts/Voting.sol",
     "exportedSymbols": {
       "Voting": [
-        730
+        826
       ]
     },
-    "id": 731,
+    "id": 827,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 464,
+        "id": 560,
         "literals": [
           "solidity",
           "^",
@@ -10356,9 +10356,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 730,
+        "id": 826,
         "linearizedBaseContracts": [
-          730
+          826
         ],
         "name": "Voting",
         "nameLocation": "78:6:3",
@@ -10366,16 +10366,16 @@
         "nodes": [
           {
             "canonicalName": "Voting.Candidate",
-            "id": 473,
+            "id": 569,
             "members": [
               {
                 "constant": false,
-                "id": 466,
+                "id": 562,
                 "mutability": "mutable",
                 "name": "name",
                 "nameLocation": "144:4:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 473,
+                "scope": 569,
                 "src": "137:11:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10384,7 +10384,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 465,
+                  "id": 561,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "137:6:3",
@@ -10397,12 +10397,12 @@
               },
               {
                 "constant": false,
-                "id": 468,
+                "id": 564,
                 "mutability": "mutable",
                 "name": "_userIndex",
                 "nameLocation": "166:10:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 473,
+                "scope": 569,
                 "src": "159:17:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10411,7 +10411,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 467,
+                  "id": 563,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "159:6:3",
@@ -10424,12 +10424,12 @@
               },
               {
                 "constant": false,
-                "id": 470,
+                "id": 566,
                 "mutability": "mutable",
                 "name": "voteCount",
                 "nameLocation": "195:9:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 473,
+                "scope": 569,
                 "src": "187:17:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10438,7 +10438,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 469,
+                  "id": 565,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "187:7:3",
@@ -10451,12 +10451,12 @@
               },
               {
                 "constant": false,
-                "id": 472,
+                "id": 568,
                 "mutability": "mutable",
                 "name": "_eventIndex",
                 "nameLocation": "220:11:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 473,
+                "scope": 569,
                 "src": "215:16:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10465,7 +10465,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 471,
+                  "id": 567,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "215:4:3",
@@ -10480,22 +10480,22 @@
             "name": "Candidate",
             "nameLocation": "116:9:3",
             "nodeType": "StructDefinition",
-            "scope": 730,
+            "scope": 826,
             "src": "109:130:3",
             "visibility": "public"
           },
           {
             "canonicalName": "Voting.VotingEvent",
-            "id": 484,
+            "id": 580,
             "members": [
               {
                 "constant": false,
-                "id": 475,
+                "id": 571,
                 "mutability": "mutable",
                 "name": "name",
                 "nameLocation": "284:4:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 484,
+                "scope": 580,
                 "src": "277:11:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10504,7 +10504,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 474,
+                  "id": 570,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "277:6:3",
@@ -10517,12 +10517,12 @@
               },
               {
                 "constant": false,
-                "id": 477,
+                "id": 573,
                 "mutability": "mutable",
                 "name": "votingStart",
                 "nameLocation": "307:11:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 484,
+                "scope": 580,
                 "src": "299:19:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10531,7 +10531,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 476,
+                  "id": 572,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "299:7:3",
@@ -10544,12 +10544,12 @@
               },
               {
                 "constant": false,
-                "id": 479,
+                "id": 575,
                 "mutability": "mutable",
                 "name": "votingEnd",
                 "nameLocation": "337:9:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 484,
+                "scope": 580,
                 "src": "329:17:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10558,7 +10558,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 478,
+                  "id": 574,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "329:7:3",
@@ -10571,12 +10571,12 @@
               },
               {
                 "constant": false,
-                "id": 481,
+                "id": 577,
                 "mutability": "mutable",
                 "name": "owner",
                 "nameLocation": "365:5:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 484,
+                "scope": 580,
                 "src": "357:13:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10585,7 +10585,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 480,
+                  "id": 576,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "357:7:3",
@@ -10599,12 +10599,12 @@
               },
               {
                 "constant": false,
-                "id": 483,
+                "id": 579,
                 "mutability": "mutable",
                 "name": "id",
                 "nameLocation": "386:2:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 484,
+                "scope": 580,
                 "src": "381:7:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10613,7 +10613,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 482,
+                  "id": 578,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "381:4:3",
@@ -10628,22 +10628,22 @@
             "name": "VotingEvent",
             "nameLocation": "254:11:3",
             "nodeType": "StructDefinition",
-            "scope": 730,
+            "scope": 826,
             "src": "247:149:3",
             "visibility": "public"
           },
           {
             "canonicalName": "Voting.VoterAndEvents",
-            "id": 490,
+            "id": 586,
             "members": [
               {
                 "constant": false,
-                "id": 486,
+                "id": 582,
                 "mutability": "mutable",
                 "name": "voter_address",
                 "nameLocation": "443:13:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 490,
+                "scope": 586,
                 "src": "435:21:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10652,7 +10652,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 485,
+                  "id": 581,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "435:7:3",
@@ -10666,12 +10666,12 @@
               },
               {
                 "constant": false,
-                "id": 489,
+                "id": 585,
                 "mutability": "mutable",
                 "name": "_eventIndex",
                 "nameLocation": "474:11:3",
                 "nodeType": "VariableDeclaration",
-                "scope": 490,
+                "scope": 586,
                 "src": "467:18:3",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -10681,7 +10681,7 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 487,
+                    "id": 583,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "467:4:3",
@@ -10690,7 +10690,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 488,
+                  "id": 584,
                   "nodeType": "ArrayTypeName",
                   "src": "467:6:3",
                   "typeDescriptions": {
@@ -10704,29 +10704,29 @@
             "name": "VoterAndEvents",
             "nameLocation": "409:14:3",
             "nodeType": "StructDefinition",
-            "scope": 730,
+            "scope": 826,
             "src": "402:91:3",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 495,
+            "id": 591,
             "mutability": "mutable",
             "name": "voters",
             "nameLocation": "534:6:3",
             "nodeType": "VariableDeclaration",
-            "scope": 730,
+            "scope": 826,
             "src": "499:41:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$490_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$586_storage_$",
               "typeString": "mapping(address => struct Voting.VoterAndEvents)"
             },
             "typeName": {
-              "id": 494,
+              "id": 590,
               "keyType": {
-                "id": 491,
+                "id": 587,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "507:7:3",
@@ -10738,23 +10738,23 @@
               "nodeType": "Mapping",
               "src": "499:34:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$490_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$586_storage_$",
                 "typeString": "mapping(address => struct Voting.VoterAndEvents)"
               },
               "valueType": {
-                "id": 493,
+                "id": 589,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 492,
+                  "id": 588,
                   "name": "VoterAndEvents",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 490,
+                  "referencedDeclaration": 586,
                   "src": "518:14:3"
                 },
-                "referencedDeclaration": 490,
+                "referencedDeclaration": 586,
                 "src": "518:14:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_VoterAndEvents_$490_storage_ptr",
+                  "typeIdentifier": "t_struct$_VoterAndEvents_$586_storage_ptr",
                   "typeString": "struct Voting.VoterAndEvents"
                 }
               }
@@ -10763,42 +10763,42 @@
           },
           {
             "constant": false,
-            "id": 499,
+            "id": 595,
             "mutability": "mutable",
             "name": "candidates",
             "nameLocation": "559:10:3",
             "nodeType": "VariableDeclaration",
-            "scope": 730,
+            "scope": 826,
             "src": "547:22:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Candidate_$473_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_Candidate_$569_storage_$dyn_storage",
               "typeString": "struct Voting.Candidate[]"
             },
             "typeName": {
               "baseType": {
-                "id": 497,
+                "id": 593,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 496,
+                  "id": 592,
                   "name": "Candidate",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 473,
+                  "referencedDeclaration": 569,
                   "src": "547:9:3"
                 },
-                "referencedDeclaration": 473,
+                "referencedDeclaration": 569,
                 "src": "547:9:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Candidate_$473_storage_ptr",
+                  "typeIdentifier": "t_struct$_Candidate_$569_storage_ptr",
                   "typeString": "struct Voting.Candidate"
                 }
               },
-              "id": 498,
+              "id": 594,
               "nodeType": "ArrayTypeName",
               "src": "547:11:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Candidate_$473_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_Candidate_$569_storage_$dyn_storage_ptr",
                 "typeString": "struct Voting.Candidate[]"
               }
             },
@@ -10806,12 +10806,12 @@
           },
           {
             "constant": false,
-            "id": 501,
+            "id": 597,
             "mutability": "mutable",
             "name": "eventCount",
             "nameLocation": "584:10:3",
             "nodeType": "VariableDeclaration",
-            "scope": 730,
+            "scope": 826,
             "src": "576:18:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -10820,7 +10820,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 500,
+              "id": 596,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "576:7:3",
@@ -10834,42 +10834,42 @@
           {
             "constant": false,
             "functionSelector": "bf9b48a7",
-            "id": 505,
+            "id": 601,
             "mutability": "mutable",
             "name": "votingEvents",
             "nameLocation": "622:12:3",
             "nodeType": "VariableDeclaration",
-            "scope": 730,
+            "scope": 826,
             "src": "601:33:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
               "typeString": "struct Voting.VotingEvent[]"
             },
             "typeName": {
               "baseType": {
-                "id": 503,
+                "id": 599,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 502,
+                  "id": 598,
                   "name": "VotingEvent",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 484,
+                  "referencedDeclaration": 580,
                   "src": "601:11:3"
                 },
-                "referencedDeclaration": 484,
+                "referencedDeclaration": 580,
                 "src": "601:11:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_VotingEvent_$484_storage_ptr",
+                  "typeIdentifier": "t_struct$_VotingEvent_$580_storage_ptr",
                   "typeString": "struct Voting.VotingEvent"
                 }
               },
-              "id": 504,
+              "id": 600,
               "nodeType": "ArrayTypeName",
               "src": "601:13:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage_ptr",
                 "typeString": "struct Voting.VotingEvent[]"
               }
             },
@@ -10877,7 +10877,7 @@
           },
           {
             "body": {
-              "id": 536,
+              "id": 632,
               "nodeType": "Block",
               "src": "742:342:3",
               "statements": [
@@ -10887,11 +10887,11 @@
                       {
                         "arguments": [
                           {
-                            "id": 516,
+                            "id": 612,
                             "name": "_name",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 507,
+                            "referencedDeclaration": 603,
                             "src": "822:5:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -10900,7 +10900,7 @@
                           },
                           {
                             "expression": {
-                              "id": 517,
+                              "id": 613,
                               "name": "block",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -10911,7 +10911,7 @@
                                 "typeString": "block"
                               }
                             },
-                            "id": 518,
+                            "id": 614,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -10929,14 +10929,14 @@
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             },
-                            "id": 525,
+                            "id": 621,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "expression": {
-                                "id": 519,
+                                "id": 615,
                                 "name": "block",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -10947,7 +10947,7 @@
                                   "typeString": "block"
                                 }
                               },
-                              "id": 520,
+                              "id": 616,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -10969,17 +10969,17 @@
                                     "typeIdentifier": "t_uint256",
                                     "typeString": "uint256"
                                   },
-                                  "id": 523,
+                                  "id": 619,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "leftExpression": {
-                                    "id": 521,
+                                    "id": 617,
                                     "name": "_durationInMinutes",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 509,
+                                    "referencedDeclaration": 605,
                                     "src": "923:18:3",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_uint256",
@@ -10990,7 +10990,7 @@
                                   "operator": "*",
                                   "rightExpression": {
                                     "hexValue": "31",
-                                    "id": 522,
+                                    "id": 618,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
@@ -11012,7 +11012,7 @@
                                   }
                                 }
                               ],
-                              "id": 524,
+                              "id": 620,
                               "isConstant": false,
                               "isInlineArray": false,
                               "isLValue": false,
@@ -11033,7 +11033,7 @@
                           },
                           {
                             "expression": {
-                              "id": 526,
+                              "id": 622,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -11044,7 +11044,7 @@
                                 "typeString": "msg"
                               }
                             },
-                            "id": 527,
+                            "id": 623,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -11058,11 +11058,11 @@
                             }
                           },
                           {
-                            "id": 528,
+                            "id": 624,
                             "name": "eventCount",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 501,
+                            "referencedDeclaration": 597,
                             "src": "1013:10:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -11093,18 +11093,18 @@
                               "typeString": "uint256"
                             }
                           ],
-                          "id": 515,
+                          "id": 611,
                           "name": "VotingEvent",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 484,
+                          "referencedDeclaration": 580,
                           "src": "785:11:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_VotingEvent_$484_storage_ptr_$",
+                            "typeIdentifier": "t_type$_t_struct$_VotingEvent_$580_storage_ptr_$",
                             "typeString": "type(struct Voting.VotingEvent storage pointer)"
                           }
                         },
-                        "id": 529,
+                        "id": 625,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11121,7 +11121,7 @@
                         "src": "785:254:3",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_VotingEvent_$484_memory_ptr",
+                          "typeIdentifier": "t_struct$_VotingEvent_$580_memory_ptr",
                           "typeString": "struct Voting.VotingEvent memory"
                         }
                       }
@@ -11129,23 +11129,23 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_VotingEvent_$484_memory_ptr",
+                          "typeIdentifier": "t_struct$_VotingEvent_$580_memory_ptr",
                           "typeString": "struct Voting.VotingEvent memory"
                         }
                       ],
                       "expression": {
-                        "id": 512,
+                        "id": 608,
                         "name": "votingEvents",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 505,
+                        "referencedDeclaration": 601,
                         "src": "753:12:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                           "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                         }
                       },
-                      "id": 514,
+                      "id": 610,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -11154,11 +11154,11 @@
                       "nodeType": "MemberAccess",
                       "src": "753:17:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage_ptr_$_t_struct$_VotingEvent_$484_storage_$returns$__$bound_to$_t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage_ptr_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage_ptr_$_t_struct$_VotingEvent_$580_storage_$returns$__$bound_to$_t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage_ptr_$",
                         "typeString": "function (struct Voting.VotingEvent storage ref[] storage pointer,struct Voting.VotingEvent storage ref)"
                       }
                     },
-                    "id": 530,
+                    "id": 626,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11173,23 +11173,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 531,
+                  "id": 627,
                   "nodeType": "ExpressionStatement",
                   "src": "753:297:3"
                 },
                 {
                   "expression": {
-                    "id": 534,
+                    "id": 630,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 532,
+                      "id": 628,
                       "name": "eventCount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 501,
+                      "referencedDeclaration": 597,
                       "src": "1061:10:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -11200,7 +11200,7 @@
                     "operator": "+=",
                     "rightHandSide": {
                       "hexValue": "31",
-                      "id": 533,
+                      "id": 629,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -11220,14 +11220,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 535,
+                  "id": 631,
                   "nodeType": "ExpressionStatement",
                   "src": "1061:15:3"
                 }
               ]
             },
             "functionSelector": "f0e1691a",
-            "id": 537,
+            "id": 633,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -11235,17 +11235,17 @@
             "nameLocation": "652:8:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 510,
+              "id": 606,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 507,
+                  "id": 603,
                   "mutability": "mutable",
                   "name": "_name",
                   "nameLocation": "685:5:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 537,
+                  "scope": 633,
                   "src": "671:19:3",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -11254,7 +11254,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 506,
+                    "id": 602,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "671:6:3",
@@ -11267,12 +11267,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 509,
+                  "id": 605,
                   "mutability": "mutable",
                   "name": "_durationInMinutes",
                   "nameLocation": "709:18:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 537,
+                  "scope": 633,
                   "src": "701:26:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -11281,7 +11281,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 508,
+                    "id": 604,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "701:7:3",
@@ -11296,12 +11296,12 @@
               "src": "660:74:3"
             },
             "returnParameters": {
-              "id": 511,
+              "id": 607,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "742:0:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "643:441:3",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -11309,7 +11309,7 @@
           },
           {
             "body": {
-              "id": 557,
+              "id": 653,
               "nodeType": "Block",
               "src": "1229:86:3",
               "statements": [
@@ -11319,11 +11319,11 @@
                       {
                         "arguments": [
                           {
-                            "id": 550,
+                            "id": 646,
                             "name": "_candidateName",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 539,
+                            "referencedDeclaration": 635,
                             "src": "1266:14:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -11331,11 +11331,11 @@
                             }
                           },
                           {
-                            "id": 551,
+                            "id": 647,
                             "name": "_userIndex",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 541,
+                            "referencedDeclaration": 637,
                             "src": "1281:10:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -11344,7 +11344,7 @@
                           },
                           {
                             "hexValue": "30",
-                            "id": 552,
+                            "id": 648,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -11359,11 +11359,11 @@
                             "value": "0"
                           },
                           {
-                            "id": 553,
+                            "id": 649,
                             "name": "_eventIndex",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 543,
+                            "referencedDeclaration": 639,
                             "src": "1294:11:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -11390,18 +11390,18 @@
                               "typeString": "uint256"
                             }
                           ],
-                          "id": 549,
+                          "id": 645,
                           "name": "Candidate",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 473,
+                          "referencedDeclaration": 569,
                           "src": "1256:9:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_Candidate_$473_storage_ptr_$",
+                            "typeIdentifier": "t_type$_t_struct$_Candidate_$569_storage_ptr_$",
                             "typeString": "type(struct Voting.Candidate storage pointer)"
                           }
                         },
-                        "id": 554,
+                        "id": 650,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11412,7 +11412,7 @@
                         "src": "1256:50:3",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Candidate_$473_memory_ptr",
+                          "typeIdentifier": "t_struct$_Candidate_$569_memory_ptr",
                           "typeString": "struct Voting.Candidate memory"
                         }
                       }
@@ -11420,23 +11420,23 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_Candidate_$473_memory_ptr",
+                          "typeIdentifier": "t_struct$_Candidate_$569_memory_ptr",
                           "typeString": "struct Voting.Candidate memory"
                         }
                       ],
                       "expression": {
-                        "id": 546,
+                        "id": 642,
                         "name": "candidates",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 499,
+                        "referencedDeclaration": 595,
                         "src": "1240:10:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_Candidate_$473_storage_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_struct$_Candidate_$569_storage_$dyn_storage",
                           "typeString": "struct Voting.Candidate storage ref[] storage ref"
                         }
                       },
-                      "id": 548,
+                      "id": 644,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -11445,11 +11445,11 @@
                       "nodeType": "MemberAccess",
                       "src": "1240:15:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Candidate_$473_storage_$dyn_storage_ptr_$_t_struct$_Candidate_$473_storage_$returns$__$bound_to$_t_array$_t_struct$_Candidate_$473_storage_$dyn_storage_ptr_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Candidate_$569_storage_$dyn_storage_ptr_$_t_struct$_Candidate_$569_storage_$returns$__$bound_to$_t_array$_t_struct$_Candidate_$569_storage_$dyn_storage_ptr_$",
                         "typeString": "function (struct Voting.Candidate storage ref[] storage pointer,struct Voting.Candidate storage ref)"
                       }
                     },
-                    "id": 555,
+                    "id": 651,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11464,14 +11464,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 556,
+                  "id": 652,
                   "nodeType": "ExpressionStatement",
                   "src": "1240:67:3"
                 }
               ]
             },
             "functionSelector": "3ca09fdf",
-            "id": 558,
+            "id": 654,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -11479,17 +11479,17 @@
             "nameLocation": "1101:12:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 544,
+              "id": 640,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 539,
+                  "id": 635,
                   "mutability": "mutable",
                   "name": "_candidateName",
                   "nameLocation": "1138:14:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 558,
+                  "scope": 654,
                   "src": "1124:28:3",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -11498,7 +11498,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 538,
+                    "id": 634,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1124:6:3",
@@ -11511,12 +11511,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 541,
+                  "id": 637,
                   "mutability": "mutable",
                   "name": "_userIndex",
                   "nameLocation": "1177:10:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 558,
+                  "scope": 654,
                   "src": "1163:24:3",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -11525,7 +11525,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 540,
+                    "id": 636,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1163:6:3",
@@ -11538,12 +11538,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 543,
+                  "id": 639,
                   "mutability": "mutable",
                   "name": "_eventIndex",
                   "nameLocation": "1203:11:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 558,
+                  "scope": 654,
                   "src": "1198:16:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -11552,7 +11552,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 542,
+                    "id": 638,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1198:4:3",
@@ -11567,12 +11567,12 @@
               "src": "1113:108:3"
             },
             "returnParameters": {
-              "id": 545,
+              "id": 641,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1229:0:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "1092:223:3",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -11580,7 +11580,7 @@
           },
           {
             "body": {
-              "id": 610,
+              "id": 706,
               "nodeType": "Block",
               "src": "1387:410:3",
               "statements": [
@@ -11592,17 +11592,17 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 569,
+                        "id": 665,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 566,
+                          "id": 662,
                           "name": "_eventIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 562,
+                          "referencedDeclaration": 658,
                           "src": "1406:11:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -11613,18 +11613,18 @@
                         "operator": "<",
                         "rightExpression": {
                           "expression": {
-                            "id": 567,
+                            "id": 663,
                             "name": "votingEvents",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 505,
+                            "referencedDeclaration": 601,
                             "src": "1420:12:3",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                              "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                               "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                             }
                           },
-                          "id": 568,
+                          "id": 664,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -11645,7 +11645,7 @@
                       },
                       {
                         "hexValue": "496e76616c6964206576656e7420696e646578",
-                        "id": 570,
+                        "id": 666,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -11671,7 +11671,7 @@
                           "typeString": "literal_string \"Invalid event index\""
                         }
                       ],
-                      "id": 565,
+                      "id": 661,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -11685,7 +11685,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 571,
+                    "id": 667,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11700,7 +11700,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 572,
+                  "id": 668,
                   "nodeType": "ExpressionStatement",
                   "src": "1398:65:3"
                 },
@@ -11712,7 +11712,7 @@
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
                         },
-                        "id": 591,
+                        "id": 687,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11722,7 +11722,7 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 581,
+                          "id": 677,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -11731,21 +11731,21 @@
                             "expression": {
                               "expression": {
                                 "baseExpression": {
-                                  "id": 574,
+                                  "id": 670,
                                   "name": "voters",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 495,
+                                  "referencedDeclaration": 591,
                                   "src": "1496:6:3",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$490_storage_$",
+                                    "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$586_storage_$",
                                     "typeString": "mapping(address => struct Voting.VoterAndEvents storage ref)"
                                   }
                                 },
-                                "id": 577,
+                                "id": 673,
                                 "indexExpression": {
                                   "expression": {
-                                    "id": 575,
+                                    "id": 671,
                                     "name": "msg",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
@@ -11756,7 +11756,7 @@
                                       "typeString": "msg"
                                     }
                                   },
-                                  "id": 576,
+                                  "id": 672,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -11776,25 +11776,25 @@
                                 "nodeType": "IndexAccess",
                                 "src": "1496:18:3",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_VoterAndEvents_$490_storage",
+                                  "typeIdentifier": "t_struct$_VoterAndEvents_$586_storage",
                                   "typeString": "struct Voting.VoterAndEvents storage ref"
                                 }
                               },
-                              "id": 578,
+                              "id": 674,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
                               "lValueRequested": false,
                               "memberName": "_eventIndex",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 489,
+                              "referencedDeclaration": 585,
                               "src": "1496:30:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 579,
+                            "id": 675,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -11811,7 +11811,7 @@
                           "operator": "==",
                           "rightExpression": {
                             "hexValue": "30",
-                            "id": 580,
+                            "id": 676,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -11834,7 +11834,7 @@
                         "nodeType": "BinaryOperation",
                         "operator": "||",
                         "rightExpression": {
-                          "id": 590,
+                          "id": 686,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -11848,21 +11848,21 @@
                               {
                                 "expression": {
                                   "baseExpression": {
-                                    "id": 583,
+                                    "id": 679,
                                     "name": "voters",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 495,
+                                    "referencedDeclaration": 591,
                                     "src": "1569:6:3",
                                     "typeDescriptions": {
-                                      "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$490_storage_$",
+                                      "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$586_storage_$",
                                       "typeString": "mapping(address => struct Voting.VoterAndEvents storage ref)"
                                     }
                                   },
-                                  "id": 586,
+                                  "id": 682,
                                   "indexExpression": {
                                     "expression": {
-                                      "id": 584,
+                                      "id": 680,
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
@@ -11873,7 +11873,7 @@
                                         "typeString": "msg"
                                       }
                                     },
-                                    "id": 585,
+                                    "id": 681,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
@@ -11893,18 +11893,18 @@
                                   "nodeType": "IndexAccess",
                                   "src": "1569:18:3",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_VoterAndEvents_$490_storage",
+                                    "typeIdentifier": "t_struct$_VoterAndEvents_$586_storage",
                                     "typeString": "struct Voting.VoterAndEvents storage ref"
                                   }
                                 },
-                                "id": 587,
+                                "id": 683,
                                 "isConstant": false,
                                 "isLValue": true,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "memberName": "_eventIndex",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 489,
+                                "referencedDeclaration": 585,
                                 "src": "1569:30:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
@@ -11912,11 +11912,11 @@
                                 }
                               },
                               {
-                                "id": 588,
+                                "id": 684,
                                 "name": "_eventIndex",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 562,
+                                "referencedDeclaration": 658,
                                 "src": "1601:11:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -11935,18 +11935,18 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "id": 582,
+                              "id": 678,
                               "name": "contains",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 646,
+                              "referencedDeclaration": 742,
                               "src": "1560:8:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_internal_pure$_t_array$_t_uint256_$dyn_memory_ptr_$_t_uint256_$returns$_t_bool_$",
                                 "typeString": "function (uint256[] memory,uint256) pure returns (bool)"
                               }
                             },
-                            "id": 589,
+                            "id": 685,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -11974,7 +11974,7 @@
                       },
                       {
                         "hexValue": "566f7465722068617320616c726561647920766f74656420696e2074686973206576656e74",
-                        "id": 592,
+                        "id": 688,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -12000,7 +12000,7 @@
                           "typeString": "literal_string \"Voter has already voted in this event\""
                         }
                       ],
-                      "id": 573,
+                      "id": 669,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -12014,7 +12014,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 593,
+                    "id": 689,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -12029,13 +12029,13 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 594,
+                  "id": 690,
                   "nodeType": "ExpressionStatement",
                   "src": "1474:204:3"
                 },
                 {
                   "expression": {
-                    "id": 599,
+                    "id": 695,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -12047,24 +12047,24 @@
                     "subExpression": {
                       "expression": {
                         "baseExpression": {
-                          "id": 595,
+                          "id": 691,
                           "name": "candidates",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 499,
+                          "referencedDeclaration": 595,
                           "src": "1691:10:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_array$_t_struct$_Candidate_$473_storage_$dyn_storage",
+                            "typeIdentifier": "t_array$_t_struct$_Candidate_$569_storage_$dyn_storage",
                             "typeString": "struct Voting.Candidate storage ref[] storage ref"
                           }
                         },
-                        "id": 597,
+                        "id": 693,
                         "indexExpression": {
-                          "id": 596,
+                          "id": 692,
                           "name": "_candidateIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 560,
+                          "referencedDeclaration": 656,
                           "src": "1702:15:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -12078,18 +12078,18 @@
                         "nodeType": "IndexAccess",
                         "src": "1691:27:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Candidate_$473_storage",
+                          "typeIdentifier": "t_struct$_Candidate_$569_storage",
                           "typeString": "struct Voting.Candidate storage ref"
                         }
                       },
-                      "id": 598,
+                      "id": 694,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "voteCount",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 470,
+                      "referencedDeclaration": 566,
                       "src": "1691:37:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -12101,7 +12101,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 600,
+                  "id": 696,
                   "nodeType": "ExpressionStatement",
                   "src": "1691:39:3"
                 },
@@ -12109,11 +12109,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 607,
+                        "id": 703,
                         "name": "_eventIndex",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 562,
+                        "referencedDeclaration": 658,
                         "src": "1777:11:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -12131,21 +12131,21 @@
                       "expression": {
                         "expression": {
                           "baseExpression": {
-                            "id": 601,
+                            "id": 697,
                             "name": "voters",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 495,
+                            "referencedDeclaration": 591,
                             "src": "1741:6:3",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$490_storage_$",
+                              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_VoterAndEvents_$586_storage_$",
                               "typeString": "mapping(address => struct Voting.VoterAndEvents storage ref)"
                             }
                           },
-                          "id": 604,
+                          "id": 700,
                           "indexExpression": {
                             "expression": {
-                              "id": 602,
+                              "id": 698,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -12156,7 +12156,7 @@
                                 "typeString": "msg"
                               }
                             },
-                            "id": 603,
+                            "id": 699,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -12176,25 +12176,25 @@
                           "nodeType": "IndexAccess",
                           "src": "1741:18:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_VoterAndEvents_$490_storage",
+                            "typeIdentifier": "t_struct$_VoterAndEvents_$586_storage",
                             "typeString": "struct Voting.VoterAndEvents storage ref"
                           }
                         },
-                        "id": 605,
+                        "id": 701,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "_eventIndex",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 489,
+                        "referencedDeclaration": 585,
                         "src": "1741:30:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 606,
+                      "id": 702,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -12207,7 +12207,7 @@
                         "typeString": "function (uint256[] storage pointer,uint256)"
                       }
                     },
-                    "id": 608,
+                    "id": 704,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -12222,14 +12222,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 609,
+                  "id": 705,
                   "nodeType": "ExpressionStatement",
                   "src": "1741:48:3"
                 }
               ]
             },
             "functionSelector": "b384abef",
-            "id": 611,
+            "id": 707,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -12237,17 +12237,17 @@
             "nameLocation": "1332:4:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 563,
+              "id": 659,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 560,
+                  "id": 656,
                   "mutability": "mutable",
                   "name": "_candidateIndex",
                   "nameLocation": "1345:15:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 611,
+                  "scope": 707,
                   "src": "1337:23:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -12256,7 +12256,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 559,
+                    "id": 655,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1337:7:3",
@@ -12269,12 +12269,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 562,
+                  "id": 658,
                   "mutability": "mutable",
                   "name": "_eventIndex",
                   "nameLocation": "1367:11:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 611,
+                  "scope": 707,
                   "src": "1362:16:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -12283,7 +12283,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 561,
+                    "id": 657,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1362:4:3",
@@ -12298,12 +12298,12 @@
               "src": "1336:43:3"
             },
             "returnParameters": {
-              "id": 564,
+              "id": 660,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1387:0:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "1323:474:3",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -12311,13 +12311,13 @@
           },
           {
             "body": {
-              "id": 645,
+              "id": 741,
               "nodeType": "Block",
               "src": "1909:174:3",
               "statements": [
                 {
                   "body": {
-                    "id": 641,
+                    "id": 737,
                     "nodeType": "Block",
                     "src": "1958:95:3",
                     "statements": [
@@ -12327,31 +12327,31 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 636,
+                          "id": 732,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "baseExpression": {
-                              "id": 632,
+                              "id": 728,
                               "name": "arr",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 614,
+                              "referencedDeclaration": 710,
                               "src": "1977:3:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
                                 "typeString": "uint256[] memory"
                               }
                             },
-                            "id": 634,
+                            "id": 730,
                             "indexExpression": {
-                              "id": 633,
+                              "id": 729,
                               "name": "i",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 622,
+                              "referencedDeclaration": 718,
                               "src": "1981:1:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -12372,11 +12372,11 @@
                           "nodeType": "BinaryOperation",
                           "operator": "==",
                           "rightExpression": {
-                            "id": 635,
+                            "id": 731,
                             "name": "element",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 616,
+                            "referencedDeclaration": 712,
                             "src": "1987:7:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -12389,18 +12389,18 @@
                             "typeString": "bool"
                           }
                         },
-                        "id": 640,
+                        "id": 736,
                         "nodeType": "IfStatement",
                         "src": "1973:69:3",
                         "trueBody": {
-                          "id": 639,
+                          "id": 735,
                           "nodeType": "Block",
                           "src": "1996:46:3",
                           "statements": [
                             {
                               "expression": {
                                 "hexValue": "74727565",
-                                "id": 637,
+                                "id": 733,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -12414,8 +12414,8 @@
                                 },
                                 "value": "true"
                               },
-                              "functionReturnParameters": 620,
-                              "id": 638,
+                              "functionReturnParameters": 716,
+                              "id": 734,
                               "nodeType": "Return",
                               "src": "2015:11:3"
                             }
@@ -12429,17 +12429,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 628,
+                    "id": 724,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 625,
+                      "id": 721,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 622,
+                      "referencedDeclaration": 718,
                       "src": "1937:1:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -12450,18 +12450,18 @@
                     "operator": "<",
                     "rightExpression": {
                       "expression": {
-                        "id": 626,
+                        "id": 722,
                         "name": "arr",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 614,
+                        "referencedDeclaration": 710,
                         "src": "1941:3:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
                           "typeString": "uint256[] memory"
                         }
                       },
-                      "id": 627,
+                      "id": 723,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -12480,20 +12480,20 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 642,
+                  "id": 738,
                   "initializationExpression": {
                     "assignments": [
-                      622
+                      718
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 622,
+                        "id": 718,
                         "mutability": "mutable",
                         "name": "i",
                         "nameLocation": "1930:1:3",
                         "nodeType": "VariableDeclaration",
-                        "scope": 642,
+                        "scope": 738,
                         "src": "1925:6:3",
                         "stateVariable": false,
                         "storageLocation": "default",
@@ -12502,7 +12502,7 @@
                           "typeString": "uint256"
                         },
                         "typeName": {
-                          "id": 621,
+                          "id": 717,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
                           "src": "1925:4:3",
@@ -12514,10 +12514,10 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 624,
+                    "id": 720,
                     "initialValue": {
                       "hexValue": "30",
-                      "id": 623,
+                      "id": 719,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -12536,7 +12536,7 @@
                   },
                   "loopExpression": {
                     "expression": {
-                      "id": 630,
+                      "id": 726,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -12546,11 +12546,11 @@
                       "prefix": false,
                       "src": "1953:3:3",
                       "subExpression": {
-                        "id": 629,
+                        "id": 725,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 622,
+                        "referencedDeclaration": 718,
                         "src": "1953:1:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -12562,7 +12562,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 631,
+                    "id": 727,
                     "nodeType": "ExpressionStatement",
                     "src": "1953:3:3"
                   },
@@ -12572,7 +12572,7 @@
                 {
                   "expression": {
                     "hexValue": "66616c7365",
-                    "id": 643,
+                    "id": 739,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -12586,14 +12586,14 @@
                     },
                     "value": "false"
                   },
-                  "functionReturnParameters": 620,
-                  "id": 644,
+                  "functionReturnParameters": 716,
+                  "id": 740,
                   "nodeType": "Return",
                   "src": "2063:12:3"
                 }
               ]
             },
-            "id": 646,
+            "id": 742,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -12601,17 +12601,17 @@
             "nameLocation": "1814:8:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 617,
+              "id": 713,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 614,
+                  "id": 710,
                   "mutability": "mutable",
                   "name": "arr",
                   "nameLocation": "1847:3:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 646,
+                  "scope": 742,
                   "src": "1833:17:3",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -12621,7 +12621,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 612,
+                      "id": 708,
                       "name": "uint",
                       "nodeType": "ElementaryTypeName",
                       "src": "1833:4:3",
@@ -12630,7 +12630,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 613,
+                    "id": 709,
                     "nodeType": "ArrayTypeName",
                     "src": "1833:6:3",
                     "typeDescriptions": {
@@ -12642,12 +12642,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 616,
+                  "id": 712,
                   "mutability": "mutable",
                   "name": "element",
                   "nameLocation": "1866:7:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 646,
+                  "scope": 742,
                   "src": "1861:12:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -12656,7 +12656,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 615,
+                    "id": 711,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1861:4:3",
@@ -12671,17 +12671,17 @@
               "src": "1822:58:3"
             },
             "returnParameters": {
-              "id": 620,
+              "id": 716,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 619,
+                  "id": 715,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 646,
+                  "scope": 742,
                   "src": "1903:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -12690,7 +12690,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 618,
+                    "id": 714,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1903:4:3",
@@ -12704,7 +12704,7 @@
               ],
               "src": "1902:6:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "1805:278:3",
             "stateMutability": "pure",
             "virtual": false,
@@ -12712,32 +12712,32 @@
           },
           {
             "body": {
-              "id": 655,
+              "id": 751,
               "nodeType": "Block",
               "src": "2158:38:3",
               "statements": [
                 {
                   "expression": {
-                    "id": 653,
+                    "id": 749,
                     "name": "votingEvents",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 505,
+                    "referencedDeclaration": 601,
                     "src": "2176:12:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                      "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                       "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                     }
                   },
-                  "functionReturnParameters": 652,
-                  "id": 654,
+                  "functionReturnParameters": 748,
+                  "id": 750,
                   "nodeType": "Return",
                   "src": "2169:19:3"
                 }
               ]
             },
             "functionSelector": "c27a500d",
-            "id": 656,
+            "id": 752,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -12745,53 +12745,53 @@
             "nameLocation": "2100:12:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 647,
+              "id": 743,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2113:2:3"
             },
             "returnParameters": {
-              "id": 652,
+              "id": 748,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 651,
+                  "id": 747,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 656,
+                  "scope": 752,
                   "src": "2137:20:3",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_memory_ptr_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_memory_ptr_$dyn_memory_ptr",
                     "typeString": "struct Voting.VotingEvent[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 649,
+                      "id": 745,
                       "nodeType": "UserDefinedTypeName",
                       "pathNode": {
-                        "id": 648,
+                        "id": 744,
                         "name": "VotingEvent",
                         "nodeType": "IdentifierPath",
-                        "referencedDeclaration": 484,
+                        "referencedDeclaration": 580,
                         "src": "2137:11:3"
                       },
-                      "referencedDeclaration": 484,
+                      "referencedDeclaration": 580,
                       "src": "2137:11:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_VotingEvent_$484_storage_ptr",
+                        "typeIdentifier": "t_struct$_VotingEvent_$580_storage_ptr",
                         "typeString": "struct Voting.VotingEvent"
                       }
                     },
-                    "id": 650,
+                    "id": 746,
                     "nodeType": "ArrayTypeName",
                     "src": "2137:13:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage_ptr",
                       "typeString": "struct Voting.VotingEvent[]"
                     }
                   },
@@ -12800,7 +12800,7 @@
               ],
               "src": "2136:22:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "2091:105:3",
             "stateMutability": "view",
             "virtual": false,
@@ -12808,32 +12808,32 @@
           },
           {
             "body": {
-              "id": 665,
+              "id": 761,
               "nodeType": "Block",
               "src": "2273:36:3",
               "statements": [
                 {
                   "expression": {
-                    "id": 663,
+                    "id": 759,
                     "name": "candidates",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 499,
+                    "referencedDeclaration": 595,
                     "src": "2291:10:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_Candidate_$473_storage_$dyn_storage",
+                      "typeIdentifier": "t_array$_t_struct$_Candidate_$569_storage_$dyn_storage",
                       "typeString": "struct Voting.Candidate storage ref[] storage ref"
                     }
                   },
-                  "functionReturnParameters": 662,
-                  "id": 664,
+                  "functionReturnParameters": 758,
+                  "id": 760,
                   "nodeType": "Return",
                   "src": "2284:17:3"
                 }
               ]
             },
             "functionSelector": "2e6997fe",
-            "id": 666,
+            "id": 762,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -12841,53 +12841,53 @@
             "nameLocation": "2213:16:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 657,
+              "id": 753,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2229:2:3"
             },
             "returnParameters": {
-              "id": 662,
+              "id": 758,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 661,
+                  "id": 757,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 666,
+                  "scope": 762,
                   "src": "2253:18:3",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Candidate_$473_memory_ptr_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Candidate_$569_memory_ptr_$dyn_memory_ptr",
                     "typeString": "struct Voting.Candidate[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 659,
+                      "id": 755,
                       "nodeType": "UserDefinedTypeName",
                       "pathNode": {
-                        "id": 658,
+                        "id": 754,
                         "name": "Candidate",
                         "nodeType": "IdentifierPath",
-                        "referencedDeclaration": 473,
+                        "referencedDeclaration": 569,
                         "src": "2253:9:3"
                       },
-                      "referencedDeclaration": 473,
+                      "referencedDeclaration": 569,
                       "src": "2253:9:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Candidate_$473_storage_ptr",
+                        "typeIdentifier": "t_struct$_Candidate_$569_storage_ptr",
                         "typeString": "struct Voting.Candidate"
                       }
                     },
-                    "id": 660,
+                    "id": 756,
                     "nodeType": "ArrayTypeName",
                     "src": "2253:11:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_Candidate_$473_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_Candidate_$569_storage_$dyn_storage_ptr",
                       "typeString": "struct Voting.Candidate[]"
                     }
                   },
@@ -12896,7 +12896,7 @@
               ],
               "src": "2252:20:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "2204:105:3",
             "stateMutability": "view",
             "virtual": false,
@@ -12904,7 +12904,7 @@
           },
           {
             "body": {
-              "id": 690,
+              "id": 786,
               "nodeType": "Block",
               "src": "2413:154:3",
               "statements": [
@@ -12916,7 +12916,7 @@
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
                         },
-                        "id": 687,
+                        "id": 783,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -12926,14 +12926,14 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 679,
+                          "id": 775,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 673,
+                              "id": 769,
                               "name": "block",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -12944,7 +12944,7 @@
                                 "typeString": "block"
                               }
                             },
-                            "id": 674,
+                            "id": 770,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -12962,24 +12962,24 @@
                           "rightExpression": {
                             "expression": {
                               "baseExpression": {
-                                "id": 675,
+                                "id": 771,
                                 "name": "votingEvents",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 505,
+                                "referencedDeclaration": 601,
                                 "src": "2451:12:3",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                                  "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                                   "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                                 }
                               },
-                              "id": 677,
+                              "id": 773,
                               "indexExpression": {
-                                "id": 676,
+                                "id": 772,
                                 "name": "_eventIndex",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 668,
+                                "referencedDeclaration": 764,
                                 "src": "2464:11:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -12993,18 +12993,18 @@
                               "nodeType": "IndexAccess",
                               "src": "2451:25:3",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_VotingEvent_$484_storage",
+                                "typeIdentifier": "t_struct$_VotingEvent_$580_storage",
                                 "typeString": "struct Voting.VotingEvent storage ref"
                               }
                             },
-                            "id": 678,
+                            "id": 774,
                             "isConstant": false,
                             "isLValue": true,
                             "isPure": false,
                             "lValueRequested": false,
                             "memberName": "votingStart",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 477,
+                            "referencedDeclaration": 573,
                             "src": "2451:37:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -13024,14 +13024,14 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 686,
+                          "id": 782,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 680,
+                              "id": 776,
                               "name": "block",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -13042,7 +13042,7 @@
                                 "typeString": "block"
                               }
                             },
-                            "id": 681,
+                            "id": 777,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -13060,24 +13060,24 @@
                           "rightExpression": {
                             "expression": {
                               "baseExpression": {
-                                "id": 682,
+                                "id": 778,
                                 "name": "votingEvents",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 505,
+                                "referencedDeclaration": 601,
                                 "src": "2523:12:3",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                                  "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                                   "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                                 }
                               },
-                              "id": 684,
+                              "id": 780,
                               "indexExpression": {
-                                "id": 683,
+                                "id": 779,
                                 "name": "_eventIndex",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 668,
+                                "referencedDeclaration": 764,
                                 "src": "2536:11:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -13091,18 +13091,18 @@
                               "nodeType": "IndexAccess",
                               "src": "2523:25:3",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_VotingEvent_$484_storage",
+                                "typeIdentifier": "t_struct$_VotingEvent_$580_storage",
                                 "typeString": "struct Voting.VotingEvent storage ref"
                               }
                             },
-                            "id": 685,
+                            "id": 781,
                             "isConstant": false,
                             "isLValue": true,
                             "isPure": false,
                             "lValueRequested": false,
                             "memberName": "votingEnd",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 479,
+                            "referencedDeclaration": 575,
                             "src": "2523:35:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -13122,7 +13122,7 @@
                         }
                       }
                     ],
-                    "id": 688,
+                    "id": 784,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -13135,15 +13135,15 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 672,
-                  "id": 689,
+                  "functionReturnParameters": 768,
+                  "id": 785,
                   "nodeType": "Return",
                   "src": "2424:135:3"
                 }
               ]
             },
             "functionSelector": "f0c27aa5",
-            "id": 691,
+            "id": 787,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -13151,17 +13151,17 @@
             "nameLocation": "2326:22:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 669,
+              "id": 765,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 668,
+                  "id": 764,
                   "mutability": "mutable",
                   "name": "_eventIndex",
                   "nameLocation": "2367:11:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 691,
+                  "scope": 787,
                   "src": "2359:19:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13170,7 +13170,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 667,
+                    "id": 763,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2359:7:3",
@@ -13185,17 +13185,17 @@
               "src": "2348:37:3"
             },
             "returnParameters": {
-              "id": 672,
+              "id": 768,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 671,
+                  "id": 767,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 691,
+                  "scope": 787,
                   "src": "2407:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13204,7 +13204,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 670,
+                    "id": 766,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2407:4:3",
@@ -13218,7 +13218,7 @@
               ],
               "src": "2406:6:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "2317:250:3",
             "stateMutability": "view",
             "virtual": false,
@@ -13226,7 +13226,7 @@
           },
           {
             "body": {
-              "id": 728,
+              "id": 824,
               "nodeType": "Block",
               "src": "2675:328:3",
               "statements": [
@@ -13238,14 +13238,14 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 705,
+                        "id": 801,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 699,
+                            "id": 795,
                             "name": "block",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -13256,7 +13256,7 @@
                               "typeString": "block"
                             }
                           },
-                          "id": 700,
+                          "id": 796,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -13274,24 +13274,24 @@
                         "rightExpression": {
                           "expression": {
                             "baseExpression": {
-                              "id": 701,
+                              "id": 797,
                               "name": "votingEvents",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 505,
+                              "referencedDeclaration": 601,
                               "src": "2727:12:3",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                                "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                                 "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                               }
                             },
-                            "id": 703,
+                            "id": 799,
                             "indexExpression": {
-                              "id": 702,
+                              "id": 798,
                               "name": "_eventIndex",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 693,
+                              "referencedDeclaration": 789,
                               "src": "2740:11:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -13305,18 +13305,18 @@
                             "nodeType": "IndexAccess",
                             "src": "2727:25:3",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_VotingEvent_$484_storage",
+                              "typeIdentifier": "t_struct$_VotingEvent_$580_storage",
                               "typeString": "struct Voting.VotingEvent storage ref"
                             }
                           },
-                          "id": 704,
+                          "id": 800,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "votingStart",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 477,
+                          "referencedDeclaration": 573,
                           "src": "2727:37:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -13331,7 +13331,7 @@
                       },
                       {
                         "hexValue": "566f74696e6720686173206e6f742073746172746564207965742e",
-                        "id": 706,
+                        "id": 802,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -13357,7 +13357,7 @@
                           "typeString": "literal_string \"Voting has not started yet.\""
                         }
                       ],
-                      "id": 698,
+                      "id": 794,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -13371,7 +13371,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 707,
+                    "id": 803,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -13386,7 +13386,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 708,
+                  "id": 804,
                   "nodeType": "ExpressionStatement",
                   "src": "2686:133:3"
                 },
@@ -13396,14 +13396,14 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 715,
+                    "id": 811,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "expression": {
-                        "id": 709,
+                        "id": 805,
                         "name": "block",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -13414,7 +13414,7 @@
                           "typeString": "block"
                         }
                       },
-                      "id": 710,
+                      "id": 806,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -13432,24 +13432,24 @@
                     "rightExpression": {
                       "expression": {
                         "baseExpression": {
-                          "id": 711,
+                          "id": 807,
                           "name": "votingEvents",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 505,
+                          "referencedDeclaration": 601,
                           "src": "2853:12:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                            "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                             "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                           }
                         },
-                        "id": 713,
+                        "id": 809,
                         "indexExpression": {
-                          "id": 712,
+                          "id": 808,
                           "name": "_eventIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 693,
+                          "referencedDeclaration": 789,
                           "src": "2866:11:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -13463,18 +13463,18 @@
                         "nodeType": "IndexAccess",
                         "src": "2853:25:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_VotingEvent_$484_storage",
+                          "typeIdentifier": "t_struct$_VotingEvent_$580_storage",
                           "typeString": "struct Voting.VotingEvent storage ref"
                         }
                       },
-                      "id": 714,
+                      "id": 810,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "votingEnd",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 479,
+                      "referencedDeclaration": 575,
                       "src": "2853:35:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -13487,18 +13487,18 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 719,
+                  "id": 815,
                   "nodeType": "IfStatement",
                   "src": "2830:95:3",
                   "trueBody": {
-                    "id": 718,
+                    "id": 814,
                     "nodeType": "Block",
                     "src": "2890:35:3",
                     "statements": [
                       {
                         "expression": {
                           "hexValue": "30",
-                          "id": 716,
+                          "id": 812,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -13512,8 +13512,8 @@
                           },
                           "value": "0"
                         },
-                        "functionReturnParameters": 697,
-                        "id": 717,
+                        "functionReturnParameters": 793,
+                        "id": 813,
                         "nodeType": "Return",
                         "src": "2905:8:3"
                       }
@@ -13526,7 +13526,7 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 726,
+                    "id": 822,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -13534,24 +13534,24 @@
                     "leftExpression": {
                       "expression": {
                         "baseExpression": {
-                          "id": 720,
+                          "id": 816,
                           "name": "votingEvents",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 505,
+                          "referencedDeclaration": 601,
                           "src": "2942:12:3",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_array$_t_struct$_VotingEvent_$484_storage_$dyn_storage",
+                            "typeIdentifier": "t_array$_t_struct$_VotingEvent_$580_storage_$dyn_storage",
                             "typeString": "struct Voting.VotingEvent storage ref[] storage ref"
                           }
                         },
-                        "id": 722,
+                        "id": 818,
                         "indexExpression": {
-                          "id": 721,
+                          "id": 817,
                           "name": "_eventIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 693,
+                          "referencedDeclaration": 789,
                           "src": "2955:11:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -13565,18 +13565,18 @@
                         "nodeType": "IndexAccess",
                         "src": "2942:25:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_VotingEvent_$484_storage",
+                          "typeIdentifier": "t_struct$_VotingEvent_$580_storage",
                           "typeString": "struct Voting.VotingEvent storage ref"
                         }
                       },
-                      "id": 723,
+                      "id": 819,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "votingEnd",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 479,
+                      "referencedDeclaration": 575,
                       "src": "2942:35:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -13587,7 +13587,7 @@
                     "operator": "-",
                     "rightExpression": {
                       "expression": {
-                        "id": 724,
+                        "id": 820,
                         "name": "block",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -13598,7 +13598,7 @@
                           "typeString": "block"
                         }
                       },
-                      "id": 725,
+                      "id": 821,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -13617,15 +13617,15 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 697,
-                  "id": 727,
+                  "functionReturnParameters": 793,
+                  "id": 823,
                   "nodeType": "Return",
                   "src": "2935:60:3"
                 }
               ]
             },
             "functionSelector": "512e3dfd",
-            "id": 729,
+            "id": 825,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -13633,17 +13633,17 @@
             "nameLocation": "2584:23:3",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 694,
+              "id": 790,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 693,
+                  "id": 789,
                   "mutability": "mutable",
                   "name": "_eventIndex",
                   "nameLocation": "2626:11:3",
                   "nodeType": "VariableDeclaration",
-                  "scope": 729,
+                  "scope": 825,
                   "src": "2618:19:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13652,7 +13652,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 692,
+                    "id": 788,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2618:7:3",
@@ -13667,17 +13667,17 @@
               "src": "2607:37:3"
             },
             "returnParameters": {
-              "id": 697,
+              "id": 793,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 696,
+                  "id": 792,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 729,
+                  "scope": 825,
                   "src": "2666:7:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13686,7 +13686,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 695,
+                    "id": 791,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2666:7:3",
@@ -13700,14 +13700,14 @@
               ],
               "src": "2665:9:3"
             },
-            "scope": 730,
+            "scope": 826,
             "src": "2575:428:3",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 731,
+        "scope": 827,
         "src": "69:2937:3",
         "usedErrors": []
       }
@@ -13722,12 +13722,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x94374f4531E089f36E312b0B405D0Bce40f59Ad1",
-      "transactionHash": "0x7bd017bd5ed4bf6c244591a634cf850923fb325e1eb012ea499634471128e9e9"
+      "address": "0xC669DF3cF657740BA69CE6757d1ecd9469bB8916",
+      "transactionHash": "0xdf9db922fcda9a74920ab2e2e2147306248dd579a6700d0b44921a6a0cf39839"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-07-16T10:47:20.442Z",
+  "updatedAt": "2023-07-18T13:01:30.849Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

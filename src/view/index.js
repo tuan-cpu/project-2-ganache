@@ -21,5 +21,6 @@ export { default as PrizeManagementPage } from './admin_view/PrizeManagementPage
 export { default as MarketPage } from './user_view/MarketPage';
 export { default as AuctionPage } from './user_view/AuctionPage';
 export { default as CartPage } from './user_view/CartPage';
+export { default as LotteryPage } from './user_view/LotteryPage';
 export { default as MarketManagementPage } from './admin_view/MarketManagementPage';
 export { default as AuctionManagementPage } from './admin_view/AuctionManagementPage';

@@ -40,3 +40,4 @@ export { default as AuctionManagement } from './admin_components/AuctionManageme
 export { default as AuctionItem } from './common_components/AuctionItem';
 export { default as Slideshow } from './common_components/Slideshow';
 export { default as PrizeManagement } from './admin_components/PrizeManagement';
+export { default as Lottery } from './user_components/Lottery';

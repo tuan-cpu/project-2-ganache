@@ -35,15 +35,6 @@ export const links = [
     ],
   },
   {
-    title: "Bình chọn",
-    links: [
-      {
-        name: "Đại sứ từ thiện",
-        link: "vote_user"
-      },
-    ],
-  },
-  {
     title: "Khu giao dịch",
     links: [
       {
@@ -57,6 +48,19 @@ export const links = [
       {
         name: "Giỏ hàng",
         link: "cart"
+      }
+    ],
+  },
+  {
+    title: "Khác",
+    links: [
+      {
+        name: "Bình chọn người dùng",
+        link: "vote_user"
+      },
+      {
+        name: "Rút thăm may mắn",
+        link: "lottery_user"
       }
     ],
   },

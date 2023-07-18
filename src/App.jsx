@@ -2,7 +2,8 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage, 
   ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, 
   SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, 
-  VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage, ListPage, WithdrawalApprovePage, MarketPage, AuctionPage, MarketManagementPage, AuctionManagementPage, CartPage } from "./view";
+  VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage, ListPage, 
+  WithdrawalApprovePage, MarketPage, AuctionPage, MarketManagementPage, AuctionManagementPage, CartPage, LotteryPage } from "./view";
 import { useStateContext } from "./controller/ContextProvider";
 import { Sidebar, ThemeSettings } from "./components";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -58,6 +59,7 @@ const App = () => {
                 <Route path="/market" element={<MarketPage/>} />
                 <Route path="/auction" element={<AuctionPage/>} />
                 <Route path='/cart' element={<CartPage/>} />
+                <Route path="/lottery_user" element={<LotteryPage/>}/>
 
                 {/* admin route */}
                 <Route path="/admin" element={<AdminPage />} />

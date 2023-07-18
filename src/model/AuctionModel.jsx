@@ -12,6 +12,9 @@ class AuctionModel{
             console.log(error);
         }
     }
+    async getAllItems(auctionContract){
+        return await auctionContract.getAllItems();
+    }
     async bid(_id, amount,auctionContract){
         try {
             if (!ethereum) return alert("Please install Metamask!");

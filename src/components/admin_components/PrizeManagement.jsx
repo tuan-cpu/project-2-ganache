@@ -2,18 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Button, Header } from '..';
 import { useLotteryContext } from '../../controller/LotteryProvider';
 import { useStateContext } from '../../controller/ContextProvider';
-import { useAuthContext } from '../../controller/AuthProvider';
 import { calculatePoolProportion } from '../../common/utils/lotteryPool';
 import { useDataContext } from '../../controller/DataProvider';
 import { MdOutlineCancel } from 'react-icons/md';
 
 
 const PrizeManagement = () => {
-    const { addPrize, getPools, getCouponList } = useLotteryContext();
+    const { addPrize } = useLotteryContext();
     const { currentColor } = useStateContext();
     const { getAllMarketItems, uploadMarketImages, createNewMarketItem, completeNewMarketItem, savedLotteryItems } = useDataContext();
-    const { user } = useAuthContext();
-    const [initValue, setInitValue] = useState(0)
+    const [initValue, setInitValue] = useState('')
     const poolSize = 100;
     const [selectedItems, setSelectedItems] = useState([]);
     const [confirmSelected, setConfirmSelected] = useState(false);
@@ -34,7 +32,7 @@ const PrizeManagement = () => {
         if (confirmSelected && selectedItems.toString() != [].toString()) {
             let { result_array, initial_value } = calculatePoolProportion({ items_array: selectedItems })
             setResultArray(result_array);
-            setInitValue(initial_value.toFixed(3) * (10 ** 18));
+            setInitValue((initial_value.toFixed(3) * (10 ** 18)).toString());
         }
     }, [confirmSelected])
     useEffect(() => {
@@ -51,7 +49,7 @@ const PrizeManagement = () => {
             input_items.push(prizePool[i].item.id);
             input_proportions.push(prizePool[i].proportion);
         }
-        addPrize(input_proportions, input_items, initValue);
+        if(confirmLottery)addPrize(input_proportions, input_items, initValue);
     }, [confirmLottery]);
     const [newDocID, setNewDocId] = useState('');
     const handleSubmit = async (type) => {

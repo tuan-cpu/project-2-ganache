@@ -26,8 +26,7 @@ export const AuctionProvider = ({children}) =>{
         await dataInstance.bid(_id,amount, auctionContract);
     }
     const getAllItems = async() =>{
-        const auctionContract = getEthereumContract();
-        const result = await auctionContract.getAllItems();
+        const result = await dataInstance.getAllItems(auctionContract);
         setAllItems(result);
     }
     return(
