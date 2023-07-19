@@ -23,6 +23,9 @@ contract Lottery{
     uint256[] private  rates;
     uint256[] private  items;
     Pool[] private pools;
+
+    event couponCreated(string uid, uint8 pool_id, uint8 group);
+
     function clearPool() private {
         delete rates;
     }
@@ -42,11 +45,14 @@ contract Lottery{
     function getCouponList() public  view returns (Coupon[] memory){
         return couponList;
     }
-    function createCoupon(string memory uid, uint8 pool_id) public payable  {
+    function createCoupon(string memory uid, uint8 pool_id) public payable returns (Coupon memory){
         require(msg.value >= pools[pool_id].entry_value, "Insufficient entry fee");
         payable(owner).transfer(msg.value);
         uint8 group = selectGroup();
         couponList.push(Coupon(pool_id,group,uid));
+
+        emit couponCreated(uid, pool_id, group);
+        return Coupon(pool_id,group,uid);
     }
     function selectGroup() private view returns (uint8) {
         uint256 randomValue = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, msg.sender))) % 100;

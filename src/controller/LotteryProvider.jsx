@@ -18,8 +18,14 @@ const getEthereumContract = () => {
 export const LotteryProvider = ({children}) =>{
     const lotteryContract = getEthereumContract();
     const [pools, setPools] = useState([]);
+    const [couponList, setCouponList] = useState([]);
+    const [newCoupon, setNewCoupon] = useState();
     const createCoupon = async(uid, pool_id, amount) =>{
-        return await dataInstance.createCoupon(lotteryContract, uid, pool_id, amount);
+        let result = await dataInstance.createCoupon(lotteryContract, uid, pool_id, amount);
+        setNewCoupon({
+            group: result.group,
+            pool_id: result.pool_id
+        })
     }
     const addPrize = async(input_proportions,input_items,entry_value) =>{
         await dataInstance.addPrize(lotteryContract,input_proportions,input_items,entry_value);
@@ -29,10 +35,11 @@ export const LotteryProvider = ({children}) =>{
         setPools(result);
     }
     const getCouponList = async() => {
-        return await dataInstance.getCouponList(lotteryContract);
+        let result = await dataInstance.getCouponList(lotteryContract);
+        setCouponList(result);
     }
     return(
-        <LotteryContext.Provider value={{ createCoupon, addPrize, getCouponList, getPools, pools }}>
+        <LotteryContext.Provider value={{ createCoupon, addPrize, getCouponList, getPools, pools, couponList, newCoupon }}>
             {children}
         </LotteryContext.Provider>
     )
