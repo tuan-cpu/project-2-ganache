@@ -21,20 +21,16 @@ const Lottery = () => {
     const { createCoupon, getPools, pools, newCoupon } = useLotteryContext();
     const { getAllMarketItems, savedLotteryItems } = useDataContext();
     const navigate = useNavigate();
-    useEffect(() => {
-        let authToken = sessionStorage.getItem('Auth Token')
-        if (!authToken) {
-            navigate('/login')
-        }
-    }, []);
     const [allPools, setAllPools] = useState([]);
     const [selectedPoolID, setSelectedPoolID] = useState();
     const [selectedPool, setSelectedPool] = useState();
     const [selectedPoolItems, setSelectedPoolItems] = useState([]);
     const [showPool, setShowPool] = useState(false);
     useEffect(() => {
-        getPools();
-    }, [])
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (!authToken) navigate('/login')
+        else getPools();
+    }, []);
     useEffect(() => {
         for (let i = 0; i < pools.length; i++) {
             let pool_id = parseInt(BigInt(pools[i].id).toString());
@@ -82,7 +78,7 @@ const Lottery = () => {
         if (selectedPoolItems.toString() !== [].toString()) setShowPool(true);
     }, [selectedPoolItems])
     useEffect(() => {
-        alert(selectedPoolItems[newCoupon.group].describe);
+        if(newCoupon) alert(selectedPoolItems[newCoupon.group].describe);
     }, [newCoupon])
     return (
         <div className='m-4 md:m-10 mt-24 p-10 gap-[10px]'>
@@ -91,7 +87,7 @@ const Lottery = () => {
                 <div className='flex flex-wrap gap-[10px]'>
                     <select id='Pool ID' onChange={(e) => setSelectedPoolID(e.target.value)}>
                         <option selected disabled>Chọn 1 pool</option>
-                        {allPools.map((pool, index) => <option key={index} value={index}>{pool.pool_id}</option>)}
+                        {allPools?.map((pool, index) => <option key={index} value={index}>{pool?.pool_id}</option>)}
                     </select>
                 </div>
                 {showPool ? (

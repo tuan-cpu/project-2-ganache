@@ -74,8 +74,22 @@ export const DataProvider = ({ children }) => {
     const createEvent = async(data) =>{
         await dataInstance.createEventRequest(data);
     }
-    const createVerifyInquiry = async(data)=>{
-        await dataInstance.createUserInquiry(data);
+    const acceptEventRequest = async(data) => {
+        await dataInstance.acceptEventRequest(data);
+    }
+    const updateEventRequestStatus = async(doc_id,status,rejected) =>{
+        await dataInstance.updateEventRequestStatus(doc_id,status,rejected);
+    }
+    const rejectEventRequest = async(user_id,event_name) =>{
+        await dataInstance.rejectEventRequest(user_id, event_name);
+    }
+    const [notifications,setNotifications] = useState([]);
+    const getUserNotifications = async(user_id) => {
+        const result = await dataInstance.getUserNotifications(user_id);
+        setNotifications(result);
+    }
+    const createUserVerifyInquiry = async(data, user_id)=>{
+        await dataInstance.createUserVerifyInquiry(data, user_id);
     }
     const updateDisplayTitle = async(doc_id, displayTitle)=>{
         await dataInstance.updateDisplayTitle(doc_id, displayTitle);
@@ -146,10 +160,10 @@ export const DataProvider = ({ children }) => {
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
             createEventRequest, getAllCreateEventRequest , createWithdrawalRequest, candidate, getCandidateInfo, 
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
-            createVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, 
+            createUserVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders, 
             uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
-            savedAuctionItems, savedMarketItems, savedLotteryItems,
-             updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent
+            savedAuctionItems, savedMarketItems, savedLotteryItems,acceptEventRequest, updateEventRequestStatus, rejectEventRequest,
+             updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent, notifications, getUserNotifications
             }}>
             {children}
         </DataContext.Provider>

@@ -22,7 +22,7 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 )
 const VerifyUser = () => {
     const { user } = useAuthContext();
-    const { createVerifyInquiry } = useDataContext();
+    const { createUserVerifyInquiry } = useDataContext();
     useEffect(() => {
         let authToken = sessionStorage.getItem('Auth Token')
         if (!authToken) {
@@ -82,7 +82,7 @@ const VerifyUser = () => {
         }
     }, [confirm]);
     const submit = async (data) => {
-        await createVerifyInquiry(data);
+        await createUserVerifyInquiry(data);
         toast.success("Submission complete!");
     }
     return (

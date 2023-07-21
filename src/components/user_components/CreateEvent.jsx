@@ -59,7 +59,8 @@ const CreateEvent = () => {
         start: "",
         end: "",
         user_id: user.id,
-        status: false
+        status: false,
+        rejected: false
     });
     const [formState, setFormState] = useState({
         name: true,
@@ -119,7 +120,7 @@ const CreateEvent = () => {
         }
     }, [confirm]);
     const submit = async (data) => {
-        await createEvent(data);
+        await createEvent(data, user.id);
         toast.success("Submission complete!");
     }
     return (

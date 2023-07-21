@@ -1,4 +1,4 @@
-import { collection, addDoc, getCountFromServer, query, where, getDoc, getDocs, setDoc, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { collection, addDoc, query, where, getDoc, getDocs, setDoc, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db, storage } from "../common/utils/firebase";
 import { deleteObject, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -107,8 +107,38 @@ class DataModel {
         const ref = doc(collection(db, 'inquiry/user_inquiry/create_event_inquiry'));
         await setDoc(ref, data);
     }
-    async createUserInquiry(data) {
-        const ref = doc(collection(db, 'inquiry/user_inquiry/user_verify_inquiry'));
+    async acceptEventRequest(data) {
+        const ref = doc(collection(db, 'events/users/database'));
+        await setDoc(ref,data);
+    }
+    async updateEventRequestStatus(doc_id, status, rejected) {
+        const docRef = doc(db, 'inquiry/user_inquiry/create_event_inquiry', doc_id);
+        await updateDoc(docRef, {
+          status: status,
+          rejected: rejected
+        })
+    }
+    async rejectEventRequest(user_id, event_name) {
+        const ref = doc(collection(db, 'notifications'),user_id);
+        const docSnap = await getDoc(ref);
+        if(docSnap.exists()){
+            await updateDoc(ref,{
+                notifications: arrayUnion(`Sự kiện: "${event_name}" của bạn đã bị từ chối, hãy xem xét lại sự kiện!`)
+            })
+        }else{
+            await setDoc(ref,{
+                notifications: [`Sự kiện: "${event_name}" của bạn đã bị từ chối, hãy xem xét lại sự kiện!`]
+            })
+        }
+    }
+    async getUserNotifications(user_id) {
+        const ref = doc(collection(db, 'notifications'),user_id);
+        const docSnap = await getDoc(ref);
+        if(docSnap.exists()) return docSnap.data().notifications;
+        else return [];
+    }
+    async createUserVerifyInquiry(data, user_id) {
+        const ref = doc(collection(db, 'inquiry/user_inquiry/user_verify_inquiry'), user_id);
         await setDoc(ref, data);
     }
     async updateDisplayTitle(doc_id, displayTitle) {
