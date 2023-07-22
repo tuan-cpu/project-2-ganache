@@ -4,10 +4,10 @@ import { deleteObject, ref, uploadBytesResumable, getDownloadURL } from "firebas
 
 class DataModel {
     async addDataGoogleSignIn({ email, provider, displayName, photoURL, uid }) {
-        const docRef = doc(collection(db,'users'), uid);
+        const docRef = doc(collection(db, 'users'), uid);
         const docSnap = await getDoc(docRef);
-        if(!docSnap.exists()){
-            await setDoc(docRef,{
+        if (!docSnap.exists()) {
+            await setDoc(docRef, {
                 provider: provider,
                 email: email,
                 displayName: displayName,
@@ -21,7 +21,7 @@ class DataModel {
     }
 
     async addDataSignUp({ firstname, lastname, email, uid }) {
-        const docRef = doc(collection(db,"users"),uid);
+        const docRef = doc(collection(db, "users"), uid);
         await setDoc(docRef, {
             email: email,
             first_name: firstname,
@@ -109,37 +109,56 @@ class DataModel {
     }
     async acceptEventRequest(data) {
         const ref = doc(collection(db, 'events/users/database'));
-        await setDoc(ref,data);
+        await setDoc(ref, data);
     }
-    async updateEventRequestStatus(doc_id, status, rejected) {
-        const docRef = doc(db, 'inquiry/user_inquiry/create_event_inquiry', doc_id);
+    async updateRequestStatus(inquiry, doc_id, status, rejected) {
+        const docRef = doc(db, `inquiry/user_inquiry/${inquiry}`, doc_id);
         await updateDoc(docRef, {
-          status: status,
-          rejected: rejected
+            status: status,
+            rejected: rejected
         })
     }
     async rejectEventRequest(user_id, event_name) {
-        const ref = doc(collection(db, 'notifications'),user_id);
+        const ref = doc(collection(db, 'notifications'), user_id);
         const docSnap = await getDoc(ref);
-        if(docSnap.exists()){
-            await updateDoc(ref,{
+        if (docSnap.exists()) {
+            await updateDoc(ref, {
                 notifications: arrayUnion(`Sự kiện: "${event_name}" của bạn đã bị từ chối, hãy xem xét lại sự kiện!`)
             })
-        }else{
-            await setDoc(ref,{
+        } else {
+            await setDoc(ref, {
                 notifications: [`Sự kiện: "${event_name}" của bạn đã bị từ chối, hãy xem xét lại sự kiện!`]
             })
         }
     }
     async getUserNotifications(user_id) {
-        const ref = doc(collection(db, 'notifications'),user_id);
+        const ref = doc(collection(db, 'notifications'), user_id);
         const docSnap = await getDoc(ref);
-        if(docSnap.exists()) return docSnap.data().notifications;
+        if (docSnap.exists()) return docSnap.data().notifications;
         else return [];
     }
-    async createUserVerifyInquiry(data, user_id) {
-        const ref = doc(collection(db, 'inquiry/user_inquiry/user_verify_inquiry'), user_id);
+    async createUserVerifyInquiry(data) {
+        const ref = doc(collection(db, 'inquiry/user_inquiry/user_verify_inquiry'));
         await setDoc(ref, data);
+    }
+    async acceptVerifyRequest(user_id) {
+        const docRef = doc(db, 'users', user_id);
+        await updateDoc(docRef, {
+            verified: true
+        })
+    }
+    async rejectVerifyRequest(user_id) {
+        const ref = doc(collection(db, 'notifications'), user_id);
+        const docSnap = await getDoc(ref);
+        if (docSnap.exists()) {
+            await updateDoc(ref, {
+                notifications: arrayUnion('Yêu cầu xác thực người dùng của bạn đã bị từ chối, hãy xem xét lại sự kiện!')
+            })
+        } else {
+            await setDoc(ref, {
+                notifications: ['Yêu cầu xác thực người dùng của bạn đã bị từ chối, hãy xem xét lại sự kiện!']
+            })
+        }
     }
     async updateDisplayTitle(doc_id, displayTitle) {
         const docRef = doc(db, 'users', doc_id);
@@ -161,35 +180,35 @@ class DataModel {
             console.log(error);
         }
     }
-    async uploadAvatar(doc_id,file){
+    async uploadAvatar(doc_id, file) {
         const storageRef = ref(storage, `avatarImages/${doc_id}`);
         await uploadBytesResumable(storageRef, file);
         return await getDownloadURL(storageRef);
     }
-    async uploadMarketImages(id,file,type){
-        const storageRef = ref(storage,`marketImages/${type}/${id}/${file.name}`);
-        await uploadBytesResumable(storageRef,file);
+    async uploadMarketImages(id, file, type) {
+        const storageRef = ref(storage, `marketImages/${type}/${id}/${file.name}`);
+        await uploadBytesResumable(storageRef, file);
         return await getDownloadURL(storageRef);
     }
-    async createNewMarketItem(data, type){
-        const counterRef = doc(db,'items', type);
+    async createNewMarketItem(data, type) {
+        const counterRef = doc(db, 'items', type);
         const counterSnapshot = await getDoc(counterRef);
         const counter = counterSnapshot.data().counter;
-        await updateDoc(counterRef,{
-            counter: counter+1
+        await updateDoc(counterRef, {
+            counter: counter + 1
         })
-        const ref = collection(db,`items/${type}/database`);
+        const ref = collection(db, `items/${type}/database`);
         const docRef = doc(ref, counter.toString());
         await setDoc(docRef, data)
         return counter;
     }
-    async completeNewMarketItem(url, doc_id, type){
+    async completeNewMarketItem(url, doc_id, type) {
         const docRef = doc(db, `items/${type}/database`, doc_id);
         await updateDoc(docRef, {
             image: url
         })
     }
-    async getAllMarketItems(type){
+    async getAllMarketItems(type) {
         const ref = collection(db, `items/${type}/database`);
         const querySnapshot = await getDocs(ref);
         let result = [];
@@ -198,20 +217,20 @@ class DataModel {
         });
         return result;
     }
-    async updateAuctionItem(doc_id){
-        const docRef = doc(db,'items/auction/database', doc_id);
+    async updateAuctionItem(doc_id) {
+        const docRef = doc(db, 'items/auction/database', doc_id);
         await updateDoc(docRef, {
             available: false
         })
     }
-    async uploadEventImages(doc_id,file){
-        const storageRef = ref(storage,`eventImages/${doc_id}/${file.name}`);
-        await uploadBytesResumable(storageRef,file);
+    async uploadEventImages(doc_id, file) {
+        const storageRef = ref(storage, `eventImages/${doc_id}/${file.name}`);
+        await uploadBytesResumable(storageRef, file);
         return await getDownloadURL(storageRef);
     }
-    async updateEventImageRef(doc_id, url, type){
+    async updateEventImageRef(doc_id, url, type) {
         const docRef = doc(db, `events/${type}/database`, doc_id);
-        await updateDoc(docRef,{
+        await updateDoc(docRef, {
             images_ref: arrayUnion(url)
         })
     }
@@ -225,8 +244,8 @@ class DataModel {
         return result;
     }
     async getEventTitle(id) {
-        let types = ['lifetime','limited','users'];
-        for(let i in types){
+        let types = ['lifetime', 'limited', 'users'];
+        for (let i in types) {
             let docRef = doc(db, `events/${types[i]}/database`, id);
             let docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
@@ -234,16 +253,16 @@ class DataModel {
             }
         }
     }
-    async getUserAvatar(id){
-        const docRef = doc(db,'users',id);
+    async getUserAvatar(id) {
+        const docRef = doc(db, 'users', id);
         const docSnap = await getDoc(docRef);
-        if(docSnap.exists()) return docSnap.data().avatar;
+        if (docSnap.exists()) return docSnap.data().avatar;
     }
     async createOrder(data) {
         const ref = doc(collection(db, 'order'));
         await setDoc(ref, data);
     }
-    async getAllOrder(){
+    async getAllOrder() {
         const refURL = 'order';
         const ref = collection(db, refURL);
         const querySnapshot = await getDocs(ref);
@@ -253,7 +272,7 @@ class DataModel {
         });
         return result;
     }
-    async getEvent(id, type){
+    async getEvent(id, type) {
         const docRef = doc(db, `events/${type}/database`, id);
         try {
             const docSnap = await getDoc(docRef);
@@ -267,15 +286,15 @@ class DataModel {
             console.log(error)
         }
     }
-    async likeEvent(event_id,type,user_id){
-        const docRef = doc(db,`events/${type}/database`,event_id);
-        await updateDoc(docRef,{
+    async likeEvent(event_id, type, user_id) {
+        const docRef = doc(db, `events/${type}/database`, event_id);
+        await updateDoc(docRef, {
             liked_user_id: arrayUnion(user_id)
         })
     }
-    async dislikeEvent(event_id,type,user_id){
-        const docRef = doc(db,`events/${type}/database`,event_id);
-        await updateDoc(docRef,{
+    async dislikeEvent(event_id, type, user_id) {
+        const docRef = doc(db, `events/${type}/database`, event_id);
+        await updateDoc(docRef, {
             liked_user_id: arrayRemove(user_id)
         })
     }

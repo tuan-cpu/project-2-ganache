@@ -32,6 +32,13 @@ const VoteUser = () => {
     const dateString = date.toLocaleString();
     return dateString;
   }
+  const calcTotalLike = (array) =>{
+    let sum = 0;
+    for(let i=0;i<array.length;i++){
+      sum += array.data.liked_user_id.length;
+    }
+    return sum;
+  }
   return (
     <div className='gradient-bg-transactions min-h-screen'>
       <div className='flex w-full justify-center items-center'>
@@ -102,6 +109,7 @@ const VoteUser = () => {
               <p className='font-semibold text-lg'>Thông tin cơ bản</p>
               <p>Tên ứng viên: {candidate.info.displayName}</p>
               <p>Email: {candidate.info.email}</p>
+              <p>Tổng lượt ưa thích: {calcTotalLike(candidate.ownEvent)}</p>
             </div>
             <div className='flex-col border-t-1 border-color p-4 bg-white dark:bg-[#484b52] ml-4'>
               <p className='font-semibold text-lg'>Các sự kiện của ứng viên</p>

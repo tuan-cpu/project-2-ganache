@@ -37,7 +37,9 @@ const VerifyUser = () => {
     const [formData, setFormData] = useState({
         user_id: "",
         file1: "",
-        qr_info: ""
+        qr_info: "",
+        status: false,
+        rejected: false
     })
     useEffect(() => {
         if (file2 !== "")

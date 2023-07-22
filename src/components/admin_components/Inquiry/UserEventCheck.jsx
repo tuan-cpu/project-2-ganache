@@ -41,7 +41,7 @@ const InfoCard = ({ currentColor, info, acceptFunc, rejectFunc }) => (
 )
 const UserEventCheck = () => {
   const { currentColor } = useStateContext();
-  const { createEventRequest, getAllCreateEventRequest, acceptEventRequest, updateEventRequestStatus, rejectEventRequest } = useDataContext();
+  const { createEventRequest, getAllCreateEventRequest, acceptEventRequest, updateRequestStatus, rejectEventRequest } = useDataContext();
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({ id: "", data: null });
   useEffect(() => {
@@ -98,7 +98,7 @@ const UserEventCheck = () => {
               }}
               rejectFunc={() => {
                 rejectEventRequest(info.data.user_id, info.data.title);
-                updateEventRequestStatus(info.id, false, true);
+                updateRequestStatus('create_event_inquiry',info.id, false, true);
               }}
             /> : ''}
         </div>
