@@ -202,8 +202,9 @@ class DataModel {
         await setDoc(docRef, data)
         return counter;
     }
-    async completeNewMarketItem(url, doc_id, type) {
-        const docRef = doc(db, `items/${type}/database`, doc_id);
+    async completeNewMarketItem(url, doc_id, type) {    
+        const ref = collection(db, `items/${type}/database`)
+        const docRef = doc(ref, doc_id);
         await updateDoc(docRef, {
             image: url
         })
@@ -218,7 +219,7 @@ class DataModel {
         return result;
     }
     async updateAuctionItem(doc_id) {
-        const docRef = doc(db, 'items/auction/database', doc_id);
+        const docRef = doc(collection(db, 'items/auction/database'), doc_id);
         await updateDoc(docRef, {
             available: false
         })

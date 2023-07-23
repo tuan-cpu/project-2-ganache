@@ -55,7 +55,7 @@ const AuctionManagement = () => {
     if (newFile) uploadNewMarketItemImage();
   }, [newDocID])
   useEffect(() => {
-    completeNewMarketItem(newDocImageUrl, newDocID, "auction");
+    if(newDocImageUrl != '') completeNewMarketItem(newDocImageUrl, newDocID, "auction");
     setNewItemCardShow(false);
   }, [newDocImageUrl])
   return (
@@ -173,24 +173,6 @@ const AuctionManagement = () => {
                   parseFloat(item.highestBid, 16) && getDate(BigInt(item.auctionEndTime).toString()) < Date.now() ?
                     <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
                       highestBid={parseFloat(item.highestBid, 16)}
-                      endTime={item.auctionEndTime} disabled={true} /> : ''
-                }
-              </div>
-            )
-          }
-          )}
-        </div>
-      </div>
-      <div className='pt-[20px]'>
-        <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Tồn kho</p>
-        <div className='flex flex-wrap'>
-          {allItems.map((item, index) => {
-            return (
-              <div key={index}>
-                {
-                  !parseFloat(item.highestBid, 16) && getDate(BigInt(item.auctionEndTime).toString()) < Date.now() ?
-                    <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
-                      highestBid={0}
                       endTime={item.auctionEndTime} disabled={true} /> : ''
                 }
               </div>

@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Transactions from '../common_components/Transactions';
 import { middle_man } from '../../common/utils/constants';
 import { Slideshow } from '..';
+import default_avatar from '../../common/assets/avatar.svg';
 const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     <input
         placeholder={placeholder}
@@ -34,8 +35,15 @@ const DonateDetail = () => {
     const [file, setFile] = useState("");
     const [confirm, setConfirm] = useState(false);
     const [supporters, setSupporters] = useState([]);
+    const [totalAmount, setTotalAmount] = useState(0);
     const [likeStatus, setLikeStatus] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
+    const getData = async () => {
+        let result = await getEvent(id, type);
+        if (result) {
+            setDetail(result);
+        }
+    }
     useEffect(() => {
         if (file && confirm) {
             uploadEventImages(id, file, type + " events");
@@ -43,6 +51,7 @@ const DonateDetail = () => {
     }, [file, confirm])
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');
+    const clearFormData = () => setFormData({ addressTo: "", amount: "", keyword: "", message: "" });
     useEffect(() => {
         const uploadData = async (data) => {
             const docRef = doc(db, `events/${type}/database`, id);
@@ -68,6 +77,8 @@ const DonateDetail = () => {
             }
             await updateDoc(docRef, uploadedData);
             await updateUserInfo();
+            await getData();
+            clearFormData();
         }
         const submit = () => {
             if (!formData.addressTo || !formData.amount || !formData.keyword || !formData.message) return;
@@ -94,10 +105,6 @@ const DonateDetail = () => {
         submit();
     }, [formData]);
     useEffect(() => {
-        const getData = async () => {
-            let result = await getEvent(id, type);
-            if (result) setDetail(result);
-        }
         getData();
     }, []);
     const [timeLeft, setTimeLeft] = useState({});
@@ -118,7 +125,7 @@ const DonateDetail = () => {
             let result = [];
             if (detail) {
                 for (let i in detail.supporters) {
-                    let avatar = await getUserAvatar(detail.supporters[i].user_id);
+                    let avatar = (detail.supporters[i].user_id != null && await getUserAvatar(detail.supporters[i].user_id)) || default_avatar;
                     result.push({
                         amount: detail.supporters[i].amount,
                         identity: detail.supporters[i].identity,
@@ -152,10 +159,12 @@ const DonateDetail = () => {
             }
             return timeLeft;
         }
-        const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft(detail?.end) || 0);
-        }, 1000);
-        return () => clearTimeout(timer);
+        if(type !== 'lifetime'){
+            const timer = setTimeout(() => {
+                setTimeLeft(calculateTimeLeft(detail?.end) || 0);
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
     });
     const timerComponents = [];
 
@@ -205,7 +214,7 @@ const DonateDetail = () => {
                     <div className="grid grid-cols-1">
                         <section className="flex justify-start lg:justify-center items-center text-left self-stretch flex-row w-full p-[18px]">
                             <figcaption>
-                                <p className="text-red-500  text-3xl">{detail.amount} ETH</p>
+                                <p className="text-red-500  text-3xl">{Math.ceil(detail.amount * 1000) / 1000} ETH</p>
                                 <div className="text-slate-400">
                                     <div>gây</div>
                                     bởi
