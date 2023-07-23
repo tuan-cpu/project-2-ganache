@@ -19,9 +19,6 @@ const VoteManagement = () => {
     const dateString = date.toLocaleString();
     return dateString;
   }
-  useEffect(()=>{
-    if(selectedEvent)console.log(votingEvents[selectedEvent]);
-  },[selectedEvent])
   return (
     <div className=' flex flex-col'>
       <Header category="Vote" title='Vote management' />

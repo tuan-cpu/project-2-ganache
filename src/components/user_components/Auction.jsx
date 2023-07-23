@@ -20,7 +20,7 @@ const Auction = () => {
       <div className='pt-[20px]'>
         <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Đang đấu giá</p>
         <div className='flex flex-wrap'>
-          {allItems.map((item, index) => {
+          {allItems.toString() != [].toString() && allItems.map((item, index) => {
             return (
               <div key={index}>
                 {
@@ -28,24 +28,6 @@ const Auction = () => {
                   <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
                     highestBid={parseFloat(item.highestBid, 16)}
                     endTime={item.auctionEndTime} disabled={false} />
-                }
-              </div>
-            )
-          }
-          )}
-        </div>
-      </div>
-      <div className='pt-[20px]'>
-        <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Đã bán</p>
-        <div className='flex flex-wrap'>
-          {allItems.map((item, index) => {
-            return (
-              <div key={index}>
-                {
-                  parseFloat(item.highestBid, 16) && getDate(BigInt(item.auctionEndTime).toString()) < Date.now() ?
-                    <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
-                      highestBid={parseFloat(item.highestBid, 16)}
-                      endTime={item.auctionEndTime} disabled={true} /> : ''
                 }
               </div>
             )
