@@ -4,9 +4,11 @@ import { useDataContext } from '../../controller/DataProvider';
 import { Button, Header, AuctionItem } from '..';
 import { useStateContext } from '../../controller/ContextProvider';
 import { MdOutlineCancel } from 'react-icons/md';
+import { useTransactionContext } from '../../controller/TransactionProvider';
 
 const AuctionManagement = () => {
   const { addItem, getAllItems, allItems } = useAuctionContext();
+  const { currentAccount, connectWallet } = useTransactionContext();
   const { uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems, savedAuctionItems } = useDataContext();
   const { currentColor } = useStateContext();
   const [itemInfo, setItemInfo] = useState({
@@ -24,9 +26,11 @@ const AuctionManagement = () => {
   })
   const [newItemCardShow, setNewItemCardShow] = useState(false);
   useEffect(() => {
-    getAllItems();
-    getAllMarketItems("auction");
-  }, [])
+    if(currentAccount != ''){
+      getAllItems();
+      getAllMarketItems("auction");
+    }
+  }, [currentAccount]);
   const handleChange = (e, name) => {
     setItemInfo((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
@@ -55,7 +59,7 @@ const AuctionManagement = () => {
     if (newFile) uploadNewMarketItemImage();
   }, [newDocID])
   useEffect(() => {
-    if(newDocImageUrl != '') completeNewMarketItem(newDocImageUrl, newDocID, "auction");
+    if (newDocImageUrl != '') completeNewMarketItem(newDocImageUrl, newDocID, "auction");
     setNewItemCardShow(false);
   }, [newDocImageUrl])
   return (
@@ -127,60 +131,71 @@ const AuctionManagement = () => {
           </div>
         </div>
       ) : ''}
-      <div className='flex flex-wrap gap-[10px]'>
-        <select id="Item ID"
-          onChange={(e) => handleChange(e, 'id')}>
-          <option selected disabled>Chọn 1 ID</option>
-          {savedAuctionItems.map((item) => item.data.available && <option key={item.id} value={parseInt(item.id)}>{item.id}</option>)}
-        </select>
-        <input
-          placeholder='Duration'
-          type='number'
-          onChange={(e) => handleChange(e, 'auctionEndTime')}
-        />
-        <Button color='white' bgColor={currentColor}
-          text='Thêm sản phẩm đấu giá'
-          borderRadius='10px' size='md' customFunction={() => addItem(itemInfo.id, itemInfo.auctionEndTime)} />
-      </div>
-      <div className='pt-[20px]'>
-        <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Tổng tài sản đấu giá được: {getTotal()} ETH</p>
-      </div>
-      <div className='pt-[20px]'>
-        <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Đang đấu giá</p>
-        <div className='flex flex-wrap'>
-          {allItems.map((item, index) => {
-            return (
-              <div key={index}>
-                {
-                  getDate(BigInt(item.auctionEndTime).toString()) > Date.now() &&
-                  <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
-                    highestBid={parseFloat(item.highestBid, 16)}
-                    endTime={item.auctionEndTime} disabled={false} />
-                }
-              </div>
-            )
-          }
-          )}
+      {!currentAccount ? (
+        <div>
+          <Button color='white' bgColor={currentColor}
+            text='Kết nối ví'
+            borderRadius='10px' size='md' customFunction={connectWallet} />
         </div>
-      </div>
-      <div className='pt-[20px]'>
-        <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Đã bán</p>
-        <div className='flex flex-wrap'>
-          {allItems.map((item, index) => {
-            return (
-              <div key={index}>
-                {
-                  parseFloat(item.highestBid, 16) && getDate(BigInt(item.auctionEndTime).toString()) < Date.now() ?
-                    <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
-                      highestBid={parseFloat(item.highestBid, 16)}
-                      endTime={item.auctionEndTime} disabled={true} /> : ''
-                }
-              </div>
-            )
-          }
-          )}
+      ) : (
+        currentAccount && 
+        <div>
+          <div className='flex flex-wrap gap-[10px]'>
+            <select id="Item ID"
+              onChange={(e) => handleChange(e, 'id')}>
+              <option selected disabled>Chọn 1 ID</option>
+              {savedAuctionItems.map((item) => item.data.available && <option key={item.id} value={parseInt(item.id)}>{item.id}</option>)}
+            </select>
+            <input
+              placeholder='Duration'
+              type='number'
+              onChange={(e) => handleChange(e, 'auctionEndTime')}
+            />
+            <Button color='white' bgColor={currentColor}
+              text='Thêm sản phẩm đấu giá'
+              borderRadius='10px' size='md' customFunction={() => addItem(itemInfo.id, itemInfo.auctionEndTime)} />
+          </div>
+          <div className='pt-[20px]'>
+            <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Tổng tài sản đấu giá được: {getTotal()} ETH</p>
+          </div>
+          <div className='pt-[20px]'>
+            <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Đang đấu giá</p>
+            <div className='flex flex-wrap'>
+              {allItems.map((item, index) => {
+                return (
+                  <div key={index}>
+                    {
+                      getDate(BigInt(item.auctionEndTime).toString()) > Date.now() &&
+                      <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
+                        highestBid={parseFloat(item.highestBid, 16)}
+                        endTime={item.auctionEndTime} disabled={false} />
+                    }
+                  </div>
+                )
+              }
+              )}
+            </div>
+          </div>
+          <div className='pt-[20px]'>
+            <p className='text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Đã bán</p>
+            <div className='flex flex-wrap'>
+              {allItems.map((item, index) => {
+                return (
+                  <div key={index}>
+                    {
+                      parseFloat(item.highestBid, 16) && getDate(BigInt(item.auctionEndTime).toString()) < Date.now() ?
+                        <AuctionItem id={parseInt(item.id, 16)} itemsIndex={index}
+                          highestBid={parseFloat(item.highestBid, 16)}
+                          endTime={item.auctionEndTime} disabled={true} /> : ''
+                    }
+                  </div>
+                )
+              }
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

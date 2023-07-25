@@ -88,10 +88,17 @@ class DataModel {
         });
         return result;
     }
-    async createWithdrawalRequest(data) {
+    async createWithdrawalRequest(data,event_id) {
         const refURL = 'inquiry/fund_inquiry/withdrawal_request';
-        const ref = doc(collection(db, refURL));
-        await setDoc(ref, data);
+        const ref = doc(collection(db, refURL),event_id);
+        const docSnap = await getDoc(ref);
+        if(!docSnap.exists()){
+            console.log('Setting document...');
+            await setDoc(ref, data);
+        }else{
+            console.log('Document already exists...');
+            throw new Error('Bạn đã yêu cầu rút tiền rồi!');
+        }
     }
     async getAllWithdrawalRequest() {
         const refURL = 'inquiry/fund_inquiry/withdrawal_request';
@@ -130,6 +137,25 @@ class DataModel {
                 notifications: [`Sự kiện: "${event_name}" của bạn đã bị từ chối, hãy xem xét lại sự kiện!`]
             })
         }
+    }
+    async acceptWithdrawalRequest(user_id){
+        const ref = doc(collection(db, 'notifications'), user_id);
+        const docSnap = await getDoc(ref);
+        if (docSnap.exists()) {
+            await updateDoc(ref, {
+                notifications: arrayUnion('Yêu cầu xác rút tiền của bạn đã được thực hiện, vui lòng kiểm tra tài khoản!')
+            })
+        } else {
+            await setDoc(ref, {
+                notifications: ['Yêu cầu xác rút tiền của bạn đã được thực hiện, vui lòng kiểm tra tài khoản!']
+            })
+        }        
+    }
+    async updateWithdrawalRequest(doc_id){
+        const docRef = doc(db, 'inquiry/fund_inquiry/withdrawal_request', doc_id);
+        await updateDoc(docRef, {
+            status: true
+        })
     }
     async getUserNotifications(user_id) {
         const ref = doc(collection(db, 'notifications'), user_id);

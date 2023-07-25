@@ -107,7 +107,6 @@ const CreateEvent = () => {
             () => {
                 getDownloadURL(storageRef)
                     .then((url) => {
-                        console.log('File available at', url);
                         setFormData((prevState) => ({ ...prevState, image: url }));
                         setConfirm(true);
                     });

@@ -12,6 +12,8 @@ import Transactions from '../common_components/Transactions';
 import { middle_man } from '../../common/utils/constants';
 import { Slideshow } from '..';
 import default_avatar from '../../common/assets/avatar.svg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Input = ({ placeholder, name, type, value, handleChange, disabled }) => (
     <input
         placeholder={placeholder}
@@ -35,7 +37,6 @@ const DonateDetail = () => {
     const [file, setFile] = useState("");
     const [confirm, setConfirm] = useState(false);
     const [supporters, setSupporters] = useState([]);
-    const [totalAmount, setTotalAmount] = useState(0);
     const [likeStatus, setLikeStatus] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
     const getData = async () => {
@@ -159,7 +160,7 @@ const DonateDetail = () => {
             }
             return timeLeft;
         }
-        if(type !== 'lifetime'){
+        if (type !== 'lifetime') {
             const timer = setTimeout(() => {
                 setTimeLeft(calculateTimeLeft(detail?.end) || 0);
             }, 1000);
@@ -202,6 +203,20 @@ const DonateDetail = () => {
             return result;
         };;
         return "Vừa xong"
+    }
+    const handleWithdrawal = async () => {
+        try {
+            await createWithdrawalRequest({
+                event_id: id,
+                user_id: user.id,
+                wallet: detail.wallet,
+                amount: detail.amount,
+                status: false
+            }, id)
+            toast.success("Yêu cầu thành công!")
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
 
     return (
@@ -270,7 +285,7 @@ const DonateDetail = () => {
                                             type="button"
                                             onClick={() => {
                                                 if (!timerComponents.length && type != 'lifetime') alert("Sự kiện đã kết thúc!");
-                                                else if(Date.now() < detail.start.seconds * 1000) alert("Sự kiện chưa bắt đầu!");
+                                                else if (Date.now() < detail.start.seconds * 1000) alert("Sự kiện chưa bắt đầu!");
                                                 else setSendFormShow(true)
                                             }}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
@@ -280,11 +295,7 @@ const DonateDetail = () => {
                                         <button
                                             type="button"
                                             disabled={timerComponents.length ? true : false}
-                                            onClick={() => createWithdrawalRequest({
-                                                event_id: id,
-                                                user_id: user.id,
-                                                wallet: detail.wallet
-                                            })}
+                                            onClick={handleWithdrawal}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
                                             Rút tiền
                                         </button>
@@ -412,6 +423,7 @@ const DonateDetail = () => {
                         </section>
                     </div>
                 </div>}
+            <ToastContainer />
         </div>
     )
 }

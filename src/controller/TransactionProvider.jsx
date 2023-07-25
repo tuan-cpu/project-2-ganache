@@ -43,48 +43,86 @@ export const TransactionProvider = ({ children }) => {
     }
     const sendTransaction = async (data, callback) => {
         try {
-          if (!ethereum) return alert("Please install MetaMask!");
-      
-          const { addressTo, amount, keyword, message } = data;
-          const transactionContract = getEthereumContract();
-          const parsedAmount = ethers.utils.parseEther(amount);
-      
-          const gasLimit = await ethereum.request({
-            method: 'eth_estimateGas',
-            params: [{
-              from: currentAccount,
-              to: addressTo,
-              value: parsedAmount._hex,
-              data: transactionContract.address
-            }]
-          });
-      
-          // Set the gas limit to a higher value
-          const higherGasLimit = gasLimit * 2; // You can adjust the multiplier as needed
-          const gas = `0x${higherGasLimit.toString(16)}`;
-      
-          await ethereum.request({
-            method: 'eth_sendTransaction',
-            params: [{
-              from: currentAccount,
-              to: addressTo,
-              gas,
-              value: parsedAmount._hex,
-              data: transactionContract.address
-            }]
-          });
-    
-          const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
-          setIsLoading(true);
-          console.log(`Loading - ${transactionHash.hash}`);
-          await transactionHash.wait();
-          setIsLoading(false);
-          console.log(`Success - ${transactionHash.hash}`);
-          if(transactionHash) callback(data);
+            if (!ethereum) return alert("Please install MetaMask!");
+
+            const { addressTo, amount, keyword, message } = data;
+            const transactionContract = getEthereumContract();
+            const parsedAmount = ethers.utils.parseEther(amount);
+
+            const gasLimit = await ethereum.request({
+                method: 'eth_estimateGas',
+                params: [{
+                    from: currentAccount,
+                    to: addressTo,
+                    value: parsedAmount._hex,
+                    data: transactionContract.address
+                }]
+            });
+
+            // Set the gas limit to a higher value
+            const higherGasLimit = gasLimit * 2; // You can adjust the multiplier as needed
+            const gas = `0x${higherGasLimit.toString(16)}`;
+
+            await ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: currentAccount,
+                    to: addressTo,
+                    gas,
+                    value: parsedAmount._hex,
+                    data: transactionContract.address
+                }]
+            });
+
+            const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
+            setIsLoading(true);
+            console.log(`Loading - ${transactionHash.hash}`);
+            await transactionHash.wait();
+            setIsLoading(false);
+            console.log(`Success - ${transactionHash.hash}`);
+            if (transactionHash) callback(data);
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
+    };
+    const acceptWithdrawal = async (callback, user_id, doc_id) => {
+        try {
+            if (!ethereum) return alert("Please install MetaMask!");
+
+            const { addressTo, amount, keyword, message } = formData;
+            const transactionContract = getEthereumContract();
+            const parsedAmount = ethers.utils.parseEther(amount);
+
+            const gasLimit = await ethereum.request({
+                method: 'eth_estimateGas',
+                params: [{
+                    from: currentAccount,
+                    to: addressTo,
+                    value: parsedAmount._hex,
+                    data: transactionContract.address
+                }]
+            });
+
+            // Set the gas limit to a higher value
+            const higherGasLimit = gasLimit * 2; // You can adjust the multiplier as needed
+            const gas = `0x${higherGasLimit.toString(16)}`;
+
+            await ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: currentAccount,
+                    to: addressTo,
+                    gas,
+                    value: parsedAmount._hex,
+                    data: transactionContract.address
+                }]
+            });
+            const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
+            if (transactionHash) callback(user_id, doc_id);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const checkIfWalletIsConnected = async () => {
         if (!ethereum) return alert("Please install Metamask!");
         const accounts = await ethereum.request({ method: 'eth_accounts' });
@@ -94,7 +132,6 @@ export const TransactionProvider = ({ children }) => {
         } else {
             console.log('No account found.');
         }
-        console.log(accounts);
     }
     const checkIfTransactionsExist = async () => {
         try {
@@ -125,7 +162,7 @@ export const TransactionProvider = ({ children }) => {
         <TransactionContext.Provider value={{
             connectWallet, currentAccount, formData,
             sendTransaction, handleChange, transactions,
-            isLoading, setFormData
+            isLoading, setFormData, acceptWithdrawal
         }}>
             {children}
         </TransactionContext.Provider>

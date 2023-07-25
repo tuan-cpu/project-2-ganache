@@ -58,8 +58,8 @@ export const DataProvider = ({ children }) => {
         const result = await dataInstance.getAllCreateEventRequest();
         setCreateEventRequest(result);
     }
-    const createWithdrawalRequest = async (data) => {
-        await dataInstance.createWithdrawalRequest(data);
+    const createWithdrawalRequest = async (data, event_id) => {
+        await dataInstance.createWithdrawalRequest(data, event_id);
     }
     const [withdrawalRequests, setWithdrawalRequests] = useState([])
     const getAllWithdrawalRequest = async () => {
@@ -89,6 +89,12 @@ export const DataProvider = ({ children }) => {
     }
     const rejectVerifyRequest = async (user_id) => {
         await dataInstance.rejectVerifyRequest(user_id);
+    }
+    const acceptWithdrawalRequest = async (user_id) =>{
+        await dataInstance.acceptWithdrawalRequest(user_id);
+    }
+    const updateWithdrawalRequest = async (doc_id) => {
+        await dataInstance.updateWithdrawalRequest(doc_id);
     }
     const [notifications, setNotifications] = useState([]);
     const getUserNotifications = async (user_id) => {
@@ -171,7 +177,7 @@ export const DataProvider = ({ children }) => {
             uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
             savedAuctionItems, savedMarketItems, savedLotteryItems, acceptEventRequest, updateRequestStatus, rejectEventRequest,
             updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent, notifications, getUserNotifications,
-            acceptVerifyRequest, rejectVerifyRequest
+            acceptVerifyRequest, rejectVerifyRequest, acceptWithdrawalRequest, updateWithdrawalRequest
         }}>
             {children}
         </DataContext.Provider>
