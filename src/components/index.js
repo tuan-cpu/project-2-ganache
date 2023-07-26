@@ -42,3 +42,4 @@ export { default as Slideshow } from './common_components/Slideshow';
 export { default as PrizeManagement } from './admin_components/PrizeManagement';
 export { default as Lottery } from './user_components/Lottery';
 export { default as Notification } from './common_components/Notification';
+export { default as Support } from './common_components/Support';

@@ -168,6 +168,12 @@ export const DataProvider = ({ children }) => {
     const dislikeEvent = async (event_id, type, user_id) => {
         await dataInstance.dislikeEvent(event_id, type, user_id);
     }
+    const createOtherInquiry = async(data) =>{
+        await dataInstance.createOtherInquiry(data);
+    }
+    const respondInquiry = async(response, user_id) => {
+        await dataInstance.respondInquiry(response, user_id);
+    }
     return (
         <DataContext.Provider value={{
             events, users, admins, getAllEvents, getAllUsers, userVerifyRequest, getAllUserVerifyRequest,
@@ -177,7 +183,7 @@ export const DataProvider = ({ children }) => {
             uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
             savedAuctionItems, savedMarketItems, savedLotteryItems, acceptEventRequest, updateRequestStatus, rejectEventRequest,
             updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent, notifications, getUserNotifications,
-            acceptVerifyRequest, rejectVerifyRequest, acceptWithdrawalRequest, updateWithdrawalRequest
+            acceptVerifyRequest, rejectVerifyRequest, acceptWithdrawalRequest, updateWithdrawalRequest, createOtherInquiry, respondInquiry
         }}>
             {children}
         </DataContext.Provider>

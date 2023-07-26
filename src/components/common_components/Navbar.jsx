@@ -9,7 +9,8 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import avatar from '../../common/assets/avatar.svg';
 import { useAuthContext } from '../../controller/AuthProvider';
 import { RiNotification3Line } from 'react-icons/ri';
-import { Notification } from '..';
+import { Notification, Support } from '..';
+import { BiSupport } from 'react-icons/bi';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
     <TooltipComponent content={title} position="BottomCenter">
@@ -31,6 +32,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { user, setUser } = useAuthContext();
     const [showNotification, setShowNotification] = useState(false);
+    const [showSupport, setShowSupport] = useState(false);
     let authToken = sessionStorage.getItem('Auth Token');
     let email = sessionStorage.getItem('Email');
     let provider = sessionStorage.getItem('Provider');
@@ -74,8 +76,9 @@ const Navbar = () => {
         <div className='flex justify-between p-2 md:ml-6 md:mr-6 relative'>
             <NavButton title="Menu" customFunc={handleActiveMenu} color={currentColor} icon={<AiOutlineMenu />} />
             <div className='flex'>
-                {authToken && <NavButton title="Notification" dotColor="rgb(254, 201, 15)" customFunc={() => setShowNotification(!showNotification)} color={currentColor} icon={<RiNotification3Line />} />}
-                {!authToken ? <NavButton title="Log in" customFunc={() => navigate('/login')} color={currentColor} icon={"Log in"} /> :
+                {authToken && <NavButton title="Hỗ trợ người dùng" dotColor="rgb(254, 201, 15)" customFunc={()=>setShowSupport(!showSupport)} color={currentColor} icon={<BiSupport/>} />}
+                {authToken && <NavButton title="Thông báo" dotColor="rgb(254, 201, 15)" customFunc={() => setShowNotification(!showNotification)} color={currentColor} icon={<RiNotification3Line />} />}
+                {!authToken ? <NavButton title="Đăng nhập" customFunc={() => navigate('/login')} color={currentColor} icon={"Đăng nhập"} /> :
                     <TooltipComponent content="Profile" position="BottomCenter">
                         <div
                             className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
@@ -95,6 +98,7 @@ const Navbar = () => {
                             <MdKeyboardArrowDown className="text-gray-400 text-14" />
                         </div>
                     </TooltipComponent>}
+                    {showSupport && <Support onClose={()=>setShowSupport(!showSupport)}/>}
                     {showNotification && <Notification/>}
             </div>
         </div>

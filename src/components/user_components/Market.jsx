@@ -98,7 +98,6 @@ const Market = () => {
       <div className='p-[10px]'>
         <div className='flex justify-between items-center'>
           <p className='text-xl font-extrabold tracking-tight text-slate-900 dark:text-white'>Nhóm hàng hoàn toàn từ thiện</p>
-          <p className='dark:text-white'>Hiển thị thêm</p>
         </div>
         <motion.div className='flex flex-wrap justify-between gap-2 items-center'>
           <AnimatePresence>

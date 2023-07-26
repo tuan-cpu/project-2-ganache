@@ -186,6 +186,23 @@ class DataModel {
             })
         }
     }
+    async createOtherInquiry(data){
+        const ref = doc(collection(db,'inquiry/other_inquiry/database'));
+        await setDoc(ref, data);
+    }
+    async respondInquiry(response,user_id){
+        const ref = doc(collection(db, 'notifications'), user_id);
+        const docSnap = await getDoc(ref);
+        if (docSnap.exists()) {
+            await updateDoc(ref, {
+                notifications: arrayUnion(response)
+            })
+        } else {
+            await setDoc(ref, {
+                notifications: [response]
+            })
+        }    
+    }
     async updateDisplayTitle(doc_id, displayTitle) {
         const docRef = doc(db, 'users', doc_id);
         await updateDoc(docRef, {
