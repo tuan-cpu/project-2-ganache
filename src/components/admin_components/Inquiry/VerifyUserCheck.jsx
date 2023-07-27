@@ -37,7 +37,7 @@ const InfoCard = ({ currentColor, info, acceptFuc, rejectFunc }) => (
 )
 const VerifyUserCheck = () => {
   const { currentColor } = useStateContext();
-  const { userVerifyRequest, getAllUserVerifyRequest, acceptVerifyRequest, rejectVerifyRequest, updateRequestStatus } = useDataContext();
+  const { userVerifyRequest, getAllUserVerifyRequest, acceptVerifyRequest, rejectVerifyRequest, updateUserRequestStatus } = useDataContext();
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({ id: "", data: null });
   useEffect(() => {
@@ -104,10 +104,10 @@ const VerifyUserCheck = () => {
           {open ?
             <InfoCard currentColor={currentColor} info={info} acceptFuc={() => {
               acceptVerifyRequest(info.data.user_id);
-              updateRequestStatus('user_verify_inquiry', info.id, true, false);
+              updateUserRequestStatus('user_verify_inquiry', info.id, true, false);
             }} rejectFunc={() => {
               rejectVerifyRequest(info.data.user_id);
-              updateRequestStatus('user_verify_inquiry', info.id, false, true);
+              updateUserRequestStatus('user_verify_inquiry', info.id, false, true);
             }} /> : ''}
         </div>
       </div>

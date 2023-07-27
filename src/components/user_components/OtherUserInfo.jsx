@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import 'tw-elements';
 import { db } from '../../common/utils/firebase';
-import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { NavLink } from 'react-router-dom';
 import { motion } from "framer-motion";
 import avatar from '../../common/assets/avatar.svg';
@@ -43,15 +43,14 @@ const EventCard = ({ title, event, location, id, url, start, end }) => (
 )
 
 const OtherUserInfo = ({ id }) => {
-    const { getEventTitle } = useDataContext();
+    const { getEventTitle, getAnUser } = useDataContext();
     const [user, setUser] = useState();
     const [ownEvent, setOwnEvent] = useState([]);
     const [recordData, setRecordData] = useState([]);
     useEffect(() => {
-        const getUserData = async (id) => {
-            const docRef = doc(db, 'users', id);
-            const docSnap = await getDoc(docRef);
-            setUser(docSnap.data());
+        const getUserData = async(user_id) =>{
+            let result = await getAnUser(user_id);
+            setUser(result);
         }
         getUserData(id);
     }, [])
@@ -69,7 +68,7 @@ const OtherUserInfo = ({ id }) => {
             const q = query(collection(db, "events/users/database"), where("user_id", "==", id));
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
-                result.push({ id: doc.id, data: doc.data(), type: 'lifetime' });
+                result.push({ id: doc.id, data: doc.data(), type: 'users' });
             });
             setOwnEvent(result);
         }

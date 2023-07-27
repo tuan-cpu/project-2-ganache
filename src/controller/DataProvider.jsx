@@ -66,6 +66,11 @@ export const DataProvider = ({ children }) => {
         const result = await dataInstance.getAllWithdrawalRequest();
         setWithdrawalRequests(result);
     }
+    const [otherRequest, setOtherRequest] = useState([]);
+    const getAllOtherRequest = async() =>{
+        const result = await dataInstance.getAllOtherRequest();
+        setOtherRequest(result);
+    }
     const addDataGoogleSignIn = async ({ email, provider, displayName, photoURL, uid }) => {
         await dataInstance.addDataGoogleSignIn({ email, provider, displayName, photoURL, uid })
     };
@@ -78,8 +83,8 @@ export const DataProvider = ({ children }) => {
     const acceptEventRequest = async (data) => {
         await dataInstance.acceptEventRequest(data);
     }
-    const updateRequestStatus = async (inquiry, doc_id, status, rejected) => {
-        await dataInstance.updateRequestStatus(inquiry, doc_id, status, rejected);
+    const updateUserRequestStatus = async (inquiry, doc_id, status, rejected) => {
+        await dataInstance.updateUserRequestStatus(inquiry, doc_id, status, rejected);
     }
     const rejectEventRequest = async (user_id, event_name) => {
         await dataInstance.rejectEventRequest(user_id, event_name);
@@ -171,8 +176,15 @@ export const DataProvider = ({ children }) => {
     const createOtherInquiry = async(data) =>{
         await dataInstance.createOtherInquiry(data);
     }
+    const updateOtherRequestStatus = async(doc_id)=>{
+        await dataInstance.updateOtherRequestStatus(doc_id);
+    }
     const respondInquiry = async(response, user_id) => {
         await dataInstance.respondInquiry(response, user_id);
+    }
+    const getAnUser = async(user_id) => {
+        let result = await dataInstance.getAnUser(user_id);
+        return result;
     }
     return (
         <DataContext.Provider value={{
@@ -181,9 +193,10 @@ export const DataProvider = ({ children }) => {
             getAllWithdrawalRequest, withdrawalRequests, addDataGoogleSignIn, addDataSignUp, createEvent,
             createUserVerifyInquiry, updateDisplayTitle, getAllEventsOfAnUser, uploadAvatar, createOrder, getAllOrder, orders,
             uploadEventImages, uploadMarketImages, createNewMarketItem, completeNewMarketItem, getAllMarketItems,
-            savedAuctionItems, savedMarketItems, savedLotteryItems, acceptEventRequest, updateRequestStatus, rejectEventRequest,
+            savedAuctionItems, savedMarketItems, savedLotteryItems, acceptEventRequest, updateUserRequestStatus, rejectEventRequest,
             updateAuctionItem, getEvent, getEventTitle, getUserAvatar, likeEvent, dislikeEvent, notifications, getUserNotifications,
-            acceptVerifyRequest, rejectVerifyRequest, acceptWithdrawalRequest, updateWithdrawalRequest, createOtherInquiry, respondInquiry
+            acceptVerifyRequest, rejectVerifyRequest, acceptWithdrawalRequest, updateWithdrawalRequest, createOtherInquiry, respondInquiry,
+            otherRequest, getAllOtherRequest, getAnUser, updateOtherRequestStatus
         }}>
             {children}
         </DataContext.Provider>

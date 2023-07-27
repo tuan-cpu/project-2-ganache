@@ -4,6 +4,8 @@ import { useStateContext } from '../../../controller/ContextProvider';
 import { useDataContext } from '../../../controller/DataProvider';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { FcCancel } from 'react-icons/fc';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RequestCard = ({ title, subtitle, status }) => (
   <div className="flex flex-row justify-start items-center white-glassmorphism border-black dark:border-white p-3 m-2 hover:shadow-xl cursor-pointer">
@@ -41,12 +43,13 @@ const InfoCard = ({ currentColor, info, acceptFunc, rejectFunc }) => (
 )
 const UserEventCheck = () => {
   const { currentColor } = useStateContext();
-  const { createEventRequest, getAllCreateEventRequest, acceptEventRequest, updateRequestStatus, rejectEventRequest } = useDataContext();
+  const { createEventRequest, getAllCreateEventRequest, acceptEventRequest, updateUserRequestStatus, rejectEventRequest } = useDataContext();
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({ id: "", data: null });
   useEffect(() => {
     getAllCreateEventRequest();
   }, [])
+  const handleClose = () => window.location.reload();
   return (
     <div>
       <Header category="Inquiry" title='Kiểm tra sự kiện người dùng nộp lên' />
@@ -94,15 +97,22 @@ const UserEventCheck = () => {
               info={info}
               acceptFunc={() => {
                 acceptEventRequest(info.data);
-                updateEventRequestStatus(info.id, true, false);
+                updateUserRequestStatus('create_event_inquiry',info.id, true, false);
+                toast.success('Yêu cầu được chấp thuận!',{
+                  onClose: handleClose
+                });
               }}
               rejectFunc={() => {
                 rejectEventRequest(info.data.user_id, info.data.title);
-                updateRequestStatus('create_event_inquiry',info.id, false, true);
+                updateUserRequestStatus('create_event_inquiry',info.id, false, true);
+                toast.error('Đã từ chối yêu cầu!',{
+                  onClose: handleClose
+                });
               }}
             /> : ''}
         </div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

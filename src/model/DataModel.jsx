@@ -47,23 +47,18 @@ class DataModel {
         });
         return { Users, Admins };
     }
+    async getAnUser(user_id){
+        const docRef = doc(db, 'users', user_id);
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()) return docSnap.data();
+    }
     async getCandidateInfo(id) {
         const ref = doc(db, "users", id);
         const docSnap = await getDoc(ref);
         let result = [];
-        const q1 = query(collection(db, "lifetime events"), where("user_id", "==", id));
-        const q2 = query(collection(db, "limited events"), where("user_id", "==", id));
-        const q3 = query(collection(db, "users events"), where("user_id", "==", id));
-        const querySnapshot1 = await getDocs(q1);
-        querySnapshot1.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'lifetime' });
-        });
-        const querySnapshot2 = await getDocs(q2);
-        querySnapshot2.forEach((doc) => {
-            result.push({ id: doc.id, data: doc.data(), type: 'limited' });
-        });
-        const querySnapshot3 = await getDocs(q3);
-        querySnapshot3.forEach((doc) => {
+        const q = query(collection(db, "users events"), where("user_id", "==", id));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
             result.push({ id: doc.id, data: doc.data(), type: 'users' });
         });
         return { result, docSnap };
@@ -80,6 +75,16 @@ class DataModel {
     }
     async getAllCreateEventRequest() {
         const refURL = 'inquiry/user_inquiry/create_event_inquiry';
+        const ref = collection(db, refURL);
+        const querySnapshot = await getDocs(ref);
+        let result = [];
+        querySnapshot.forEach((doc) => {
+            result.push({ id: doc.id, data: doc.data() });
+        });
+        return result;
+    }
+    async getAllOtherRequest() {
+        const refURL = 'inquiry/other_inquiry/database';
         const ref = collection(db, refURL);
         const querySnapshot = await getDocs(ref);
         let result = [];
@@ -118,7 +123,7 @@ class DataModel {
         const ref = doc(collection(db, 'events/users/database'));
         await setDoc(ref, data);
     }
-    async updateRequestStatus(inquiry, doc_id, status, rejected) {
+    async updateUserRequestStatus(inquiry, doc_id, status, rejected) {
         const docRef = doc(db, `inquiry/user_inquiry/${inquiry}`, doc_id);
         await updateDoc(docRef, {
             status: status,
@@ -189,6 +194,12 @@ class DataModel {
     async createOtherInquiry(data){
         const ref = doc(collection(db,'inquiry/other_inquiry/database'));
         await setDoc(ref, data);
+    }
+    async updateOtherRequestStatus(doc_id) {
+        const docRef = doc(db, 'inquiry/other_inquiry/database', doc_id);
+        await updateDoc(docRef, {
+            status: true,
+        })
     }
     async respondInquiry(response,user_id){
         const ref = doc(collection(db, 'notifications'), user_id);
