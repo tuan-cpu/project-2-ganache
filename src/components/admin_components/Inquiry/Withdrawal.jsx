@@ -45,7 +45,10 @@ const Withdrawal = () => {
   useEffect(() => {
     getAllWithdrawalRequest();
   }, []);
-  const handleClose = () => window.location.reload();
+  const handleClose = () =>{
+    getAllWithdrawalRequest();
+    setOpen(false);
+  };
   const accept = (user_id, doc_id) => {
     acceptWithdrawalRequest(user_id);
     updateWithdrawalRequest(doc_id);

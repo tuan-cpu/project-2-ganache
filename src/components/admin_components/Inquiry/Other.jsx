@@ -47,7 +47,10 @@ const Other = () => {
     }
     if (info.data != null) getUserData(info.data.user_id);
   }, [info]);
-  const handleClose = () => window.location.reload();
+  const handleClose = () =>{
+    getAllOtherRequest();
+    setOpen(false);
+  };
   return (
     <div>
       <Header category="Inquiry" title='Other' />

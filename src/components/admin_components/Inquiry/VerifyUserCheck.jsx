@@ -4,6 +4,8 @@ import { useStateContext } from '../../../controller/ContextProvider';
 import { useDataContext } from '../../../controller/DataProvider';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { FcCancel } from 'react-icons/fc';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RequestCard = ({ title, status }) => (
   <div className="white-glassmorphism border-black dark:border-white p-3 m-2 hover:shadow-xl cursor-pointer">
@@ -43,6 +45,10 @@ const VerifyUserCheck = () => {
   useEffect(() => {
     getAllUserVerifyRequest();
   }, [])
+  const handleClose = () => {
+    getAllUserVerifyRequest();
+    setOpen(false);
+  }
   return (
     <div>
       <Header category="Inquiry" title='Kiểm tra thông tin người dùng' />
@@ -105,12 +111,19 @@ const VerifyUserCheck = () => {
             <InfoCard currentColor={currentColor} info={info} acceptFuc={() => {
               acceptVerifyRequest(info.data.user_id);
               updateUserRequestStatus('user_verify_inquiry', info.id, true, false);
+              toast.success('Yêu cầu được chấp thuận!',{
+                onClose: handleClose
+              });
             }} rejectFunc={() => {
               rejectVerifyRequest(info.data.user_id);
               updateUserRequestStatus('user_verify_inquiry', info.id, false, true);
+              toast.success('Yêu cầu đã bị từ chối!',{
+                onClose: handleClose
+              });
             }} /> : ''}
         </div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

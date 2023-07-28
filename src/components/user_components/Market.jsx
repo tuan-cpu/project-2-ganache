@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Header, Loader } from '..';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -43,7 +43,12 @@ const ItemCard = ({ item, color, handleFunc, cartItems }) => (
 
 const Market = () => {
   const { getAllMarketItems, savedMarketItems } = useDataContext();
+  const { currentColor } = useStateContext();
   const [cartItems, setCartItems] = useState([]);
+  const [fullyDonatedItems, setFullyDonatedItems] = useState([]);
+  const [partiallyDonatedItems, setPartiallyDonatedItems] = useState([]);
+  const [fullyFiltered, setFullyFiltered] = useState([]);
+  const [partiallyFiltered, setPartiallyFiltered] = useState([]);
   useEffect(()=>{
     getAllMarketItems("market");
   },[])
@@ -56,22 +61,17 @@ const Market = () => {
       localStorage.setItem('myCart', JSON.stringify(result));
     }
   },[cartItems])
-  const [input, setInput] = useState('');
-  const [fullyDonatedItems, setFullyDonatedItems] = useState([]);
-  const [partiallyDonatedItems, setPartiallyDonatedItems] = useState([]);
-  const [fullyFiltered, setFullyFiltered] = useState([]);
-  const [partiallyFiltered, setPartiallyFiltered] = useState([]);
-  useEffect(() => {
+  const handleSearchInput = useCallback((input)=>{
     if (input !== "") {
-        const fully_filtered = fullyDonatedItems.filter((item) => item.data.name.includes(input));
-        const partially_filtered = partiallyDonatedItems.filter((item) => item.data.name.includes(input));
-        setFullyFiltered(fully_filtered);
-        setPartiallyFiltered(partially_filtered);
+      const fully_filtered = fullyDonatedItems.filter((item) => item.data.name.includes(input));
+      const partially_filtered = partiallyDonatedItems.filter((item) => item.data.name.includes(input));
+      setFullyFiltered(fully_filtered);
+      setPartiallyFiltered(partially_filtered);
     }else{
       setFullyFiltered(fullyDonatedItems);
       setPartiallyFiltered(partiallyDonatedItems);
     }
-  }, [input]);
+  },[])
   useEffect(()=>{
     let fully = [];
     let partially = [];
@@ -84,7 +84,6 @@ const Market = () => {
     setFullyFiltered(fully);
     setPartiallyFiltered(partially);
   },[savedMarketItems])
-  const { currentColor } = useStateContext();
   return ( fullyDonatedItems && partiallyDonatedItems?
     <div className='flex flex-col'>
       <div className='flex flex-wrap items-center justify-between'>
@@ -92,7 +91,7 @@ const Market = () => {
         <input
           type='text'
           placeholder='Tìm kiếm...'
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => handleSearchInput(e.target.value)}
         />
       </div>
       <div className='p-[10px]'>

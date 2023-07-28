@@ -49,7 +49,10 @@ const UserEventCheck = () => {
   useEffect(() => {
     getAllCreateEventRequest();
   }, [])
-  const handleClose = () => window.location.reload();
+  const handleClose = () => {
+    getAllCreateEventRequest();
+    setOpen(false);
+  };
   return (
     <div>
       <Header category="Inquiry" title='Kiểm tra sự kiện người dùng nộp lên' />

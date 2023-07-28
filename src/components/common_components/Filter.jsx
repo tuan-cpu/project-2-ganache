@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-const Filter = ({events,setFiltered,activeButton,setActiveButton,setInput}) =>{
+const Filter = ({events,setFiltered,activeButton,setActiveButton}) =>{
     useEffect(() => {
         if(activeButton === "All") {
             setFiltered(events);
@@ -7,7 +7,6 @@ const Filter = ({events,setFiltered,activeButton,setActiveButton,setInput}) =>{
         }
         const filtered = events.filter((event)=> event.tag.includes(activeButton));
         setFiltered(filtered);
-        setInput("");
     }, [activeButton]);
     return(
         <div className="flex flex-wrap gap-[10px]">

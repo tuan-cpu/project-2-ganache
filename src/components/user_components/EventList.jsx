@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter } from '../../components';
@@ -39,10 +39,6 @@ const EventList = ({ type, events }) => {
     const [correspondEvents, setCorrespondEvents] = useState([]);
     const [filtered, setFiltered] = useState([]);
     const [activeButton, setActiveButton] = useState("All");
-    const [input, setInput] = useState("");
-    const handleSearchInput = (e) => {
-        setInput(e.target.value);
-    };
     useEffect(() => {
         let result = [];
         for (let i in events) {
@@ -53,15 +49,16 @@ const EventList = ({ type, events }) => {
         setCorrespondEvents(result);
         setFiltered(result);
     }, [type]);
-    useEffect(() => {
+    const handleSearchInput = useCallback((input)=>{
         if (input !== "") {
             setActiveButton("All");
             const search_filtered = correspondEvents.filter((event) => event.title.includes(input));
             setFiltered(search_filtered);
         } else {
             setActiveButton("All");
+            setFiltered(correspondEvents);
         }
-    }, [input]);
+    },[])
     return (
         <div className="gradient-bg-transactions grid grid-cols-1 justify-items-center items-center flex py-[20px] sm:px-[50px] lg:px-[100px] px-[20px]">
             <div className="flex w-3/4 sm:w-1/2 gap-[2px]">
@@ -69,8 +66,7 @@ const EventList = ({ type, events }) => {
                     type="text"
                     className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Tìm kiếm..."
-                    value={input}
-                    onChange={(e) => handleSearchInput(e)}
+                    onChange={(e) => handleSearchInput(e.target.value)}
                 />
                 <button
                     type="button"
@@ -80,9 +76,7 @@ const EventList = ({ type, events }) => {
                     <p className="text-white text-base font-semibold">Tạo quỹ</p>
                 </button>
             </div>
-            <div>
-                <Filter events={correspondEvents} setInput={setInput} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton} />
-            </div>
+            <Filter events={correspondEvents} setFiltered={setFiltered} activeButton={activeButton} setActiveButton={setActiveButton} />
             <motion.div layout className="grid sm:grid-cols-3 grid-cols-2 p-[20px] gap-[20px]">
                 <AnimatePresence>
                     {filtered.map((event, index) => <EventCard type={type} id={event.id} title={event.title} event={event.event} location={(event.city || '') + " " + (event.state || '') + " VN"} key={event.id} url={event.image} start={event.start} end={event.end} />)}
