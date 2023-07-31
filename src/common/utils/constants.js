@@ -4,15 +4,15 @@ import votingAbi from '../../../build/contracts/Voting.json';
 import lotteryAbi from '../../../build/contracts/Lottery.json';
 
 export const transactionContractABI = transactionAbi.abi;
-export const transactionContractAddress = '0x1b38CD5C3f6d44a1460A62d5099d74f736E0eD82';
+export const transactionContractAddress = '0x8171cd962440993796bA839eF172A89A1a780078';
 
 export const auctionContractABI = auctionAbi.abi;
-export const auctionContractAddress = '0x7F522667863CF38903B02668b228eAE66F4ccD3A';
+export const auctionContractAddress = '0xEbf51b8B0e367f936106A4E482f6357256ed6A31';
 
 export const votingContractAbi = votingAbi.abi;
-export const votingContractAddress = '0xbF3Dd8d59eD721a7C3915402Bdb5C506E2cD52F2';
+export const votingContractAddress = '0x3bA6e94Cf212e8f50116280D04e140758E7B427E';
 
 export const lotteryContractAbi = lotteryAbi.abi;
-export const lotteryContractAddress = '0xAe0EeCf711Cb362A5c27e53AA79cfDA5c5ad725b';
+export const lotteryContractAddress = '0xAb33D8C5FFC42570f15CB407E0683c79b229D11a';
 
 export const middle_man = '0xB7A408065493132a8B692C6C53C6CA0f9d089962';
