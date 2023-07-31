@@ -5,6 +5,8 @@ import { useTransactionContext } from '../../controller/TransactionProvider';
 import { useDataContext } from '../../controller/DataProvider';
 import { useState, useEffect } from 'react';
 import { Loader } from '..';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AuctionItem = ({ id, highestBid, endTime, itemsIndex, disabled }) => {
     const { currentColor } = useStateContext();
@@ -60,7 +62,8 @@ const AuctionItem = ({ id, highestBid, endTime, itemsIndex, disabled }) => {
                         className="flex items-center gap-1 py-[4px] px-[20px] hover:drop-shadow-xl text-white mt-[10px]"
                         onClick={() => {
                             if (showBid){
-                                if(bidAmount < savedAuctionItems[id].data.lowestPrice || bidAmount <= highestBid/10**18) alert('Không thể đặt giá thấp hơn hiện tại!')
+                                if(bidAmount < savedAuctionItems[id].data.lowestPrice || bidAmount <= highestBid/10**18) 
+                                toast.error('Không thể đặt giá thấp hơn hiện tại!')
                                 else bid(itemsIndex,bidAmount, currentAddress);
                             }
                             else setShowBid(!showBid);
@@ -70,6 +73,7 @@ const AuctionItem = ({ id, highestBid, endTime, itemsIndex, disabled }) => {
                     </button>
                 </div>
             </div>
+            <ToastContainer/>
         </motion.div>: <Loader/>
     )
 }

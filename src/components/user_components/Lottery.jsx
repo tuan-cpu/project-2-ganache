@@ -5,6 +5,8 @@ import { useAuthContext } from '../../controller/AuthProvider';
 import { useDataContext } from '../../controller/DataProvider';
 import { useStateContext } from '../../controller/ContextProvider';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const button = document.getElementById('lotteryButton');
 
@@ -78,7 +80,7 @@ const Lottery = () => {
         if (selectedPoolItems.toString() !== [].toString()) setShowPool(true);
     }, [selectedPoolItems])
     useEffect(() => {
-        if(newCoupon) alert(selectedPoolItems[newCoupon.group].describe);
+        if(newCoupon) toast.success(selectedPoolItems[newCoupon.group].describe);
     }, [newCoupon])
     return (
         <div className='m-4 md:m-10 mt-24 p-10 gap-[10px]'>
@@ -96,7 +98,7 @@ const Lottery = () => {
                             style={{ backgroundColor: currentColor, color: 'white', borderRadius: '10px' }}
                             className={'text-md p-3 hover:drop-shadow-xl disabled:hidden'} onClick={() => {
                                 createCoupon(user.id, selectedPoolID, selectedPool.entry_value);
-                                alert('Làm lạnh 5 phút')
+                                toast.error('Làm lạnh 5 phút')
                             }} >
                             Quay
                         </button>
@@ -130,6 +132,7 @@ const Lottery = () => {
                     )}
                 </div>
             ) : ''}
+            <ToastContainer/>
         </div>
     )
 }

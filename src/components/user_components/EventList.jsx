@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter } from '../../components';
@@ -49,16 +49,16 @@ const EventList = ({ type, events }) => {
         setCorrespondEvents(result);
         setFiltered(result);
     }, [type]);
-    const handleSearchInput = useCallback((input)=>{
+    const handleSearchInput = (input)=>{
+        setActiveButton("All");
+        let result = [];
         if (input !== "") {
-            setActiveButton("All");
-            const search_filtered = correspondEvents.filter((event) => event.title.includes(input));
-            setFiltered(search_filtered);
+            result = correspondEvents.filter((event) => event.title.includes(input));
         } else {
-            setActiveButton("All");
-            setFiltered(correspondEvents);
+            result = correspondEvents;
         }
-    },[])
+        setFiltered(result);
+    }
     return (
         <div className="gradient-bg-transactions grid grid-cols-1 justify-items-center items-center flex py-[20px] sm:px-[50px] lg:px-[100px] px-[20px]">
             <div className="flex w-3/4 sm:w-1/2 gap-[2px]">

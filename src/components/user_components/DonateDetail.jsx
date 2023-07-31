@@ -284,8 +284,8 @@ const DonateDetail = () => {
                                         <button
                                             type="button"
                                             onClick={() => {
-                                                if (!timerComponents.length && type != 'lifetime') alert("Sự kiện đã kết thúc!");
-                                                else if (Date.now() < detail.start.seconds * 1000) alert("Sự kiện chưa bắt đầu!");
+                                                if (!timerComponents.length && type != 'lifetime') toast.error("Sự kiện đã kết thúc!");
+                                                else if (Date.now() < detail.start.seconds * 1000) toast.warning("Sự kiện chưa bắt đầu!");
                                                 else setSendFormShow(true)
                                             }}
                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-red-500">
@@ -388,7 +388,7 @@ const DonateDetail = () => {
                                 </button>
                             </div>
                         </section>
-                        <Transactions message={id} />
+                        <Transactions message={id.toString()} />
                     </div>
                     <div className="text-white">
                         <div className="inline-flex justify-center items-center w-full">

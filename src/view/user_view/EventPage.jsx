@@ -14,7 +14,7 @@ const EventPage = () =>{
     return(
         <div className="min-h-screen">
             <div className="gradient-bg-welcome"><Navbar/></div>
-            {events.length !== 0 && <EventList type={type} events={events}/>}
+                {events.length !== 0 && <EventList type={type} events={events}/>}
             <Footer/>
         </div>
     )

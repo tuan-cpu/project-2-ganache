@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTransactionContext } from "../../controller/TransactionProvider";
 import { shortenAddress } from "../../common/utils/shortenAddress";
 
@@ -34,7 +34,7 @@ const Transactions = ({ message, from }) => {
                     </h3>
                 )}
                 <div className="flex flex-wrap justify-center items-center mt-10">
-                    {transactions.slice(-6).reverse().map((transaction, index) => {
+                    {transactions.reverse().map((transaction, index) => {
                         if (transaction.message === message || transaction.addressFrom === from)
                             return (<TransactionCard key={index} {...transaction} />)
                     })}

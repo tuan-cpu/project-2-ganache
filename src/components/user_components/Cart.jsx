@@ -7,6 +7,8 @@ import { useTransactionContext } from '../../controller/TransactionProvider';
 import { middle_man } from '../../common/utils/constants';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { MdOutlineCancel } from 'react-icons/md';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const { currentColor } = useStateContext();
@@ -51,7 +53,7 @@ const Cart = () => {
   useEffect(()=>{
     if(paid) {
       createOrder(order);
-      alert('Thanh toán thành công!');
+      toast.success('Thanh toán thành công!');
       setCartItems([]);
     }
   },[paid])
@@ -129,6 +131,7 @@ const Cart = () => {
             </button>)}
         </div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

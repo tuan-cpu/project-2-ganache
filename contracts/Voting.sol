@@ -48,7 +48,16 @@ contract Voting{
         string memory _userIndex,
         uint _eventIndex
     ) public {
-        candidates.push(Candidate(_candidateName,_userIndex,0,_eventIndex));
+        require(_eventIndex < votingEvents.length, "Invalid event index");
+        bool check = false;
+        for(uint256 i = 0; i < candidates.length; i++){
+            if(candidates[i]._eventIndex == _eventIndex && keccak256(bytes(candidates[i]._userIndex)) == keccak256(bytes(_userIndex))){ 
+                check = true;
+                break;
+            }
+        }
+        require(!check, "Candidate already existed");
+        candidates.push(Candidate(_candidateName,_userIndex,0,_eventIndex)); 
     }
 
     function vote(uint256 _candidateIndex, uint _eventIndex) public {
@@ -58,6 +67,8 @@ contract Voting{
                 !contains(voters[msg.sender]._eventIndex, _eventIndex),
             "Voter has already voted in this event"
         );
+        require(block.timestamp >= votingEvents[_eventIndex].votingStart, "Voting not yet start!");
+        require(block.timestamp <= votingEvents[_eventIndex].votingEnd, "Voting ended!");
 
         candidates[_candidateIndex].voteCount++;
         voters[msg.sender]._eventIndex.push(_eventIndex);

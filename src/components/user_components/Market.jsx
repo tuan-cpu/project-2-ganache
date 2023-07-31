@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { Header, Loader } from '..';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -61,7 +61,7 @@ const Market = () => {
       localStorage.setItem('myCart', JSON.stringify(result));
     }
   },[cartItems])
-  const handleSearchInput = useCallback((input)=>{
+  const handleSearchInput = (input)=>{
     if (input !== "") {
       const fully_filtered = fullyDonatedItems.filter((item) => item.data.name.includes(input));
       const partially_filtered = partiallyDonatedItems.filter((item) => item.data.name.includes(input));
@@ -71,7 +71,7 @@ const Market = () => {
       setFullyFiltered(fullyDonatedItems);
       setPartiallyFiltered(partiallyDonatedItems);
     }
-  },[])
+  }
   useEffect(()=>{
     let fully = [];
     let partially = [];
