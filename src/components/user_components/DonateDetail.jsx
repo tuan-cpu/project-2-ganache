@@ -32,7 +32,7 @@ const DonateDetail = () => {
     const { createWithdrawalRequest, uploadEventImages, getEvent, getUserAvatar, likeEvent, dislikeEvent } = useDataContext();
     const { user } = useAuthContext();
     const [detail, setDetail] = useState();
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData } = useTransactionContext();
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, setFormData, getAllTransactions } = useTransactionContext();
     const [sendFormShow, setSendFormShow] = useState(false);
     const [file, setFile] = useState("");
     const [confirm, setConfirm] = useState(false);
@@ -101,6 +101,7 @@ const DonateDetail = () => {
                     }]
                 }
                 updateDoc(docRef, data);
+                getAllTransactions();
             });
         }
         submit();

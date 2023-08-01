@@ -9,6 +9,8 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, collection, setDoc } from "firebase/firestore";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
   <input
@@ -85,6 +87,7 @@ const AdminCreateEventForm = () => {
   useEffect(() => {
     if (confirm) {
       submit(formData);
+      toast.success("Submission complete!");
     }
   }, [confirm]);
   const submit = async (data) => {
@@ -162,6 +165,7 @@ const AdminCreateEventForm = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

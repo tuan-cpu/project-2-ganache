@@ -60,6 +60,7 @@ const AuctionManagement = () => {
   }, [newDocID])
   useEffect(() => {
     if (newDocImageUrl != '') completeNewMarketItem(newDocImageUrl, newDocID, "auction");
+    getAllMarketItems("auction");
     setNewItemCardShow(false);
   }, [newDocImageUrl])
   return (

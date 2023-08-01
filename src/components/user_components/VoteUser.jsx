@@ -5,6 +5,7 @@ import { useDataContext } from '../../controller/DataProvider';
 import { useStateContext } from '../../controller/ContextProvider';
 import { NavLink } from 'react-router-dom';
 import Button from '../common_components/Button';
+
 const EventCard = ({ name }) => (
   <div className="flex flex-row justify-start items-center white-glassmorphism border-black dark:border-white p-3 m-2 hover:shadow-xl cursor-pointer">
     <div className='flex flex-col flex-1'>
