@@ -36,7 +36,7 @@ const VoteUser = () => {
   const calcTotalLike = (array) =>{
     let sum = 0;
     for(let i=0;i<array.length;i++){
-      sum += array.data.liked_user_id.length;
+      sum += array.data?.liked_user_id.length;
     }
     return sum;
   }

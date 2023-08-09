@@ -47,7 +47,7 @@ const DonateDetail = () => {
     }
     useEffect(() => {
         if (file && confirm) {
-            uploadEventImages(id, file, type + " events");
+            uploadEventImages(id, file, type);
         };
     }, [file, confirm])
     let email = sessionStorage.getItem('Email');
@@ -108,6 +108,7 @@ const DonateDetail = () => {
     }, [formData]);
     useEffect(() => {
         getData();
+        getAllTransactions();
     }, []);
     const [timeLeft, setTimeLeft] = useState({});
     const [images, setImages] = useState([]);
@@ -319,13 +320,14 @@ const DonateDetail = () => {
                                         </button>
                                     </AnimatePresence>
                                 </motion.div> : ''}
-                            {((type == 'lifetime' || type === 'limited') && user?.role == 'admin') || (user.id === detail.user_id) ? (
+                            {(type != 'users' && user.role === 'admin') || (user.id === detail.user_id) ? (
                                 <div className='w-full'>
                                     <button
                                         type="button"
-                                        htmlFor='image'
-                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer hover:bg-slate-400">
-                                        Tải minh chứng
+                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full hover:bg-slate-400">
+                                        <label htmlFor="image" className="cursor-pointer">
+                                            Tải minh chứng
+                                        </label>  
                                     </button>
                                     <input type="file" name="image" id="image" onChange={(e) => {
                                         setFile(e.target.files[0]);

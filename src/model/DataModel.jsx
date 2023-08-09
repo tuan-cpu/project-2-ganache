@@ -56,7 +56,7 @@ class DataModel {
         const ref = doc(db, "users", id);
         const docSnap = await getDoc(ref);
         let result = [];
-        const q = query(collection(db, "users events"), where("user_id", "==", id));
+        const q = query(collection(db, "events/users/database"), where("user_id", "==", id));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             result.push({ id: doc.id, data: doc.data(), type: 'users' });
