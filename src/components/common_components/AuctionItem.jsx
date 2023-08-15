@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Loader } from '..';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { NavLink } from 'react-router-dom';
 
 const AuctionItem = ({ id, highestBid, endTime, itemsIndex, disabled }) => {
     const { currentColor } = useStateContext();
@@ -36,7 +37,7 @@ const AuctionItem = ({ id, highestBid, endTime, itemsIndex, disabled }) => {
                 <div className="w-100 flex-wrap flex items-center justify-between dark:text-white">
                     <div>
                         <h6 className='text-xs'>Tên sản phẩm</h6>
-                        <p className='text-sm'>{savedAuctionItems[id].data.name}</p>
+                        <NavLink to={`/item/${id}`} className='text-sm'>{savedAuctionItems[id].data.name}</NavLink>
                     </div>
 
                     <div>

@@ -24,3 +24,4 @@ export { default as CartPage } from './user_view/CartPage';
 export { default as LotteryPage } from './user_view/LotteryPage';
 export { default as MarketManagementPage } from './admin_view/MarketManagementPage';
 export { default as AuctionManagementPage } from './admin_view/AuctionManagementPage';
+export { default as ItemPage } from './user_view/ItemPage';

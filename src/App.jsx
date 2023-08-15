@@ -3,7 +3,8 @@ import { AdminCreateEventPage, AdminPage, CreateEventPage, DonatePage,
   ErrorPage, EventPage, HomePage, OtherPage, RegisterPage, ResetPasswordPage, 
   SignInPage, UserEventApprove, UserInfoPage, VerifyUserApprove, 
   VerifyUserPage, VoteManagementPage, VoteUserPage, PrizeManagementPage, ListPage, 
-  WithdrawalApprovePage, MarketPage, AuctionPage, MarketManagementPage, AuctionManagementPage, CartPage, LotteryPage } from "./view";
+  WithdrawalApprovePage, MarketPage, AuctionPage, MarketManagementPage, AuctionManagementPage, 
+  CartPage, LotteryPage, ItemPage } from "./view";
 import { useStateContext } from "./controller/ContextProvider";
 import { Sidebar, ThemeSettings } from "./components";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -57,6 +58,7 @@ const App = () => {
                 <Route path="/auction" element={<AuctionPage/>} />
                 <Route path='/cart' element={<CartPage/>} />
                 <Route path="/lottery_user" element={<LotteryPage/>}/>
+                <Route path="/item/:id" element={<ItemPage/>}/>
 
                 {/* admin route */}
                 <Route path="/admin" element={<AdminPage />} />

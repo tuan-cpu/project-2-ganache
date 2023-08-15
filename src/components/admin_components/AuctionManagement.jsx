@@ -145,7 +145,7 @@ const AuctionManagement = () => {
             <select id="Item ID"
               onChange={(e) => handleChange(e, 'id')}>
               <option selected disabled>Chọn 1 ID</option>
-              {savedAuctionItems.map((item) => !item.data.available && <option key={item.id} value={parseInt(item.id)}>{item.id}</option>)}
+              {savedAuctionItems.map((item) => item.data.available && <option key={item.id} value={parseInt(item.id)}>{item.id}</option>)}
             </select>
             <input
               placeholder='Duration'
